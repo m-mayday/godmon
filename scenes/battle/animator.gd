@@ -28,10 +28,10 @@ func play_animation(event: AnimationEvent) -> void:
 		var animation: Animation = original_animation.duplicate()
 		animation_library.add_animation("temp", animation)
 		
-		var user_track_idxs: Array[int]
-		var user_track_properties: Array[StringName]
-		var target_track_idxs: Array[int]
-		var target_track_properties: Array[StringName]
+		var user_track_idxs: Array[int] = []
+		var user_track_properties: Array[StringName] = []
+		var target_track_idxs: Array[int] = []
+		var target_track_properties: Array[StringName] = []
 		var track_count: int = animation.get_track_count()
 		for i in range(track_count):
 			var path: NodePath = animation.track_get_path(i)

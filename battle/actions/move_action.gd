@@ -80,6 +80,10 @@ func execute() -> void:
 				
 				var damage: int = _step_calculate_damage(target, len(targets) > 1)
 				
+				if _current_hit_type_modifier <= 0.0:
+					battle.add_battle_event(BattleDialogueEvent.new("{0} doesn't affect {1}!", [move.name, target.pokemon.name]))
+					continue
+				
 				if damage <= 0:
 					failed.push_back(target)
 					continue
@@ -244,13 +248,15 @@ func _step_calculate_damage(target: Battler, multiple_targets: bool = false) -> 
 	base_damage = int(base_damage * stab_modifier)
 	
 	var effectiveness_modifier: float = _type_effectiveness_modifier(target)
+	_current_hit_type_modifier = effectiveness_modifier
+	if effectiveness_modifier == 0:
+		return 0
 	base_damage = int(base_damage * effectiveness_modifier)
 	
 	var damage_modifiers: Array = battle.run_action_event("modify_damage", target, user, [battle, user, target, move])
 	for modifier in damage_modifiers:
 		base_damage = int(base_damage * modifier)
 	
-	_current_hit_type_modifier = effectiveness_modifier
 	_current_hit_critical = is_critical
 	
 	return maxi(1, base_damage)
@@ -261,7 +267,6 @@ func _type_effectiveness_modifier(target: Battler) -> float:
 	var type_modifier := 1.0
 	for target_type in target.pokemon.species.types:
 		if target_type.immunities.has(move.type):
-			battle.add_battle_event(BattleDialogueEvent.new("{0} doesn't affect {1}!", [move.name, target.pokemon.name]))
 			move.handler.on_miss(battle, user, target) # Counts as a miss for Jump Kick
 			return 0
 		if target_type.weaknesses.has(move.type):
@@ -313,7 +318,7 @@ func _deal_damage(damage: int, target: Battler):
 		battle.add_battle_event(AnimationEvent.new("attack_move", [user, target]))
 	if move.flags.has(Constants.MOVE_FLAGS.EXPLOSION):
 		user.damage(user.pokemon.stats.hp)
-	#battle.add_battle_event(AnimationEvent.new("on_hit", [target]))
+	battle.add_battle_event(AnimationEvent.new("on_hit", [target]))
 	target.damage(damage)
 
 
