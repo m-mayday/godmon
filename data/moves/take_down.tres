@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bovs5utbrqsmo"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_faxe8"]
+
+
+[resource]
+script = ExtResource("1_faxe8")
+id = 806
+name = &"Take Down"
+type = 12
+category = 0
+power = 90
+accuracy = 85
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="Species" load_steps=11 format=3 uid="uid://bep0hloqk8s4o"]
+
+[ext_resource type="Texture2D" uid="uid://d0h387k5fo8w1" path="res://assets/battle/sprites/back/CHARIZARD.png" id="1_2j183"]
+[ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_imqwd"]
+[ext_resource type="Script" path="res://data/_base_classes/stats.gd" id="1_sau7s"]
+[ext_resource type="Texture2D" uid="uid://ktky8mtpbo7w" path="res://assets/battle/sprites/front/CHARIZARD.png" id="3_loij1"]
+[ext_resource type="Resource" uid="uid://cshrkwblaiitr" path="res://data/types/fire.tres" id="6_67e61"]
+[ext_resource type="Script" path="res://data/_base_classes/sprite_metrics.gd" id="7_16ane"]
+[ext_resource type="Resource" uid="uid://cftowb5lcbqh6" path="res://data/types/flying.tres" id="7_kxs23"]
+
+[sub_resource type="Resource" id="Resource_dornh"]
+script = ExtResource("1_sau7s")
+hp = 78
+attack = 84
+defense = 78
+speed = 100
+special_attack = 109
+special_defense = 85
+
+[sub_resource type="Resource" id="Resource_cyka3"]
+script = ExtResource("1_sau7s")
+hp = 0
+attack = 0
+defense = 0
+speed = 0
+special_attack = 0
+special_defense = 0
+
+[sub_resource type="Resource" id="Resource_xesgn"]
+script = ExtResource("7_16ane")
+back_sprite_offset = Vector2(0, 0)
+back_sprite_scale = Vector2(1.2, 1.2)
+front_sprite_offset = Vector2(0, -2)
+front_sprite_scale = Vector2(1.2, 1.2)
+shadow_scale = Vector2(1.7, 1.8)
+shadow_offset = Vector2(-1, -33)
+
+[resource]
+script = ExtResource("1_imqwd")
+species_id = 5
+name = &"Charizard"
+types = Array[Resource("res://data/_base_classes/type.gd")]([ExtResource("6_67e61"), ExtResource("7_kxs23")])
+base_stats = SubResource("Resource_dornh")
+base_exp = 100
+evs = SubResource("Resource_cyka3")
+catch_rate = 255
+happiness = 70
+learnset_by_level = Array[Resource("res://data/_base_classes/learnset.gd")]([])
+hatch_steps = 1
+height = 0.1
+weight = 0.1
+category = &"???"
+pokedex = "???"
+front_sprite = ExtResource("3_loij1")
+back_sprite = ExtResource("1_2j183")
+sprite_metrics = SubResource("Resource_xesgn")

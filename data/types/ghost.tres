@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Type" load_steps=2 format=3 uid="uid://b7mh0ewhnavc3"]
+
+[ext_resource type="Script" path="res://data/_base_classes/type.gd" id="1_k0x8o"]
+
+[resource]
+script = ExtResource("1_k0x8o")
+id = 8
+name = &"Ghost"
+weaknesses = Array[int]([1, 8])
+resistances = Array[int]([0, 13])
+immunities = Array[int]([5, 12])

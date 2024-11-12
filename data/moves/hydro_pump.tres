@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://di4mbesepxe62"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_w8ry2"]
+
+
+[resource]
+script = ExtResource("1_w8ry2")
+id = 366
+name = &"Hydro Pump"
+type = 17
+category = 1
+power = 110
+accuracy = 80
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"

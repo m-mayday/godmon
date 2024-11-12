@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bhddox2thix47"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_nwban"]
+
+
+[resource]
+script = ExtResource("1_nwban")
+id = 717
+name = &"Smog"
+type = 13
+category = 1
+power = 30
+accuracy = 70
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 40
+description = "???"

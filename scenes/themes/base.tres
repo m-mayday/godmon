@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b21gf1bl6s21p"]
+
+[ext_resource type="FontFile" uid="uid://bst06r5x135uk" path="res://assets/fonts/power red and green.ttf" id="1_ks41q"]
+[ext_resource type="FontFile" uid="uid://b2wbo48oocgms" path="res://assets/fonts/power green small.ttf" id="1_qrwuv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_li0s1"]
+
+[resource]
+default_font = ExtResource("1_ks41q")
+default_font_size = 24
+Battle/base_type = &"Label"
+Battle/colors/font_color = Color(0.25098, 0.25098, 0.25098, 1)
+Battle/colors/font_outline_color = Color(0.25098, 0.25098, 0.25098, 1)
+Battle/colors/font_shadow_color = Color(0.815686, 0.815686, 0.784314, 1)
+Battle/constants/line_spacing = 0
+Battle/constants/outline_size = 0
+Battle/constants/shadow_offset_x = 1
+Battle/constants/shadow_offset_y = 1
+Battle/constants/shadow_outline_size = 1
+Battle/font_sizes/font_size = 9
+Battle/fonts/font = ExtResource("1_qrwuv")
+Label/colors/font_color = Color(0.376471, 0.376471, 0.376471, 1)
+Label/colors/font_outline_color = Color(0.376471, 0.376471, 0.376471, 1)
+Label/colors/font_shadow_color = Color(0.815686, 0.815686, 0.784314, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/styles/normal = SubResource("StyleBoxEmpty_li0s1")

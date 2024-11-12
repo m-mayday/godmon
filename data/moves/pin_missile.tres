@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b2gv5kx1khpjf"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_qg0kh"]
+
+
+[resource]
+script = ExtResource("1_qg0kh")
+id = 555
+name = &"Pin Missile"
+type = 0
+category = 0
+power = 25
+accuracy = 95
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"

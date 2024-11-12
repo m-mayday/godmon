@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://xurtnoqhcttl"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_xtwe3"]
+
+
+[resource]
+script = ExtResource("1_xtwe3")
+id = 665
+name = &"Screech"
+type = 12
+category = 2
+power = 0
+accuracy = 85
+base_pp = 40
+target = 9
+priority = 0
+flags = Array[int]([1, 11, 12, 13])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://6c3ktdcrkisi"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_wur8h"]
+
+
+[resource]
+script = ExtResource("1_wur8h")
+id = 618
+name = &"Recover"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 5
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://de1wobrygh6cj"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_8ijra"]
+
+
+[resource]
+script = ExtResource("1_8ijra")
+id = 785
+name = &"Supersonic"
+type = 12
+category = 2
+power = 0
+accuracy = 55
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([1, 11, 12, 13])
+effect_chance = 0
+description = "???"

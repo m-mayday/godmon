@@ -1,0 +1,700 @@
+[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
+
+[ext_resource type="Script" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
+[ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
+[ext_resource type="PackedScene" uid="uid://cfhq7istddlx" path="res://scenes/battle/battle_menu.tscn" id="2_i5pvj"]
+[ext_resource type="Texture2D" uid="uid://by2kdrc8mp07f" path="res://assets/battle/backgrounds/field_bg.png" id="2_o7ey8"]
+[ext_resource type="PackedScene" uid="uid://buw3uefjpyaf8" path="res://scenes/pokemon_menu.tscn" id="2_p0xf1"]
+[ext_resource type="PackedScene" uid="uid://chhq8ivedwqi" path="res://scenes/battle/fight_menu.tscn" id="3_cv04l"]
+[ext_resource type="PackedScene" uid="uid://qiu0yskh5npf" path="res://scenes/battle/battle_sprite.tscn" id="3_fssma"]
+[ext_resource type="Texture2D" uid="uid://bj8ttyo3qhfen" path="res://assets/battle/ui/grass_battleback.png" id="3_w8dgg"]
+[ext_resource type="Texture2D" uid="uid://dtix6uvd2o27l" path="res://assets/battle/ui/panel_dialogue.png" id="4_beauk"]
+[ext_resource type="PackedScene" uid="uid://cf8icqs8aj2cw" path="res://scenes/battle/target_menu.tscn" id="6_5lyw6"]
+[ext_resource type="PackedScene" uid="uid://bnt5o5mxpc03m" path="res://scenes/battle/ability_box.tscn" id="6_kyq73"]
+[ext_resource type="Texture2D" uid="uid://dh65maihvqm2x" path="res://battle/ref.jpg" id="9_f0qhp"]
+[ext_resource type="Texture2D" uid="uid://olwv2a6i376h" path="res://assets/red_back.png" id="9_gs2os"]
+[ext_resource type="Texture2D" uid="uid://d27vygdgddeqg" path="res://assets/poke_balls.png" id="9_vogny"]
+[ext_resource type="Texture2D" uid="uid://d1siasofrlblk" path="res://scenes/ref2.PNG" id="11_8is2a"]
+[ext_resource type="Texture2D" uid="uid://b8h7feuujfllj" path="res://assets/battle/ui/grass_battleback_0.png" id="11_viky4"]
+[ext_resource type="Texture2D" uid="uid://vun8u75k2w74" path="res://assets/battle/ui/grass_intro.png" id="13_abmdw"]
+[ext_resource type="PackedScene" uid="uid://bv5p4qx8ddr0v" path="res://scenes/battle/animator.tscn" id="18_cr648"]
+
+[sub_resource type="Animation" id="Animation_nfp05"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TransitionTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -288)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TransitionTop:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TransitionBottom:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/TransitionBottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 288)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UserSide/Battleback:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(768, 396)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ParallaxBackground:scroll_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ParallaxBackground:offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ParallaxBackground:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Trainer:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1045, 340)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FoeSide/Sprites:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-420, 120)]
+}
+
+[sub_resource type="Animation" id="Animation_sn7qa"]
+resource_name = "battleback"
+length = 0.8
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UserSide/Battleback:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.44),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(768, 396), Vector2(0, 396)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Trainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.44),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1045, 340), Vector2(264, 340)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Trainer:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FoeSide/Battleback:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.01, 0.46),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-465, 163), Vector2(393, 163)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FoeSide/Sprites:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.46),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-420, 120), Vector2(438, 120)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FoeSide/Sprites:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.01, 0.46, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.568627, 0.568627, 0.568627, 1), Color(0.568627, 0.568627, 0.568627, 1), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FoeSide/Databoxes:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.69),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-465, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ycghk"]
+resource_name = "trainer_send_out"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Trainer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.42, 0.46, 0.5, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Trainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(264, 340), Vector2(0, 340), Vector2(-80, 340)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Trainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/PokeBall:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/PokeBall:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.11, 0.45, 0.4501, 0.46, 0.52, 0.62, 0.94, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 2, 1, 1, 1),
+"update": 0,
+"values": [Vector2(137.25, 406.333), Vector2(124.863, 406.333), Vector2(18.25, 406.333), Vector2(12.25, 406.333), Vector2(2.25, 327.333), Vector2(184, 244.333), Vector2(200, 244), Vector2(250, 498), Vector2(250, 500)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/PokeBall:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.49, 0.51, 0.54, 0.57, 0.6, 0.63, 0.66, 0.7, 0.74, 0.78, 0.82, 0.86, 0.9, 0.94, 0.98),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.0, -1.5708, -3.14159, 0.0, -1.5708, -3.14159, 0.0, -1.5708, -3.14159, 0.0, -1.5708, -3.14159, 0.0, -1.5708, -3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_vtu8c"]
+resource_name = "transition"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TransitionTop:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TransitionTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -288)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TransitionBottom:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/TransitionBottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 288), Vector2(0, 288), Vector2(0, 576)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParallaxBackground:scroll_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(180000, 0), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ParallaxBackground:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 150)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ParallaxBackground:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gh0ar"]
+_data = {
+"RESET": SubResource("Animation_nfp05"),
+"battleback": SubResource("Animation_sn7qa"),
+"trainer_send_out": SubResource("Animation_ycghk"),
+"transition": SubResource("Animation_vtu8c")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2bxv"]
+atlas = ExtResource("9_gs2os")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gbcw"]
+atlas = ExtResource("9_gs2os")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2oj5"]
+atlas = ExtResource("9_gs2os")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tpy5"]
+atlas = ExtResource("9_gs2os")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tv2g"]
+atlas = ExtResource("9_gs2os")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtv0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2bxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gbcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2oj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tpy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tv2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BattleScene" type="Node"]
+script = ExtResource("1_hrc2y")
+pokemon_databox = ExtResource("2_cbhpy")
+pokemon_sprite = ExtResource("3_fssma")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.686275)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 512.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_o7ey8")
+
+[node name="FoeSide" type="Node" parent="."]
+
+[node name="Battleback" type="TextureRect" parent="FoeSide"]
+offset_left = -465.0
+offset_top = 163.0
+offset_right = -90.0
+offset_bottom = 263.0
+texture = ExtResource("3_w8dgg")
+
+[node name="Sprites" type="HBoxContainer" parent="FoeSide"]
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1188.0
+offset_top = 120.0
+offset_right = -909.999
+offset_bottom = 204.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="Databoxes" type="VBoxContainer" parent="FoeSide"]
+offset_left = -465.0
+offset_right = -465.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+metadata/_edit_lock_ = true
+
+[node name="Ability" parent="FoeSide" instance=ExtResource("6_kyq73")]
+position = Vector2(769, 90)
+side = 1
+
+[node name="UserSide" type="Node" parent="."]
+
+[node name="Battleback" type="TextureRect" parent="UserSide"]
+offset_left = 768.0
+offset_top = 396.0
+offset_right = 1282.0
+offset_bottom = 485.0
+texture = ExtResource("11_viky4")
+
+[node name="Sprites" type="HBoxContainer" parent="UserSide"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -194.0
+offset_right = 497.0
+offset_bottom = -94.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = -16
+metadata/_edit_lock_ = true
+
+[node name="Databoxes" type="VBoxContainer" parent="UserSide"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 481.0
+offset_top = -101.0
+offset_right = 481.0
+offset_bottom = -101.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+metadata/_edit_lock_ = true
+
+[node name="Ability" parent="UserSide" instance=ExtResource("6_kyq73")]
+position = Vector2(-256, 307)
+
+[node name="PokemonMenu" parent="." instance=ExtResource("2_p0xf1")]
+visible = false
+offset_right = 90.0
+offset_bottom = 240.0
+context = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.415686)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_f0qhp")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.415686)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_8is2a")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gh0ar")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PokeBall" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(137.25, 406.333)
+scale = Vector2(4.29167, 4.29167)
+texture = ExtResource("9_vogny")
+region_enabled = true
+region_rect = Rect2(0, 0, 12, 12)
+
+[node name="Trainer" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(1045, 340)
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_xtv0i")
+
+[node name="MessageBox" type="NinePatchRect" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_beauk")
+patch_margin_left = 8
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MessageBox"]
+custom_minimum_size = Vector2(232, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="MessageLabel" type="RichTextLabel" parent="CanvasLayer/MessageBox/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0.407843, 0.345098, 0.439216, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="BattleMenu" parent="CanvasLayer" instance=ExtResource("2_i5pvj")]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -262.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="FightMenu" parent="CanvasLayer" instance=ExtResource("3_cv04l")]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+offset_top = -100.0
+grow_vertical = 0
+size_flags_vertical = 3
+
+[node name="TargetMenu" parent="CanvasLayer" instance=ExtResource("6_5lyw6")]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+offset_top = -100.0
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="TransitionTop" type="ColorRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -288.0
+offset_right = 51653.0
+grow_horizontal = 2
+
+[node name="TransitionBottom" type="ColorRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -288.0
+offset_right = 51655.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(765, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = 1.0
+offset_top = 326.0
+offset_right = 766.0
+offset_bottom = 479.0
+texture = ExtResource("13_abmdw")
+metadata/_edit_lock_ = true
+
+[node name="Animator" parent="." node_paths=PackedStringArray("allies", "opponents") instance=ExtResource("18_cr648")]
+allies = NodePath("../UserSide/Sprites")
+opponents = NodePath("../FoeSide/Sprites")
+
+[connection signal="switch" from="PokemonMenu" to="." method="_on_pokemon_menu_switch"]
+[connection signal="fight_pressed" from="CanvasLayer/BattleMenu" to="." method="_on_battle_menu_fight_pressed"]
+[connection signal="switch_pressed" from="CanvasLayer/BattleMenu" to="." method="_on_battle_menu_switch_pressed"]
+[connection signal="move_chosen" from="CanvasLayer/FightMenu" to="." method="_on_fight_menu_move_chosen"]

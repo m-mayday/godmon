@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://fmejf3hnb35y"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_jse8j"]
+
+
+[resource]
+script = ExtResource("1_jse8j")
+id = 184
+name = &"Double Kick"
+type = 5
+category = 0
+power = 30
+accuracy = 100
+base_pp = 30
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

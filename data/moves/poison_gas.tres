@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://hq056jc6313q"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_prddg"]
+
+
+[resource]
+script = ExtResource("1_prddg")
+id = 561
+name = &"Poison Gas"
+type = 13
+category = 2
+power = 0
+accuracy = 90
+base_pp = 40
+target = 2
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

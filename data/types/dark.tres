@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Type" load_steps=2 format=3 uid="uid://btgoersgbrnbb"]
+
+[ext_resource type="Script" path="res://data/_base_classes/type.gd" id="1_pxjov"]
+
+[resource]
+script = ExtResource("1_pxjov")
+id = 1
+name = &"Dark"
+weaknesses = Array[int]([0, 4, 5])
+resistances = Array[int]([1, 8])
+immunities = Array[int]([14])

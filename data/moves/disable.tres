@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dt42xnt7xwp6w"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_b1hx0"]
+
+
+[resource]
+script = ExtResource("1_b1hx0")
+id = 175
+name = &"Disable"
+type = 12
+category = 2
+power = 0
+accuracy = 100
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([12, 11, 13])
+effect_chance = 0
+description = "???"

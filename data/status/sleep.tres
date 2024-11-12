@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cpge0bu2w12m1"]
+
+[ext_resource type="Script" path="res://data/_base_classes/status.gd" id="1_c8uhu"]
+[ext_resource type="Texture2D" uid="uid://c880rtjck8sss" path="res://assets/statuses/sleep.png" id="1_mh56s"]
+
+[resource]
+script = ExtResource("1_c8uhu")
+id = 5
+name = "Sleep"
+immune_types = Array[int]([])
+icon = ExtResource("1_mh56s")

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cki3uovs2kuyt"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_go7ek"]
+
+
+[resource]
+script = ExtResource("1_go7ek")
+id = 570
+name = &"Pound"
+type = 12
+category = 0
+power = 40
+accuracy = 100
+base_pp = 35
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

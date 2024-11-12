@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://crpaq20g83jl3"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_mhpoa"]
+
+
+[resource]
+script = ExtResource("1_mhpoa")
+id = 216
+name = &"Egg Bomb"
+type = 12
+category = 0
+power = 100
+accuracy = 75
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"

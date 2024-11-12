@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bsbow0aaiadsj"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_60asv"]
+
+[resource]
+script = ExtResource("1_60asv")
+id = 823
+name = &"Thrash"
+type = 12
+category = 0
+power = 120
+accuracy = 100
+base_pp = 10
+target = 8
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://ki1hek3dsq7f"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_5rjga"]
+
+[resource]
+script = ExtResource("1_5rjga")
+id = 168
+name = "Poison Point"
+description = ""

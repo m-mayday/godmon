@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bj64h0sn4nkim"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_q1sao"]
+
+
+[resource]
+script = ExtResource("1_q1sao")
+id = 61
+name = &"Bind"
+type = 12
+category = 0
+power = 15
+accuracy = 85
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://cxbxnjc6x3cee"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_ksoin"]
+
+[resource]
+script = ExtResource("1_ksoin")
+id = 134
+name = "Marvel Scale"
+description = ""

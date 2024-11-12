@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://gapi4ko05hn4"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_3m3o1"]
+
+[resource]
+script = ExtResource("1_3m3o1")
+id = 215
+name = "Shed Skin"
+description = ""

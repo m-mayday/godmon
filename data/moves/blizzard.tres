@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cnucnjb621bss"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_0pnea"]
+
+[resource]
+script = ExtResource("1_0pnea")
+id = 71
+name = &"Blizzard"
+type = 11
+category = 1
+power = 110
+accuracy = 70
+base_pp = 5
+target = 2
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 10
+description = "???"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c5xd1yobc2uly"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_vs653"]
+
+
+[resource]
+script = ExtResource("1_vs653")
+id = 130
+name = &"Comet Punch"
+type = 12
+category = 0
+power = 18
+accuracy = 85
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

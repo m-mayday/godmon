@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Species" load_steps=10 format=3 uid="uid://coos7hdynlxio"]
+
+[ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_67kb6"]
+[ext_resource type="Texture2D" uid="uid://d4jdkxbhrbmi7" path="res://assets/battle/sprites/back/VENUSAUR.png" id="1_l5dn3"]
+[ext_resource type="Script" path="res://data/_base_classes/stats.gd" id="1_lmivb"]
+[ext_resource type="Texture2D" uid="uid://0vbiwcmfsgxt" path="res://assets/battle/sprites/front/VENUSAUR.png" id="3_ag5t2"]
+[ext_resource type="Resource" uid="uid://b22wrkxs4g5fx" path="res://data/types/grass.tres" id="6_3cvy8"]
+[ext_resource type="Script" path="res://data/_base_classes/sprite_metrics.gd" id="7_f6xt7"]
+[ext_resource type="Resource" uid="uid://bcw82a0vg3qd3" path="res://data/types/poison.tres" id="7_j3utj"]
+
+[sub_resource type="Resource" id="Resource_ul2u2"]
+script = ExtResource("1_lmivb")
+hp = 80
+attack = 82
+defense = 83
+speed = 80
+special_attack = 100
+special_defense = 100
+
+[sub_resource type="Resource" id="Resource_t1212"]
+script = ExtResource("7_f6xt7")
+back_sprite_offset = Vector2(0, 0)
+back_sprite_scale = Vector2(1.2, 1.2)
+front_sprite_offset = Vector2(0, 20)
+front_sprite_scale = Vector2(1.2, 1.2)
+shadow_scale = Vector2(2, 1.6)
+shadow_offset = Vector2(-4, -22)
+
+[resource]
+script = ExtResource("1_67kb6")
+species_id = 2
+name = &"Venusaur"
+types = Array[Resource("res://data/_base_classes/type.gd")]([ExtResource("6_3cvy8"), ExtResource("7_j3utj")])
+base_stats = SubResource("Resource_ul2u2")
+base_exp = 100
+catch_rate = 255
+happiness = 70
+learnset_by_level = Array[Resource("res://data/_base_classes/learnset.gd")]([])
+hatch_steps = 1
+height = 0.1
+weight = 0.1
+category = &"???"
+pokedex = "???"
+front_sprite = ExtResource("3_ag5t2")
+back_sprite = ExtResource("1_l5dn3")
+sprite_metrics = SubResource("Resource_t1212")

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bsvcgo2c8se70"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_dhbui"]
+
+
+[resource]
+script = ExtResource("1_dhbui")
+id = 120
+name = &"Clamp"
+type = 17
+category = 0
+power = 35
+accuracy = 85
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

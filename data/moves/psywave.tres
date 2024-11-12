@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://crno520dwxq4p"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_aibbn"]
+
+
+[resource]
+script = ExtResource("1_aibbn")
+id = 598
+name = &"Psywave"
+type = 14
+category = 1
+power = 0
+accuracy = 100
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"

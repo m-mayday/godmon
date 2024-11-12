@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://botchpywv721x"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_tmld3"]
+
+
+[resource]
+script = ExtResource("1_tmld3")
+id = 331
+name = &"Gust"
+type = 7
+category = 1
+power = 40
+accuracy = 100
+base_pp = 35
+target = 13
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"

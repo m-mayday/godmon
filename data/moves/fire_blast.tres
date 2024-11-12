@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c55mjkf3hl7lp"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_c7e70"]
+
+
+[resource]
+script = ExtResource("1_c7e70")
+id = 253
+name = &"Fire Blast"
+type = 6
+category = 1
+power = 110
+accuracy = 85
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 10
+description = "???"

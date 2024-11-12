@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b68uodm41vu8b"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_mkfp4"]
+
+
+[resource]
+script = ExtResource("1_mkfp4")
+id = 421
+name = &"Leech Seed"
+type = 9
+category = 2
+power = 0
+accuracy = 90
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

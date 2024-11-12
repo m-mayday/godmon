@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://l5o3s2k08eoa"]
+
+[ext_resource type="FontFile" uid="uid://b2wbo48oocgms" path="res://assets/fonts/power green small.ttf" id="1_f7si3"]
+
+[resource]
+font = ExtResource("1_f7si3")
+font_size = 18
+font_color = Color(0.25098, 0.25098, 0.25098, 1)
+shadow_color = Color(0.847059, 0.815686, 0.690196, 1)

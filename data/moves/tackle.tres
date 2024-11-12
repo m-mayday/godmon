@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://d0f2tsrebewqj"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_n38ev"]
+
+[resource]
+script = ExtResource("1_n38ev")
+id = 801
+name = &"Tackle"
+type = 12
+category = 0
+power = 40
+accuracy = 100
+base_pp = 35
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

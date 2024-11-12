@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://121gjyys6yyo"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_j1ylv"]
+
+
+[resource]
+script = ExtResource("1_j1ylv")
+id = 361
+name = &"Horn Drill"
+type = 12
+category = 0
+power = 0
+accuracy = 30
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([0, 12])
+effect_chance = 0
+description = "???"

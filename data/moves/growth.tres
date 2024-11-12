@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://pgadgc3a83xh"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_iyqyf"]
+
+
+[resource]
+script = ExtResource("1_iyqyf")
+id = 324
+name = &"Growth"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 20
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bhg0esf2ffi3v"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_ddogh"]
+
+
+[resource]
+script = ExtResource("1_ddogh")
+id = 608
+name = &"Rage"
+type = 12
+category = 0
+power = 20
+accuracy = 100
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

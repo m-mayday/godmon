@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b2fqp77d0y4gc"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_sbr2y"]
+
+
+[resource]
+script = ExtResource("1_sbr2y")
+id = 564
+name = &"Poison Sting"
+type = 13
+category = 0
+power = 15
+accuracy = 100
+base_pp = 35
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 30
+description = "???"

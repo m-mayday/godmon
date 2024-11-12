@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://3gb3hxvumr2c"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_57dhd"]
+
+
+[resource]
+script = ExtResource("1_57dhd")
+id = 874
+name = &"Water Gun"
+type = 17
+category = 1
+power = 40
+accuracy = 100
+base_pp = 25
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"

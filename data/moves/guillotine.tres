@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bfr4l362ynxos"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_pcl27"]
+
+
+[resource]
+script = ExtResource("1_pcl27")
+id = 329
+name = &"Guillotine"
+type = 12
+category = 0
+power = 0
+accuracy = 30
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([0, 12])
+effect_chance = 0
+description = "???"

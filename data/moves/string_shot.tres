@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://s2ur7gjx5lih"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_ytqge"]
+
+
+[resource]
+script = ExtResource("1_ytqge")
+id = 771
+name = &"String Shot"
+type = 0
+category = 2
+power = 0
+accuracy = 95
+base_pp = 40
+target = 2
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

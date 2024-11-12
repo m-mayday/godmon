@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cxg3jhgr1f0a"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_6q3hw"]
+
+
+[resource]
+script = ExtResource("1_6q3hw")
+id = 179
+name = &"Dizzy Punch"
+type = 5
+category = 0
+power = 70
+accuracy = 100
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 20
+description = "???"

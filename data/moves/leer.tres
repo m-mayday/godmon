@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b0swx7q2r544j"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_42hcy"]
+
+
+[resource]
+script = ExtResource("1_42hcy")
+id = 422
+name = &"Leer"
+type = 12
+category = 2
+power = 0
+accuracy = 100
+base_pp = 30
+target = 2
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

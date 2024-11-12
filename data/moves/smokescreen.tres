@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://gkm4edyg4iji"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_j21ug"]
+
+
+[resource]
+script = ExtResource("1_j21ug")
+id = 718
+name = &"Smokescreen"
+type = 12
+category = 2
+power = 0
+accuracy = 100
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,55 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Godot Projects"
+run/main_scene="res://scenes/battle/battle_scene.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SignalBus="*res://signal_bus.gd"
+
+[debug]
+
+gdscript/warnings/integer_division=0
+
+[display]
+
+window/size/viewport_width=768
+window/size/viewport_height=576
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://battle/": "orange",
+"res://data/": "yellow",
+"res://scenes/": "green"
+}
+
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
+theme/custom="res://scenes/themes/base.tres"
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
+theme/lcd_subpixel_layout=0
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bk5k02qw0bgyi"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_02w7q"]
+
+
+[resource]
+script = ExtResource("1_02w7q")
+id = 617
+name = &"Razor Wind"
+type = 12
+category = 1
+power = 80
+accuracy = 100
+base_pp = 10
+target = 2
+priority = 0
+flags = Array[int]([12, 13, 17])
+effect_chance = 0
+description = "???"

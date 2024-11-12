@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b3y7hugpenx5o"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_o3kgy"]
+
+[resource]
+script = ExtResource("1_o3kgy")
+id = 420
+name = &"Leech Life"
+type = 0
+category = 0
+power = 80
+accuracy = 80
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

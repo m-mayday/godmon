@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dvio6inwat1p2"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_yiyxv"]
+
+
+[resource]
+script = ExtResource("1_yiyxv")
+id = 891
+name = &"Wing Attack"
+type = 7
+category = 0
+power = 60
+accuracy = 100
+base_pp = 35
+target = 13
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,212 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf8icqs8aj2cw"]
+
+[ext_resource type="Script" path="res://scenes/battle/target_menu.gd" id="1_50osn"]
+[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_264xs"]
+[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_o7k4u"]
+
+[node name="TargetMenu" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_264xs")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+script = ExtResource("1_50osn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="FoeSide" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Battler1" type="Button" parent="MarginContainer/VBoxContainer/FoeSide"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_o7k4u")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FoeSide/Battler1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/FoeSide/Battler1/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "Foe 1"
+vertical_alignment = 1
+
+[node name="Battler2" type="Button" parent="MarginContainer/VBoxContainer/FoeSide"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_o7k4u")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FoeSide/Battler2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/FoeSide/Battler2/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "Foe 2"
+vertical_alignment = 1
+
+[node name="Battler3" type="Button" parent="MarginContainer/VBoxContainer/FoeSide"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_o7k4u")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FoeSide/Battler3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/FoeSide/Battler3/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "Foe 3"
+vertical_alignment = 1
+
+[node name="UserSide" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Battler1" type="Button" parent="MarginContainer/VBoxContainer/UserSide"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_o7k4u")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/UserSide/Battler1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/UserSide/Battler1/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "Ally 1"
+vertical_alignment = 1
+
+[node name="Battler2" type="Button" parent="MarginContainer/VBoxContainer/UserSide"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_o7k4u")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/UserSide/Battler2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/UserSide/Battler2/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "Ally 2"
+vertical_alignment = 1
+
+[node name="Battler3" type="Button" parent="MarginContainer/VBoxContainer/UserSide"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("3_o7k4u")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/UserSide/Battler3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/UserSide/Battler3/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "Ally 3"
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/FoeSide/Battler1" to="." method="_on_button_focus_entered" binds= [0, false]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FoeSide/Battler1" to="." method="_on_battler_pressed" binds= [0, false]]
+[connection signal="draw" from="MarginContainer/VBoxContainer/FoeSide/Battler1/MarginContainer/Label" to="." method="_on_label_draw" binds= [0, false]]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/FoeSide/Battler2" to="." method="_on_button_focus_entered" binds= [1, false]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FoeSide/Battler2" to="." method="_on_battler_pressed" binds= [1, false]]
+[connection signal="draw" from="MarginContainer/VBoxContainer/FoeSide/Battler2/MarginContainer/Label" to="." method="_on_label_draw" binds= [1, false]]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/FoeSide/Battler3" to="." method="_on_button_focus_entered" binds= [2, false]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FoeSide/Battler3" to="." method="_on_battler_pressed" binds= [2, false]]
+[connection signal="draw" from="MarginContainer/VBoxContainer/FoeSide/Battler3/MarginContainer/Label" to="." method="_on_label_draw" binds= [2, false]]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/UserSide/Battler1" to="." method="_on_button_focus_entered" binds= [0, true]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/UserSide/Battler1" to="." method="_on_battler_pressed" binds= [0, true]]
+[connection signal="draw" from="MarginContainer/VBoxContainer/UserSide/Battler1/MarginContainer/Label" to="." method="_on_label_draw" binds= [0, true]]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/UserSide/Battler2" to="." method="_on_button_focus_entered" binds= [1, true]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/UserSide/Battler2" to="." method="_on_battler_pressed" binds= [1, true]]
+[connection signal="draw" from="MarginContainer/VBoxContainer/UserSide/Battler2/MarginContainer/Label" to="." method="_on_label_draw" binds= [1, true]]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/UserSide/Battler3" to="." method="_on_button_focus_entered" binds= [2, true]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/UserSide/Battler3" to="." method="_on_battler_pressed" binds= [2, true]]
+[connection signal="draw" from="MarginContainer/VBoxContainer/UserSide/Battler3/MarginContainer/Label" to="." method="_on_label_draw" binds= [2, true]]

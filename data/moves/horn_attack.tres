@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c7hx65v286a1b"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_iw8ng"]
+
+
+[resource]
+script = ExtResource("1_iw8ng")
+id = 360
+name = &"Horn Attack"
+type = 12
+category = 0
+power = 65
+accuracy = 100
+base_pp = 25
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

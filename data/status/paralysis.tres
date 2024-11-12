@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://wvia2kbiw3h0"]
+
+[ext_resource type="Script" path="res://data/_base_classes/status.gd" id="1_6cqxn"]
+[ext_resource type="Texture2D" uid="uid://cte31l2kr32ia" path="res://assets/statuses/paralysis.png" id="1_e6y2g"]
+
+[resource]
+script = ExtResource("1_6cqxn")
+id = 3
+name = "Paralysis"
+immune_types = Array[int]([3])
+icon = ExtResource("1_e6y2g")

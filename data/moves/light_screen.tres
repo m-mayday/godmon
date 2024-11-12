@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bso8oodnmbaqv"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_0ylrc"]
+
+
+[resource]
+script = ExtResource("1_0ylrc")
+id = 426
+name = &"Light Screen"
+type = 14
+category = 2
+power = 0
+accuracy = 0
+base_pp = 30
+target = 15
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"

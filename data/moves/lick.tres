@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cjarjc7wlbt87"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_22l18"]
+
+
+[resource]
+script = ExtResource("1_22l18")
+id = 424
+name = &"Lick"
+type = 8
+category = 0
+power = 30
+accuracy = 100
+base_pp = 30
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 30
+description = "???"

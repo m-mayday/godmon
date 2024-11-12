@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c5pu171bscq6k"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_aod8x"]
+
+
+[resource]
+script = ExtResource("1_aod8x")
+id = 653
+name = &"Sand Attack"
+type = 10
+category = 2
+power = 0
+accuracy = 100
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([12, 11, 13])
+effect_chance = 0
+description = "???"

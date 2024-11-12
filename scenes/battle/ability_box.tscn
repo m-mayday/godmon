@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnt5o5mxpc03m"]
+
+[ext_resource type="Texture2D" uid="uid://c24x8imeb8yth" path="res://assets/battle/ui/ability_bar.png" id="1_8wcom"]
+[ext_resource type="Script" path="res://scenes/battle/ability_box.gd" id="1_f3s66"]
+
+[node name="AbilityBox" type="Sprite2D"]
+texture = ExtResource("1_8wcom")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 64)
+script = ExtResource("1_f3s66")
+
+[node name="Name" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 3.0
+offset_right = -3.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.25098, 0.25098, 0.25098, 1)
+theme_override_colors/font_shadow_color = Color(0.972549, 0.972549, 0.972549, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 4
+text = "Crabominable's"
+
+[node name="Ability" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -32.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.25098, 0.25098, 0.25098, 1)
+theme_override_colors/font_shadow_color = Color(0.972549, 0.972549, 0.972549, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 4
+text = "SKILL LINK"
+vertical_alignment = 1
+uppercase = true

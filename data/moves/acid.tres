@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://6xhdahbjk4n"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_eb6o2"]
+
+
+[resource]
+script = ExtResource("1_eb6o2")
+id = 4
+name = &"Acid"
+type = 13
+category = 1
+power = 40
+accuracy = 100
+base_pp = 30
+target = 2
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 10
+description = "???"

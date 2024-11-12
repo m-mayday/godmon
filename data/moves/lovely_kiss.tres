@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bvxobcq73rr0d"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_td732"]
+
+
+[resource]
+script = ExtResource("1_td732")
+id = 431
+name = &"Lovely Kiss"
+type = 12
+category = 2
+power = 0
+accuracy = 75
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

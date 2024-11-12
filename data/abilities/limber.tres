@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://c6d0sbxlq18l2"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_cxkgm"]
+
+[resource]
+script = ExtResource("1_cxkgm")
+id = 124
+name = "Limber"
+description = ""

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cjwym6x0ib8dj"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_51qy8"]
+
+
+[resource]
+script = ExtResource("1_51qy8")
+id = 477
+name = &"Mega Kick"
+type = 12
+category = 0
+power = 120
+accuracy = 75
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

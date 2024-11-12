@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://ct0o81wuy0be2"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_7jbg2"]
+
+[resource]
+script = ExtResource("1_7jbg2")
+id = 817
+name = &"Teleport"
+type = 14
+category = 2
+power = 0
+accuracy = 0
+base_pp = 20
+target = 14
+priority = -6
+flags = Array[int]([])
+effect_chance = 0
+description = "???"

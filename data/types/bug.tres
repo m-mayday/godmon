@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Type" load_steps=2 format=3 uid="uid://dmpmao2ixrkik"]
+
+[ext_resource type="Script" path="res://data/_base_classes/type.gd" id="1_uu4bc"]
+
+[resource]
+script = ExtResource("1_uu4bc")
+id = 0
+name = &"Bug"
+weaknesses = Array[int]([6, 7, 15])
+resistances = Array[int]([5, 9, 10])
+immunities = Array[int]([])

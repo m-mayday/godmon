@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cpkdw4yrra3vm"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_j3rex"]
+
+[resource]
+script = ExtResource("1_j3rex")
+id = 20
+name = &"Amnesia"
+type = 14
+category = 2
+power = 0
+accuracy = 0
+base_pp = 20
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bsb2dmtutmtrq"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_oea72"]
+
+
+[resource]
+script = ExtResource("1_oea72")
+id = 702
+name = &"Skull Bash"
+type = 0
+category = 0
+power = 130
+accuracy = 100
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

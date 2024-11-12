@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://cx6dxw2xlq0xj"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_tibdb"]
+
+[resource]
+script = ExtResource("1_tibdb")
+id = 237
+name = "Static"
+description = ""

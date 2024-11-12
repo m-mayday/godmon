@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://beq2ydl237wjc"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_lbitc"]
+
+
+[resource]
+script = ExtResource("1_lbitc")
+id = 297
+name = &"Fury Swipes"
+type = 12
+category = 0
+power = 18
+accuracy = 80
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

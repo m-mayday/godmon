@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://5wti05emnuhf"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_4nype"]
+
+
+[resource]
+script = ExtResource("1_4nype")
+id = 726
+name = &"Soft-Boiled"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 5
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"

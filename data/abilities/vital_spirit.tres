@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://c8owrxjlivv51"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_xnsbe"]
+
+[resource]
+script = ExtResource("1_xnsbe")
+id = 283
+name = "Vital Spirit"
+description = ""

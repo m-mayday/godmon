@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://gunn2q1nu6j8"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_hveu1"]
+
+[resource]
+script = ExtResource("1_hveu1")
+id = 551
+name = &"Petal Dance"
+type = 9
+category = 1
+power = 120
+accuracy = 100
+base_pp = 10
+target = 8
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

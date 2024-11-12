@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://r5xbl0bomj1x"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_y7ih5"]
+
+
+[resource]
+script = ExtResource("1_y7ih5")
+id = 337
+name = &"Haze"
+type = 11
+category = 2
+power = 0
+accuracy = 0
+base_pp = 30
+target = 0
+priority = 0
+flags = Array[int]([])
+effect_chance = 0
+description = "???"

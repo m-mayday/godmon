@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://be11u6ctqi03l"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_qlt7q"]
+
+
+[resource]
+script = ExtResource("1_qlt7q")
+id = 261
+name = &"Fissure"
+type = 10
+category = 0
+power = 0
+accuracy = 30
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([12])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://cxgvjqq5f3lql"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_f0i60"]
+
+[resource]
+script = ExtResource("1_f0i60")
+id = 252
+name = "Swarm"
+description = ""

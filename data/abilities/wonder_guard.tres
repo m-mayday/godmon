@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://cgeouc23p8ptb"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_r5y4m"]
+
+[resource]
+script = ExtResource("1_r5y4m")
+id = 296
+name = "Wonder Guard"
+description = ""

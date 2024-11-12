@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://hx8012irgwca"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_l517m"]
+
+
+[resource]
+script = ExtResource("1_l517m")
+id = 278
+name = &"Fly"
+type = 7
+category = 0
+power = 90
+accuracy = 95
+base_pp = 15
+target = 13
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

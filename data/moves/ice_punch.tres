@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b60s7atwgau82"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_2p3eg"]
+
+
+[resource]
+script = ExtResource("1_2p3eg")
+id = 381
+name = &"Ice Punch"
+type = 11
+category = 0
+power = 75
+accuracy = 100
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 10
+description = "???"

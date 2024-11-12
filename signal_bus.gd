@@ -1,0 +1,15 @@
+extends Node
+
+signal display_message(message: String)
+signal ability_activated(event: AbilityEvent)
+signal health_changed(event: HealthChangedEvent)
+signal pokemon_changed(switched_out: Battler, switched_in: Battler, index_out: int, index_in: int)
+signal switch_requested(switch_out: Battler, is_instant_switch: bool)
+signal battle_started(user_side_active, user_side_team, foe_side_active, foe_side_team)
+signal pokemon_fainted(pokemon: Pokemon)
+signal play_animation(animation: String, arguments: Array)
+signal battler_ready(battler: Battler)
+signal pokemon_status_set(event: StatusSetEvent)
+signal turn_started()
+signal battle_event(event: BaseEvent)
+signal event_handled()

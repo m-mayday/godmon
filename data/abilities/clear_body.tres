@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://dag01leqrywo5"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_srxfp"]
+
+[resource]
+script = ExtResource("1_srxfp")
+id = 28
+name = "Clear Body"
+description = ""

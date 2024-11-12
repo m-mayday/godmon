@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b6b8rmkfywwo7"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_khixy"]
+
+
+[resource]
+script = ExtResource("1_khixy")
+id = 839
+name = &"Toxic"
+type = 13
+category = 2
+power = 0
+accuracy = 90
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

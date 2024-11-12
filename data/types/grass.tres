@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Type" load_steps=2 format=3 uid="uid://b22wrkxs4g5fx"]
+
+[ext_resource type="Script" path="res://data/_base_classes/type.gd" id="1_gdlfp"]
+
+[resource]
+script = ExtResource("1_gdlfp")
+id = 9
+name = &"Geass"
+weaknesses = Array[int]([0, 6, 7, 11, 13])
+resistances = Array[int]([3, 9, 10, 17])
+immunities = Array[int]([])

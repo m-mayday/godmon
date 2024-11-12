@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://e0l51hsu523t"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_qe031"]
+
+
+[resource]
+script = ExtResource("1_qe031")
+id = 709
+name = &"Sleep Powder"
+type = 9
+category = 2
+power = 0
+accuracy = 75
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([11, 12, 13, 8])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="Species" load_steps=10 format=3 uid="uid://bttkokl0ncj74"]
+
+[ext_resource type="Texture2D" uid="uid://c1d6dumwn6e3n" path="res://assets/battle/sprites/back/BLASTOISE.png" id="1_ffj1n"]
+[ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_t0u1f"]
+[ext_resource type="Script" path="res://data/_base_classes/stats.gd" id="1_usaqa"]
+[ext_resource type="Texture2D" uid="uid://o3ouqrd7514a" path="res://assets/battle/sprites/front/BLASTOISE.png" id="3_impxi"]
+[ext_resource type="Script" path="res://data/_base_classes/sprite_metrics.gd" id="5_1xc5m"]
+[ext_resource type="Resource" uid="uid://c3a3p7ocbsmjm" path="res://data/types/water.tres" id="6_2xxq8"]
+
+[sub_resource type="Resource" id="Resource_mwiqq"]
+script = ExtResource("1_usaqa")
+hp = 79
+attack = 83
+defense = 100
+speed = 78
+special_attack = 85
+special_defense = 105
+
+[sub_resource type="Resource" id="Resource_5uyaq"]
+script = ExtResource("1_usaqa")
+hp = 0
+attack = 0
+defense = 0
+speed = 0
+special_attack = 0
+special_defense = 0
+
+[sub_resource type="Resource" id="Resource_88jm5"]
+script = ExtResource("5_1xc5m")
+back_sprite_offset = Vector2(0, 0)
+back_sprite_scale = Vector2(1.2, 1.2)
+front_sprite_offset = Vector2(0, 20)
+front_sprite_scale = Vector2(1.2, 1.2)
+shadow_scale = Vector2(1.6, 1.3)
+shadow_offset = Vector2(3, -11)
+
+[resource]
+script = ExtResource("1_t0u1f")
+species_id = 8
+name = &"Blastoise"
+types = Array[Resource("res://data/_base_classes/type.gd")]([ExtResource("6_2xxq8")])
+base_stats = SubResource("Resource_mwiqq")
+base_exp = 100
+evs = SubResource("Resource_5uyaq")
+catch_rate = 255
+happiness = 70
+learnset_by_level = Array[Resource("res://data/_base_classes/learnset.gd")]([])
+hatch_steps = 1
+height = 0.1
+weight = 0.1
+category = &"???"
+pokedex = "???"
+front_sprite = ExtResource("3_impxi")
+back_sprite = ExtResource("1_ffj1n")
+sprite_metrics = SubResource("Resource_88jm5")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://cp0l355dnwk5q"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_8b2gu"]
+
+[resource]
+script = ExtResource("1_8b2gu")
+id = 60
+name = "Effect Spore"
+description = ""

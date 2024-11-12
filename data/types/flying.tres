@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Type" load_steps=2 format=3 uid="uid://cftowb5lcbqh6"]
+
+[ext_resource type="Script" path="res://data/_base_classes/type.gd" id="1_bsl2e"]
+
+[resource]
+script = ExtResource("1_bsl2e")
+id = 7
+name = &"Flying"
+weaknesses = Array[int]([3, 11, 15])
+resistances = Array[int]([0, 5, 9])
+immunities = Array[int]([10])

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://caishj458fmcs"]
+
+[ext_resource type="Script" path="res://data/_base_classes/status.gd" id="1_mmpu1"]
+
+[resource]
+script = ExtResource("1_mmpu1")
+id = 0
+name = "Healthy"
+immune_types = Array[int]([])

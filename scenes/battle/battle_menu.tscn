@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfhq7istddlx"]
+
+[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7o8ru"]
+[ext_resource type="Script" path="res://scenes/battle/battle_menu.gd" id="1_fp6dl"]
+[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_qiefk"]
+
+[node name="BattleMenu" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7o8ru")
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+script = ExtResource("1_fp6dl")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = -16
+theme_override_constants/v_separation = -16
+columns = 2
+
+[node name="Fight" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(90, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/focus = ExtResource("3_qiefk")
+flat = true
+
+[node name="Label" type="Label" parent="GridContainer/Fight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "   FIGHT   "
+vertical_alignment = 1
+
+[node name="Bag" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(90, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("3_qiefk")
+flat = true
+
+[node name="Label" type="Label" parent="GridContainer/Bag"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "   BAG"
+vertical_alignment = 1
+
+[node name="Switch" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(90, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("3_qiefk")
+flat = true
+
+[node name="Label" type="Label" parent="GridContainer/Switch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "    POKéMON"
+vertical_alignment = 1
+
+[node name="Run" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(90, 24)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("3_qiefk")
+flat = true
+
+[node name="Label" type="Label" parent="GridContainer/Run"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+text = "   RUN"
+vertical_alignment = 1
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="GridContainer/Fight" to="." method="_on_fight_pressed"]
+[connection signal="pressed" from="GridContainer/Switch" to="." method="_on_switch_pressed"]

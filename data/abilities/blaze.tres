@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://d17r87kdf7p8w"]
+
+[ext_resource type="Script" path="res://data/_base_classes/ability.gd" id="1_k42k5"]
+
+[resource]
+script = ExtResource("1_k42k5")
+id = 23
+name = "Blaze"
+description = ""

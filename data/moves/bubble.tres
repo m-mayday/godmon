@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dvp3prgivpufb"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_8wxye"]
+
+
+[resource]
+script = ExtResource("1_8wxye")
+id = 94
+name = &"Bubble"
+type = 17
+category = 1
+power = 40
+accuracy = 100
+base_pp = 30
+target = 2
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 10
+description = "???"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bbvw4e3pm354n"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_26u0k"]
+
+
+[resource]
+script = ExtResource("1_26u0k")
+id = 173
+name = &"Dig"
+type = 10
+category = 0
+power = 80
+accuracy = 100
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

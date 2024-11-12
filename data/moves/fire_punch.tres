@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://6atl788pde4f"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_4vl5h"]
+
+
+[resource]
+script = ExtResource("1_4vl5h")
+id = 257
+name = &"Fire Punch"
+type = 6
+category = 0
+power = 75
+accuracy = 100
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 10
+description = "???"

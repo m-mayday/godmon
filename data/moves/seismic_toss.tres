@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b2d4rf42w5qb8"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_kd42c"]
+
+
+[resource]
+script = ExtResource("1_kd42c")
+id = 672
+name = &"Seismic Toss"
+type = 5
+category = 0
+power = 0
+accuracy = 100
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"

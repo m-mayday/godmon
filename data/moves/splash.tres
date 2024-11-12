@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dkrx5lukvgc3j"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_uh73k"]
+
+
+[resource]
+script = ExtResource("1_uh73k")
+id = 747
+name = &"Splash"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 40
+target = 14
+priority = 0
+flags = Array[int]([])
+effect_chance = 0
+description = "???"

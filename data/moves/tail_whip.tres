@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://7f6tl0pknf0a"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_hmias"]
+
+
+[resource]
+script = ExtResource("1_hmias")
+id = 804
+name = &"Tail Whip"
+type = 12
+category = 2
+power = 0
+accuracy = 100
+base_pp = 30
+target = 2
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

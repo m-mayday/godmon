@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dfsqe2b61t8oc"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_ryihk"]
+
+[resource]
+script = ExtResource("1_ryihk")
+id = 371
+name = &"Hyper Fang"
+type = 12
+category = 0
+power = 80
+accuracy = 90
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13, 3])
+effect_chance = 10
+description = "???"

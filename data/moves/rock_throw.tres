@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bdl83yxwsqbgp"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_jlrmn"]
+
+
+[resource]
+script = ExtResource("1_jlrmn")
+id = 639
+name = &"Rock Throw"
+type = 15
+category = 0
+power = 50
+accuracy = 90
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"

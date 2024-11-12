@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://f3gfca8mt3kp"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_7w2kx"]
+
+
+[resource]
+script = ExtResource("1_7w2kx")
+id = 615
+name = &"Razor Leaf"
+type = 9
+category = 0
+power = 55
+accuracy = 95
+base_pp = 25
+target = 2
+priority = 0
+flags = Array[int]([12, 13, 17])
+effect_chance = 0
+description = "???"

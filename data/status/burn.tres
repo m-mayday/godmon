@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cnxd2vs00iiqg"]
+
+[ext_resource type="Script" path="res://data/_base_classes/status.gd" id="1_h3jwb"]
+[ext_resource type="Texture2D" uid="uid://dm1iy7k310drm" path="res://assets/statuses/burn.png" id="1_hviq0"]
+
+[resource]
+script = ExtResource("1_h3jwb")
+id = 1
+name = "Burn"
+immune_types = Array[int]([6])
+icon = ExtResource("1_hviq0")

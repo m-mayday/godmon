@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bmwkq0drkswxe"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_weq4g"]
+
+
+[resource]
+script = ExtResource("1_weq4g")
+id = 406
+name = &"Kinesis"
+type = 14
+category = 2
+power = 0
+accuracy = 80
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"

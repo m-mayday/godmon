@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://58hfmipa1x5"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_krlex"]
+
+
+[resource]
+script = ExtResource("1_krlex")
+id = 729
+name = &"Sonic Boom"
+type = 12
+category = 1
+power = 0
+accuracy = 90
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([1, 12, 13])
+effect_chance = 0
+description = "???"

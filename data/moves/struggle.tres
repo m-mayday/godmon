@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c1jw7wdc0phvt"]
+
+[sub_resource type="GDScript" id="GDScript_7yqed"]
+script/source = "class_name Move
+extends Resource
+
+enum MOVE_CATEGORY { PHYSICAL, SPECIAL, STATUS }
+enum MOVE_FLAGS { 
+	CONTACT,
+	SOUND,
+	PUNCH,
+	BITE,
+	SNATCH,
+	SLICING,
+	BULLET,
+	WIND,
+	POWDER,
+	PULSE,
+	DANCE,
+	REFLECTABLE,
+	PROTECT,
+	MIRROR,
+	METRONOME,
+	GRAVITY,
+	DEFROST,
+	HIGH_CRIT_RATIO,
+	EXPLOSION,
+}
+
+@export var id:Constants.MOVES
+@export var name:StringName = \"Unnamed\"
+@export var type:Constants.TYPES
+@export var category:MOVE_CATEGORY = MOVE_CATEGORY.PHYSICAL
+@export var power:int = 0
+@export var accuracy:int = 100
+@export var total_pp:int = 5
+@export var target:Constants.MOVE_TARGET
+@export var priority:int = 0 # Should be between -6 and 6 but @export_range doesn't work with negative values at the time
+@export var flags:Array[MOVE_FLAGS]
+@export_range(0, 100) var effect_chance:int = 0
+@export var description:String = \"???\"
+
+func is_damaging() -> bool:
+	return category == MOVE_CATEGORY.PHYSICAL || category == MOVE_CATEGORY.SPECIAL
+
+func is_physical() -> bool:
+	return category == MOVE_CATEGORY.PHYSICAL
+
+func is_special() -> bool:
+	return category == MOVE_CATEGORY.SPECIAL
+
+func is_ohko() -> bool:
+	return power == 0 && is_damaging() && accuracy == 30
+"
+
+[resource]
+script = SubResource("GDScript_7yqed")
+id = 772
+name = &"Struggle"
+type = 18
+category = 0
+power = 50
+accuracy = 0
+base_pp = 0
+target = 8
+priority = 0
+flags = Array[int]([0, 12])
+effect_chance = 0
+description = "???"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://ckw4subosf5hp"]
+
+[ext_resource type="Script" path="res://data/_base_classes/move.gd" id="1_xl4up"]
+
+
+[resource]
+script = ExtResource("1_xl4up")
+id = 151
+name = &"Crabhammer"
+type = 17
+category = 0
+power = 100
+accuracy = 90
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13, 17])
+effect_chance = 0
+description = "???"
