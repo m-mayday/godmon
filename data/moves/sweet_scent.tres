@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://by8b0e1acdubg"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_3pbn3"]
+
+[resource]
+script = ExtResource("1_3pbn3")
+id = 793
+name = &"Sweet Scent"
+type = 12
+category = 2
+power = 0
+accuracy = 100
+base_pp = 20
+target = 2
+priority = 0
+flags = Array[int]([12, 11, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_3pbn3")

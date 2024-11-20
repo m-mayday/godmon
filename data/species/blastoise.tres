@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Species" load_steps=10 format=3 uid="uid://bttkokl0ncj74"]
+[gd_resource type="Resource" script_class="Species" load_steps=23 format=3 uid="uid://bttkokl0ncj74"]
 
 [ext_resource type="Texture2D" uid="uid://c1d6dumwn6e3n" path="res://assets/battle/sprites/back/BLASTOISE.png" id="1_ffj1n"]
 [ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_t0u1f"]
-[ext_resource type="Script" path="res://data/_base_classes/stats.gd" id="1_usaqa"]
+[ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_usaqa"]
 [ext_resource type="Texture2D" uid="uid://o3ouqrd7514a" path="res://assets/battle/sprites/front/BLASTOISE.png" id="3_impxi"]
-[ext_resource type="Script" path="res://data/_base_classes/sprite_metrics.gd" id="5_1xc5m"]
+[ext_resource type="Script" path="res://data/_base_classes/learnset.gd" id="4_4kkc7"]
+[ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="5_1xc5m"]
 [ext_resource type="Resource" uid="uid://c3a3p7ocbsmjm" path="res://data/types/water.tres" id="6_2xxq8"]
+[ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="6_3teyy"]
 
 [sub_resource type="Resource" id="Resource_mwiqq"]
 script = ExtResource("1_usaqa")
@@ -25,6 +27,61 @@ speed = 0
 special_attack = 0
 special_defense = 0
 
+[sub_resource type="Resource" id="Resource_4kkc7"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([801, 804, 874, 893])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_qw570"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([614])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_ml68s"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([62])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_03s00"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([876])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_dslq0"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([584])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_qd2v8"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([613])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_k5w72"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([28])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_i41vf"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([686])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_mgry5"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([397])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_yl6uk"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([366])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
+[sub_resource type="Resource" id="Resource_b0hhk"]
+script = ExtResource("4_4kkc7")
+moves = Array[int]([881])
+metadata/_custom_type_script = ExtResource("4_4kkc7")
+
 [sub_resource type="Resource" id="Resource_88jm5"]
 script = ExtResource("5_1xc5m")
 back_sprite_offset = Vector2(0, 0)
@@ -38,13 +95,25 @@ shadow_offset = Vector2(3, -11)
 script = ExtResource("1_t0u1f")
 species_id = 8
 name = &"Blastoise"
-types = Array[Resource("res://data/_base_classes/type.gd")]([ExtResource("6_2xxq8")])
+types = Array[ExtResource("6_3teyy")]([ExtResource("6_2xxq8")])
 base_stats = SubResource("Resource_mwiqq")
 base_exp = 100
 evs = SubResource("Resource_5uyaq")
 catch_rate = 255
 happiness = 70
-learnset_by_level = Array[Resource("res://data/_base_classes/learnset.gd")]([])
+learnset_by_level = Dictionary[int, ExtResource("4_4kkc7")]({
+1: SubResource("Resource_4kkc7"),
+9: SubResource("Resource_qw570"),
+12: SubResource("Resource_ml68s"),
+15: SubResource("Resource_03s00"),
+20: SubResource("Resource_dslq0"),
+25: SubResource("Resource_qd2v8"),
+30: SubResource("Resource_k5w72"),
+35: SubResource("Resource_i41vf"),
+42: SubResource("Resource_mgry5"),
+49: SubResource("Resource_yl6uk"),
+56: SubResource("Resource_b0hhk")
+})
 hatch_steps = 1
 height = 0.1
 weight = 0.1

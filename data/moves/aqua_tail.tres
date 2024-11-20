@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://caf4awecr4ct1"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_ssaie"]
+
+[resource]
+script = ExtResource("1_ssaie")
+id = 28
+name = &"Aqua Tail"
+type = 17
+category = 0
+power = 90
+accuracy = 90
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_ssaie")

@@ -10,7 +10,7 @@ extends Resource
 @export var evs: Stats ## The species EVs give out
 @export_range(0, 255) var catch_rate: int = 255 ## The species catch rate
 @export_range(0, 255) var happiness: int = 70 ## The species base happiness
-@export var learnset_by_level: Array[Learnset]
+@export var learnset_by_level: Dictionary[int, Learnset] ## The learnset of this pokemon, by level
 @export var hatch_steps: int = 1 ## The amount of steps it takes to hatch an egg of this species
 @export var height: float = 0.1 ## The species height
 @export var weight: float = 0.1 ## The species weight

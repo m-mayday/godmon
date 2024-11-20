@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bkfidnl2roduj"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_oovgd"]
+
+[resource]
+script = ExtResource("1_oovgd")
+id = 876
+name = &"Water Pulse"
+type = 17
+category = 1
+power = 60
+accuracy = 100
+base_pp = 20
+target = 13
+priority = 0
+flags = Array[int]([0, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_oovgd")

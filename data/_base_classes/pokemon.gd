@@ -35,7 +35,7 @@ func _init(species_id: Constants.SPECIES = Constants.SPECIES.BULBASAUR, initial_
 	personal_id = randi_range(0, pow(2, 16)) | (randi_range(0, pow(2, 16)) << 16)
 	level = initial_level
 	id = get_instance_id()
-	moves = []
+	_set_moves_from_learnset()
 	_calculate_stats()
 
 
@@ -59,3 +59,20 @@ func _calculate_HP(base, current_level, iv, ev):
 ## [Private] Calculates a stat based on level, IVs and EVs
 func _calculate_single_stat(base, current_level, iv, ev, nature):
 	return floor(((floor((((base * 2) + iv + (ev / 4)) * current_level / 100)) + 5) * nature / 100))
+
+
+## [Private] Sets as many moves as possible, starting from the highest level possible.
+func _set_moves_from_learnset() -> void:
+	var levels: Array[int] = species.learnset_by_level.keys()
+	var max_moves: bool = false
+	levels.reverse()
+	for learnset_level in levels:
+		if learnset_level <= level:
+			for move in species.learnset_by_level[learnset_level].moves:
+				if len(moves) < 4:
+					moves.append(Constants.get_move_by_id(move))
+				else:
+					max_moves = true
+					break
+			if max_moves:
+				break

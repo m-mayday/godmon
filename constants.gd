@@ -148,6 +148,7 @@ static var moves = {
 	MOVES.FLAMETHROWER: "flamethrower",
 	MOVES.MIST: "mist",
 	MOVES.WATER_GUN: "water_gun",
+	MOVES.HYDRO_PUMP: "hydro_pump",
 	MOVES.SURF: "surf",
 	MOVES.ICE_BEAM: "ice_beam",
 	MOVES.BLIZZARD: "blizzard",
@@ -260,6 +261,28 @@ static var moves = {
 	# Sketch goes here.
 	# Triple Kick goes here.
 	# Thief goes here.
+	# Spider Web goes here.
+	MOVES.MIND_READER: "mind_reader",
+	MOVES.WAVE_CRASH: "wave_crash",
+	MOVES.IRON_DEFENSE: "iron_defense",
+	MOVES.SHELL_SMASH: "shell_smash",
+	MOVES.AQUA_TAIL: "aqua_tail",
+	MOVES.RAIN_DANCE: "rain_dance",
+	MOVES.PROTECT: "protect",
+	MOVES.WATER_PULSE: "water_pulse",
+	MOVES.RAPID_SPIN: "rapid_spin",
+	MOVES.POWER_WHIP: "power_whip",
+	MOVES.WORRY_SEED: "worry_seed",
+	MOVES.SYNTHESIS: "synthesis",
+	MOVES.SWEET_SCENT: "sweet_scent",
+	MOVES.SEED_BOMB: "seed_bomb",
+	MOVES.FLARE_BLITZ: "flare_blitz",
+	MOVES.INFERNO: "inferno",
+	MOVES.SCARY_FACE: "scary_face",
+	MOVES.FIRE_FANG: "fire_fang",
+	MOVES.DRAGON_BREATH: "dragon_breath",
+	MOVES.HEAT_WAVE: "heat_wave",
+	MOVES.DRAGON_CLAW: "dragon_claw",
 }
 
 enum ABILITY_FLAGS {
@@ -389,6 +412,7 @@ static func get_type_by_id(id: TYPES):
 	return load(types_dir + types[id] + ".tres")
 
 static func get_move_by_id(id: MOVES):
+	assert(moves.has(id), "Move not in dictionary")
 	return ResourceLoader.load(moves_dir + moves[id] + ".tres", "", ResourceLoader.CACHE_MODE_IGNORE)
 
 static func get_status_by_id(id: STATUSES):
@@ -413,6 +437,7 @@ enum FLAGS {
 	LIGHT_SCREEN,
 	REFLECT,
 	DISABLE,
+	LOCKED_ON,
 }
 
 enum STATUSES {

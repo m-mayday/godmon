@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Species" load_steps=10 format=3 uid="uid://coos7hdynlxio"]
+[gd_resource type="Resource" script_class="Species" load_steps=23 format=3 uid="uid://coos7hdynlxio"]
 
 [ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_67kb6"]
 [ext_resource type="Texture2D" uid="uid://d4jdkxbhrbmi7" path="res://assets/battle/sprites/back/VENUSAUR.png" id="1_l5dn3"]
-[ext_resource type="Script" path="res://data/_base_classes/stats.gd" id="1_lmivb"]
+[ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_lmivb"]
 [ext_resource type="Texture2D" uid="uid://0vbiwcmfsgxt" path="res://assets/battle/sprites/front/VENUSAUR.png" id="3_ag5t2"]
+[ext_resource type="Script" path="res://data/_base_classes/learnset.gd" id="4_lhktv"]
 [ext_resource type="Resource" uid="uid://b22wrkxs4g5fx" path="res://data/types/grass.tres" id="6_3cvy8"]
-[ext_resource type="Script" path="res://data/_base_classes/sprite_metrics.gd" id="7_f6xt7"]
+[ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_f6xt7"]
 [ext_resource type="Resource" uid="uid://bcw82a0vg3qd3" path="res://data/types/poison.tres" id="7_j3utj"]
+[ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_kycrs"]
 
 [sub_resource type="Resource" id="Resource_ul2u2"]
 script = ExtResource("1_lmivb")
@@ -16,6 +18,61 @@ defense = 83
 speed = 80
 special_attack = 100
 special_defense = 100
+
+[sub_resource type="Resource" id="Resource_2gckv"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([551, 801, 323, 868, 324])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_xqbah"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([421])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_ai17u"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([615])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_lusdm"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([563, 709])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_qco6h"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([670])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_20722"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([806])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_b7dh0"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([793])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_dk4t0"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([798])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_23u41"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([897])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_3rift"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([579])
+metadata/_custom_type_script = ExtResource("4_lhktv")
+
+[sub_resource type="Resource" id="Resource_lhktv"]
+script = ExtResource("4_lhktv")
+moves = Array[int]([727])
+metadata/_custom_type_script = ExtResource("4_lhktv")
 
 [sub_resource type="Resource" id="Resource_t1212"]
 script = ExtResource("7_f6xt7")
@@ -30,12 +87,24 @@ shadow_offset = Vector2(-4, -22)
 script = ExtResource("1_67kb6")
 species_id = 2
 name = &"Venusaur"
-types = Array[Resource("res://data/_base_classes/type.gd")]([ExtResource("6_3cvy8"), ExtResource("7_j3utj")])
+types = Array[ExtResource("7_kycrs")]([ExtResource("6_3cvy8"), ExtResource("7_j3utj")])
 base_stats = SubResource("Resource_ul2u2")
 base_exp = 100
 catch_rate = 255
 happiness = 70
-learnset_by_level = Array[Resource("res://data/_base_classes/learnset.gd")]([])
+learnset_by_level = Dictionary[int, ExtResource("4_lhktv")]({
+1: SubResource("Resource_2gckv"),
+9: SubResource("Resource_xqbah"),
+12: SubResource("Resource_ai17u"),
+15: SubResource("Resource_lusdm"),
+20: SubResource("Resource_qco6h"),
+25: SubResource("Resource_20722"),
+30: SubResource("Resource_b7dh0"),
+37: SubResource("Resource_dk4t0"),
+44: SubResource("Resource_23u41"),
+51: SubResource("Resource_3rift"),
+56: SubResource("Resource_lhktv")
+})
 hatch_steps = 1
 height = 0.1
 weight = 0.1

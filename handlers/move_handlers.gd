@@ -134,6 +134,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.TRI_ATTACK: TriAttack.new,
 	Constants.MOVES.SUPER_FANG: SuperFang.new,
 	Constants.MOVES.STRUGGLE: Recoil25Percent.new,
+	Constants.MOVES.MIND_READER: MindReader.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -871,3 +872,10 @@ class SuperFang extends MoveHandler:
 		return maxi(1, int(target.pokemon.current_hp / 2))
 
 
+class MindReader extends MoveHandler:
+	func on_move_hit(battle: Battle, user: Battler, target: Battler) -> void:
+		if user.battler_flags.has("locked_on"):
+			return
+		battle.add_battle_event(BattleDialogueEvent.new("{0} took aim at {1}!", [user.pokemon.name, target.pokemon.name]))
+		# True means it was used this turn/it's active, so it doesn't get erased on the same turn.
+		user.battler_flags["locked_on"] = [FlagHandler.get_flag_handler(Constants.FLAGS.LOCKED_ON, user), target, true]

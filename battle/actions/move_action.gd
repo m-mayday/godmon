@@ -159,10 +159,14 @@ func _step_try_move(targets: Array[Battler]) -> bool:
 	return true
 
 func _step_try_invulnerability(target: Battler) -> bool:
-	if target.is_semi_invulnerable() and move.handler.on_invulnerability(battle, user, target):
-		battle.add_battle_event(BattleDialogueEvent.new("{0} is semi-invulnerable right now!", [target.pokemon.name]))
-		return false
-	# TODO: invulnerability (event)
+	if target.is_semi_invulnerable():
+		var invulnerability: Array = battle.run_action_event("invulnerability", target, user, [battle, user, target], true)
+		for result in invulnerability:
+			if not result:
+				return true
+		if move.handler.on_invulnerability(battle, user, target):
+			battle.add_battle_event(BattleDialogueEvent.new("{0} is semi-invulnerable right now!", [target.pokemon.name]))
+			return false
 	return true
 
 
@@ -179,6 +183,8 @@ func _step_accuracy_check(target: Battler) -> bool:
 	var results: Array = battle.run_action_event("modify_accuracy", target, user, [battle, user, target, move, base_accuracy])
 	for result in results:
 		base_accuracy = result
+	if base_accuracy <= 0:
+		return true # Always hits
 	var calculated_accuracy: int = base_accuracy
 	if not move.is_ohko():
 		# TODO: Modify boost (event)
@@ -194,6 +200,7 @@ func _step_accuracy_check(target: Battler) -> bool:
 
 
 func _step_calculate_damage(target: Battler, multiple_targets: bool = false) -> int:
+	_current_hit_type_modifier = 1.0
 	if move.is_ohko():
 		return target.pokemon.stats.hp
 	

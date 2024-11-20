@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://d3c3c5ujwxeu3"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_4ai58"]
+
+[resource]
+script = ExtResource("1_4ai58")
+id = 397
+name = &"Iron Defense"
+type = 16
+category = 2
+power = 0
+accuracy = 0
+base_pp = 15
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_4ai58")

@@ -2376,3 +2376,53 @@ class TestSuperFang extends GutTest:
 		battle._play_turn()
 		#await wait_for_signal(battle.turn_ended, 5)
 		assert_eq(battle.opponent_team[0].pokemon.current_hp, 0)
+
+
+class TestMindReader extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
+	
+	func test_move_does_not_hit_semi_invulnerable_target():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 20)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 80)
+		var move = Constants.get_move_by_id(Constants.MOVES.TACKLE) #Any move
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle.queue_move(Constants.get_move_by_id(Constants.MOVES.FLY), battle.opponent_team[0], battle.player_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_has(battle.opponent_team[0].battler_flags, "twoturnmove")
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
+
+
+	func test_move_hits_semi_invulnerable_target():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 20)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 80)
+		var move = Constants.get_move_by_id(Constants.MOVES.MIND_READER)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle.queue_move(Constants.get_move_by_id(Constants.MOVES.SPLASH), battle.opponent_team[0], battle.player_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_does_not_have(battle.opponent_team[0].battler_flags, "twoturnmove")
+		assert_has(battle.player_team[0].battler_flags, "locked_on")
+		
+		battle.queue_move(Constants.get_move_by_id(Constants.MOVES.TACKLE), battle.player_team[0], battle.opponent_team[0])
+		battle.queue_move(Constants.get_move_by_id(Constants.MOVES.FLY), battle.opponent_team[0], battle.player_team[0])
+		battle._play_turn()
+		assert_has(battle.opponent_team[0].battler_flags, "twoturnmove")
+		assert_not_same(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)

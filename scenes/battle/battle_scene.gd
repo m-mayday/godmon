@@ -28,14 +28,14 @@ func _ready():
 	SignalBus.battle_started.connect(_on_battle_started)
 	
 #region Temporary test data
-	var a_venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)
-	var a_bulbasaur: Pokemon = Pokemon.new(Constants.SPECIES.BULBASAUR, 50)
-	var a_blastoise: Pokemon = Pokemon.new(Constants.SPECIES.BLASTOISE, 50)
-	var a_charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 50)
-	var b_blastoise: Pokemon = Pokemon.new(Constants.SPECIES.BLASTOISE, 50)
-	var b_charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 50)
-	var b_bulbsaur: Pokemon = Pokemon.new(Constants.SPECIES.BULBASAUR, 50)
-	var b_venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)
+	var a_venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 60)
+	var a_bulbasaur: Pokemon = Pokemon.new(Constants.SPECIES.BULBASAUR, 60)
+	var a_blastoise: Pokemon = Pokemon.new(Constants.SPECIES.BLASTOISE, 60)
+	var a_charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 60)
+	var b_blastoise: Pokemon = Pokemon.new(Constants.SPECIES.BLASTOISE, 60)
+	var b_charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 60)
+	var b_bulbsaur: Pokemon = Pokemon.new(Constants.SPECIES.BULBASAUR, 60)
+	var b_venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 60)
 	var abilitiess = Constants.abilities.keys()
 	a_venusaur.name = "A_VENUSAUR"
 	a_bulbasaur.name = "A_BULBASAUR"
@@ -53,7 +53,7 @@ func _ready():
 	var moves: Array[Move] = []
 	for i in 4:
 		moves.push_back(Constants.get_move_by_id(choosable_moves.pick_random()))
-	moves[0] = Constants.get_move_by_id(Constants.MOVES.TELEPORT)
+	moves[0] = Constants.get_move_by_id(Constants.MOVES.MIND_READER)
 	_fight_menu.moves = moves
 #endregion
 

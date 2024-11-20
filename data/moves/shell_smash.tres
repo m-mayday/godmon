@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cxwtit68bw52m"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_6b3m7"]
+
+[resource]
+script = ExtResource("1_6b3m7")
+id = 686
+name = &"Shell Smash"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 15
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_6b3m7")

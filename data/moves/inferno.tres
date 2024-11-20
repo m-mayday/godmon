@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c4gr1bhgqm713"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_tuh0a"]
+
+[resource]
+script = ExtResource("1_tuh0a")
+id = 390
+name = &"Unnamed"
+type = 6
+category = 1
+power = 100
+accuracy = 50
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_tuh0a")

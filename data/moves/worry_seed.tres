@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c2ffmkg1h1dwg"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_cxo17"]
+
+[resource]
+script = ExtResource("1_cxo17")
+id = 897
+name = &"Worry Seed"
+type = 9
+category = 2
+power = 0
+accuracy = 100
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 11, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_cxo17")

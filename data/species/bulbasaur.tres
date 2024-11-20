@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Species" load_steps=11 format=3 uid="uid://cllceonldboth"]
+[gd_resource type="Resource" script_class="Species" load_steps=26 format=3 uid="uid://cllceonldboth"]
 
-[ext_resource type="Script" path="res://data/_base_classes/stats.gd" id="1_4basm"]
+[ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_4basm"]
 [ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_a5rft"]
 [ext_resource type="Texture2D" uid="uid://cl7jcpjyhhfs" path="res://assets/battle/sprites/back/BULBASAUR.png" id="1_orslx"]
 [ext_resource type="Texture2D" uid="uid://c8av245yl7aiu" path="res://assets/battle/sprites/front/BULBASAUR.png" id="3_05lqo"]
+[ext_resource type="Script" path="res://data/_base_classes/learnset.gd" id="4_yyf8n"]
 [ext_resource type="Resource" uid="uid://b22wrkxs4g5fx" path="res://data/types/grass.tres" id="6_lqbct"]
+[ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_jvu2p"]
 [ext_resource type="Resource" uid="uid://bcw82a0vg3qd3" path="res://data/types/poison.tres" id="7_sgd3q"]
-[ext_resource type="Script" path="res://data/_base_classes/sprite_metrics.gd" id="8_sxy2a"]
+[ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="8_sxy2a"]
 
 [sub_resource type="Resource" id="Resource_g4g5x"]
 script = ExtResource("1_4basm")
@@ -26,6 +28,71 @@ speed = 0
 special_attack = 0
 special_defense = 0
 
+[sub_resource type="Resource" id="Resource_1luoi"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([801, 323])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_ibq27"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([868])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_l46yy"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([324])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_eo1rb"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([421])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_xegt2"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([615])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_8qn83"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([563, 709])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_he3qp"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([670])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_lfy4r"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([806])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_wt67y"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([793])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_7hmwt"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([798])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_ecqyg"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([897])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_uuxo1"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([579])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
+[sub_resource type="Resource" id="Resource_yyf8n"]
+script = ExtResource("4_yyf8n")
+moves = Array[int]([727])
+metadata/_custom_type_script = ExtResource("4_yyf8n")
+
 [sub_resource type="Resource" id="Resource_gnhe0"]
 script = ExtResource("8_sxy2a")
 back_sprite_offset = Vector2(0, 0)
@@ -39,13 +106,27 @@ shadow_offset = Vector2(5, -10)
 script = ExtResource("1_a5rft")
 species_id = 0
 name = &"Bulbasaur"
-types = Array[Resource("res://data/_base_classes/type.gd")]([ExtResource("6_lqbct"), ExtResource("7_sgd3q")])
+types = Array[ExtResource("7_jvu2p")]([ExtResource("6_lqbct"), ExtResource("7_sgd3q")])
 base_stats = SubResource("Resource_g4g5x")
 base_exp = 100
 evs = SubResource("Resource_ivxe5")
 catch_rate = 255
 happiness = 70
-learnset_by_level = Array[Resource("res://data/_base_classes/learnset.gd")]([])
+learnset_by_level = Dictionary[int, ExtResource("4_yyf8n")]({
+1: SubResource("Resource_1luoi"),
+3: SubResource("Resource_ibq27"),
+6: SubResource("Resource_l46yy"),
+9: SubResource("Resource_eo1rb"),
+12: SubResource("Resource_xegt2"),
+15: SubResource("Resource_8qn83"),
+18: SubResource("Resource_he3qp"),
+21: SubResource("Resource_lfy4r"),
+24: SubResource("Resource_wt67y"),
+27: SubResource("Resource_7hmwt"),
+30: SubResource("Resource_ecqyg"),
+33: SubResource("Resource_uuxo1"),
+36: SubResource("Resource_yyf8n")
+})
 hatch_steps = 1
 height = 0.1
 weight = 0.1

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dd6lpdgk6gqdv"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_21rsa"]
+
+[resource]
+script = ExtResource("1_21rsa")
+id = 492
+name = &"Mind Reader"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_21rsa")

@@ -16,6 +16,7 @@ static var flags: Dictionary = {
 	Constants.FLAGS.LIGHT_SCREEN: LightScreen.new,
 	Constants.FLAGS.REFLECT: Reflect.new,
 	Constants.FLAGS.DISABLE: Disable.new,
+	Constants.FLAGS.LOCKED_ON: LockedOn.new,
 }
 
 ## Returns the handler for the flag id provided, or the base flag handler if it's not found.
@@ -36,6 +37,18 @@ func on_before_move(_battle: Battle, _user: Battler, _target: Battler, _move: Mo
 	return true
 
 
+## Called when target is in a semi invulnerable state (Second part of Fly, Dig, etc.)
+## Returning false means that invulnerability is bypassed and move execution continues
+func on_invulnerability(_battle: Battle, _user: Battler, _target: Battler) -> bool:
+	return true
+
+
+## Called when calculating accuracy for a move
+## Returns the new base accuracy
+func on_modify_accuracy(_battle: Battle, _user: Battler, _target: Battler, _move: Move, accuracy: int) -> int:
+	return accuracy
+
+
 ## Called when calculating if a move should land a critical hit or not
 ## The returned ratio of this method added to the current ratio
 func on_modify_critical_ratio(_battle: Battle, _battler: Battler) -> int:
@@ -47,9 +60,11 @@ func on_modify_critical_ratio(_battle: Battle, _battler: Battler) -> int:
 func on_modify_damage(_battle: Battle, _user: Battler, _target: Battler, _move: Move) -> float:
 	return 1.0
 
+
 ## Called when a move hits a target (after damage is dealt)
 func on_move_hit(_battle: Battle, _user: Battler, _target: Battler, _move: Move) -> void:
 	return
+
 
 ## Called when a battler is about to change a stat stage
 ## Returning false means the change should not happen
@@ -242,3 +257,32 @@ class Disable extends FlagHandler:
 		if disable[2] <= 0:
 			battler.side.erase("disable")
 			battle.add_battle_event(BattleDialogueEvent.new("Move is no longer disabled!"))
+
+
+class LockedOn extends FlagHandler:
+	func on_invulnerability(_battle: Battle, user: Battler, target: Battler) -> bool:
+		var locked_on: Array = user.battler_flags.get("locked_on", [])
+		if len(locked_on) > 1:
+			var locked_target: Battler = locked_on[1]
+			if locked_target == target:
+				return false # Bypasses invulnerability
+		return true
+
+
+	func on_modify_accuracy(_battle: Battle, user: Battler, target: Battler, _move: Move, accuracy: int) -> int:
+		var locked_on: Array = user.battler_flags.get("locked_on", [])
+		if len(locked_on) > 1:
+			var locked_target: Battler = locked_on[1]
+			if locked_target == target:
+				return 0 # Bypasses accuracy checks
+		return accuracy
+
+
+	func on_residual(_battle: Battle, battler: Battler) -> void:
+		var locked_on: Array = battler.battler_flags.get("locked_on", [])
+		if len(locked_on) > 1:
+			var is_active: bool = locked_on[2]
+			if is_active:
+				battler.battler_flags["locked_on"][2] = false
+				return
+		battler.battler_flags.erase("locked_on")

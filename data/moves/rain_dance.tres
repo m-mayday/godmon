@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cc3u30d1l88dp"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_igwoo"]
+
+[resource]
+script = ExtResource("1_igwoo")
+id = 613
+name = &"Rain Dance"
+type = 17
+category = 2
+power = 0
+accuracy = 0
+base_pp = 5
+target = 5
+priority = 0
+flags = Array[int]([])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_igwoo")

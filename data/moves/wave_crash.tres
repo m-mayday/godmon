@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://d0lwlyb0sg32b"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_y1fvw"]
+
+[resource]
+script = ExtResource("1_y1fvw")
+id = 881
+name = &"Wave Crash"
+type = 17
+category = 0
+power = 120
+accuracy = 100
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_y1fvw")

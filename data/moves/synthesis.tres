@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://3atthhp8vvup"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_nkup7"]
+
+[resource]
+script = ExtResource("1_nkup7")
+id = 798
+name = &"Synthesis"
+type = 9
+category = 2
+power = 0
+accuracy = 0
+base_pp = 5
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_nkup7")

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Species" load_steps=11 format=3 uid="uid://bep0hloqk8s4o"]
+[gd_resource type="Resource" script_class="Species" load_steps=22 format=3 uid="uid://bep0hloqk8s4o"]
 
 [ext_resource type="Texture2D" uid="uid://d0h387k5fo8w1" path="res://assets/battle/sprites/back/CHARIZARD.png" id="1_2j183"]
 [ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_imqwd"]
-[ext_resource type="Script" path="res://data/_base_classes/stats.gd" id="1_sau7s"]
+[ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_sau7s"]
 [ext_resource type="Texture2D" uid="uid://ktky8mtpbo7w" path="res://assets/battle/sprites/front/CHARIZARD.png" id="3_loij1"]
+[ext_resource type="Script" path="res://data/_base_classes/learnset.gd" id="4_dk3e4"]
 [ext_resource type="Resource" uid="uid://cshrkwblaiitr" path="res://data/types/fire.tres" id="6_67e61"]
-[ext_resource type="Script" path="res://data/_base_classes/sprite_metrics.gd" id="7_16ane"]
+[ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_16ane"]
 [ext_resource type="Resource" uid="uid://cftowb5lcbqh6" path="res://data/types/flying.tres" id="7_kxs23"]
+[ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_xolsu"]
 
 [sub_resource type="Resource" id="Resource_dornh"]
 script = ExtResource("1_sau7s")
@@ -26,6 +28,51 @@ speed = 0
 special_attack = 0
 special_defense = 0
 
+[sub_resource type="Resource" id="Resource_52m7d"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([192, 350, 664, 323, 224, 718])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_t22xn"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([191])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_55c3b"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([254])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_jqdwg"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([708])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_sinkw"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([266])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_cxg6e"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([662])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_5e2c5"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([258])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_aa03q"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([390])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
+[sub_resource type="Resource" id="Resource_dk3e4"]
+script = ExtResource("4_dk3e4")
+moves = Array[int]([267])
+metadata/_custom_type_script = ExtResource("4_dk3e4")
+
 [sub_resource type="Resource" id="Resource_xesgn"]
 script = ExtResource("7_16ane")
 back_sprite_offset = Vector2(0, 0)
@@ -39,13 +86,23 @@ shadow_offset = Vector2(-1, -33)
 script = ExtResource("1_imqwd")
 species_id = 5
 name = &"Charizard"
-types = Array[Resource("res://data/_base_classes/type.gd")]([ExtResource("6_67e61"), ExtResource("7_kxs23")])
+types = Array[ExtResource("7_xolsu")]([ExtResource("6_67e61"), ExtResource("7_kxs23")])
 base_stats = SubResource("Resource_dornh")
 base_exp = 100
 evs = SubResource("Resource_cyka3")
 catch_rate = 255
 happiness = 70
-learnset_by_level = Array[Resource("res://data/_base_classes/learnset.gd")]([])
+learnset_by_level = Dictionary[int, ExtResource("4_dk3e4")]({
+1: SubResource("Resource_52m7d"),
+12: SubResource("Resource_t22xn"),
+19: SubResource("Resource_55c3b"),
+24: SubResource("Resource_jqdwg"),
+30: SubResource("Resource_sinkw"),
+39: SubResource("Resource_cxg6e"),
+46: SubResource("Resource_5e2c5"),
+54: SubResource("Resource_aa03q"),
+62: SubResource("Resource_dk3e4")
+})
 hatch_steps = 1
 height = 0.1
 weight = 0.1
