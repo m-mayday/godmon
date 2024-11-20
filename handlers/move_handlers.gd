@@ -135,6 +135,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.SUPER_FANG: SuperFang.new,
 	Constants.MOVES.STRUGGLE: Recoil25Percent.new,
 	Constants.MOVES.MIND_READER: MindReader.new,
+	Constants.MOVES.NIGHTMARE: Nightmare.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -879,3 +880,13 @@ class MindReader extends MoveHandler:
 		battle.add_battle_event(BattleDialogueEvent.new("{0} took aim at {1}!", [user.pokemon.name, target.pokemon.name]))
 		# True means it was used this turn/it's active, so it doesn't get erased on the same turn.
 		user.battler_flags["locked_on"] = [FlagHandler.get_flag_handler(Constants.FLAGS.LOCKED_ON, user), target, true]
+		
+
+class Nightmare extends MoveHandler:
+	func on_move_hit(battle: Battle, _user: Battler, target: Battler) -> void:
+		if target.battler_flags.has("nightmare"):
+			return
+		if not target.has_status(Constants.STATUSES.SLEEP):
+			return
+		battle.add_battle_event(BattleDialogueEvent.new("{0} began having a nightmare!", [target.pokemon.name]))
+		target.battler_flags["nightmare"] = [FlagHandler.get_flag_handler(Constants.FLAGS.NIGHTMARE, target)]

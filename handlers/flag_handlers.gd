@@ -17,6 +17,7 @@ static var flags: Dictionary = {
 	Constants.FLAGS.REFLECT: Reflect.new,
 	Constants.FLAGS.DISABLE: Disable.new,
 	Constants.FLAGS.LOCKED_ON: LockedOn.new,
+	Constants.FLAGS.NIGHTMARE: Nightmare.new,
 }
 
 ## Returns the handler for the flag id provided, or the base flag handler if it's not found.
@@ -286,3 +287,12 @@ class LockedOn extends FlagHandler:
 				battler.battler_flags["locked_on"][2] = false
 				return
 		battler.battler_flags.erase("locked_on")
+
+
+class Nightmare extends FlagHandler:
+	func on_residual(battle: Battle, battler: Battler) -> void:
+		if not battler.has_status(Constants.STATUSES.SLEEP):
+			battler.battler_flags.erase("nightmare")
+			return
+		battle.add_battle_event(BattleDialogueEvent.new("{0} is locked in a nightmare!", [battler.pokemon.name]))
+		battler.damage(battler.pokemon.stats.hp / 4)

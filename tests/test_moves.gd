@@ -2426,3 +2426,45 @@ class TestMindReader extends GutTest:
 		battle._play_turn()
 		assert_has(battle.opponent_team[0].battler_flags, "twoturnmove")
 		assert_not_same(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
+
+
+class TestNightmare extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
+	
+	func test_move_does_not_affect_awake_foes():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 20)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 20)
+		var move = Constants.get_move_by_id(Constants.MOVES.NIGHTMARE)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
+
+
+	func test_move_affects_asleep_foes():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 20)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 20)
+		var move = Constants.get_move_by_id(Constants.MOVES.NIGHTMARE)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		battle.opponent_team[0].set_status(Constants.STATUSES.SLEEP)
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		var max_hp: int = battle.opponent_team[0].pokemon.stats.hp
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, max_hp - max_hp / 4)
