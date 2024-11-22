@@ -2468,3 +2468,89 @@ class TestNightmare extends GutTest:
 		battle._play_turn()
 		var max_hp: int = battle.opponent_team[0].pokemon.stats.hp
 		assert_eq(battle.opponent_team[0].pokemon.current_hp, max_hp - max_hp / 4)
+
+
+class TestSnore extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
+		
+	func test_fails_if_user_is_awake():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 10)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 10)
+		var move = Constants.get_move_by_id(Constants.MOVES.SNORE)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
+
+
+	func test_hits_if_user_is_asleep():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 10)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 10)
+		var move = Constants.get_move_by_id(Constants.MOVES.SNORE)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.player_team[0].set_status(Constants.STATUSES.SLEEP)
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_not_same(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
+
+
+	func test_flinches_opponent():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 10)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 10)
+		var move = Constants.get_move_by_id(Constants.MOVES.SNORE)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.player_team[0].set_status(Constants.STATUSES.SLEEP)
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle.queue_move(Constants.get_move_by_id(Constants.MOVES.TACKLE), battle.opponent_team[0], battle.player_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(move.effect_chance).when_passed(1, 100)
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_eq(battle.player_team[0].pokemon.current_hp, battle.player_team[0].pokemon.stats.hp)
+		assert_not_same(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
+		assert_does_not_have(battle.opponent_team[0].battler_flags, "flinch")
+
+
+	func test_does_not_flinch_opponent():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 10)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 10)
+		var move = Constants.get_move_by_id(Constants.MOVES.SNORE)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.player_team[0].set_status(Constants.STATUSES.SLEEP)
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle.queue_move(Constants.get_move_by_id(Constants.MOVES.TACKLE), battle.opponent_team[0], battle.player_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(move.effect_chance + 1).when_passed(1, 100)
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_not_same(battle.player_team[0].pokemon.current_hp, battle.player_team[0].pokemon.stats.hp)
+		assert_not_same(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
+		assert_does_not_have(battle.opponent_team[0].battler_flags, "flinch")

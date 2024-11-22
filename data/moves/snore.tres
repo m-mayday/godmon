@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://coffkjcwp51o8"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_4mo01"]
+
+[resource]
+script = ExtResource("1_4mo01")
+id = 723
+name = &"Snore"
+type = 12
+category = 1
+power = 50
+accuracy = 100
+base_pp = 15
+target = 9
+priority = 0
+flags = Array[int]([1, 12, 13])
+effect_chance = 30
+description = "???"
+metadata/_custom_type_script = ExtResource("1_4mo01")

@@ -137,6 +137,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.MIND_READER: MindReader.new,
 	Constants.MOVES.NIGHTMARE: Nightmare.new,
 	Constants.MOVES.FLAME_WHEEL: BurnChance.new,
+	Constants.MOVES.SNORE: Snore.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -891,3 +892,8 @@ class Nightmare extends MoveHandler:
 			return
 		battle.add_battle_event(BattleDialogueEvent.new("{0} began having a nightmare!", [target.pokemon.name]))
 		target.battler_flags["nightmare"] = [FlagHandler.get_flag_handler(Constants.FLAGS.NIGHTMARE, target)]
+
+
+class Snore extends FlinchChance:
+	func on_try_move(battle: Battle, user: Battler, _target: Battler) -> bool:
+		return user.has_status(Constants.STATUSES.SLEEP)

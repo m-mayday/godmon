@@ -265,6 +265,7 @@ static var moves = {
 	MOVES.MIND_READER: "mind_reader",
 	MOVES.NIGHTMARE: "nightmare",
 	MOVES.FLAME_WHEEL: "flame_wheel",
+	MOVES.SNORE: "snore",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

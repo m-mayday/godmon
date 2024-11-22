@@ -128,7 +128,7 @@ class Sleep extends StatusHandler:
 		return battle.random_range(2, 4)
 
 
-	func on_before_move(battle: Battle, user: Battler, _target: Battler, _move: Move) -> bool:
+	func on_before_move(battle: Battle, user: Battler, _target: Battler, move: Move) -> bool:
 		var duration: int = user.battler_flags.get("sleep")
 		print("Sleep duration: ", duration)
 		duration -= 1
@@ -137,6 +137,8 @@ class Sleep extends StatusHandler:
 			return true
 		user.battler_flags["sleep"] = duration
 		print("Sleep reduced: ", duration)
+		if move.id == Constants.MOVES.SNORE:
+			return true
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is asleep and can't move!", [user.pokemon.name]))
 		return false
 
