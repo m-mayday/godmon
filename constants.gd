@@ -260,7 +260,7 @@ static var moves = {
 	# Struggle goes here.
 	# Sketch goes here.
 	# Triple Kick goes here.
-	# Thief goes here.
+	MOVES.THIEF: "thief",
 	# Spider Web goes here.
 	MOVES.MIND_READER: "mind_reader",
 	MOVES.NIGHTMARE: "nightmare",
