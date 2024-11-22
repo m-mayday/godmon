@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://djsaspoh3ijei"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_oisua"]
+
+[resource]
+script = ExtResource("1_oisua")
+id = 265
+name = &"Flame Wheel"
+type = 6
+category = 0
+power = 60
+accuracy = 100
+base_pp = 25
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13, 16])
+effect_chance = 10
+description = "???"
+metadata/_custom_type_script = ExtResource("1_oisua")

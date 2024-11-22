@@ -66,7 +66,7 @@ class TestBurnChanceMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var burn_chance_moves = [Constants.MOVES.FIRE_PUNCH, Constants.MOVES.EMBER, Constants.MOVES.FLAMETHROWER, Constants.MOVES.FIRE_BLAST]
+	var burn_chance_moves = [Constants.MOVES.FIRE_PUNCH, Constants.MOVES.EMBER, Constants.MOVES.FLAMETHROWER, Constants.MOVES.FIRE_BLAST, Constants.MOVES.FLAME_WHEEL]
 	
 	func test_burns_opponent(params = use_parameters(burn_chance_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)

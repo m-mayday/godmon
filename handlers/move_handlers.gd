@@ -136,6 +136,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.STRUGGLE: Recoil25Percent.new,
 	Constants.MOVES.MIND_READER: MindReader.new,
 	Constants.MOVES.NIGHTMARE: Nightmare.new,
+	Constants.MOVES.FLAME_WHEEL: BurnChance.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
