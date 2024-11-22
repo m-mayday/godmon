@@ -266,6 +266,7 @@ static var moves = {
 	MOVES.NIGHTMARE: "nightmare",
 	MOVES.FLAME_WHEEL: "flame_wheel",
 	MOVES.SNORE: "snore",
+	MOVES.CURSE: "curse",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",
@@ -442,6 +443,7 @@ enum FLAGS {
 	DISABLE,
 	LOCKED_ON,
 	NIGHTMARE,
+	CURSE,
 }
 
 enum STATUSES {

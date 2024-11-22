@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://da0460ps3qlvh"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_rck4k"]
+
+[resource]
+script = ExtResource("1_rck4k")
+id = 158
+name = &"Curse"
+type = 8
+category = 2
+power = 0
+accuracy = 0
+base_pp = 10
+target = 7
+priority = 0
+flags = Array[int]([])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_rck4k")

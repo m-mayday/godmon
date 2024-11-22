@@ -61,7 +61,7 @@ func execute() -> void:
 				break
 				
 		if len(failed) > failed_so_far:
-			continue # If failed on try_hit for the current target, so continue to the next target
+			continue # It failed on try_hit for the current target, so continue to the next target
 				
 		# TODO: Immunity step
 			
@@ -381,6 +381,11 @@ func _get_targets() -> Array[Battler]:
 			targets = [selected_target]
 		Constants.MOVE_TARGET.USER:
 			targets = [user]
+		Constants.MOVE_TARGET.OTHER:
+			if move.id == Constants.MOVES.CURSE: ## Hardcoded for now, might be ok to keep though
+				targets = [user.get_adjacent_foes().pick_random()]
+			else:
+				targets = [original_target]
 		_:
 			targets = [original_target] # Use the originally selected target
 	return targets

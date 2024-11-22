@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_tuh0a")
 id = 390
-name = &"Unnamed"
+name = &"Inferno"
 type = 6
 category = 1
 power = 100

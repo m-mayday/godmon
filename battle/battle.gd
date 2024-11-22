@@ -332,7 +332,7 @@ func _end_turn_phase():
 	turn_ended.emit(sides[0].active, sides[1].active)
 
 
-## [Private] Gets targets depending on the move being used and the type of battle
+## [Public] Gets targets depending on the move being used and the type of battle
 func get_move_targets(user: Battler, target_type: Constants.MOVE_TARGET) -> Array[Battler]:
 	var targets: Array[Battler] = []
 	match target_type:

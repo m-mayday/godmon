@@ -138,6 +138,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.NIGHTMARE: Nightmare.new,
 	Constants.MOVES.FLAME_WHEEL: BurnChance.new,
 	Constants.MOVES.SNORE: Snore.new,
+	Constants.MOVES.CURSE: Curse.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -895,5 +896,21 @@ class Nightmare extends MoveHandler:
 
 
 class Snore extends FlinchChance:
-	func on_try_move(battle: Battle, user: Battler, _target: Battler) -> bool:
+	func on_try_move(_battle: Battle, user: Battler, _target: Battler) -> bool:
 		return user.has_status(Constants.STATUSES.SLEEP)
+
+
+class Curse extends MoveHandler:
+	func on_move_hit(battle: Battle, user: Battler, target: Battler) -> void:
+		for type in user.pokemon.species.types:
+			if type.id == Constants.TYPES.GHOST:
+				if target.battler_flags.has("curse"):
+					return
+				user.damage(floor(user.pokemon.stats.hp / 2.0))
+				battle.add_battle_event(BattleDialogueEvent.new("{0} cut its own HP and laid a curse on {1}!", [user.pokemon.name, target.pokemon.name]))
+				target.battler_flags["curse"] = [FlagHandler.get_flag_handler(Constants.FLAGS.CURSE, target)]
+				return
+		# May need to have all these boosted at once
+		user.boost_stat("speed", -1)
+		user.boost_stat("attack", 1)
+		user.boost_stat("defense", 1)
