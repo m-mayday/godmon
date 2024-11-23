@@ -139,8 +139,9 @@ static var moves: Dictionary = {
 	Constants.MOVES.FLAME_WHEEL: BurnChance.new,
 	Constants.MOVES.SNORE: Snore.new,
 	Constants.MOVES.CURSE: Curse.new,
-	Constants.MOVES.FLAIL: Flail.new,
+	Constants.MOVES.FLAIL: UserHPBasePower.new,
 	Constants.MOVES.COTTON_SPORE: LowersSpeedByTwo.new,
+	Constants.MOVES.REVERSAL: UserHPBasePower.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -918,7 +919,7 @@ class Curse extends MoveHandler:
 		user.boost_stat("defense", 1)
 		
 
-class Flail extends MoveHandler:
+class UserHPBasePower extends MoveHandler:
 	func base_power(user: Battler, _target: Battler) -> int:
 		var ratio: int = maxi(floorf(float(user.pokemon.current_hp * 48) / float(user.pokemon.stats.hp)), 1)
 		if ratio < 2:

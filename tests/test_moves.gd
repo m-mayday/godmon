@@ -2609,18 +2609,20 @@ class TestCurse extends GutTest:
 		assert_eq(battle.player_team[0].stat_stages.evasion, 0)
 
 
-class TestFlail extends GutTest:
+class TestUserHPBasePower extends GutTest:
 	var battle = null
 	
 	func after_each():
 		battle = null
 		
-	var hp_ratio_base_power = [[100.0, 5], [32.99, 9], [16.99, 16], [9.99, 19], [4.99, 28], [1.99, 37]]
+	var hp_ratio_base_power = [[100.0, 5, 2], [32.99, 9, 4], [16.99, 16, 8], [9.99, 19, 9], [4.99, 28, 14], [1.99, 37, 18]]
 	
 	func test_damage_varies_by_user_hp(params = use_parameters(hp_ratio_base_power)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 30)
 		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)
-		var move = Constants.get_move_by_id(Constants.MOVES.FLAIL)
+		var moves: Array[Constants.MOVES] = [Constants.MOVES.FLAIL, Constants.MOVES.REVERSAL]
+		var move_index: int = [0, 1].pick_random()
+		var move = Constants.get_move_by_id(moves[move_index])
 		
 		charizard.current_hp = params[0] * charizard.stats.hp / 48
 		
@@ -2635,5 +2637,5 @@ class TestFlail extends GutTest:
 		stub(battle, "run_battle_event").to_do_nothing()
 
 		battle._play_turn()
-		var expected_hp = battle.opponent_team[0].pokemon.stats.hp - params[1]
+		var expected_hp = battle.opponent_team[0].pokemon.stats.hp - params[move_index+1]
 		assert_eq(battle.opponent_team[0].pokemon.current_hp, expected_hp)

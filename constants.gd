@@ -271,6 +271,8 @@ static var moves = {
 	# Conversion 2 goes here.
 	MOVES.AEROBLAST: "aeroblast",
 	MOVES.COTTON_SPORE: "cotton_spore",
+	MOVES.REVERSAL: "reversal",
+	# Spite goes here.
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",
