@@ -2607,3 +2607,33 @@ class TestCurse extends GutTest:
 		assert_eq(battle.player_team[0].stat_stages.hp, 0)
 		assert_eq(battle.player_team[0].stat_stages.accuracy, 0)
 		assert_eq(battle.player_team[0].stat_stages.evasion, 0)
+
+
+class TestFlail extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
+		
+	var hp_ratio_base_power = [[100.0, 5], [32.99, 9], [16.99, 16], [9.99, 19], [4.99, 28], [1.99, 37]]
+	
+	func test_damage_varies_by_user_hp(params = use_parameters(hp_ratio_base_power)):
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 30)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)
+		var move = Constants.get_move_by_id(Constants.MOVES.FLAIL)
+		
+		charizard.current_hp = params[0] * charizard.stats.hp / 48
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "random_range").to_return(100).when_passed(85, 100) # Damage calc
+		stub(battle, "random_range").to_return(1).when_passed(1, 24) # Crit
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		var expected_hp = battle.opponent_team[0].pokemon.stats.hp - params[1]
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, expected_hp)

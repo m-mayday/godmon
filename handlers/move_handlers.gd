@@ -139,6 +139,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.FLAME_WHEEL: BurnChance.new,
 	Constants.MOVES.SNORE: Snore.new,
 	Constants.MOVES.CURSE: Curse.new,
+	Constants.MOVES.FLAIL: Flail.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -196,7 +197,7 @@ func fixed_damage(_battle: Battle, _user: Battler, _target: Battler) -> int:
 
 
 ## Returns the move's base power
-func base_power(_target: Battler) -> int:
+func base_power(_user: Battler, _target: Battler) -> int:
 	return move.power
 
 
@@ -323,7 +324,7 @@ class Gust extends MoveHandler:
 		return true
 
 
-	func base_power(target: Battler) -> int:
+	func base_power(_user: Battler, target: Battler) -> int:
 		if target.battler_flags.has("twoturnmove"):
 			if target.battler_flags.get("twoturnmove")[2].id == Constants.MOVES.FLY:
 				return move.power * 2
@@ -377,10 +378,10 @@ class Stomp extends FlinchChance:
 		return super(battle, user, target)
 
 
-	func base_power(target: Battler) -> int:
+	func base_power(_user: Battler, target: Battler) -> int:
 		if target.battler_flags.has("minimize"):
 			return move.power * 2
-		return super(target)
+		return super(_user, target)
 
 
 class TwoHitMove extends MoveHandler:
@@ -406,10 +407,10 @@ class BodySlam extends ParalyzeChance:
 		return super(battle, user, target)
 
 
-	func base_power(target: Battler) -> int:
+	func base_power(_user: Battler, target: Battler) -> int:
 		if target.battler_flags.has("minimize"):
 			return move.power * 2
-		return super(target)
+		return super(_user, target)
 
 
 class Recoil25Percent extends MoveHandler:
@@ -575,7 +576,7 @@ class RechargeMove extends MoveHandler:
 
 
 class LowKick extends MoveHandler:
-	func base_power(target: Battler) -> int:
+	func base_power(_user: Battler, target: Battler) -> int:
 		var weight: float = target.pokemon.species.weight
 		print(target.pokemon.name, " weighs ", weight)
 		if weight >= 200.0:
@@ -668,7 +669,7 @@ class Earthquake extends MoveHandler:
 		return true
 
 	## TODO: This should be modify damage, not base power
-	func base_power(target: Battler) -> int:
+	func base_power(_user: Battler, target: Battler) -> int:
 		if target.battler_flags.has("twoturnmove"):
 			if target.battler_flags.get("twoturnmove")[2].id == Constants.MOVES.DIG:
 				return move.power * 2
@@ -914,3 +915,19 @@ class Curse extends MoveHandler:
 		user.boost_stat("speed", -1)
 		user.boost_stat("attack", 1)
 		user.boost_stat("defense", 1)
+		
+
+class Flail extends MoveHandler:
+	func base_power(user: Battler, _target: Battler) -> int:
+		var ratio: float = maxi(floorf(float(user.pokemon.current_hp * 48) / float(user.pokemon.stats.hp)), 1)
+		if ratio < 2:
+			return 200
+		elif ratio < 5:
+			return 150
+		elif ratio < 10:
+			return 100
+		elif ratio < 17:
+			return 80
+		elif ratio < 33:
+			return 40
+		return 20

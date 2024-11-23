@@ -208,7 +208,7 @@ func _step_calculate_damage(target: Battler, multiple_targets: bool = false) -> 
 	if fixed_damage > 0:
 		return fixed_damage
 		
-	var base_power: int = maxi(move.handler.base_power(target), 1)
+	var base_power: int = maxi(move.handler.base_power(user, target), 1)
 	var is_critical: bool = _is_critical_hit(target)
 	# TODO: Base power (event)
 	
