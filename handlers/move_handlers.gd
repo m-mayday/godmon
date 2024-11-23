@@ -64,7 +64,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.STUN_SPORE: InflictParalysis.new,
 	Constants.MOVES.SLEEP_POWDER: InflictSleep.new,
 	Constants.MOVES.PETAL_DANCE: LockingMove.new,
-	Constants.MOVES.STRING_SHOT: StringShot.new,
+	Constants.MOVES.STRING_SHOT: LowersSpeedByTwo.new,
 	Constants.MOVES.DRAGON_RAGE: DragonRage.new,
 	Constants.MOVES.FIRE_SPIN: TrapTarget.new,
 	Constants.MOVES.THUNDER_SHOCK: ParalyzeChance.new,
@@ -140,6 +140,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.SNORE: Snore.new,
 	Constants.MOVES.CURSE: Curse.new,
 	Constants.MOVES.FLAIL: Flail.new,
+	Constants.MOVES.COTTON_SPORE: LowersSpeedByTwo.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -643,7 +644,7 @@ class InflictParalysis extends MoveHandler:
 		target.set_status(Constants.STATUSES.PARALYSIS)
 
 
-class StringShot extends MoveHandler:
+class LowersSpeedByTwo extends MoveHandler:
 	func on_move_hit(_battle: Battle, user: Battler, target: Battler) -> void:
 		target.boost_stat("speed", -2, user)
 
@@ -919,7 +920,7 @@ class Curse extends MoveHandler:
 
 class Flail extends MoveHandler:
 	func base_power(user: Battler, _target: Battler) -> int:
-		var ratio: float = maxi(floorf(float(user.pokemon.current_hp * 48) / float(user.pokemon.stats.hp)), 1)
+		var ratio: int = maxi(floorf(float(user.pokemon.current_hp * 48) / float(user.pokemon.stats.hp)), 1)
 		if ratio < 2:
 			return 200
 		elif ratio < 5:

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dyroqdufo133s"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_ujbkr"]
+
+[resource]
+script = ExtResource("1_ujbkr")
+id = 147
+name = &"Cotton Spore"
+type = 9
+category = 2
+power = 0
+accuracy = 100
+base_pp = 40
+target = 2
+priority = 0
+flags = Array[int]([12, 13, 11, 8])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_ujbkr")
