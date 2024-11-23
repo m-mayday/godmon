@@ -2639,3 +2639,90 @@ class TestUserHPBasePower extends GutTest:
 		battle._play_turn()
 		var expected_hp = battle.opponent_team[0].pokemon.stats.hp - params[move_index+1]
 		assert_eq(battle.opponent_team[0].pokemon.current_hp, expected_hp)
+
+
+class TestBellyDrum extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
+		
+	var stat_stages = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+	
+	func test_maximizes_attack(params = use_parameters(stat_stages)):
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR)
+		var move = Constants.get_move_by_id(Constants.MOVES.BELLY_DRUM)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		battle.player_team[0].stat_stages.attack = params
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_eq(battle.player_team[0].stat_stages.attack, 6)
+		assert_eq(battle.player_team[0].stat_stages.defense, 0)
+		assert_eq(battle.player_team[0].stat_stages.special_attack, 0)
+		assert_eq(battle.player_team[0].stat_stages.special_defense, 0)
+		assert_eq(battle.player_team[0].stat_stages.speed, 0)
+		assert_eq(battle.player_team[0].stat_stages.hp, 0)
+		assert_eq(battle.player_team[0].stat_stages.accuracy, 0)
+		assert_eq(battle.player_team[0].stat_stages.evasion, 0)
+		assert_eq(battle.player_team[0].pokemon.current_hp, battle.player_team[0].pokemon.stats.hp / 2)
+
+
+	func test_fails_if_not_enough_hp():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR)
+		var move = Constants.get_move_by_id(Constants.MOVES.BELLY_DRUM)
+		
+		charizard.current_hp = charizard.stats.hp / 2
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_eq(battle.player_team[0].stat_stages.attack, 0)
+		assert_eq(battle.player_team[0].stat_stages.defense, 0)
+		assert_eq(battle.player_team[0].stat_stages.special_attack, 0)
+		assert_eq(battle.player_team[0].stat_stages.special_defense, 0)
+		assert_eq(battle.player_team[0].stat_stages.speed, 0)
+		assert_eq(battle.player_team[0].stat_stages.hp, 0)
+		assert_eq(battle.player_team[0].stat_stages.accuracy, 0)
+		assert_eq(battle.player_team[0].stat_stages.evasion, 0)
+
+
+	func test_fails_if_attack_already_maxed():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR)
+		var move = Constants.get_move_by_id(Constants.MOVES.BELLY_DRUM)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		battle.player_team[0].stat_stages.attack = 6
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_eq(battle.player_team[0].stat_stages.attack, 6)
+		assert_eq(battle.player_team[0].stat_stages.defense, 0)
+		assert_eq(battle.player_team[0].stat_stages.special_attack, 0)
+		assert_eq(battle.player_team[0].stat_stages.special_defense, 0)
+		assert_eq(battle.player_team[0].stat_stages.speed, 0)
+		assert_eq(battle.player_team[0].stat_stages.hp, 0)
+		assert_eq(battle.player_team[0].stat_stages.accuracy, 0)
+		assert_eq(battle.player_team[0].stat_stages.evasion, 0)
+		assert_eq(battle.player_team[0].pokemon.current_hp, battle.player_team[0].pokemon.stats.hp)
+		

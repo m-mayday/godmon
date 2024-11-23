@@ -145,6 +145,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.POWDER_SNOW: FreezeChance.new,
 	Constants.MOVES.SCARY_FACE: LowersSpeedByTwo.new,
 	Constants.MOVES.SWEET_KISS: InflictConfusion.new,
+	Constants.MOVES.BELLY_DRUM: BellyDrum.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -936,3 +937,11 @@ class UserHPBasePower extends MoveHandler:
 		elif ratio < 33:
 			return 40
 		return 20
+
+
+class BellyDrum extends MoveHandler:
+	func on_move_hit(battle: Battle, user: Battler, _target: Battler) -> void:
+		if user.pokemon.current_hp <= user.pokemon.stats.hp / 2 or user.stat_stages.attack >= 6:
+			return
+		user.damage(user.pokemon.stats.hp / 2)
+		user.boost_stat("attack", 12)
