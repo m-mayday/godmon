@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bxnng7h4ikpis"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_h52a0"]
+
+[resource]
+script = ExtResource("1_h52a0")
+id = 572
+name = &"Powder Snow"
+type = 11
+category = 1
+power = 40
+accuracy = 100
+base_pp = 25
+target = 2
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 10
+description = "???"
+metadata/_custom_type_script = ExtResource("1_h52a0")

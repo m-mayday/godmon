@@ -110,7 +110,7 @@ class TestFreezeChanceMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var freeze_chance_moves = [Constants.MOVES.ICE_PUNCH, Constants.MOVES.ICE_BEAM, Constants.MOVES.BLIZZARD]
+	var freeze_chance_moves = [Constants.MOVES.ICE_PUNCH, Constants.MOVES.ICE_BEAM, Constants.MOVES.BLIZZARD, Constants.MOVES.POWDER_SNOW]
 	
 	func teste_freezes_opponent(params = use_parameters(freeze_chance_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)

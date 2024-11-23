@@ -142,6 +142,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.FLAIL: UserHPBasePower.new,
 	Constants.MOVES.COTTON_SPORE: LowersSpeedByTwo.new,
 	Constants.MOVES.REVERSAL: UserHPBasePower.new,
+	Constants.MOVES.POWDER_SNOW: FreezeChance.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -280,9 +281,9 @@ class FreezeChance extends MoveHandler:
 			return
 		var random_chance: int = battle.random_range(1, 100)
 		if random_chance > move.effect_chance:
-			print("Ice punch didn't freeze the opponent")
+			print(move.name + " didn't freeze the opponent")
 			return
-		print("Ice punch will freeze the opponent")
+		print(move.name + " will freeze the opponent")
 		target.set_status(Constants.STATUSES.FREEZE)
 
 
