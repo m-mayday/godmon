@@ -820,7 +820,7 @@ class TestInflictConfusionMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var inflict_confusion_moves = [Constants.MOVES.SUPERSONIC, Constants.MOVES.CONFUSE_RAY]
+	var inflict_confusion_moves = [Constants.MOVES.SUPERSONIC, Constants.MOVES.CONFUSE_RAY, Constants.MOVES.SWEET_KISS]
 	
 	func test_confuses_opponent(params = use_parameters(inflict_confusion_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)

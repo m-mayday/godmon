@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cr5r6u2e81bol"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_ybm0m"]
+
+[resource]
+script = ExtResource("1_ybm0m")
+id = 792
+name = &"Sweet Kiss"
+type = 4
+category = 2
+power = 0
+accuracy = 75
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 11, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_ybm0m")

@@ -144,6 +144,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.REVERSAL: UserHPBasePower.new,
 	Constants.MOVES.POWDER_SNOW: FreezeChance.new,
 	Constants.MOVES.SCARY_FACE: LowersSpeedByTwo.new,
+	Constants.MOVES.SWEET_KISS: InflictConfusion.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
