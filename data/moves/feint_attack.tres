@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://s6hcylqtooo8"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_8w0hx"]
+
+[resource]
+script = ExtResource("1_8w0hx")
+id = 247
+name = &"Feint Attack"
+type = 1
+category = 0
+power = 60
+accuracy = 0
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_8w0hx")
