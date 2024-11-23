@@ -268,6 +268,8 @@ static var moves = {
 	MOVES.SNORE: "snore",
 	MOVES.CURSE: "curse",
 	MOVES.FLAIL: "flail",
+	# Conversion 2 goes here.
+	MOVES.AEROBLAST: "aeroblast",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

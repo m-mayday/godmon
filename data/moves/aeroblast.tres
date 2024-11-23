@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://7seyjn5kniis"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_qqkoi"]
+
+[resource]
+script = ExtResource("1_qqkoi")
+id = 12
+name = &"Aeroblast"
+type = 7
+category = 1
+power = 100
+accuracy = 95
+base_pp = 5
+target = 13
+priority = 0
+flags = Array[int]([12, 13, 17])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_qqkoi")
