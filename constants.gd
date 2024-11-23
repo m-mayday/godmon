@@ -274,6 +274,8 @@ static var moves = {
 	MOVES.REVERSAL: "reversal",
 	# Spite goes here.
 	MOVES.POWDER_SNOW: "powder_snow",
+	# Protect goes here.
+	MOVES.MACH_PUNCH: "mach_punch",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

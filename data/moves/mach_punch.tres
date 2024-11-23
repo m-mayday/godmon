@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b2okyikfvj5w"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_d42un"]
+
+[resource]
+script = ExtResource("1_d42un")
+id = 440
+name = &"Mach Punch"
+type = 5
+category = 0
+power = 40
+accuracy = 100
+base_pp = 30
+target = 9
+priority = 1
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_d42un")
