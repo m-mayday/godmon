@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://d4gkwjwb014w"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_eftkl"]
+
+[resource]
+script = ExtResource("1_eftkl")
+id = 902
+name = &"Zap Cannon"
+type = 3
+category = 1
+power = 120
+accuracy = 50
+base_pp = 5
+target = 9
+priority = 0
+flags = Array[int]([12, 13, 6])
+effect_chance = 100
+description = "???"
+metadata/_custom_type_script = ExtResource("1_eftkl")

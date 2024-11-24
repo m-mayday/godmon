@@ -154,30 +154,38 @@ class TestParalyzeChanceMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var paralyze_chance_moves = [Constants.MOVES.THUNDER_PUNCH, Constants.MOVES.THUNDER_SHOCK, Constants.MOVES.THUNDERBOLT, Constants.MOVES.LICK, Constants.MOVES.BODY_SLAM, Constants.MOVES.THUNDER]
+	var paralyze_chance_moves = [Constants.MOVES.THUNDER_PUNCH, Constants.MOVES.THUNDER_SHOCK, Constants.MOVES.THUNDERBOLT, Constants.MOVES.LICK, Constants.MOVES.BODY_SLAM, Constants.MOVES.THUNDER, Constants.MOVES.ZAP_CANNON]
 	
 	func test_paralyzes_opponent(params = use_parameters(paralyze_chance_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
 		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 100)
-		var move = Constants.get_move_by_id(params)
+		var move: Move = Constants.get_move_by_id(params)
+		var chance: int = move.effect_chance
+		
+		if move.effect_chance > move.accuracy:
+			chance = 1 # To bypass accuracy
 		
 		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
 		
 		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
 		
 		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
-		stub(battle, "random_range").to_return(move.effect_chance).when_passed(1, 100)
+		stub(battle, "random_range").to_return(chance).when_passed(1, 100)
 		stub(battle, "run_battle_event").to_do_nothing()
 
 		battle._play_turn()
-		#await wait_for_signal(battle.turn_ended, 5)
 		assert_eq(battle.opponent_team[0].pokemon.status.id, Constants.STATUSES.PARALYSIS)
 
 
 	func test_does_not_paralyze_opponent(params = use_parameters(paralyze_chance_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
 		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 100)
-		var move = Constants.get_move_by_id(params)
+		var move: Move = Constants.get_move_by_id(params)
+		
+		# Skip moves that always paralyze
+		if move.effect_chance == 100:
+			assert_eq(move.effect_chance, 100)
+			return
 		
 		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
 		
