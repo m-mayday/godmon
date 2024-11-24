@@ -147,6 +147,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.SWEET_KISS: InflictConfusion.new,
 	Constants.MOVES.BELLY_DRUM: BellyDrum.new,
 	Constants.MOVES.SLUDGE_BOMB: PoisonChance.new,
+	Constants.MOVES.MUD_SLAP: LowerAccuracyByOne.new, # May need to change
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.

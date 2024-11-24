@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dtn7chqjg57w0"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_0c3o1"]
+
+[resource]
+script = ExtResource("1_0c3o1")
+id = 511
+name = &"Mud Slap"
+type = 10
+category = 1
+power = 20
+accuracy = 100
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_0c3o1")

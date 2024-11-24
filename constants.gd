@@ -281,6 +281,7 @@ static var moves = {
 	MOVES.SWEET_KISS: "sweet_kiss",
 	MOVES.BELLY_DRUM: "belly_drum",
 	MOVES.SLUDGE_BOMB: "sludge_bomb",
+	MOVES.MUD_SLAP: "mud_slap",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

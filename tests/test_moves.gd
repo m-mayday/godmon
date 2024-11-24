@@ -560,10 +560,10 @@ class TestLowerAccuracyByOne extends GutTest:
 	func after_each():
 		battle = null
 		
-	var lower_accuracy_by_one_moves = [Constants.MOVES.SAND_ATTACK, Constants.MOVES.SMOKESCREEN, Constants.MOVES.KINESIS, Constants.MOVES.FLASH]
+	var lower_accuracy_by_one_moves = [Constants.MOVES.SAND_ATTACK, Constants.MOVES.SMOKESCREEN, Constants.MOVES.KINESIS, Constants.MOVES.FLASH, Constants.MOVES.MUD_SLAP]
 	
 	func test_lowers_accuracy_by_one(params = use_parameters(lower_accuracy_by_one_moves)):
-		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 100)
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 20)
 		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 20)
 		var move = Constants.get_move_by_id(params)
 		
