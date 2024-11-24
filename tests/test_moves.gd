@@ -1198,7 +1198,7 @@ class TestDrain50PercentMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var drain_50_percent_moves = [[Constants.MOVES.ABSORB, 9], [Constants.MOVES.MEGA_DRAIN, 18], [Constants.MOVES.LEECH_LIFE, 21]]
+	var drain_50_percent_moves = [[Constants.MOVES.ABSORB, 9], [Constants.MOVES.MEGA_DRAIN, 18], [Constants.MOVES.LEECH_LIFE, 21], [Constants.MOVES.GIGA_DRAIN, 33]]
 	
 	func test_heals_50_percent_of_dealt_damage(params = use_parameters(drain_50_percent_moves)):
 		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)

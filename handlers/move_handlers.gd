@@ -155,6 +155,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.BONE_RUSH: MultiStrikeMove.new,
 	Constants.MOVES.LOCK_ON: LockOnTarget.new,
 	Constants.MOVES.OUTRAGE: LockingMove.new,
+	Constants.MOVES.GIGA_DRAIN: Drain50Percent.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.

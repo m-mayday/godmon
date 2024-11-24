@@ -293,6 +293,8 @@ static var moves = {
 	MOVES.BONE_RUSH: "bone_rush",
 	MOVES.LOCK_ON: "lock_on",
 	MOVES.OUTRAGE: "outrage",
+	# Sandstorm goes here.
+	MOVES.GIGA_DRAIN: "giga_drain",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",
