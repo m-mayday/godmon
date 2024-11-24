@@ -1025,7 +1025,6 @@ class TestLowerSpeedByOne extends GutTest:
 		stub(battle, "run_battle_event").to_do_nothing()
 
 		battle._play_turn()
-		#await wait_for_signal(battle.turn_ended, 5)
 		assert_eq(battle.opponent_team[0].stat_stages.attack, 0)
 		assert_eq(battle.opponent_team[0].stat_stages.defense, 0)
 		assert_eq(battle.opponent_team[0].stat_stages.special_attack, 0)
@@ -2725,4 +2724,35 @@ class TestBellyDrum extends GutTest:
 		assert_eq(battle.player_team[0].stat_stages.accuracy, 0)
 		assert_eq(battle.player_team[0].stat_stages.evasion, 0)
 		assert_eq(battle.player_team[0].pokemon.current_hp, battle.player_team[0].pokemon.stats.hp)
+
+
+class TestLowerAccuracyByOneChance extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
 		
+	var lower_accuracy_by_one_moves = [Constants.MOVES.MUD_SLAP, Constants.MOVES.OCTAZOOKA]
+	
+	func test_lowers_accuracy_one(params = use_parameters(lower_accuracy_by_one_moves)):
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR)
+		var move = Constants.get_move_by_id(params)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_eq(battle.opponent_team[0].stat_stages.attack, 0)
+		assert_eq(battle.opponent_team[0].stat_stages.defense, 0)
+		assert_eq(battle.opponent_team[0].stat_stages.special_attack, 0)
+		assert_eq(battle.opponent_team[0].stat_stages.special_defense, 0)
+		assert_eq(battle.opponent_team[0].stat_stages.speed, 0)
+		assert_eq(battle.opponent_team[0].stat_stages.hp, 0)
+		assert_eq(battle.opponent_team[0].stat_stages.accuracy, -1)
+		assert_eq(battle.opponent_team[0].stat_stages.evasion, 0)

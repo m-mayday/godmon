@@ -147,7 +147,8 @@ static var moves: Dictionary = {
 	Constants.MOVES.SWEET_KISS: InflictConfusion.new,
 	Constants.MOVES.BELLY_DRUM: BellyDrum.new,
 	Constants.MOVES.SLUDGE_BOMB: PoisonChance.new,
-	Constants.MOVES.MUD_SLAP: LowerAccuracyByOne.new, # May need to change
+	Constants.MOVES.MUD_SLAP: LowerAccuracyByOneChance.new,
+	Constants.MOVES.OCTAZOOKA: LowerAccuracyByOneChance.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -947,3 +948,12 @@ class BellyDrum extends MoveHandler:
 			return
 		user.damage(user.pokemon.stats.hp / 2)
 		user.boost_stat("attack", 12)
+
+
+class LowerAccuracyByOneChance extends MoveHandler:
+	func on_secondary_effect(battle: Battle, user: Battler, target: Battler) -> void:
+		var random_chance: int = battle.random_range(1, 100)
+		if random_chance > move.effect_chance:
+			print(move.name, " didn't lower the opponent's accuracy")
+			return
+		target.boost_stat("accuracy", -1, user)

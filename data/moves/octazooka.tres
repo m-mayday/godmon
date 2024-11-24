@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bviwmym5j41wn"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_43uc5"]
+
+[resource]
+script = ExtResource("1_43uc5")
+id = 534
+name = &"Octazooka"
+type = 17
+category = 1
+power = 65
+accuracy = 85
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 50
+description = "???"
+metadata/_custom_type_script = ExtResource("1_43uc5")

@@ -14,6 +14,6 @@ base_pp = 10
 target = 9
 priority = 0
 flags = Array[int]([12, 13])
-effect_chance = 0
+effect_chance = 100
 description = "???"
 metadata/_custom_type_script = ExtResource("1_0c3o1")
