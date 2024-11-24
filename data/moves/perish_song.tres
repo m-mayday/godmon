@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c8ybrh7vlf2sx"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_fyphg"]
+
+[resource]
+script = ExtResource("1_fyphg")
+id = 549
+name = &"Perish Song"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 5
+target = 0
+priority = 0
+flags = Array[int]([1])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_fyphg")

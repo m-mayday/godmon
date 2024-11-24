@@ -150,6 +150,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.MUD_SLAP: LowerAccuracyByOneChance.new,
 	Constants.MOVES.OCTAZOOKA: LowerAccuracyByOneChance.new,
 	Constants.MOVES.ZAP_CANNON: ParalyzeChance.new,
+	Constants.MOVES.PERISH_SONG: PerishSong.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -958,3 +959,12 @@ class LowerAccuracyByOneChance extends MoveHandler:
 			print(move.name, " didn't lower the opponent's accuracy")
 			return
 		target.boost_stat("accuracy", -1, user)
+
+
+class PerishSong extends MoveHandler:
+	func on_move_hit(battle: Battle, user: Battler, target: Battler) -> void:
+		if not user.battler_flags.has("perish_song"):
+			user.battler_flags["perish_song"] = [FlagHandler.get_flag_handler(Constants.FLAGS.PERISH_SONG, target), 4]
+			battle.add_battle_event(BattleDialogueEvent.new("All Pokémon hearing the song will faint in three turns!"))
+		if not target.battler_flags.has("perish_song"):
+			target.battler_flags["perish_song"] = [FlagHandler.get_flag_handler(Constants.FLAGS.PERISH_SONG, target), 4]

@@ -19,6 +19,7 @@ static var flags: Dictionary = {
 	Constants.FLAGS.LOCKED_ON: LockedOn.new,
 	Constants.FLAGS.NIGHTMARE: Nightmare.new,
 	Constants.FLAGS.CURSE: Curse.new,
+	Constants.FLAGS.PERISH_SONG: PerishSong.new,
 }
 
 ## Returns the handler for the flag id provided, or the base flag handler if it's not found.
@@ -211,7 +212,7 @@ class Mist extends FlagHandler:
 		mist[2] -= 1
 		if mist[2] <= 0:
 			battler.side.side_flags.erase("mist")
-			battle.add_battle_event(BattleDialogueEvent.new("The mist disappear!"))
+			battle.add_battle_event(BattleDialogueEvent.new("The mist disappeared!"))
 
 
 class Screen extends FlagHandler:
@@ -303,3 +304,18 @@ class Curse extends FlagHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is hurt by CURSE!", [battler.pokemon.name]))
 		battler.damage(battler.pokemon.stats.hp / 4)
+
+
+class PerishSong extends FlagHandler:
+	func on_residual(battle: Battle, battler: Battler) -> void:
+		var song: Array = battler.battler_flags.get("perish_song", [])
+		song[1] -= 1
+		if song[1] <= 0:
+			battler.battler_flags.erase("perish_song")
+			battler.pokemon.current_hp = 0
+			battle.add_battle_event(BattleDialogueEvent.new("{0} fainted due to Perish Song!", [battler.pokemon.name]))
+			battle.add_battle_event(HealthChangedEvent.new(battler.pokemon, 0))
+			battler.faint()
+			return
+		battle.add_battle_event(BattleDialogueEvent.new("{0}'s Perish Song count fell to {1}!", [battler.pokemon.name, song[1]]))
+		battler.battler_flags["perish_song"] = song

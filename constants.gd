@@ -285,6 +285,9 @@ static var moves = {
 	MOVES.OCTAZOOKA: "octazooka",
 	# Spikes goes here.
 	MOVES.ZAP_CANNON: "zap_cannon",
+	# Foresight goes here.
+	# Destiny Bond goes here.
+	MOVES.PERISH_SONG: "perish_song",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",
@@ -461,6 +464,7 @@ enum FLAGS {
 	LOCKED_ON,
 	NIGHTMARE,
 	CURSE,
+	PERISH_SONG,
 }
 
 enum STATUSES {

@@ -2764,3 +2764,34 @@ class TestLowerAccuracyByOneChance extends GutTest:
 		assert_eq(battle.opponent_team[0].stat_stages.hp, 0)
 		assert_eq(battle.opponent_team[0].stat_stages.accuracy, -1)
 		assert_eq(battle.opponent_team[0].stat_stages.evasion, 0)
+
+
+class TestPerishSong extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
+	
+	func test_all_pokemon_faint():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 100)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 1)
+		var move = Constants.get_move_by_id(Constants.MOVES.PERISH_SONG)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.opponent_team[0], battle.player_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "run_battle_event").to_do_nothing()
+
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "perish_song")
+		assert_has(battle.opponent_team[0].battler_flags, "perish_song")
+		assert_eq(battle.player_team[0].battler_flags["perish_song"][1], 3) # 4 turns (One turn already passed)
+		assert_eq(battle.opponent_team[0].battler_flags["perish_song"][1], 3) # 4 turns (One turn already passed)
+		battle._play_turn()
+		battle._play_turn()
+		battle._play_turn()
+		assert_eq(battle.player_team[0].pokemon.current_hp, 0)
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, 0)
