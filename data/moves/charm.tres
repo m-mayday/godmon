@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://k5teiiymi7ec"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_5bf6w"]
+
+[resource]
+script = ExtResource("1_5bf6w")
+id = 113
+name = &"Charm"
+type = 4
+category = 2
+power = 0
+accuracy = 100
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([11, 12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_5bf6w")
