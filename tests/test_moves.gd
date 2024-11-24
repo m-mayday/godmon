@@ -1017,7 +1017,7 @@ class TestLowerSpeedByOne extends GutTest:
 	func after_each():
 		battle = null
 		
-	var lower_speed_by_one_moves = [Constants.MOVES.BUBBLE_BEAM, Constants.MOVES.CONSTRICT, Constants.MOVES.BUBBLE]
+	var lower_speed_by_one_moves = [Constants.MOVES.BUBBLE_BEAM, Constants.MOVES.CONSTRICT, Constants.MOVES.BUBBLE, Constants.MOVES.ICY_WIND]
 	
 	func test_lowers_speed_one(params = use_parameters(lower_speed_by_one_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)

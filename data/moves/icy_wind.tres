@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cgcb6a6l0ovl6"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_rtelk"]
+
+[resource]
+script = ExtResource("1_rtelk")
+id = 386
+name = &"Icy Wind"
+type = 11
+category = 1
+power = 55
+accuracy = 95
+base_pp = 15
+target = 2
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 100
+description = "???"
+metadata/_custom_type_script = ExtResource("1_rtelk")
