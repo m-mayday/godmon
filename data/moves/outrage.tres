@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c6wmr6m7adn8e"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_dyjoj"]
+
+[resource]
+script = ExtResource("1_dyjoj")
+id = 540
+name = &"Outrage"
+type = 2
+category = 0
+power = 120
+accuracy = 100
+base_pp = 10
+target = 7
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_dyjoj")

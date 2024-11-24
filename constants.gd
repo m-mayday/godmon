@@ -292,6 +292,7 @@ static var moves = {
 	# Detect goes here.
 	MOVES.BONE_RUSH: "bone_rush",
 	MOVES.LOCK_ON: "lock_on",
+	MOVES.OUTRAGE: "outrage",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

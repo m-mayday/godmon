@@ -628,7 +628,7 @@ class TestLockingMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var locking_moves = [Constants.MOVES.THRASH, Constants.MOVES.PETAL_DANCE]
+	var locking_moves = [Constants.MOVES.THRASH, Constants.MOVES.PETAL_DANCE, Constants.MOVES.OUTRAGE]
 	
 	func test_locks_user_into_move_and_confuses_on_end(params = use_parameters(locking_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
