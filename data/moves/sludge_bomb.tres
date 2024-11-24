@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cshk6mts64wtk"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_cvmqy"]
+
+[resource]
+script = ExtResource("1_cvmqy")
+id = 712
+name = &"Sludge Bomb"
+type = 13
+category = 1
+power = 90
+accuracy = 100
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 13, 6])
+effect_chance = 30
+description = "???"
+metadata/_custom_type_script = ExtResource("1_cvmqy")

@@ -717,7 +717,7 @@ class TestPoisonChanceMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var poison_chance_moves = [Constants.MOVES.POISON_STING, Constants.MOVES.TWINEEDLE, Constants.MOVES.SMOG, Constants.MOVES.SLUDGE]
+	var poison_chance_moves = [Constants.MOVES.POISON_STING, Constants.MOVES.TWINEEDLE, Constants.MOVES.SMOG, Constants.MOVES.SLUDGE, Constants.MOVES.SLUDGE_BOMB]
 	
 	func test_poisons_opponent(params = use_parameters(poison_chance_moves)):
 		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR)
