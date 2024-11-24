@@ -289,6 +289,8 @@ static var moves = {
 	# Destiny Bond goes here.
 	MOVES.PERISH_SONG: "perish_song",
 	MOVES.ICY_WIND: "icy_wind",
+	# Detect goes here.
+	MOVES.BONE_RUSH: "bone_rush",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

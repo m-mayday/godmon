@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://drb1iuukaddfq"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_5mp73"]
+
+[resource]
+script = ExtResource("1_5mp73")
+id = 81
+name = &"Bone Rush"
+type = 10
+category = 0
+power = 25
+accuracy = 90
+base_pp = 10
+target = 9
+priority = 0
+flags = Array[int]([12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_5mp73")
