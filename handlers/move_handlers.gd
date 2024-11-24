@@ -134,7 +134,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.TRI_ATTACK: TriAttack.new,
 	Constants.MOVES.SUPER_FANG: SuperFang.new,
 	Constants.MOVES.STRUGGLE: Recoil25Percent.new,
-	Constants.MOVES.MIND_READER: MindReader.new,
+	Constants.MOVES.MIND_READER: LockOnTarget.new,
 	Constants.MOVES.NIGHTMARE: Nightmare.new,
 	Constants.MOVES.FLAME_WHEEL: BurnChance.new,
 	Constants.MOVES.SNORE: Snore.new,
@@ -153,6 +153,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.PERISH_SONG: PerishSong.new,
 	Constants.MOVES.ICY_WIND: LowerSpeedByOneChance.new,
 	Constants.MOVES.BONE_RUSH: MultiStrikeMove.new,
+	Constants.MOVES.LOCK_ON: LockOnTarget.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -890,7 +891,7 @@ class SuperFang extends MoveHandler:
 		return maxi(1, int(target.pokemon.current_hp / 2))
 
 
-class MindReader extends MoveHandler:
+class LockOnTarget extends MoveHandler:
 	func on_move_hit(battle: Battle, user: Battler, target: Battler) -> void:
 		if user.battler_flags.has("locked_on"):
 			return

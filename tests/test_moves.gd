@@ -2385,11 +2385,12 @@ class TestSuperFang extends GutTest:
 		assert_eq(battle.opponent_team[0].pokemon.current_hp, 0)
 
 
-class TestMindReader extends GutTest:
+class TestLockedOnTarget extends GutTest:
 	var battle = null
 	
 	func after_each():
 		battle = null
+		
 	
 	func test_move_does_not_hit_semi_invulnerable_target():
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 20)
@@ -2410,10 +2411,12 @@ class TestMindReader extends GutTest:
 		assert_eq(battle.opponent_team[0].pokemon.current_hp, battle.opponent_team[0].pokemon.stats.hp)
 
 
-	func test_move_hits_semi_invulnerable_target():
+	var lock_on_moves = [Constants.MOVES.MIND_READER, Constants.MOVES.LOCK_ON]
+
+	func test_move_hits_semi_invulnerable_target(params = use_parameters(lock_on_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 20)
 		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 80)
-		var move = Constants.get_move_by_id(Constants.MOVES.MIND_READER)
+		var move = Constants.get_move_by_id(params)
 		
 		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
 		
