@@ -159,6 +159,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.CHARM: LowerAttackByTwo.new,
 	Constants.MOVES.ROLLOUT: GraduallyStronger.new,
 	Constants.MOVES.FALSE_SWIPE: FalseSwipe.new,
+	Constants.MOVES.SWAGGER: Swagger.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -1023,3 +1024,12 @@ class FalseSwipe extends MoveHandler:
 		if damage >= target.pokemon.current_hp:
 			return target.pokemon.current_hp - 1
 		return damage
+
+
+class Swagger extends MoveHandler:
+	func on_move_hit(battle: Battle, user: Battler, target: Battler) -> void:
+		target.boost_stat("attack", 2, user)
+		target.battler_flags["confusion"] = [
+			FlagHandler.get_flag_handler(Constants.FLAGS.CONFUSION, target),
+			battle.random_range(2, 4),
+		]
