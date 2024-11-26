@@ -320,6 +320,7 @@ func _deal_damage(damage: int, target: Battler):
 	var results: Array = battle.run_action_event("before_damage", target, user, [battle, user, target, move, damage])
 	for result in results:
 		damage = mini(result, damage)
+	damage = move.handler.on_damage(battle, user, target, damage)
 	print("Damage after event: ", damage)
 	if not user.is_fainted():
 		battle.add_battle_event(AnimationEvent.new("attack_move", [user, target]))

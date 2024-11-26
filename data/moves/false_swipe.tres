@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dlmxq140hlj4s"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_nthgc"]
+
+[resource]
+script = ExtResource("1_nthgc")
+id = 244
+name = &"False Swipe"
+type = 12
+category = 0
+power = 40
+accuracy = 100
+base_pp = 40
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_nthgc")

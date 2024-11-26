@@ -158,6 +158,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.GIGA_DRAIN: Drain50Percent.new,
 	Constants.MOVES.CHARM: LowerAttackByTwo.new,
 	Constants.MOVES.ROLLOUT: GraduallyStronger.new,
+	Constants.MOVES.FALSE_SWIPE: FalseSwipe.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -222,6 +223,11 @@ func base_power(_user: Battler, _target: Battler) -> int:
 ## Returns how many times this move hits
 func number_of_hits(_battle: Battle) -> int:
 	return 1
+
+
+## Called right before dealing damage to the target
+func on_damage(_battle: Battle, _user: Battler, _target: Battler, damage: int) -> int:
+	return damage
 
 
 ## Called after the move is used, to activate its secondary effect if it has one
@@ -1010,3 +1016,10 @@ class GraduallyStronger extends MoveHandler:
 
 	func on_aborted(_battle: Battle, user: Battler, _target: Battler) -> void:
 		user.battler_flags.erase("gradually_stronger")
+
+
+class FalseSwipe extends MoveHandler:
+	func on_damage(_battle: Battle, _user: Battler, target: Battler, damage: int) -> int:
+		if damage >= target.pokemon.current_hp:
+			return target.pokemon.current_hp - 1
+		return damage
