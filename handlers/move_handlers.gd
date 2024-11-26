@@ -157,6 +157,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.OUTRAGE: LockingMove.new,
 	Constants.MOVES.GIGA_DRAIN: Drain50Percent.new,
 	Constants.MOVES.CHARM: LowerAttackByTwo.new,
+	Constants.MOVES.ROLLOUT: GraduallyStronger.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -979,3 +980,33 @@ class PerishSong extends MoveHandler:
 class LowerAttackByTwo extends MoveHandler:
 	func on_move_hit(_battle: Battle, user: Battler, target: Battler) -> void:
 		target.boost_stat("attack", -2, user)
+
+
+class GraduallyStronger extends MoveHandler:
+	func base_power(user: Battler, _target: Battler) -> int:
+		var base_power: int = move.power
+		var move_arr: Array = user.battler_flags.get("gradually_stronger", [])
+		if len(move_arr) > 0:
+			base_power *= pow(2, move_arr[2])
+		if user.battler_flags.has("defense_curl"):
+			base_power *= 2
+		return base_power
+
+	# Might need to move to a different function
+	func on_move_hit(_battle: Battle, user: Battler, target: Battler) -> void:
+		var move_arr: Array = user.battler_flags.get("gradually_stronger", [])
+		var count: int = 1
+		if len(move_arr) > 0:
+			count = move_arr[2] + 1
+		if count >= 5:
+			user.battler_flags.erase("gradually_stronger")
+			return
+		user.battler_flags["gradually_stronger"] = [target, move, count]
+
+
+	func on_miss(_battle: Battle, user: Battler, _target: Battler) -> void:
+		user.battler_flags.erase("gradually_stronger")
+
+
+	func on_aborted(_battle: Battle, user: Battler, _target: Battler) -> void:
+		user.battler_flags.erase("gradually_stronger")

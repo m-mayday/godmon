@@ -297,6 +297,7 @@ static var moves = {
 	MOVES.GIGA_DRAIN: "giga_drain",
 	# Endure goes here.
 	MOVES.CHARM: "charm",
+	MOVES.ROLLOUT: "rollout",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

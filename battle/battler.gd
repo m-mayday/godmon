@@ -212,11 +212,15 @@ func can_choose_action(auto_choose: bool = false) -> bool:
 			var flag = battler_flags.get("recharge")
 			target = flag[1]
 			move = flag[2]
+		elif battler_flags.has("gradually_stronger"):
+			var flag = battler_flags.get("gradually_stronger")
+			target = flag[0]
+			move = flag[1]
 		else:
 			return true
 		battle.queue_move(move, self, target)
 		return false
-	if battler_flags.has("lockedmove") or battler_flags.has("twoturnmove") or battler_flags.has("recharge"):
+	if battler_flags.has("lockedmove") or battler_flags.has("twoturnmove") or battler_flags.has("recharge") or battler_flags.get("gradually_stronger"):
 		return false
 	return true
 
