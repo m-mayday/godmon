@@ -85,7 +85,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.NIGHT_SHADE: UserLevelDamage.new,
 	Constants.MOVES.SCREECH: Screech.new,
 	Constants.MOVES.DOUBLE_TEAM: DoubleTeam.new,
-	Constants.MOVES.RECOVER: Recover.new,
+	Constants.MOVES.RECOVER: Heal50Percent.new,
 	Constants.MOVES.HARDEN: IncreaseDefenseByOne.new,
 	Constants.MOVES.MINIMIZE: Minimize.new,
 	Constants.MOVES.SMOKESCREEN: LowerAccuracyByOne.new,
@@ -109,7 +109,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.CONSTRICT: LowerSpeedByOneChance.new,
 	Constants.MOVES.AMNESIA: Amnesia.new,
 	Constants.MOVES.KINESIS: LowerAccuracyByOne.new,
-	Constants.MOVES.SOFT_BOILED: SoftBoiled.new,
+	Constants.MOVES.SOFT_BOILED: Heal50Percent.new,
 	Constants.MOVES.HIGH_JUMP_KICK: CrashDamage.new,
 	Constants.MOVES.GLARE: InflictParalysis.new,
 	Constants.MOVES.DREAM_EATER: DreamEater.new,
@@ -160,6 +160,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.ROLLOUT: GraduallyStronger.new,
 	Constants.MOVES.FALSE_SWIPE: FalseSwipe.new,
 	Constants.MOVES.SWAGGER: Swagger.new,
+	Constants.MOVES.MILK_DRINK: Heal50Percent.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -761,7 +762,7 @@ class DoubleTeam extends MoveHandler:
 		user.boost_stat("evasion", 1, target)
 
 
-class Recover extends MoveHandler:
+class Heal50Percent extends MoveHandler:
 	func on_move_hit(_battle: Battle, user: Battler, _target: Battler) -> void:
 		user.heal(ceil(user.pokemon.stats.hp / 2))
 
@@ -832,11 +833,6 @@ class SkullBash extends TwoTurnMove:
 class Amnesia extends MoveHandler:
 	func on_move_hit(_battle: Battle, user: Battler, target: Battler) -> void:
 		user.boost_stat("special_defense", 2, target)
-
-
-class SoftBoiled extends MoveHandler:
-	func on_move_hit(_battle: Battle, user: Battler, _target: Battler) -> void:
-		user.heal(ceil(user.pokemon.stats.hp / 2))
 
 
 class DreamEater extends Drain50Percent:

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bhepfvqpmq257"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_3i3ru"]
+
+[resource]
+script = ExtResource("1_3i3ru")
+id = 489
+name = &"Milk Drink"
+type = 12
+category = 2
+power = 0
+accuracy = 0
+base_pp = 5
+target = 14
+priority = 0
+flags = Array[int]([4])
+effect_chance = 0
+description = "???"
+metadata/_custom_type_script = ExtResource("1_3i3ru")

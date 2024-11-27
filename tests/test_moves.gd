@@ -1729,7 +1729,7 @@ class TestHeals50Percent extends GutTest:
 	func after_each():
 		battle = null
 		
-	var heals_50_percent_moves = [Constants.MOVES.RECOVER, Constants.MOVES.SOFT_BOILED]
+	var heals_50_percent_moves = [Constants.MOVES.RECOVER, Constants.MOVES.SOFT_BOILED, Constants.MOVES.MILK_DRINK]
 	
 	func test_user_heals_50_percent(params = use_parameters(heals_50_percent_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 50)
@@ -1747,7 +1747,6 @@ class TestHeals50Percent extends GutTest:
 		stub(battle, "run_battle_event").to_do_nothing()
 
 		battle._play_turn()
-		#await wait_for_signal(battle.turn_ended, 5)
 		assert_almost_eq(charizard.current_hp, hp + int(charizard.stats.hp * 0.5), 4)
 
 
