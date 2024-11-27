@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://d110qypievjgp"]
+
+[ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="1_n3oxq"]
+
+[resource]
+script = ExtResource("1_n3oxq")
+id = 732
+name = &"Spark"
+type = 3
+category = 0
+power = 65
+accuracy = 100
+base_pp = 20
+target = 9
+priority = 0
+flags = Array[int]([0, 12, 13])
+effect_chance = 30
+description = "???"
+metadata/_custom_type_script = ExtResource("1_n3oxq")

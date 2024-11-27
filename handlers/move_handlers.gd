@@ -161,6 +161,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.FALSE_SWIPE: FalseSwipe.new,
 	Constants.MOVES.SWAGGER: Swagger.new,
 	Constants.MOVES.MILK_DRINK: Heal50Percent.new,
+	Constants.MOVES.SPARK: ParalyzeChance.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.

@@ -154,7 +154,7 @@ class TestParalyzeChanceMoves extends GutTest:
 	func after_each():
 		battle = null
 		
-	var paralyze_chance_moves = [Constants.MOVES.THUNDER_PUNCH, Constants.MOVES.THUNDER_SHOCK, Constants.MOVES.THUNDERBOLT, Constants.MOVES.LICK, Constants.MOVES.BODY_SLAM, Constants.MOVES.THUNDER, Constants.MOVES.ZAP_CANNON]
+	var paralyze_chance_moves = [Constants.MOVES.THUNDER_PUNCH, Constants.MOVES.THUNDER_SHOCK, Constants.MOVES.THUNDERBOLT, Constants.MOVES.LICK, Constants.MOVES.BODY_SLAM, Constants.MOVES.THUNDER, Constants.MOVES.ZAP_CANNON, Constants.MOVES.SPARK]
 	
 	func test_paralyzes_opponent(params = use_parameters(paralyze_chance_moves)):
 		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD)
