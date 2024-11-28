@@ -3034,3 +3034,127 @@ class TestSwagger extends GutTest:
 		assert_eq(battle.opponent_team[0].stat_stages.accuracy, 0)
 		assert_eq(battle.opponent_team[0].stat_stages.evasion, 0)
 		assert_has(battle.opponent_team[0].battler_flags, "confusion")
+
+
+class TestFuryCutter extends GutTest:
+	var battle = null
+	
+	func after_each():
+		battle = null
+	
+	func test_doubles_power_each_turn():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 10)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)
+		var move = Constants.get_move_by_id(Constants.MOVES.FURY_CUTTER)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "random_range").to_return(100).when_passed(85, 100) # Damage Calc
+		stub(battle, "random_range").to_return(1).when_passed(1, 24) # Crit
+		stub(battle, "run_battle_event").to_do_nothing()
+		
+		var hp: int = venusaur.current_hp
+
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 1)
+		hp -= 3
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 2)
+		hp -= 4
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 3)
+		hp -= 6
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+		
+		# Caps at 160 base power
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 4)
+		hp -= 6
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+
+
+	func test_resets_when_misses():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 10)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)
+		var move = Constants.get_move_by_id(Constants.MOVES.FURY_CUTTER)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "random_range").to_return(100).when_passed(85, 100) # Damage Calc
+		stub(battle, "random_range").to_return(1).when_passed(1, 24) # Crit
+		stub(battle, "run_battle_event").to_do_nothing()
+		
+		var hp: int = venusaur.current_hp
+
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 1)
+		hp -= 3
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 2)
+		hp -= 4
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+		
+		stub(battle, "random_range").to_return(100).when_passed(1, 100) # Accuracy
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle._play_turn()
+		assert_does_not_have(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+
+
+	func test_resets_when_different_move_is_used():
+		var charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 10)
+		var venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 50)
+		var move = Constants.get_move_by_id(Constants.MOVES.FURY_CUTTER)
+		
+		battle = partial_double(Battle).new([charizard] as Array[Pokemon], [venusaur] as Array[Pokemon])
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		
+		stub(battle, "_on_state_changed").to_do_nothing().when_passed(Battle.STATE.COMMAND_PHASE)
+		stub(battle, "random_range").to_return(1).when_passed(1, 100) # Accuracy
+		stub(battle, "random_range").to_return(100).when_passed(85, 100) # Damage Calc
+		stub(battle, "random_range").to_return(1).when_passed(1, 24) # Crit
+		stub(battle, "run_battle_event").to_do_nothing()
+		
+		var hp: int = venusaur.current_hp
+
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 1)
+		hp -= 3
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)
+		
+		battle.queue_move(Constants.get_move_by_id(Constants.MOVES.SPLASH), battle.player_team[0], battle.opponent_team[0])
+		battle._play_turn()
+		
+		battle.queue_move(move, battle.player_team[0], battle.opponent_team[0])
+		battle._play_turn()
+		assert_has(battle.player_team[0].battler_flags, "fury_cutter")
+		assert_eq(battle.player_team[0].battler_flags["fury_cutter"], 1)
+		hp -= 3
+		assert_eq(battle.opponent_team[0].pokemon.current_hp, hp)

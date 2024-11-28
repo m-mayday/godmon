@@ -302,6 +302,7 @@ static var moves = {
 	MOVES.SWAGGER: "swagger",
 	MOVES.MILK_DRINK: "milk_drink",
 	MOVES.SPARK: "spark",
+	MOVES.FURY_CUTTER: "fury_cutter",
 	MOVES.WAVE_CRASH: "wave_crash",
 	MOVES.IRON_DEFENSE: "iron_defense",
 	MOVES.SHELL_SMASH: "shell_smash",

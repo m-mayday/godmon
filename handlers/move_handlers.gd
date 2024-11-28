@@ -162,6 +162,7 @@ static var moves: Dictionary = {
 	Constants.MOVES.SWAGGER: Swagger.new,
 	Constants.MOVES.MILK_DRINK: Heal50Percent.new,
 	Constants.MOVES.SPARK: ParalyzeChance.new,
+	Constants.MOVES.FURY_CUTTER: FuryCutter.new,
 }
 
 ## Returns the handler for the move id provided, or the base move handler if it's not found.
@@ -1030,3 +1031,20 @@ class Swagger extends MoveHandler:
 			FlagHandler.get_flag_handler(Constants.FLAGS.CONFUSION, target),
 			battle.random_range(2, 4),
 		]
+
+
+class FuryCutter extends MoveHandler:
+	func base_power(user: Battler, _target: Battler) -> int:
+		var base_power: int = move.power
+		if user.last_move_used != move.id:
+			user.battler_flags.erase("fury_cutter")
+		var hit: int = user.battler_flags.get("fury_cutter", 0) + 1
+		user.battler_flags["fury_cutter"] = hit
+		return clampi(base_power * pow(2, hit-1), 1, 160)
+
+	func on_miss(_battle: Battle, user: Battler, _target: Battler) -> void:
+		user.battler_flags.erase("fury_cutter")
+
+
+	func on_aborted(_battle: Battle, user: Battler, _target: Battler) -> void:
+		user.battler_flags.erase("fury_cutter")
