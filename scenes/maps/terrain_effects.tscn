@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://i38ylwaqlkhp"]
+
+[ext_resource type="Script" path="res://scenes/maps/terrain_effects.gd" id="1_xrw43"]
+
+[node name="TerrainEffects" type="Node"]
+script = ExtResource("1_xrw43")
