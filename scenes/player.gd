@@ -1,7 +1,13 @@
 extends Area2D
 
-signal player_moved ## Emitted when the player starts moving
-signal player_stopped ## Emitted when the player stops moving
+signal player_moving_started ## Emitted when the player starts moving
+signal player_moving_finished ## Emitted when the player stops moving
+signal player_turning_started ## Emitted when the player starts turning
+signal player_turning_finished ## Emitted when the player stops turning
+
+## Emitted when the player reaches a new tile.
+## Different from moving_finished, since the player could still be moving even when it reaches the new tile
+signal player_tile_traveled
 
 enum PLAYER_STATE {IDLE, WALKING, RUNNING, TURNING}
 enum FACE_DIRECTION {UP, DOWN, RIGHT, LEFT}
@@ -48,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	elif not _is_moving:
 		_process_player_input()
 	elif _input_direction != Vector2.ZERO:
-		if Input.is_action_pressed("ui_accept"):
+		if Input.is_action_pressed("cancel"):
 			_player_state = PLAYER_STATE.RUNNING
 			_anim_state.travel("run")
 		else:
@@ -56,8 +62,11 @@ func _physics_process(delta: float) -> void:
 			_anim_state.travel("walk")
 		_move(delta)
 	else:
+		if _player_state != PLAYER_STATE.IDLE:
+			player_moving_finished.emit()
 		_anim_state.travel("idle")
 		_is_moving = false
+		_player_state = PLAYER_STATE.IDLE
 
 
 ## Processes player input and moves the character if necessary
@@ -75,11 +84,15 @@ func _process_player_input() -> void:
 		_raycast.force_raycast_update()
 		if _need_to_turn():
 			_player_state = PLAYER_STATE.TURNING
+			player_turning_started.emit()
 			_anim_state.travel("turn")
 		else:
 			_initial_position = position
 			_is_moving = true
 	else:
+		if _player_state != PLAYER_STATE.IDLE:
+			player_moving_finished.emit()
+		_player_state = PLAYER_STATE.IDLE
 		_anim_state.travel("idle")
 
 
@@ -87,14 +100,14 @@ func _process_player_input() -> void:
 func _move(delta: float) -> void:
 	if _raycast.is_colliding():
 		if _percent_to_next_tile > 0.0:
-			# Player can collide while moving, so this needs to emitted
-			player_stopped.emit() 
+			# Player can collide as it reaches the tile, so this needs to emitted
+			player_tile_traveled.emit()
 		_percent_to_next_tile = 0.0
 		_is_moving = false
 		return
 
 	if _percent_to_next_tile == 0.0:
-		player_moved.emit() # Player will start moving
+		player_moving_started.emit() # Player will start moving
 
 	var speed: float = MOVEMENT_SPEED.get(_player_state, default_move_speed)
 	_percent_to_next_tile +=  speed * delta
@@ -102,7 +115,7 @@ func _move(delta: float) -> void:
 		position = _initial_position + (tile_size * _input_direction)
 		_percent_to_next_tile = 0.0
 		_is_moving = false
-		player_stopped.emit()
+		player_tile_traveled.emit()
 	else:
 		position = _initial_position.lerp(_initial_position + _input_direction * tile_size, _percent_to_next_tile)
 
@@ -131,4 +144,5 @@ func _need_to_turn() -> bool:
 
 ## Called by the AnimationPlayer when turning animation finishes
 func finished_turning() -> void:
+	player_turning_finished.emit()
 	_player_state = PLAYER_STATE.IDLE

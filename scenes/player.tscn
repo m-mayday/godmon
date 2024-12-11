@@ -1,8 +1,9 @@
-[gd_scene load_steps=45 format=3 uid="uid://bmigxfi2xkns7"]
+[gd_scene load_steps=46 format=3 uid="uid://bmigxfi2xkns7"]
 
 [ext_resource type="Texture2D" uid="uid://brre4fnr205m8" path="res://assets/chars/Player Sprites.png" id="1_3vyb7"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://i38ylwaqlkhp" path="res://scenes/maps/terrain_effects.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://nokxwtpo54sn" path="res://scenes/menus/pause_menu.tscn" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://cgl1le0sf2rdm" path="res://assets/grass_overlay.png" id="4_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -491,7 +492,6 @@ script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5.24521e-06)
-scale = Vector2(1, 1)
 texture = ExtResource("1_3vyb7")
 centered = false
 offset = Vector2(0, -8)
@@ -513,6 +513,8 @@ metadata/_edit_lock_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 
+[node name="PauseMenu" parent="Camera2D" instance=ExtResource("3_qlg0r")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_fjrip")
@@ -530,8 +532,10 @@ parameters/walk/blend_position = Vector2(0.0144168, 0)
 node = NodePath("..")
 grass_overlay_texture = ExtResource("4_dqkch")
 
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_shape_entered" from="." to="TerrainEffects" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
-[connection signal="player_moved" from="." to="TerrainEffects" method="_on_node_exit_cell"]
-[connection signal="player_stopped" from="." to="TerrainEffects" method="_on_node_in_cell"]
+[connection signal="player_moving_finished" from="." to="Camera2D/PauseMenu" method="_on_allow_pausing"]
+[connection signal="player_moving_started" from="." to="Camera2D/PauseMenu" method="_on_prevent_pausing"]
+[connection signal="player_moving_started" from="." to="TerrainEffects" method="_on_node_exit_cell"]
+[connection signal="player_tile_traveled" from="." to="TerrainEffects" method="_on_node_in_cell"]
+[connection signal="player_turning_finished" from="." to="Camera2D/PauseMenu" method="_on_allow_pausing"]
+[connection signal="player_turning_started" from="." to="Camera2D/PauseMenu" method="_on_prevent_pausing"]

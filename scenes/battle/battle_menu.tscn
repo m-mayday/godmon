@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfhq7istddlx"]
 
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7o8ru"]
-[ext_resource type="Script" path="res://scenes/battle/battle_menu.gd" id="1_fp6dl"]
+[ext_resource type="Script" uid="uid://bapq6enaknl0y" path="res://scenes/battle/battle_menu.gd" id="1_fp6dl"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_qiefk"]
 
 [node name="BattleMenu" type="NinePatchRect"]

@@ -1,0 +1,177 @@
+[gd_scene load_steps=4 format=3 uid="uid://nokxwtpo54sn"]
+
+[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7unhi"]
+[ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_gsnt3"]
+[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="2_7unhi"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_gsnt3")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.759
+anchor_right = 1.0
+anchor_bottom = 0.45
+offset_left = 0.0879517
+offset_bottom = -0.200012
+grow_horizontal = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7unhi")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Pokedex" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_styles/focus = ExtResource("2_7unhi")
+flat = true
+
+[node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokedex"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "POKéDEX"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Pokemon" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_styles/focus = ExtResource("2_7unhi")
+flat = true
+
+[node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "POKéMON"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Bag" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_styles/focus = ExtResource("2_7unhi")
+flat = true
+
+[node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Bag"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "BAG"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Player" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_styles/focus = ExtResource("2_7unhi")
+flat = true
+
+[node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "PLAYER"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Options" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_styles/focus = ExtResource("2_7unhi")
+flat = true
+
+[node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "OPTIONS"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_styles/focus = ExtResource("2_7unhi")
+flat = true
+
+[node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "EXIT"
+horizontal_alignment = 2
+vertical_alignment = 1
