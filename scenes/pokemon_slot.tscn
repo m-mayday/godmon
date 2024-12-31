@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dy73n3c1pbsjb"]
 
-[ext_resource type="Script" path="res://scenes/pokemon_slot.gd" id="1_ooh6k"]
+[ext_resource type="Script" uid="uid://bsvqlu2c0wurv" path="res://scenes/pokemon_slot.gd" id="1_ooh6k"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_i5baw"]
 

@@ -1,0 +1,311 @@
+[gd_scene load_steps=9 format=3 uid="uid://dswfxggc17xr3"]
+
+[ext_resource type="Script" path="res://scenes/menus/party_screen.gd" id="1_wgxl4"]
+[ext_resource type="Texture2D" uid="uid://x41uf0jg2urr" path="res://assets/system/party_screen_bg.png" id="1_x3v3m"]
+[ext_resource type="PackedScene" uid="uid://ungtvhyngc34" path="res://scenes/menus/party_slot_main.tscn" id="2_x3v3m"]
+[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="4_wgxl4"]
+[ext_resource type="PackedScene" uid="uid://qc51fa6s3uqi" path="res://scenes/menus/party_slot.tscn" id="6_wgxl4"]
+[ext_resource type="Texture2D" uid="uid://dxdiv5ptvnvnj" path="res://assets/system/menu_cancel.png" id="6_ybr7a"]
+[ext_resource type="Texture2D" uid="uid://dc2nh0ltaqc2u" path="res://assets/system/menu_cancel_selected.png" id="7_a2588"]
+[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="8_a2588"]
+
+[node name="PartyScreen" type="CanvasLayer"]
+script = ExtResource("1_wgxl4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x3v3m")
+metadata/_edit_lock_ = true
+
+[node name="Slots" type="Node" parent="Control/Background"]
+
+[node name="PartySlotMain" parent="Control/Background/Slots" instance=ExtResource("2_x3v3m")]
+visible = false
+offset_left = 6.0
+offset_top = 65.0
+offset_right = 275.0
+offset_bottom = 270.0
+focus_neighbor_left = NodePath("../../MarginContainer/HBoxContainer/Cancel")
+focus_neighbor_top = NodePath("../../MarginContainer/HBoxContainer/Cancel")
+focus_neighbor_right = NodePath("../PartySlot2")
+focus_neighbor_bottom = NodePath("../PartySlot2")
+focus_next = NodePath("../PartySlot2")
+focus_previous = NodePath("../../MarginContainer/HBoxContainer/Cancel")
+
+[node name="PartySlot2" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+visible = false
+anchor_right = 0.991
+anchor_bottom = 0.2
+offset_left = 281.0
+offset_top = 32.0
+offset_right = 0.911987
+offset_bottom = 3.8
+grow_horizontal = 1
+grow_vertical = 1
+focus_neighbor_left = NodePath("../PartySlotMain")
+focus_neighbor_top = NodePath("../PartySlotMain")
+focus_neighbor_right = NodePath("../PartySlot3")
+focus_neighbor_bottom = NodePath("../PartySlot3")
+focus_next = NodePath("../PartySlot3")
+focus_previous = NodePath("../PartySlotMain")
+
+[node name="PartySlot3" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+visible = false
+anchor_right = 0.991
+anchor_bottom = 0.2
+offset_left = 281.0
+offset_top = 119.0
+offset_right = 0.911987
+offset_bottom = 90.8
+grow_horizontal = 1
+grow_vertical = 1
+focus_neighbor_left = NodePath("../PartySlotMain")
+focus_neighbor_top = NodePath("../PartySlot2")
+focus_neighbor_right = NodePath("../PartySlot4")
+focus_neighbor_bottom = NodePath("../PartySlot4")
+focus_next = NodePath("../PartySlot4")
+focus_previous = NodePath("../PartySlot2")
+
+[node name="PartySlot4" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+visible = false
+anchor_right = 0.991
+anchor_bottom = 0.2
+offset_left = 281.0
+offset_top = 205.0
+offset_right = 0.911987
+offset_bottom = 176.8
+grow_horizontal = 1
+grow_vertical = 1
+focus_neighbor_left = NodePath("../PartySlotMain")
+focus_neighbor_top = NodePath("../PartySlot3")
+focus_neighbor_right = NodePath("../PartySlot5")
+focus_neighbor_bottom = NodePath("../PartySlot5")
+focus_next = NodePath("../PartySlot5")
+focus_previous = NodePath("../PartySlot3")
+
+[node name="PartySlot5" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+visible = false
+anchor_right = 0.991
+anchor_bottom = 0.2
+offset_left = 281.0
+offset_top = 291.0
+offset_right = 0.911987
+offset_bottom = 262.8
+grow_horizontal = 1
+grow_vertical = 1
+focus_neighbor_left = NodePath("../PartySlotMain")
+focus_neighbor_top = NodePath("../PartySlot4")
+focus_neighbor_right = NodePath("../PartySlot6")
+focus_neighbor_bottom = NodePath("../PartySlot6")
+focus_next = NodePath("../PartySlot6")
+focus_previous = NodePath("../PartySlot4")
+
+[node name="PartySlot6" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+visible = false
+anchor_right = 0.991
+anchor_bottom = 0.2
+offset_left = 281.0
+offset_top = 378.0
+offset_right = 0.911987
+offset_bottom = 349.8
+grow_horizontal = 1
+grow_vertical = 1
+focus_neighbor_left = NodePath("../PartySlotMain")
+focus_neighbor_top = NodePath("../PartySlot5")
+focus_neighbor_right = NodePath("../../MarginContainer/HBoxContainer/Cancel")
+focus_neighbor_bottom = NodePath("../../MarginContainer/HBoxContainer/Cancel")
+focus_next = NodePath("../../MarginContainer/HBoxContainer/Cancel")
+focus_previous = NodePath("../PartySlot5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Background"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="MessageBox" type="NinePatchRect" parent="Control/Background/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_wgxl4")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/MessageBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019
+anchor_top = 0.5
+anchor_right = 0.019
+anchor_bottom = 0.5
+offset_left = 1.733
+offset_top = -8.5
+offset_right = 184.733
+offset_bottom = 8.5
+grow_vertical = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 48
+text = "Choose a POKéMON."
+
+[node name="Cancel" type="TextureButton" parent="Control/Background/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../Slots/PartySlotMain")
+focus_neighbor_top = NodePath("../../../Slots/PartySlot6")
+focus_neighbor_right = NodePath("../../../Slots/PartySlot6")
+focus_neighbor_bottom = NodePath("../../../Slots/PartySlotMain")
+focus_next = NodePath("../../../Slots/PartySlotMain")
+focus_previous = NodePath("../../../Slots/PartySlot6")
+texture_normal = ExtResource("6_ybr7a")
+texture_focused = ExtResource("7_a2588")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/Cancel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.439
+anchor_top = 0.349
+anchor_right = 0.873
+anchor_bottom = 0.628
+offset_left = -0.116035
+offset_top = -0.0139999
+offset_right = 0.987961
+offset_bottom = 0.991997
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "CANCEL"
+
+[node name="SlotOptions" type="Control" parent="Control/Background/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(201, 0)
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.953488
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_wgxl4")
+patch_margin_left = 9
+patch_margin_top = 8
+patch_margin_right = 9
+patch_margin_bottom = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="Summary" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
+flat = true
+
+[node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Summary"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 10.0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "  SUMMARY"
+
+[node name="Switch" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
+flat = true
+
+[node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Switch"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 10.0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "  SWITCH"
+
+[node name="Item" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
+flat = true
+
+[node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Item"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 10.0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "  ITEM"
+
+[node name="SlotCancel" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
+flat = true
+
+[node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SlotCancel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 10.0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "  CANCEL"
+
+[connection signal="tree_entered" from="." to="." method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Control/Background/Slots/PartySlotMain" to="." method="_on_party_slot_pressed" binds= [0]]
+[connection signal="pressed" from="Control/Background/Slots/PartySlot2" to="." method="_on_party_slot_pressed" binds= [1]]
+[connection signal="pressed" from="Control/Background/Slots/PartySlot3" to="." method="_on_party_slot_pressed" binds= [2]]
+[connection signal="pressed" from="Control/Background/Slots/PartySlot4" to="." method="_on_party_slot_pressed" binds= [3]]
+[connection signal="pressed" from="Control/Background/Slots/PartySlot5" to="." method="_on_party_slot_pressed" binds= [4]]
+[connection signal="pressed" from="Control/Background/Slots/PartySlot6" to="." method="_on_party_slot_pressed" binds= [5]]
+[connection signal="focus_entered" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_focus_entered"]
+[connection signal="focus_exited" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_focus_exited"]
+[connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SlotCancel" to="." method="_on_slot_cancel_pressed"]

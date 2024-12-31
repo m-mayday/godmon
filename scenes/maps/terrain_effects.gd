@@ -37,7 +37,8 @@ func _on_node_in_cell() -> void:
 			if grass_overlay_texture != null:
 				_grass_overlay_rect = TextureRect.new()
 				_grass_overlay_rect.texture = grass_overlay_texture
-				node.add_child(_grass_overlay_rect)
+				_grass_overlay_rect.position = node.position
+				node.get_parent().add_child(_grass_overlay_rect)
 
 
 ## Cleans up certain variables when node exits the cell

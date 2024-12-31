@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://ungtvhyngc34"]
+
+[ext_resource type="Texture2D" uid="uid://dbak7u1ihirwk" path="res://assets/system/party_screen_main_slot.png" id="1_xo7vr"]
+[ext_resource type="Texture2D" uid="uid://dicteullcqmct" path="res://assets/system/party_screen_main_slot_selected.png" id="2_mhypw"]
+[ext_resource type="Script" path="res://scenes/menus/party_slot_main.gd" id="3_mhypw"]
+[ext_resource type="Texture2D" uid="uid://b36nuhnj1axpk" path="res://assets/battle/ui/HP_bar.png" id="3_qncxk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dnbnc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7cpkd"]
+
+[node name="PartySlotMain" type="TextureButton"]
+offset_right = 269.0
+offset_bottom = 205.0
+texture_normal = ExtResource("1_xo7vr")
+texture_focused = ExtResource("2_mhypw")
+stretch_mode = 0
+script = ExtResource("3_mhypw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.108
+anchor_top = 0.527
+anchor_right = 0.963
+anchor_bottom = 0.668
+offset_left = -0.052
+offset_top = -0.0350037
+offset_right = -0.0470276
+offset_bottom = 0.0599976
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LvLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "Lv"
+
+[node name="Lv" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "35"
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.108
+anchor_top = 0.39
+anchor_right = 0.963
+anchor_bottom = 0.512
+offset_left = -0.052
+offset_top = -1.95
+offset_right = -0.0470276
+offset_bottom = -1.96001
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "CRABOMINABLE"
+horizontal_alignment = 1
+
+[node name="HPTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.182
+anchor_top = 0.683
+anchor_right = 0.948
+anchor_bottom = 0.761
+offset_left = 0.041996
+offset_top = -0.0149994
+offset_right = 0.987976
+offset_bottom = 0.994995
+texture = ExtResource("3_qncxk")
+
+[node name="HPBar" type="TextureProgressBar" parent="HPTexture"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.227
+anchor_top = 0.143
+anchor_right = 0.985
+anchor_bottom = 0.857
+offset_left = 0.0179996
+offset_top = -0.000998378
+offset_right = -0.0100021
+offset_bottom = 0.00100136
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_dnbnc")
+texture_progress = SubResource("CanvasTexture_7cpkd")
+tint_under = Color(0.313726, 0.407843, 0.345098, 1)
+tint_progress = Color(0.439216, 0.972549, 0.658824, 1)
+
+[node name="HP" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.487
+anchor_top = 0.815
+anchor_right = 0.955
+anchor_bottom = 0.932
+offset_left = 0.996994
+offset_top = -0.0750122
+offset_right = 0.10498
+offset_bottom = 0.939987
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "100/100"

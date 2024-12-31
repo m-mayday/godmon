@@ -1,5 +1,7 @@
 class_name Constants
 
+const TILE_SIZE: int = 16
+
 enum TYPES { BUG, DARK, DRAGON, ELECTRIC, FAIRY, FIGHTING, FIRE, FLYING, GHOST, GRASS, GROUND, ICE, NORMAL, POISON, PSYCHIC, ROCK, STEEL, WATER, NONE}
 static var types = {
 	TYPES.BUG: "bug",
@@ -38,7 +40,7 @@ static var species = {
 	SPECIES.BULBASAUR: "bulbasaur",
 	SPECIES.VENUSAUR: "venusaur",
 	SPECIES.CHARIZARD: "charizard",
-	SPECIES.BLASTOISE: "blastoise",	
+	SPECIES.BLASTOISE: "blastoise",
 }
 
 enum GENDER { MALE, FEMALE, GENDERLESS }

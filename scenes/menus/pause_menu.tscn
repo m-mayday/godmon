@@ -1,11 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://nokxwtpo54sn"]
+[gd_scene load_steps=5 format=3 uid="uid://nokxwtpo54sn"]
 
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7unhi"]
 [ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_gsnt3"]
+[ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="2_2wrho"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="2_7unhi"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("options")]
 script = ExtResource("1_gsnt3")
+screens = Dictionary[String, PackedScene]({
+"pokedex": null,
+"pokemon": ExtResource("2_2wrho")
+})
+options = {
+"pokedex": null,
+"pokemon": NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon")
+}
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -43,6 +52,8 @@ theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/NinePatchRect/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 18
 
 [node name="Pokedex" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 22)
@@ -175,3 +186,5 @@ theme_override_font_sizes/font_size = 36
 text = "EXIT"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[connection signal="pressed" from="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon" to="." method="_on_option_pressed" binds= ["pokemon"]]
