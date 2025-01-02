@@ -2061,7 +2061,7 @@ metadata/_custom_type_script = ExtResource("8_r73tn")
 
 [sub_resource type="Resource" id="Resource_cgcdf"]
 script = ExtResource("8_r73tn")
-species = 3
+species = 5
 odds = 65.0
 minimum_level = 10
 maximum_level = 15

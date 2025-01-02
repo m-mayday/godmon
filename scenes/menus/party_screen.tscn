@@ -206,6 +206,7 @@ text = "CANCEL"
 
 [node name="SlotOptions" type="Control" parent="Control/Background/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(201, 0)
 layout_mode = 2
 

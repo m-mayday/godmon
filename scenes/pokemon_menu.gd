@@ -9,8 +9,8 @@ enum CONTEXT {
 signal switch(switch_out, switch_in, is_instant_switch)
 
 @export var context: CONTEXT = CONTEXT.PARTY
-@onready var slot_container = $MarginContainer/HBoxContainer/VBoxContainer
-@onready var arrow = $MarginContainer/HBoxContainer/Arrow
+@export var slot_container: VBoxContainer
+@export var arrow: Label
 var battlers: Array
 var pokemon: Array
 var switch_out: Battler

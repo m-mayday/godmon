@@ -11,7 +11,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 9
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="PokemonMenu" type="PanelContainer"]
+[node name="PokemonMenu" type="PanelContainer" node_paths=PackedStringArray("slot_container", "arrow")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,6 +19,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_gdpt6")
+slot_container = NodePath("MarginContainer/HBoxContainer/VBoxContainer")
+arrow = NodePath("MarginContainer/HBoxContainer/Arrow")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

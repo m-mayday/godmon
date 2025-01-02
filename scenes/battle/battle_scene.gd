@@ -7,65 +7,44 @@ signal animation_finished ## Emitted when an animation finished
 @export var pokemon_databox: Resource ## The databox node to use
 @export var pokemon_sprite: Resource ## The sprite node to use
 
+## The different menus in battle
+@export var _fight_menu: Control
+@export var _battle_menu: NinePatchRect
+@export var _target_menu: NinePatchRect
+
+@export var animator: AnimationPlayer
+
 var _battle: Battle ## Reference to the current battle
 var _ui_stack: Array[Control] = [] ## Stack of menus (Choose action, choose move, choose target, etc.)
 var _current_battler: Battler
 var _tween: Tween
 
-## The different menus in battle
-@onready var _fight_menu: Control = $CanvasLayer/FightMenu
-@onready var _battle_menu: NinePatchRect = $CanvasLayer/BattleMenu
-@onready var _target_menu: NinePatchRect = $CanvasLayer/TargetMenu
-
-@onready var animator: AnimationPlayer = $AnimationPlayer
-
 var text_advance_arrow_path: String = "res://Assets/Battle/UI/text_advance_arrow.png" # I will leave this like so for now
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+	
+func with_data(data: Array) -> void:
+	assert(len(data) == 3, "Wrong number of parameters in battle scene")
+	var battle_type: String = data[0]
+	var first_trainer: Area2D = data[1] # For now, until Trainer class is created
+	var second_trainer: Area2D = null # For now, until Trainer class and trainer battles are created
+	var wild_pokemon: Array[Pokemon] = []
+	if battle_type == "wild":
+		assert(data[2] is Array, "An array of Pokemon must be provided for wild battle")
+		for pokemon in data[2]:
+			wild_pokemon.append(pokemon)
+			
 	SignalBus.display_message.connect(_display_battle_message)
 	SignalBus.battle_started.connect(_on_battle_started)
-	
-#region Temporary test data
-	var a_venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 60)
-	var a_bulbasaur: Pokemon = Pokemon.new(Constants.SPECIES.BULBASAUR, 60)
-	var a_blastoise: Pokemon = Pokemon.new(Constants.SPECIES.BLASTOISE, 60)
-	var a_charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 60)
-	var b_blastoise: Pokemon = Pokemon.new(Constants.SPECIES.BLASTOISE, 60)
-	var b_charizard: Pokemon = Pokemon.new(Constants.SPECIES.CHARIZARD, 60)
-	var b_bulbsaur: Pokemon = Pokemon.new(Constants.SPECIES.BULBASAUR, 60)
-	var b_venusaur: Pokemon = Pokemon.new(Constants.SPECIES.VENUSAUR, 60)
-	var abilitiess = Constants.abilities.keys()
-	a_venusaur.name = "A_VENUSAUR"
-	a_bulbasaur.name = "A_BULBASAUR"
-	a_blastoise.name = "A_BLASTOISE"
-	a_charizard.name = "A_CHARIZARD"
-	a_venusaur.ability = Constants.get_ability_by_id(Constants.ABILITIES.SPEED_BOOST)
-	a_bulbasaur.ability = Constants.get_ability_by_id(abilitiess.pick_random())
-	a_blastoise.ability = Constants.get_ability_by_id(abilitiess.pick_random())
-	a_charizard.ability = Constants.get_ability_by_id(abilitiess.pick_random())
-	b_charizard.ability = Constants.get_ability_by_id(Constants.ABILITIES.WHITE_SMOKE)
-	b_blastoise.ability = Constants.get_ability_by_id(abilitiess.pick_random())
-	b_bulbsaur.ability = Constants.get_ability_by_id(abilitiess.pick_random())
-	b_venusaur.ability = Constants.get_ability_by_id(abilitiess.pick_random())
-	var choosable_moves = Constants.moves.keys()
-	var moves: Array[Move] = []
-	for i in 4:
-		moves.push_back(Constants.get_move_by_id(choosable_moves.pick_random()))
-	moves[0] = Constants.get_move_by_id(Constants.MOVES.MIND_READER)
-	_fight_menu.moves = moves
-#endregion
-
-	# Create battle with the corresponding teams and connect signals
-	_battle = Battle.new([a_bulbasaur, a_venusaur, a_blastoise, a_charizard], [b_charizard, b_bulbsaur, b_blastoise, b_venusaur], Constants.BATTLE_SIZE.TRIPLE)
 	SignalBus.turn_started.connect(_on_turn_started)
 	SignalBus.battler_ready.connect(_set_current_battler)
+	SignalBus.battle_event.connect(_on_battle_event)
+	_battle = Battle.new(first_trainer.pokemon_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
 	_battle.turn_ended.connect(_target_menu.on_turn_ended)
 	_fight_menu.move_chosen.connect(_target_menu.on_move_chosen)
 	_target_menu.target_chosen.connect(_on_target_chosen)
-	SignalBus.battle_event.connect(_on_battle_event)
+	#_fight_menu.moves = first_trainer.pokemon_party[0].moves
 	_battle.battle_start() # Start the battle
+	$PartyScreen.party = first_trainer.pokemon_party
+
 
 func _on_battle_event(event: BaseEvent, handled_signal: bool = true) -> void:
 	if event is BattleStartEvent:
@@ -259,13 +238,14 @@ func _on_target_chosen(target: Battler, move: Move) -> void:
 ## Open up the Pokemon Party Menu
 func _on_battle_menu_switch_pressed() -> void:
 	set_process_input(false)
-	$PokemonMenu.visible = !$PokemonMenu.visible
+	#$PokemonMenu.visible = !$PokemonMenu.visible
+	$PartyScreen.show()
 
 
 ## Queues the chosen pokemon switch in battle
 func _on_pokemon_menu_switch(switch_out: Battler, switch_in: Battler, is_instant_switch: bool) -> void:
 	_battle.queue_switch(switch_out, switch_in, is_instant_switch)
-	$PokemonMenu.visible = !$PokemonMenu.visible
+	$PartyScreen.hide()
 	set_process_input(true)
 	
 

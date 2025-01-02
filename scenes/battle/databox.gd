@@ -45,11 +45,11 @@ func _ready():
 ## Initializes this node with a side type, size and battler
 func init(p_type: DATABOX_SIDE_TYPE, p_size: DATABOX_SIZE, p_battler: Battler) -> void:
 	if p_size == DATABOX_SIZE.THIN:
-		_bottom_texture.hide()
+		$Bottom.hide()
 		$HPContainer.hide()
 		$ExpTexture.hide()
-		_bottom_texture_thin.show()
-		custom_minimum_size = Vector2(_bottom_texture_thin.size.x, _bottom_texture_thin.size.y + $Top.size.y)
+		$BottomThin.show()
+		custom_minimum_size = Vector2($BottomThin.size.x, $BottomThin.size.y + $Top.size.y)
 	if p_type == DATABOX_SIDE_TYPE.ALLY:
 		# Flip the textures
 		_bottom_texture.scale.x = -1
@@ -108,17 +108,17 @@ func _update_data(new_health) -> void:
 		if $HPContainer.visible:
 			$HPContainer/HP.text = "{0} / {1}".format([new_health, _battler.pokemon.stats.hp])
 		
-		_hp_bar.max_value = _battler.pokemon.stats.hp
+		$StatusContainer/HBoxContainer/HPTexture/HPBar.max_value = _battler.pokemon.stats.hp
 		if _animate:
 			var tween: Tween = get_tree().create_tween()
 			tween.set_parallel()
-			tween.tween_method(_set_hp_label, _hp_bar.value, new_health, 0.5)
-			tween.tween_property(_hp_bar, "value", new_health, 0.5)
+			tween.tween_method(_set_hp_label, $StatusContainer/HBoxContainer/HPTexture/HPBar.value, new_health, 0.5)
+			tween.tween_property($StatusContainer/HBoxContainer/HPTexture/HPBar, "value", new_health, 0.5)
 			tween.play()
 			await tween.finished
 			_set_hp_bar_color(new_health)
 		else:
-			_hp_bar.value = _battler.pokemon.current_hp
+			$StatusContainer/HBoxContainer/HPTexture/HPBar.value = _battler.pokemon.current_hp
 
 
 ## Sets the status texture if battler has a status

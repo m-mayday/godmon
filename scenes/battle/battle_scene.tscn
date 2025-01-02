@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
+[gd_scene load_steps=29 format=3 uid="uid://d0d7xsr8ntfjk"]
 
 [ext_resource type="Script" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
 [ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
@@ -11,13 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://dtix6uvd2o27l" path="res://assets/battle/ui/panel_dialogue.png" id="4_beauk"]
 [ext_resource type="PackedScene" uid="uid://cf8icqs8aj2cw" path="res://scenes/battle/target_menu.tscn" id="6_5lyw6"]
 [ext_resource type="PackedScene" uid="uid://bnt5o5mxpc03m" path="res://scenes/battle/ability_box.tscn" id="6_kyq73"]
-[ext_resource type="Texture2D" uid="uid://dh65maihvqm2x" path="res://battle/ref.jpg" id="9_f0qhp"]
 [ext_resource type="Texture2D" uid="uid://olwv2a6i376h" path="res://assets/red_back.png" id="9_gs2os"]
 [ext_resource type="Texture2D" uid="uid://d27vygdgddeqg" path="res://assets/poke_balls.png" id="9_vogny"]
-[ext_resource type="Texture2D" uid="uid://d1siasofrlblk" path="res://scenes/ref2.PNG" id="11_8is2a"]
 [ext_resource type="Texture2D" uid="uid://b8h7feuujfllj" path="res://assets/battle/ui/grass_battleback_0.png" id="11_viky4"]
 [ext_resource type="Texture2D" uid="uid://vun8u75k2w74" path="res://assets/battle/ui/grass_intro.png" id="13_abmdw"]
 [ext_resource type="PackedScene" uid="uid://bv5p4qx8ddr0v" path="res://scenes/battle/animator.tscn" id="18_cr648"]
+[ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="19_tpsmh"]
 
 [sub_resource type="Animation" id="Animation_nfp05"]
 length = 0.001
@@ -446,10 +445,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BattleScene" type="Node"]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_fight_menu", "_battle_menu", "_target_menu", "animator")]
 script = ExtResource("1_hrc2y")
 pokemon_databox = ExtResource("2_cbhpy")
 pokemon_sprite = ExtResource("3_fssma")
+_fight_menu = NodePath("CanvasLayer/FightMenu")
+_battle_menu = NodePath("CanvasLayer/BattleMenu")
+_target_menu = NodePath("CanvasLayer/TargetMenu")
+animator = NodePath("AnimationPlayer")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.686275)
@@ -545,29 +548,6 @@ visible = false
 offset_right = 90.0
 offset_bottom = 240.0
 context = 1
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.415686)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_f0qhp")
-expand_mode = 1
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.415686)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_8is2a")
-expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -693,6 +673,9 @@ metadata/_edit_lock_ = true
 [node name="Animator" parent="." node_paths=PackedStringArray("allies", "opponents") instance=ExtResource("18_cr648")]
 allies = NodePath("../UserSide/Sprites")
 opponents = NodePath("../FoeSide/Sprites")
+
+[node name="PartyScreen" parent="." instance=ExtResource("19_tpsmh")]
+visible = false
 
 [connection signal="switch" from="PokemonMenu" to="." method="_on_pokemon_menu_switch"]
 [connection signal="fight_pressed" from="CanvasLayer/BattleMenu" to="." method="_on_battle_menu_fight_pressed"]

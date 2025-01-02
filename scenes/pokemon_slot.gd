@@ -43,7 +43,7 @@ func update_slot():
 		$VBoxContainer/HBoxContainer/StatusLabel.text = pokemon.status.name
 		$VBoxContainer/HPBar.max_value = pokemon.stats.hp
 		if animate:
-			var tween = get_tree().create_tween()
+			var tween = create_tween()
 			tween.finished.connect(_on_tween_finished)
 			tween.set_parallel()
 			tween.tween_method(set_hp_label, $VBoxContainer/HPBar.value, pokemon.current_hp, 0.5)

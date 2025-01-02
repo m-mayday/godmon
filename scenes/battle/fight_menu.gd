@@ -33,12 +33,13 @@ func _on_battler_ready(battler: Battler) -> void:
 	_last_selected = _last_selected_by_battler.get(battler.id, 0)
 	_current_battler_id = battler.id
 	var _move_slots: Array[Node] = _move_container.get_children()
+	moves = battler.pokemon.moves
 	for i in len(moves):
 		var label = _move_slots[i].get_child(0).get_child(0) as Label
 		label.text = moves[i].name
 
 
-## Updates _last_selected option and emites move_chosen signal with the battler and chosen move
+## Updates _last_selected option and emites move_chosen signal with the chosen move
 func _on_move_pressed(i: int) -> void:
 	_last_selected_by_battler[_current_battler_id] = i
 	_last_selected = i
