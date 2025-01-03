@@ -9,7 +9,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8o8s4"]
 
-[node name="PartySlot" type="TextureButton"]
+[node name="PartySlot" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label")]
 anchors_preset = -1
 anchor_right = 0.626
 anchor_bottom = 0.144
@@ -21,6 +21,9 @@ texture_normal = ExtResource("1_xfmpr")
 texture_focused = ExtResource("2_8o8s4")
 stretch_mode = 0
 script = ExtResource("3_8o8s4")
+level_label = NodePath("HBoxContainer/LvLabel")
+name_label = NodePath("Name")
+hp_label = NodePath("HP")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -36,7 +39,7 @@ offset_bottom = 0.0379868
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="LvLabel" type="Label" parent="HBoxContainer"]
+[node name="Lv" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
@@ -44,7 +47,7 @@ theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 36
 text = "Lv"
 
-[node name="Lv" type="Label" parent="HBoxContainer"]
+[node name="LvLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)

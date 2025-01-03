@@ -2,20 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://dbak7u1ihirwk" path="res://assets/system/party_screen_main_slot.png" id="1_xo7vr"]
 [ext_resource type="Texture2D" uid="uid://dicteullcqmct" path="res://assets/system/party_screen_main_slot_selected.png" id="2_mhypw"]
-[ext_resource type="Script" path="res://scenes/menus/party_slot_main.gd" id="3_mhypw"]
+[ext_resource type="Script" path="res://scenes/menus/party_slot.gd" id="3_mhypw"]
 [ext_resource type="Texture2D" uid="uid://b36nuhnj1axpk" path="res://assets/battle/ui/HP_bar.png" id="3_qncxk"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dnbnc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7cpkd"]
 
-[node name="PartySlotMain" type="TextureButton"]
+[node name="PartySlotMain" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label")]
 offset_right = 269.0
 offset_bottom = 205.0
 texture_normal = ExtResource("1_xo7vr")
 texture_focused = ExtResource("2_mhypw")
 stretch_mode = 0
 script = ExtResource("3_mhypw")
+level_label = NodePath("HBoxContainer/LvLabel")
+name_label = NodePath("Name")
+hp_label = NodePath("HP")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -31,7 +34,7 @@ offset_bottom = 0.0599976
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="LvLabel" type="Label" parent="HBoxContainer"]
+[node name="Lv" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
@@ -39,7 +42,7 @@ theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 36
 text = "Lv"
 
-[node name="Lv" type="Label" parent="HBoxContainer"]
+[node name="LvLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
@@ -116,3 +119,5 @@ theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
 theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 36
 text = "100/100"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

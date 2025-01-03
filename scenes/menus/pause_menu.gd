@@ -3,7 +3,6 @@ extends CanvasLayer
 @onready var menu = $Control
 @onready var options_container = $Control/NinePatchRect/MarginContainer/VBoxContainer
 
-@export var player: Node2D ## Player node to pass to other screens.
 
 ## The scenes to be shown when a button is pressed. To be set from the editor.
 @export var screens: Dictionary[String, PackedScene] = {
@@ -60,8 +59,6 @@ func _on_option_pressed(screen_name: String) -> void:
 			_selected_option = options[screen_name]
 			screen.screen_closed.connect(_on_screen_closed)
 			set_process_unhandled_input(false)
-			if screen_name == "pokemon":
-				screen.party = player.pokemon_party
 			add_child(screen)
 		else:
 			screen.queue_free() # Screens without the screen_closed signal are not valid

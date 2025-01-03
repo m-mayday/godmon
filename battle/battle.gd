@@ -56,6 +56,8 @@ func _init(p_player_team: Array[Pokemon], p_opponent_team: Array[Pokemon], size:
 			side_size = 1
 	sides.push_back(Side.new(player_team, side_size))
 	sides.push_back(Side.new(opponent_team, side_size))
+	Global.player_side_battlers.assign(player_team)
+	Global.update_player_battlers()
 	prng = RandomNumberGenerator.new() # Initialize RNG
 	prng.randomize() # Generate seed
 

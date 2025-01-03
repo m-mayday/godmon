@@ -9,8 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://dc2nh0ltaqc2u" path="res://assets/system/menu_cancel_selected.png" id="7_a2588"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="8_a2588"]
 
-[node name="PartyScreen" type="CanvasLayer"]
+[node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button")]
 script = ExtResource("1_wgxl4")
+slots_container = NodePath("Control/Background/Slots")
+slot_options = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer")
+cancel_button = NodePath("Control/Background/MarginContainer/HBoxContainer/Cancel")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -174,7 +177,6 @@ theme_override_font_sizes/font_size = 48
 text = "Choose a POKéMON."
 
 [node name="Cancel" type="TextureButton" parent="Control/Background/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(244, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../Slots/PartySlotMain")
@@ -298,8 +300,13 @@ theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 36
 text = "  CANCEL"
 
-[connection signal="tree_entered" from="." to="." method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlotMain" method="_on_parent_visibility_changed"]
+[connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlot2" method="_on_parent_visibility_changed"]
+[connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlot3" method="_on_parent_visibility_changed"]
+[connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlot4" method="_on_parent_visibility_changed"]
+[connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlot5" method="_on_parent_visibility_changed"]
+[connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlot6" method="_on_parent_visibility_changed"]
 [connection signal="pressed" from="Control/Background/Slots/PartySlotMain" to="." method="_on_party_slot_pressed" binds= [0]]
 [connection signal="pressed" from="Control/Background/Slots/PartySlot2" to="." method="_on_party_slot_pressed" binds= [1]]
 [connection signal="pressed" from="Control/Background/Slots/PartySlot3" to="." method="_on_party_slot_pressed" binds= [2]]
