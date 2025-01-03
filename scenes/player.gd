@@ -1,16 +1,13 @@
 extends Area2D
 
-@onready var _movement = $GridMovement
-@onready var _anim: AnimationTree = $AnimationTree
-@onready var _raycast: RayCast2D = $RayCast2D
-@onready var _anim_state: AnimationNodeStateMachinePlayback = _anim.get("parameters/playback")
+@export var movement: Node
 
-
-var pokemon_party: Array[Pokemon] = []
 var _input_direction: Vector2 = Vector2.ZERO ## Direction in which the player will move
 
 
 func _ready():
+	# For testing purposes
+	var pokemon_party: Array[Pokemon] = []
 	pokemon_party.append(Pokemon.new(Constants.SPECIES.VENUSAUR, 60))
 	pokemon_party.append(Pokemon.new(Constants.SPECIES.BULBASAUR, 60))
 	pokemon_party.append(Pokemon.new(Constants.SPECIES.BLASTOISE, 60))
@@ -21,7 +18,7 @@ func _ready():
 	Global.set_player_party_value(3, pokemon_party[3])
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _input_direction.y == 0:
 		_input_direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	if _input_direction.x == 0:
