@@ -8,6 +8,14 @@ signal animation_finished
 enum DATABOX_SIDE_TYPE {ALLY, FOE} ## Determines the "direction" of the texture to use
 enum DATABOX_SIZE {NORMAL, THIN} ## Determines which size the databox is (Normal is used in single battles for the player only)
 
+@export var name_label: Label
+@export var level_label: Label
+@export var bottom_texture: TextureRect
+@export var status_texture: TextureRect
+@export var hp_bar: TextureProgressBar
+@export var hp_container: MarginContainer ## Optional. Main databox only
+@export var hp_label: Label ## Optional. Main databox only
+
 ## Colors to use according to the battler's HP.
 ## HP > 50% = Green. HP > 20% and <= 50% = Yellow. HP <= 20% = Red
 var _hp_progress_color: Array[Color] = [Color("70f8a8"), Color("f8e038"), Color("f85838")]
@@ -16,7 +24,7 @@ var _hp_progress_color: Array[Color] = [Color("70f8a8"), Color("f8e038"), Color(
 ## False is typically used when a Pokemon enters battle
 var _animate: bool = false
 
-var _battler_side: DATABOX_SIDE_TYPE ## This databox side
+var _battler_side: DATABOX_SIDE_TYPE ## This databox's side
 
 var _tween: Tween ## Tween to animate this databox when battler is choosing an action
 var _original_position: Vector2 ## Original position to reset it after battler has taken action
@@ -28,10 +36,6 @@ var _battler: Battler:
 		_battler = value
 		_update_data(_battler.pokemon.current_hp)
 
-@onready var _bottom_texture = $Bottom
-@onready var _bottom_texture_thin = $BottomThin
-@onready var _hp_bar = $StatusContainer/HBoxContainer/HPTexture/HPBar
-
 
 func _ready():
 	add_to_group("battlers")
@@ -42,18 +46,10 @@ func _ready():
 	SignalBus.turn_started.connect(_kill_tween)
 
 
-## Initializes this node with a side type, size and battler
-func init(p_type: DATABOX_SIDE_TYPE, p_size: DATABOX_SIZE, p_battler: Battler) -> void:
-	if p_size == DATABOX_SIZE.THIN:
-		$Bottom.hide()
-		$HPContainer.hide()
-		$ExpTexture.hide()
-		$BottomThin.show()
-		custom_minimum_size = Vector2($BottomThin.size.x, $BottomThin.size.y + $Top.size.y)
+## Initializes this node with a side type and battler
+func with_data(p_type: DATABOX_SIDE_TYPE, p_battler: Battler) -> void:
 	if p_type == DATABOX_SIDE_TYPE.ALLY:
-		# Flip the textures
-		_bottom_texture.scale.x = -1
-		_bottom_texture_thin.scale.x = -1
+		bottom_texture.scale.x = -1  # Flip the texture
 	_battler_side = p_type
 	_battler = p_battler
 	_animate = true
@@ -71,7 +67,7 @@ func _on_health_changed(event: HealthChangedEvent) -> void:
 
 ## Plays the specified animation if it corresponds to this battler and is one of the expected animations
 func play_animation(event: AnimationEvent) -> void:
-	if event.animation == "" or event.battler == null:
+	if event.animation == "" or event.battler == null or _battler == null:
 		return
 	if event.animation not in ["call_back", "send_out", "faint"] or _battler.id != event.battler.id:
 		return
@@ -103,46 +99,46 @@ func _on_switched_in(switched_out: Battler, switched_in: Battler, _index_out: in
 ## Updates the data displayed to reflect any changes (i.e.: HP increase/decrease, battler change, etc.)
 func _update_data(new_health) -> void:
 	if _battler != null:
-		%Lv.text = str(_battler.pokemon.level)
-		$MarginContainer/HBoxContainer/Name.text = _battler.pokemon.name
-		if $HPContainer.visible:
-			$HPContainer/HP.text = "{0} / {1}".format([new_health, _battler.pokemon.stats.hp])
+		level_label.text = str(_battler.pokemon.level)
+		name_label.text = _battler.pokemon.name
+		if hp_container != null:
+			hp_label.text = "{0} / {1}".format([new_health, _battler.pokemon.stats.hp])
 		
-		$StatusContainer/HBoxContainer/HPTexture/HPBar.max_value = _battler.pokemon.stats.hp
+		hp_bar.max_value = _battler.pokemon.stats.hp
 		if _animate:
 			var tween: Tween = get_tree().create_tween()
 			tween.set_parallel()
-			tween.tween_method(_set_hp_label, $StatusContainer/HBoxContainer/HPTexture/HPBar.value, new_health, 0.5)
-			tween.tween_property($StatusContainer/HBoxContainer/HPTexture/HPBar, "value", new_health, 0.5)
+			tween.tween_method(_set_hp_label, hp_bar.value, new_health, 0.5)
+			tween.tween_property(hp_bar, "value", new_health, 0.5)
 			tween.play()
 			await tween.finished
 			_set_hp_bar_color(new_health)
 		else:
-			$StatusContainer/HBoxContainer/HPTexture/HPBar.value = _battler.pokemon.current_hp
+			hp_bar.value = _battler.pokemon.current_hp
 
 
 ## Sets the status texture if battler has a status
 func _on_status_set(event: StatusSetEvent) -> void:
 	if event.pokemon.id == _battler.id:
-		%Status.texture = event.status.icon
-		%Status.visible = event.status.icon != null
+		status_texture.texture = event.status.icon
+		status_texture.visible = event.status.icon != null
 
 
 ## Sets the new HP. Used to tween the value increasing/decreasing
 func _set_hp_label(value: int) -> void:
-	if $HPContainer.visible:
-		$HPContainer/HP.text ="{0} / {1}".format([value, _battler.pokemon.stats.hp])
+	if hp_container != null:
+		hp_label.text ="{0} / {1}".format([value, _battler.pokemon.stats.hp])
 
 
 ## Called when the HP bar tween finishes. It changes the color of the HP bar and emits animation_finished signal
 func _set_hp_bar_color(new_health: int) -> void:
 	var hp_percentage := float(new_health) / float(_battler.pokemon.stats.hp)
 	if hp_percentage > 0.5:
-		_hp_bar.tint_progress = _hp_progress_color[0]
+		hp_bar.tint_progress = _hp_progress_color[0]
 	elif hp_percentage > 0.2 && hp_percentage <= 0.5:
-		_hp_bar.tint_progress = _hp_progress_color[1]
+		hp_bar.tint_progress = _hp_progress_color[1]
 	else:
-		_hp_bar.tint_progress = _hp_progress_color[2]
+		hp_bar.tint_progress = _hp_progress_color[2]
 	animation_finished.emit()
 
 

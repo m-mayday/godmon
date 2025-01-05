@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://d0d7xsr8ntfjk"]
+[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
 
 [ext_resource type="Script" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
 [ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
 [ext_resource type="PackedScene" uid="uid://cfhq7istddlx" path="res://scenes/battle/battle_menu.tscn" id="2_i5pvj"]
 [ext_resource type="Texture2D" uid="uid://by2kdrc8mp07f" path="res://assets/battle/backgrounds/field_bg.png" id="2_o7ey8"]
 [ext_resource type="PackedScene" uid="uid://buw3uefjpyaf8" path="res://scenes/pokemon_menu.tscn" id="2_p0xf1"]
+[ext_resource type="PackedScene" uid="uid://qt207sey5bpy" path="res://scenes/battle/databox_main.tscn" id="2_tc5fe"]
 [ext_resource type="PackedScene" uid="uid://chhq8ivedwqi" path="res://scenes/battle/fight_menu.tscn" id="3_cv04l"]
 [ext_resource type="PackedScene" uid="uid://qiu0yskh5npf" path="res://scenes/battle/battle_sprite.tscn" id="3_fssma"]
 [ext_resource type="Texture2D" uid="uid://bj8ttyo3qhfen" path="res://assets/battle/ui/grass_battleback.png" id="3_w8dgg"]
@@ -447,6 +448,7 @@ animations = [{
 
 [node name="BattleScene" type="Node" node_paths=PackedStringArray("_fight_menu", "_battle_menu", "_target_menu", "animator")]
 script = ExtResource("1_hrc2y")
+player_single_databox = ExtResource("2_tc5fe")
 pokemon_databox = ExtResource("2_cbhpy")
 pokemon_sprite = ExtResource("3_fssma")
 _fight_menu = NodePath("CanvasLayer/FightMenu")

@@ -3,13 +3,17 @@ extends Sprite2D
 
 enum ABILITY_SIDE { ALLY, FOE } ## The two sides this node can belong to
 
+
+@export var name_label: Label
+@export var ability_label: Label
+
 ## The side this node belongs to, used to adjust its position
 @export var side: ABILITY_SIDE = ABILITY_SIDE.ALLY:
 	set(value):
 		if value == ABILITY_SIDE.FOE:
 			region_rect.position.y = 64
-			$Name.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-			$Ability.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			ability_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		side = value
 
 
@@ -24,8 +28,8 @@ func _on_ability_activated(event: AbilityEvent) -> void:
 		return
 	if event.is_ally_side and side == ABILITY_SIDE.FOE:
 		return
-	$Name.text = event.battler.pokemon.name + "'s"
-	$Ability.text = event.ability.name
+	name_label.text = event.battler.pokemon.name + "'s"
+	ability_label.text = event.ability.name
 	var original_position: float = position.x
 	var tween: Tween = get_tree().create_tween()
 	event.await_signals.push_back(tween.finished)

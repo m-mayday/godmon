@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bv5p4qx8ddr0v"]
 
-[ext_resource type="Script" uid="uid://cicj6dj6rhrel" path="res://scenes/battle/animator.gd" id="1_abqgu"]
+[ext_resource type="Script" path="res://scenes/battle/animator.gd" id="1_abqgu"]
 [ext_resource type="Texture2D" uid="uid://0vbiwcmfsgxt" path="res://assets/battle/sprites/front/VENUSAUR.png" id="2_aknrv"]
 [ext_resource type="Texture2D" uid="uid://cxtfdkmbbfqi" path="res://assets/battle/animations/Flames.png" id="3_nkf0q"]
 

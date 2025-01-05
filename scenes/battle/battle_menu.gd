@@ -4,17 +4,20 @@ extends NinePatchRect
 signal switch_pressed
 signal fight_pressed
 
+@export var options_container: GridContainer
+
+
 ## Remember last selected option to grab focus next time
 var _last_selected: int = 0
 
 
 func _ready():
-	$GridContainer/Fight.grab_focus()
+	options_container.get_child(0).grab_focus()
 
 
 func _on_draw():
 	# Grabs focus of the last_selected option when menu appears on screen
-	$GridContainer.get_child(_last_selected).grab_focus()
+	options_container.get_child(_last_selected).grab_focus()
 
 
 ## Changes the last_selected to switch option and emits switch_pressed

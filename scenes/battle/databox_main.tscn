@@ -1,30 +1,35 @@
-[gd_scene load_steps=9 format=3 uid="uid://111uiosseoy1"]
+[gd_scene load_steps=12 format=3 uid="uid://qt207sey5bpy"]
 
-[ext_resource type="Texture2D" uid="uid://b2ra5xqyh7aph" path="res://assets/battle/ui/battle_databox_top.png" id="2_e8luf"]
-[ext_resource type="Script" path="res://scenes/battle/databox.gd" id="2_jscsl"]
-[ext_resource type="LabelSettings" uid="uid://l5o3s2k08eoa" path="res://scenes/themes/battle_label.tres" id="4_cimg2"]
-[ext_resource type="Texture2D" uid="uid://b3oeg7smifate" path="res://assets/battle/ui/battle_thin_databox_bottom.png" id="4_x2l2s"]
-[ext_resource type="Texture2D" uid="uid://b36nuhnj1axpk" path="res://assets/battle/ui/HP_bar.png" id="6_v2xas"]
-[ext_resource type="Texture2D" uid="uid://1odgoid7itxc" path="res://assets/statuses/poison.png" id="8_skb30"]
+[ext_resource type="Script" path="res://scenes/battle/databox.gd" id="1_3wy81"]
+[ext_resource type="Texture2D" uid="uid://b2ra5xqyh7aph" path="res://assets/battle/ui/battle_databox_top.png" id="2_yq4t2"]
+[ext_resource type="Texture2D" uid="uid://dvj8jx78nrpy6" path="res://assets/battle/ui/battle_databox_bottom.png" id="3_t8y4y"]
+[ext_resource type="LabelSettings" uid="uid://l5o3s2k08eoa" path="res://scenes/themes/battle_label.tres" id="5_hlqo1"]
+[ext_resource type="Texture2D" uid="uid://6014pafjqer5" path="res://assets/battle/ui/exp_bar.png" id="6_8ihnl"]
+[ext_resource type="Texture2D" uid="uid://x2cm4uuexpcq" path="res://assets/battle/ui/exp_empty.png" id="7_cpi2f"]
+[ext_resource type="Texture2D" uid="uid://1odgoid7itxc" path="res://assets/statuses/poison.png" id="8_wcu7l"]
+[ext_resource type="Texture2D" uid="uid://b36nuhnj1axpk" path="res://assets/battle/ui/HP_bar.png" id="9_2rbif"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t7xrx"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pmy0x"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n3ti0"]
 
-[node name="Databox" type="Control" node_paths=PackedStringArray("_name_label", "_level_label", "_top_texture", "_bottom_texture", "_status_texture", "_hp_bar")]
-custom_minimum_size = Vector2(292, 77)
+[node name="Databox" type="Control" node_paths=PackedStringArray("_name_label", "_level_label", "_top_texture", "_bottom_texture", "_status_texture", "_hp_bar", "_hp_container", "_hp_label")]
+custom_minimum_size = Vector2(312, 111)
 layout_mode = 3
-anchor_right = 0.379
-anchor_bottom = 0.132
-offset_right = 0.927979
-offset_bottom = 0.968002
-script = ExtResource("2_jscsl")
+anchors_preset = 0
+offset_right = 291.0
+offset_bottom = 111.0
+script = ExtResource("1_3wy81")
 _name_label = NodePath("MarginContainer/HBoxContainer/Name")
 _level_label = NodePath("MarginContainer3/HBoxContainer2/LvLabel")
 _top_texture = NodePath("Top")
-_bottom_texture = NodePath("BottomThin")
+_bottom_texture = NodePath("Bottom")
 _status_texture = NodePath("StatusContainer/HBoxContainer/Status")
 _hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HPBar")
+_hp_container = NodePath("HPContainer")
+_hp_label = NodePath("HPContainer/HP")
 
 [node name="Top" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(276, 45)
@@ -34,20 +39,22 @@ anchor_right = 0.885
 anchor_bottom = 0.405
 offset_right = -0.119995
 offset_bottom = 0.0449982
-texture = ExtResource("2_e8luf")
+texture = ExtResource("2_yq4t2")
 
-[node name="BottomThin" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(291, 35)
+[node name="Bottom" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(312, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.933
-anchor_bottom = 0.685009
+anchor_left = -0.029
+anchor_right = 0.971
+anchor_bottom = 1.0
+offset_left = 0.0479994
 offset_top = 41.0
-offset_right = -0.0960083
-offset_bottom = -0.0359955
-pivot_offset = Vector2(138, 15)
-texture = ExtResource("4_x2l2s")
-metadata/_edit_use_anchors_ = true
+offset_right = 0.0480042
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(147, 11)
+texture = ExtResource("3_t8y4y")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 42)
@@ -71,13 +78,13 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_type_variation = &"Battle"
 text = "BULBASAUR"
-label_settings = ExtResource("4_cimg2")
+label_settings = ExtResource("5_hlqo1")
 
 [node name="Gender" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "♂"
-label_settings = ExtResource("4_cimg2")
+label_settings = ExtResource("5_hlqo1")
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 42)
@@ -96,12 +103,64 @@ theme_override_constants/separation = 0
 [node name="Lv" type="Label" parent="MarginContainer3/HBoxContainer2"]
 layout_mode = 2
 text = "Lv"
-label_settings = ExtResource("4_cimg2")
+label_settings = ExtResource("5_hlqo1")
 
 [node name="LvLabel" type="Label" parent="MarginContainer3/HBoxContainer2"]
 layout_mode = 2
 text = "6"
-label_settings = ExtResource("4_cimg2")
+label_settings = ExtResource("5_hlqo1")
+
+[node name="HPContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.846
+anchor_top = 0.568
+anchor_right = 0.846
+anchor_bottom = 0.568
+offset_left = -49.952
+offset_top = -0.0480003
+offset_right = 0.0480042
+offset_bottom = 21.952
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HP" type="Label" parent="HPContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "22/22"
+label_settings = ExtResource("5_hlqo1")
+metadata/_edit_lock_ = true
+
+[node name="ExpTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.087
+anchor_top = 0.837
+anchor_right = 0.846
+anchor_bottom = 0.945
+offset_left = -0.144001
+offset_top = -0.0369949
+offset_right = 0.127991
+offset_bottom = -0.03302
+texture = ExtResource("6_8ihnl")
+
+[node name="ExpBar" type="TextureProgressBar" parent="ExpTexture"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.127
+anchor_right = 0.949
+anchor_bottom = 1.0
+offset_left = -0.0259609
+offset_right = 0.0360107
+grow_horizontal = 2
+grow_vertical = 2
+value = 46.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_cpi2f")
+texture_progress = SubResource("CanvasTexture_t7xrx")
+tint_progress = Color(0.25098, 0.784314, 0.972549, 1)
 
 [node name="StatusContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -119,14 +178,14 @@ visible = false
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("8_skb30")
+texture = ExtResource("8_wcu7l")
 
 [node name="HPTexture" type="TextureRect" parent="StatusContainer/HBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(180, 21)
 layout_mode = 2
 size_flags_horizontal = 10
-texture = ExtResource("6_v2xas")
+texture = ExtResource("9_2rbif")
 metadata/_edit_use_anchors_ = true
 
 [node name="HPBar" type="TextureProgressBar" parent="StatusContainer/HBoxContainer/HPTexture"]

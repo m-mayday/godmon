@@ -2,9 +2,11 @@ extends Control
 ## Back/Front sprite of Pokemon in battle
 ## Includes shadow and animations
 
-signal animation_finished
-
 enum SPRITE_TYPE { BACK, FRONT } ## If it's a back sprite (Player) or front sprite (Foe)
+
+@export var sprite: Sprite2D
+@export var shadow: Sprite2D
+@export var animator: AnimationPlayer
 
 var battler: Battler: ## The battler to represent with this sprite
 	set(value):
@@ -16,8 +18,6 @@ var _action_tween: Tween ## Tween to animate this battler when choosing an actio
 var _target_tween: Tween ## Tween to animate this battler when choosing a target
 var _original_position: Vector2 ## Original position to reset it after battler has taken action
 
-@onready var _animator: AnimationPlayer = $AnimationPlayer
-
 
 func _ready():
 	add_to_group("battlers")
@@ -25,16 +25,14 @@ func _ready():
 	SignalBus.battler_ready.connect(_on_battler_ready)
 	SignalBus.turn_started.connect(_kill_action_tween)
 	_update_sprite()
-	_animator.play("send_out")
+	animator.play("send_out")
 
 
 ## Initializes this node with a _sprite_type and battler
-func init(p_sprite_type: SPRITE_TYPE, p_battler: Battler) -> void:
-	if p_battler == null:
-		return
+func with_data(p_sprite_type: SPRITE_TYPE, p_battler: Battler) -> void:
 	_sprite_type = p_sprite_type
 	if _sprite_type == SPRITE_TYPE.BACK:
-		$Shadow.hide()
+		shadow.hide()
 	battler = p_battler
 
 
@@ -48,17 +46,14 @@ func _on_pokemon_changed(switched_out: Battler, switched_in: Battler, _index_out
 func play_animation(event: AnimationEvent) -> void:
 	if event.animation == "" or event.battler == null:
 		return
-	if battler.id != event.battler.id or not _animator.has_animation(event.animation):
+	if battler.id != event.battler.id or not animator.has_animation(event.animation):
 		return
-	event.await_signals.push_back(_animator.animation_finished)
-	_animator.play(event.animation)
-	#await _animator.animation_finished
-	#animation_finished.emit()
+	event.await_signals.push_back(animator.animation_finished)
+	animator.play(event.animation)
 
 
 ## Updates the sprite's texture, offset and scale, depending on type sprite and battler species
 func _update_sprite() -> void:
-	var sprite: Sprite2D = $Sprite
 	var pokemon: Species = battler.pokemon.species
 	match _sprite_type:
 		SPRITE_TYPE.BACK:
@@ -69,25 +64,25 @@ func _update_sprite() -> void:
 			sprite.texture = pokemon.front_sprite
 			sprite.offset = pokemon.sprite_metrics.front_sprite_offset
 			sprite.scale = pokemon.sprite_metrics.front_sprite_scale
-			$Shadow.scale = pokemon.sprite_metrics.shadow_scale
-			$Shadow.offset = Vector2(pokemon.sprite_metrics.shadow_offset.x, sprite.texture.get_height() / 2 + pokemon.sprite_metrics.shadow_offset.y)
+			shadow.scale = pokemon.sprite_metrics.shadow_scale
+			shadow.offset = Vector2(pokemon.sprite_metrics.shadow_offset.x, sprite.texture.get_height() / 2 + pokemon.sprite_metrics.shadow_offset.y)
 	_set_animation_scale("call_back", 2, 0)
-	_set_animation_scale("call_back", 2, 1, Vector2(0, $Sprite.scale.y))
+	_set_animation_scale("call_back", 2, 1, Vector2(0, sprite.scale.y))
 	_set_animation_scale("send_out", 2, 1)
 
 
 ## Shows shadow when battler is sent out (if it's a foe battler)
 func _on_send_out_animation_finished() -> void:
 	if _sprite_type == SPRITE_TYPE.FRONT:
-		$Shadow.show()
+		shadow.show()
 
 
 ## Adjusts animation scaling for the provided animation (sending out or calling back battler) and track
-func _set_animation_scale(animation: String, track: int, key: int, value: Vector2 = $Sprite.scale) -> void:
+func _set_animation_scale(animation: String, track: int, key: int, value: Vector2 = sprite.scale) -> void:
 	# Adjust animation scaling
-	if _animator == null:
+	if animator == null:
 		return
-	var anim: Animation = _animator.get_animation(animation)
+	var anim: Animation = animator.get_animation(animation)
 	anim.track_set_key_value(track, key, value) # Track index (scale), Key index (last one), Value
 
 

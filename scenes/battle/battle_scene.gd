@@ -4,6 +4,7 @@ extends Node
 signal enter ## Emitted when the user presses enter
 signal animation_finished ## Emitted when an animation finished
 
+@export var player_single_databox: Resource ## The databox used only by the player on single battles
 @export var pokemon_databox: Resource ## The databox node to use
 @export var pokemon_sprite: Resource ## The sprite node to use
 
@@ -37,13 +38,11 @@ func with_data(data: Array) -> void:
 	SignalBus.turn_started.connect(_on_turn_started)
 	SignalBus.battler_ready.connect(_set_current_battler)
 	SignalBus.battle_event.connect(_on_battle_event)
-	_battle = Battle.new(first_trainer.pokemon_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
+	_battle = Battle.new(Global.player_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
 	_battle.turn_ended.connect(_target_menu.on_turn_ended)
 	_fight_menu.move_chosen.connect(_target_menu.on_move_chosen)
 	_target_menu.target_chosen.connect(_on_target_chosen)
-	#_fight_menu.moves = first_trainer.pokemon_party[0].moves
 	_battle.battle_start() # Start the battle
-	$PartyScreen.party = first_trainer.pokemon_party
 
 
 func _on_battle_event(event: BaseEvent, handled_signal: bool = true) -> void:
@@ -159,19 +158,20 @@ func _setup_side(battlers: Array[Battler], is_player_side: bool) -> void:
 		match is_player_side:
 			true:
 				# Create databox
-				var databox: Control = pokemon_databox.instantiate()
-				var databox_size = databox.DATABOX_SIZE.NORMAL
+				var databox: Control
 				if len(battlers) > 1:
-					databox_size = databox.DATABOX_SIZE.THIN
+					databox = pokemon_databox.instantiate()
+				else:
+					databox = player_single_databox.instantiate()
 				databox.size_flags_horizontal = databox.SIZE_SHRINK_END
 				databox.size_flags_vertical = databox.SIZE_SHRINK_END
 				databox.size_flags_vertical += databox.SIZE_EXPAND
 				$UserSide/Databoxes.add_child(databox)
-				databox.init(databox.DATABOX_SIDE_TYPE.ALLY, databox_size, battler)
+				databox.with_data(databox.DATABOX_SIDE_TYPE.ALLY, battler)
 				
 				# Create sprite
 				var sprite: Control = pokemon_sprite.instantiate()
-				sprite.init(sprite.SPRITE_TYPE.BACK, battler)
+				sprite.with_data(sprite.SPRITE_TYPE.BACK, battler)
 				sprite.size_flags_horizontal = sprite.SIZE_SHRINK_CENTER
 				sprite.size_flags_horizontal += sprite.SIZE_EXPAND
 				$UserSide/Sprites.add_child(sprite)
@@ -182,11 +182,11 @@ func _setup_side(battlers: Array[Battler], is_player_side: bool) -> void:
 				databox.size_flags_horizontal = databox.SIZE_SHRINK_BEGIN
 				databox.size_flags_vertical = databox.SIZE_SHRINK_BEGIN
 				$FoeSide/Databoxes.add_child(databox)
-				databox.init(databox.DATABOX_SIDE_TYPE.FOE, databox.DATABOX_SIZE.THIN, battler)
+				databox.with_data(databox.DATABOX_SIDE_TYPE.FOE, battler)
 				
 				# Create sprite
 				var sprite: Control = pokemon_sprite.instantiate()
-				sprite.init(sprite.SPRITE_TYPE.FRONT, battler)
+				sprite.with_data(sprite.SPRITE_TYPE.FRONT, battler)
 				sprite.size_flags_horizontal = sprite.SIZE_SHRINK_CENTER
 				sprite.size_flags_horizontal += sprite.SIZE_EXPAND
 				$FoeSide/Sprites.add_child(sprite)

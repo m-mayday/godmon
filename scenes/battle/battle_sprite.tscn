@@ -575,15 +575,15 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jdd1r"]
 _data = {
-"RESET": SubResource("Animation_sqk0b"),
-"attack_move": SubResource("Animation_u024v"),
-"call_back": SubResource("Animation_v7q61"),
-"faint": SubResource("Animation_x0pyn"),
-"on_hit": SubResource("Animation_7cnll"),
-"send_out": SubResource("Animation_7k0lx")
+&"RESET": SubResource("Animation_sqk0b"),
+&"attack_move": SubResource("Animation_u024v"),
+&"call_back": SubResource("Animation_v7q61"),
+&"faint": SubResource("Animation_x0pyn"),
+&"on_hit": SubResource("Animation_7cnll"),
+&"send_out": SubResource("Animation_7k0lx")
 }
 
-[node name="BattleSprite" type="Control"]
+[node name="BattleSprite" type="Control" node_paths=PackedStringArray("sprite", "shadow", "animator")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -592,6 +592,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w5r5j")
+sprite = NodePath("Sprite")
+shadow = NodePath("Shadow")
+animator = NodePath("AnimationPlayer")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 visible = false
@@ -612,5 +615,5 @@ offset = Vector2(0, 2)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
 libraries = {
-"": SubResource("AnimationLibrary_jdd1r")
+&"": SubResource("AnimationLibrary_jdd1r")
 }
