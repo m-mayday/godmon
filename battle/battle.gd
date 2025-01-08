@@ -56,8 +56,7 @@ func _init(p_player_team: Array[Pokemon], p_opponent_team: Array[Pokemon], size:
 			side_size = 1
 	sides.push_back(Side.new(player_team, side_size))
 	sides.push_back(Side.new(opponent_team, side_size))
-	Global.player_side_battlers.assign(player_team)
-	Global.update_player_battlers()
+	Global.assign_player_battler_array(player_team)
 	prng = RandomNumberGenerator.new() # Initialize RNG
 	prng.randomize() # Generate seed
 
@@ -331,6 +330,8 @@ func _end_turn_phase():
 	for side in sides:
 		for battler in side.battlers:
 			battler.switched_in_this_turn = false
+	Global.assign_player_battler_array(sides[0].battlers)
+	Global.assign_foe_battler_array(sides[1].battlers)
 	turn_ended.emit(sides[0].active, sides[1].active)
 
 

@@ -64,7 +64,7 @@ func _on_battle_event(event: BaseEvent, handled_signal: bool = true) -> void:
 		SignalBus.pokemon_status_set.emit(event)
 		await _await_event_signals(event)
 	elif event is RequestSwitchEvent:
-		$PokemonMenu.request_switch(event)
+		$PartyScreen.request_switch(event)
 		await _await_event_signals(event)
 	elif event is SwitchEvent:
 		await _on_battler_switched(event)

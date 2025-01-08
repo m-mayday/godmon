@@ -18,6 +18,28 @@ func set_player_party_value(index: int, value: Pokemon) -> void:
 	player_party_changed.emit()
 
 
+func get_player_battler(index: int) -> Battler:
+	if len(player_side_battlers) > index:
+		return player_side_battlers[index]
+	return null
+	
+
+func get_foe_battler(index: int) -> Battler:
+	if len(foe_side_battlers) > index:
+		return foe_side_battlers[index]
+	return null
+
+
+func assign_player_battler_array(arr: Array[Battler]) -> void:
+	player_side_battlers.assign(arr)
+	player_side_battlers_changed.emit()
+
+
+func assign_foe_battler_array(arr: Array[Battler]) -> void:
+	foe_side_battlers.assign(arr)
+	foe_side_battlers_changed.emit()
+
+
 func update_player_party() -> void:
 	player_party_changed.emit()
 

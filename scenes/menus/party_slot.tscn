@@ -9,7 +9,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8o8s4"]
 
-[node name="PartySlot" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label")]
+[node name="PartySlot" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label", "hp_bar")]
 anchors_preset = -1
 anchor_right = 0.626
 anchor_bottom = 0.144
@@ -24,6 +24,7 @@ script = ExtResource("3_8o8s4")
 level_label = NodePath("HBoxContainer/LvLabel")
 name_label = NodePath("Name")
 hp_label = NodePath("HP")
+hp_bar = NodePath("HPTexture/HPBar")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

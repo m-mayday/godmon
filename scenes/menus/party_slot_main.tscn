@@ -9,7 +9,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7cpkd"]
 
-[node name="PartySlotMain" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label")]
+[node name="PartySlotMain" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label", "hp_bar")]
 offset_right = 269.0
 offset_bottom = 205.0
 texture_normal = ExtResource("1_xo7vr")
@@ -19,6 +19,7 @@ script = ExtResource("3_mhypw")
 level_label = NodePath("HBoxContainer/LvLabel")
 name_label = NodePath("Name")
 hp_label = NodePath("HP")
+hp_bar = NodePath("HPTexture/HPBar")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

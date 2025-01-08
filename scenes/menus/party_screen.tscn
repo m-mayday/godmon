@@ -9,11 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://dc2nh0ltaqc2u" path="res://assets/system/menu_cancel_selected.png" id="7_a2588"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="8_a2588"]
 
-[node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button")]
+[node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button", "send_out_option", "summary_option", "switch_option", "item_option")]
 script = ExtResource("1_wgxl4")
 slots_container = NodePath("Control/Background/Slots")
 slot_options = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer")
 cancel_button = NodePath("Control/Background/MarginContainer/HBoxContainer/Cancel")
+send_out_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut")
+summary_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Summary")
+switch_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Switch")
+item_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Item")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -244,6 +248,21 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 8
 
+[node name="SendOut" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
+flat = true
+
+[node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 10.0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "  SEND OUT"
+
 [node name="Summary" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
@@ -316,4 +335,5 @@ text = "  CANCEL"
 [connection signal="focus_entered" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_focus_entered"]
 [connection signal="focus_exited" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_focus_exited"]
 [connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut" to="." method="_on_send_out_pressed"]
 [connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SlotCancel" to="." method="_on_slot_cancel_pressed"]
