@@ -2,7 +2,6 @@ extends Node
 ## The (visual) battle scene
 
 signal enter ## Emitted when the user presses enter
-signal animation_finished ## Emitted when an animation finished
 
 @export var player_single_databox: Resource ## The databox used only by the player on single battles
 @export var pokemon_databox: Resource ## The databox node to use
@@ -25,8 +24,8 @@ var text_advance_arrow_path: String = "res://Assets/Battle/UI/text_advance_arrow
 func with_data(data: Array) -> void:
 	assert(len(data) == 3, "Wrong number of parameters in battle scene")
 	var battle_type: String = data[0]
-	var first_trainer: Area2D = data[1] # For now, until Trainer class is created
-	var second_trainer: Area2D = null # For now, until Trainer class and trainer battles are created
+	var _first_trainer: Area2D = data[1] # For now, until Trainer class is created
+	var _second_trainer: Area2D = null # For now, until Trainer class and trainer battles are created
 	var wild_pokemon: Array[Pokemon] = []
 	if battle_type == "wild":
 		assert(data[2] is Array, "An array of Pokemon must be provided for wild battle")
@@ -72,6 +71,7 @@ func _on_battle_event(event: BaseEvent, handled_signal: bool = true) -> void:
 		await _on_battle_event(AnimationEvent.new("faint", [event.battler]))
 		_display_battle_message("{0} fainted!".format([event.battler.pokemon.name]))
 		await _tween.finished
+		await get_tree().create_timer(0.3).timeout
 	elif event is AbilityEvent:
 		SignalBus.ability_activated.emit(event)
 		await _await_event_signals(event)
