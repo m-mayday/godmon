@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://chhq8ivedwqi"]
 
-[ext_resource type="Script" uid="uid://bc1qhku66wiqr" path="res://scenes/battle/fight_menu.gd" id="1_nn76s"]
+[ext_resource type="Script" path="res://scenes/battle/fight_menu.gd" id="1_nn76s"]
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_tfdtp"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_8tb5x"]
 

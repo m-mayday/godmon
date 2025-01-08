@@ -34,9 +34,18 @@ func _on_battler_ready(battler: Battler) -> void:
 	_current_battler_id = battler.id
 	var _move_slots: Array[Node] = _move_container.get_children()
 	_moves = battler.pokemon.moves
-	for i in len(_moves):
-		var label = _move_slots[i].get_child(0).get_child(0) as Label
-		label.text = _moves[i].name
+	assert(len(_move_slots) >= len(_moves), "battler has more moves than supported.")
+	for i in len(_move_slots):
+		var button: Button = _move_slots[i] as Button
+		var label: Label = button.get_child(0).get_child(0) as Label
+		if i < len(_moves):
+			button.disabled = false
+			button.focus_mode = Control.FOCUS_ALL
+			label.text = _moves[i].name
+		else:
+			button.disabled = true
+			button.focus_mode = Control.FOCUS_NONE
+			label.text = "-"
 
 
 ## Updates _last_selected option and emites move_chosen signal with the chosen move
