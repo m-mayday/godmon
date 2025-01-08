@@ -15,21 +15,20 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n3ti0"]
 
-[node name="Databox" type="Control" node_paths=PackedStringArray("_name_label", "_level_label", "_top_texture", "_bottom_texture", "_status_texture", "_hp_bar", "_hp_container", "_hp_label")]
+[node name="Databox" type="Control" node_paths=PackedStringArray("name_label", "level_label", "bottom_texture", "status_texture", "hp_bar", "hp_container", "hp_label")]
 custom_minimum_size = Vector2(312, 111)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 291.0
 offset_bottom = 111.0
 script = ExtResource("1_3wy81")
-_name_label = NodePath("MarginContainer/HBoxContainer/Name")
-_level_label = NodePath("MarginContainer3/HBoxContainer2/LvLabel")
-_top_texture = NodePath("Top")
-_bottom_texture = NodePath("Bottom")
-_status_texture = NodePath("StatusContainer/HBoxContainer/Status")
-_hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HPBar")
-_hp_container = NodePath("HPContainer")
-_hp_label = NodePath("HPContainer/HP")
+name_label = NodePath("MarginContainer/HBoxContainer/Name")
+level_label = NodePath("MarginContainer3/HBoxContainer2/LvLabel")
+bottom_texture = NodePath("Bottom")
+status_texture = NodePath("StatusContainer/HBoxContainer/Status")
+hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HPBar")
+hp_container = NodePath("HPContainer")
+hp_label = NodePath("HPContainer/HP")
 
 [node name="Top" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(276, 45)

@@ -11,7 +11,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n3ti0"]
 
-[node name="Databox" type="Control" node_paths=PackedStringArray("_name_label", "_level_label", "_top_texture", "_bottom_texture", "_status_texture", "_hp_bar")]
+[node name="Databox" type="Control" node_paths=PackedStringArray("name_label", "level_label", "bottom_texture", "status_texture", "hp_bar")]
 custom_minimum_size = Vector2(292, 77)
 layout_mode = 3
 anchor_right = 0.379
@@ -19,12 +19,11 @@ anchor_bottom = 0.132
 offset_right = 0.927979
 offset_bottom = 0.968002
 script = ExtResource("2_jscsl")
-_name_label = NodePath("MarginContainer/HBoxContainer/Name")
-_level_label = NodePath("MarginContainer3/HBoxContainer2/LvLabel")
-_top_texture = NodePath("Top")
-_bottom_texture = NodePath("BottomThin")
-_status_texture = NodePath("StatusContainer/HBoxContainer/Status")
-_hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HPBar")
+name_label = NodePath("MarginContainer/HBoxContainer/Name")
+level_label = NodePath("MarginContainer3/HBoxContainer2/LvLabel")
+bottom_texture = NodePath("BottomThin")
+status_texture = NodePath("StatusContainer/HBoxContainer/Status")
+hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HPBar")
 
 [node name="Top" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(276, 45)
