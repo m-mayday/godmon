@@ -146,7 +146,7 @@ func _set_hp_bar_color(new_health: int) -> void:
 func _on_battler_ready(current_battler: Battler) -> void:
 	_kill_tween()
 	_is_choosing_action = false
-	if _battler == current_battler:
+	if _battler == current_battler and not _battler.is_fainted():
 		_is_choosing_action = true
 		_original_position = position
 		_tween = create_tween()
@@ -158,7 +158,7 @@ func _on_battler_ready(current_battler: Battler) -> void:
 
 ## Kills the _tween to stop any looping animations
 func _kill_tween() -> void:
-	if _tween:
+	if _tween and not _battler.is_fainted(): 
 		_tween.kill()
 		position = _original_position
 
@@ -166,7 +166,7 @@ func _kill_tween() -> void:
 ## Tweens this databox if its battler is the current target being chosen
 func on_choosing_targets(targets: Array[Battler], _move: Move) -> void:
 	_kill_tween()
-	if _battler in targets:
+	if _battler in targets and not _battler.is_fainted():
 		_original_position = position
 		_tween = create_tween()
 		_tween.set_loops()

@@ -89,7 +89,7 @@ func _set_animation_scale(animation: String, track: int, key: int, value: Vector
 ## Animates this battler moving up and down until an action is chosen in battle
 func _on_battler_ready(current_battler: Battler) -> void:
 	_kill_action_tween()
-	if battler == current_battler:
+	if battler == current_battler and not battler.is_fainted():
 		_original_position = position
 		_action_tween = create_tween()
 		_action_tween.set_loops()
@@ -107,7 +107,7 @@ func _kill_action_tween() -> void:
 
 ## Kills the _target_tween to stop any looping animations
 func _kill_target_tween() -> void:
-	if _target_tween:
+	if _target_tween and not battler.is_fainted():
 		_target_tween.kill()
 		modulate.a = 1.0
 
@@ -115,7 +115,7 @@ func _kill_target_tween() -> void:
 ## Tweens this battler if is the current target being chosen
 func on_choosing_targets(current_targets: Array[Battler], _move: Move) -> void:
 	_kill_target_tween()
-	if battler in current_targets:
+	if battler in current_targets and not battler.is_fainted():
 		_target_tween = create_tween()
 		_target_tween.set_loops()
 		_target_tween.tween_property(self, "modulate:a", 0, 0.2)
