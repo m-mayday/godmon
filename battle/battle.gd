@@ -258,9 +258,11 @@ func _command_phase():
 			while true:
 				await action_chosen
 				break
-				
-			if len(sides[0].battlers_actioned) >= len(sides[0].active):
-				break
+		else:
+			sides[0].current_battler_index += 1
+			
+		if len(sides[0].battlers_actioned) >= len(sides[0].active):
+			break
 	sides[1].battlers_actioned.clear()
 	sides[0].battlers_actioned.clear()
 	sides[0].current_battler_index = 0

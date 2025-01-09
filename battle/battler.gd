@@ -195,7 +195,9 @@ func is_fainted() -> bool:
 ## [Public] Returns if the battler can choose an action or not (locked into move, must recharge, etc.)
 ## If auto_choose is true, the action that prevents battler from choosing is queued.
 func can_choose_action(auto_choose: bool = false) -> bool:
-	if is_fainted(): return false
+	if is_fainted():
+		return false
+		
 	if auto_choose:
 		var target: Battler
 		var move: Move
