@@ -44,7 +44,7 @@ func with_data(data: Array) -> void:
 	_battle.battle_start() # Start the battle
 
 
-func _on_battle_event(event: BaseEvent, handled_signal: bool = true) -> void:
+func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> void:
 	if event is BattleStartEvent:
 			await _on_battle_started(event)
 	elif event is BattleDialogueEvent:
@@ -68,7 +68,7 @@ func _on_battle_event(event: BaseEvent, handled_signal: bool = true) -> void:
 	elif event is SwitchEvent:
 		await _on_battler_switched(event)
 	elif event is FaintEvent:
-		await _on_battle_event(AnimationEvent.new("faint", [event.battler]))
+		await _on_battle_event(AnimationEvent.new("faint", [event.battler]), false)
 		_display_battle_message("{0} fainted!".format([event.battler.pokemon.name]))
 		await _tween.finished
 		await get_tree().create_timer(0.3).timeout
@@ -79,7 +79,7 @@ func _on_battle_event(event: BaseEvent, handled_signal: bool = true) -> void:
 	if event.post_await > 0.0:
 		await get_tree().create_timer(event.post_await).timeout
 
-	if handled_signal:
+	if emit_handled_signal:
 		SignalBus.event_handled.emit()
 
 
@@ -90,7 +90,7 @@ func _await_event_signals(event: BaseEvent) -> void:
 			if is_instance_valid(wait_signal.get_object()) and not wait_signal.is_null():
 				await wait_signal
 	else:
-		await get_tree().process_frame # Workaround. For some reason, if you don't await anything, the battle_script stops handling events
+		await get_tree().process_frame # Workaround. For some reason, if you don't await anything, the battle script stops handling events
 
 
 func _input(event):
