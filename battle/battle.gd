@@ -5,8 +5,6 @@ extends Resource
 ## Battle actions are actions that a battler performs: using move, using item, etc.
 ## Battle events are events that can be used for pretty much anything: changing the battle state, displaying a message, playing an animation, etc.
 
-## Emitted after all actions are queued and before the first action
-signal turn_started()
 
 ## Emitted after all actions are executed
 signal turn_ended(side_a_team, side_b_team)
@@ -57,6 +55,7 @@ func _init(p_player_team: Array[Pokemon], p_opponent_team: Array[Pokemon], size:
 	sides.push_back(Side.new(player_team, side_size))
 	sides.push_back(Side.new(opponent_team, side_size))
 	Global.assign_player_battler_array(player_team)
+	Global.assign_foe_battler_array(opponent_team)
 	prng = RandomNumberGenerator.new() # Initialize RNG
 	prng.randomize() # Generate seed
 

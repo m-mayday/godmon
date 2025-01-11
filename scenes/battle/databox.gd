@@ -46,12 +46,14 @@ func _ready():
 	SignalBus.turn_started.connect(_kill_tween)
 
 
-## Initializes this node with a side type and battler
-func with_data(p_type: DATABOX_SIDE_TYPE, p_battler: Battler) -> void:
+## Initializes this node with a side type
+func with_data(p_type: DATABOX_SIDE_TYPE) -> void:
 	if p_type == DATABOX_SIDE_TYPE.ALLY:
+		_battler = Global.get_player_battler(get_index())
 		bottom_texture.scale.x = -1  # Flip the texture
+	else:
+		_battler = Global.get_foe_battler(get_index())
 	_battler_side = p_type
-	_battler = p_battler
 	_animate = true
 
 

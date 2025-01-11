@@ -55,6 +55,7 @@ func _on_move_pressed(i: int) -> void:
 	move_chosen.emit(_moves[i])
 
 
+## Shows the type and PP of the move
 func _on_move_focus_entered(i: int):
 	var move: Move = _moves[i]
 	_pp_amount.text = "{0}/{1}".format([move.current_pp, move.base_pp])
