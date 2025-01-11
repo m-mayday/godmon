@@ -6,6 +6,9 @@ signal enter ## Emitted when the user presses enter
 @export var player_single_databox: Resource ## The databox used only by the player on single battles
 @export var pokemon_databox: Resource ## The databox node to use
 @export var pokemon_sprite: Resource ## The sprite node to use
+@export var party_screen: CanvasLayer ## Party screen for switches
+@export var message_box: NinePatchRect ## The box where messages are displayed
+@export var message_label: RichTextLabel ## Where messages are written to
 
 ## The different menus in battle
 @export var _fight_menu: Control
@@ -16,7 +19,7 @@ signal enter ## Emitted when the user presses enter
 
 var _battle: Battle ## Reference to the current battle
 var _ui_stack: Array[Control] = [] ## Stack of menus (Choose action, choose move, choose target, etc.)
-var _current_battler: Battler
+var _current_battler: Battler ## Current battler choosing an action
 var _tween: Tween
 
 var text_advance_arrow_path: String = "res://Assets/Battle/UI/text_advance_arrow.png" # I will leave this like so for now
@@ -54,7 +57,6 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 			await enter
 	elif event is AnimationEvent:
 		get_tree().call_group("battlers", "play_animation", event)
-		#await $Animator.play_animation(event)
 		await _await_event_signals(event)
 	elif event is HealthChangedEvent:
 		SignalBus.health_changed.emit(event)
@@ -63,7 +65,7 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 		SignalBus.pokemon_status_set.emit(event)
 		await _await_event_signals(event)
 	elif event is RequestSwitchEvent:
-		$PartyScreen.request_switch(event)
+		party_screen.request_switch(event)
 		await _await_event_signals(event)
 	elif event is SwitchEvent:
 		await _on_battler_switched(event)
@@ -110,8 +112,7 @@ func _on_turn_started() -> void:
 ## Passes the current battler to some nodes
 func _set_current_battler(battler: Battler) -> void:
 	_current_battler = battler
-	$PokemonMenu.set_current_battler(battler)
-	%MessageLabel.text = "What will {0} do?".format([battler.pokemon.name])
+	message_label.text = "What will {0} do?".format([battler.pokemon.name])
 	_push_menu(_battle_menu)
 
 
@@ -121,12 +122,10 @@ func _on_battle_started(event: BattleStartEvent) -> void:
 	var active_foe: Array[Battler] = event.get_opponent_side_active()
 	_setup_side(active_foe, false) # TODO: Only do this setup if it's a wild battle
 	_target_menu.on_turn_ended(active_user, active_foe)
-	$PokemonMenu.setup(event.get_player_side_team())
 	animator.queue("transition")
 	animator.queue("battleback")
 	await animator.animation_changed
 	await animator.animation_finished
-	print("after animation")
 	_display_battle_message("A wild group of Pokemon appeared!", null, true)
 	await _tween.finished
 	await enter
@@ -167,14 +166,14 @@ func _setup_side(battlers: Array[Battler], is_player_side: bool) -> void:
 				databox.size_flags_vertical = databox.SIZE_SHRINK_END
 				databox.size_flags_vertical += databox.SIZE_EXPAND
 				$UserSide/Databoxes.add_child(databox)
-				databox.with_data(databox.DATABOX_SIDE_TYPE.ALLY, battler)
+				databox.with_data(databox.DATABOX_SIDE_TYPE.ALLY)
 				
 				# Create sprite
 				var sprite: Control = pokemon_sprite.instantiate()
-				sprite.with_data(sprite.SPRITE_TYPE.BACK, battler)
 				sprite.size_flags_horizontal = sprite.SIZE_SHRINK_CENTER
 				sprite.size_flags_horizontal += sprite.SIZE_EXPAND
 				$UserSide/Sprites.add_child(sprite)
+				sprite.with_data(sprite.SPRITE_TYPE.BACK)
 				
 			false:
 				# Create databox
@@ -182,30 +181,29 @@ func _setup_side(battlers: Array[Battler], is_player_side: bool) -> void:
 				databox.size_flags_horizontal = databox.SIZE_SHRINK_BEGIN
 				databox.size_flags_vertical = databox.SIZE_SHRINK_BEGIN
 				$FoeSide/Databoxes.add_child(databox)
-				databox.with_data(databox.DATABOX_SIDE_TYPE.FOE, battler)
+				databox.with_data(databox.DATABOX_SIDE_TYPE.FOE)
 				
 				# Create sprite
 				var sprite: Control = pokemon_sprite.instantiate()
-				sprite.with_data(sprite.SPRITE_TYPE.FRONT, battler)
 				sprite.size_flags_horizontal = sprite.SIZE_SHRINK_CENTER
 				sprite.size_flags_horizontal += sprite.SIZE_EXPAND
 				$FoeSide/Sprites.add_child(sprite)
+				sprite.with_data(sprite.SPRITE_TYPE.FRONT)
 
 
 ## Displays a battle message
 func _display_battle_message(message: String, action: BattleDialogueEvent = null, wait_input: bool = false) -> void:
 	_kill_tween()
 	# Animate letters appearing
-	%MessageLabel.visible_ratio = 0.0
-	%MessageLabel.text = message
+	message_label.visible_ratio = 0.0
+	message_label.text = message
 	_tween = get_tree().create_tween()
-	_tween.tween_property(%MessageLabel, "visible_ratio", 1.0, 0.8)
+	_tween.tween_property(message_label, "visible_ratio", 1.0, 0.8)
 	
 	# Check if should wait for input
 	if (action != null and action.should_wait_input) or wait_input:
 		# TODO: Animate arrow
-		%MessageLabel.append_text(" [img=24 region=0,0,10,7]"+text_advance_arrow_path+"[/img]") # 24 is the width
-		#action.await_signals.append_array([_tween.finished, enter])
+		message_label.append_text(" [img=24 region=0,0,10,7]"+text_advance_arrow_path+"[/img]") # 24 is the width
 	elif action != null:
 		action.await_signals.push_back(_tween.finished)
 	_tween.play()
@@ -238,14 +236,13 @@ func _on_target_chosen(target: Battler, move: Move) -> void:
 ## Open up the Pokemon Party Menu
 func _on_battle_menu_switch_pressed() -> void:
 	set_process_input(false)
-	#$PokemonMenu.visible = !$PokemonMenu.visible
-	$PartyScreen.show()
+	party_screen.show()
 
 
 ## Queues the chosen pokemon switch in battle
 func _on_pokemon_menu_switch(switch_out: Battler, switch_in: Battler, is_instant_switch: bool) -> void:
 	_battle.queue_switch(switch_out, switch_in, is_instant_switch)
-	$PartyScreen.hide()
+	party_screen.hide()
 	set_process_input(true)
 	
 
@@ -256,7 +253,7 @@ func _push_menu(control: Control) -> void:
 	if control not in _ui_stack:
 		_ui_stack.push_back(control)
 	if control == _target_menu:
-		$CanvasLayer/MessageBox.hide()
+		message_box.hide()
 	control.show()
 
 
@@ -270,7 +267,7 @@ func _pop_menu() -> void:
 		_ui_stack.back().show()
 	if pop_ui == _target_menu:
 		get_tree().call_group("battlers", "cancel_target_choosing")
-		$CanvasLayer/MessageBox.show()
+		message_box.show()
 
 
 ## Kills the _tween to stop any looping animations

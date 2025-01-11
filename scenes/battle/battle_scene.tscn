@@ -1,10 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
+[gd_scene load_steps=29 format=3 uid="uid://d0d7xsr8ntfjk"]
 
 [ext_resource type="Script" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
 [ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
 [ext_resource type="PackedScene" uid="uid://cfhq7istddlx" path="res://scenes/battle/battle_menu.tscn" id="2_i5pvj"]
 [ext_resource type="Texture2D" uid="uid://by2kdrc8mp07f" path="res://assets/battle/backgrounds/field_bg.png" id="2_o7ey8"]
-[ext_resource type="PackedScene" uid="uid://buw3uefjpyaf8" path="res://scenes/pokemon_menu.tscn" id="2_p0xf1"]
 [ext_resource type="PackedScene" uid="uid://qt207sey5bpy" path="res://scenes/battle/databox_main.tscn" id="2_tc5fe"]
 [ext_resource type="PackedScene" uid="uid://chhq8ivedwqi" path="res://scenes/battle/fight_menu.tscn" id="3_cv04l"]
 [ext_resource type="PackedScene" uid="uid://qiu0yskh5npf" path="res://scenes/battle/battle_sprite.tscn" id="3_fssma"]
@@ -446,11 +445,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_fight_menu", "_battle_menu", "_target_menu", "animator")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("party_screen", "message_box", "message_label", "_fight_menu", "_battle_menu", "_target_menu", "animator")]
 script = ExtResource("1_hrc2y")
 player_single_databox = ExtResource("2_tc5fe")
 pokemon_databox = ExtResource("2_cbhpy")
 pokemon_sprite = ExtResource("3_fssma")
+party_screen = NodePath("PartyScreen")
+message_box = NodePath("CanvasLayer/MessageBox")
+message_label = NodePath("CanvasLayer/MessageBox/MarginContainer/MessageLabel")
 _fight_menu = NodePath("CanvasLayer/FightMenu")
 _battle_menu = NodePath("CanvasLayer/BattleMenu")
 _target_menu = NodePath("CanvasLayer/TargetMenu")
@@ -544,12 +546,6 @@ metadata/_edit_lock_ = true
 
 [node name="Ability" parent="UserSide" instance=ExtResource("6_kyq73")]
 position = Vector2(-256, 307)
-
-[node name="PokemonMenu" parent="." instance=ExtResource("2_p0xf1")]
-visible = false
-offset_right = 90.0
-offset_bottom = 240.0
-context = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -680,7 +676,6 @@ opponents = NodePath("../FoeSide/Sprites")
 visible = false
 context = 1
 
-[connection signal="switch" from="PokemonMenu" to="." method="_on_pokemon_menu_switch"]
 [connection signal="fight_pressed" from="CanvasLayer/BattleMenu" to="." method="_on_battle_menu_fight_pressed"]
 [connection signal="switch_pressed" from="CanvasLayer/BattleMenu" to="." method="_on_battle_menu_switch_pressed"]
 [connection signal="move_chosen" from="CanvasLayer/FightMenu" to="." method="_on_fight_menu_move_chosen"]
