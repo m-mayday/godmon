@@ -40,8 +40,8 @@ func with_data(data: Array) -> void:
 	SignalBus.turn_started.connect(_on_turn_started)
 	SignalBus.battler_ready.connect(_set_current_battler)
 	SignalBus.battle_event.connect(_on_battle_event)
+	SignalBus.turn_ended.connect(_target_menu.on_turn_ended)
 	_battle = Battle.new(Global.player_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
-	_battle.turn_ended.connect(_target_menu.on_turn_ended)
 	_fight_menu.move_chosen.connect(_target_menu.on_move_chosen)
 	_target_menu.target_chosen.connect(_on_target_chosen)
 	_battle.battle_start() # Start the battle
@@ -59,10 +59,10 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 		get_tree().call_group("battlers", "play_animation", event)
 		await _await_event_signals(event)
 	elif event is HealthChangedEvent:
-		SignalBus.health_changed.emit(event)
+		get_tree().call_group("battlers", "health_changed", event)
 		await _await_event_signals(event)
 	elif event is StatusSetEvent:
-		SignalBus.pokemon_status_set.emit(event)
+		get_tree().call_group("battlers", "status_set", event)
 		await _await_event_signals(event)
 	elif event is RequestSwitchEvent:
 		party_screen.request_switch(event)
@@ -75,7 +75,7 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 		await _tween.finished
 		await get_tree().create_timer(0.3).timeout
 	elif event is AbilityEvent:
-		SignalBus.ability_activated.emit(event)
+		get_tree().call_group("ability", "ability_activated", event)
 		await _await_event_signals(event)
 	
 	if event.post_await > 0.0:

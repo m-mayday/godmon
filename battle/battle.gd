@@ -5,10 +5,6 @@ extends Resource
 ## Battle actions are actions that a battler performs: using move, using item, etc.
 ## Battle events are events that can be used for pretty much anything: changing the battle state, displaying a message, playing an animation, etc.
 
-
-## Emitted after all actions are executed
-signal turn_ended(side_a_team, side_b_team)
-
 ## [Internal] Emitted when the battle state changes
 ## See STATE enum for possible values
 signal state_changed(state: STATE)
@@ -333,7 +329,7 @@ func _end_turn_phase():
 			battler.switched_in_this_turn = false
 	Global.assign_player_battler_array(sides[0].battlers)
 	Global.assign_foe_battler_array(sides[1].battlers)
-	turn_ended.emit(sides[0].active, sides[1].active)
+	SignalBus.turn_ended.emit(sides[0].active, sides[1].active)
 
 
 ## [Public] Gets targets depending on the move being used and the type of battle

@@ -19,11 +19,11 @@ enum ABILITY_SIDE { ALLY, FOE } ## The two sides this node can belong to
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SignalBus.ability_activated.connect(_on_ability_activated)
+	add_to_group("ability")
 
 
 ## Animates the node appearing in the screen, displaying the battler and ability's name
-func _on_ability_activated(event: AbilityEvent) -> void:
+func ability_activated(event: AbilityEvent) -> void:
 	if not event.is_ally_side and side == ABILITY_SIDE.ALLY:
 		return
 	if event.is_ally_side and side == ABILITY_SIDE.FOE:

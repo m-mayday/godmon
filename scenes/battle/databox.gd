@@ -39,10 +39,8 @@ var _battler: Battler:
 
 func _ready():
 	add_to_group("battlers")
-	SignalBus.health_changed.connect(_on_health_changed)
 	SignalBus.pokemon_changed.connect(_on_switched_in)
 	SignalBus.battler_ready.connect(_on_battler_ready)
-	SignalBus.pokemon_status_set.connect(_on_status_set)
 	SignalBus.turn_started.connect(_kill_tween)
 
 
@@ -55,16 +53,6 @@ func with_data(p_type: DATABOX_SIDE_TYPE) -> void:
 		_battler = Global.get_foe_battler(get_index())
 	_battler_side = p_type
 	_animate = true
-
-
-## Updates the Pokemon's HP
-func _on_health_changed(event: HealthChangedEvent) -> void:
-	if _battler == null:
-		return
-	if _battler.id == event.pokemon.id:
-		if _animate:
-			event.await_signals.push_back(animation_finished)
-		_update_data(event.new_hp)
 
 
 ## Plays the specified animation if it corresponds to this battler and is one of the expected animations
@@ -84,6 +72,23 @@ func play_animation(event: AnimationEvent) -> void:
 		"send_out":
 			tween.tween_property(self, "position:x", 300 * -direction, 0.5).as_relative()
 	tween.play()
+
+
+## Sets the status texture if battler has a status
+func status_set(event: StatusSetEvent) -> void:
+	if event.pokemon.id == _battler.id:
+		status_texture.texture = event.status.icon
+		status_texture.visible = event.status.icon != null
+		
+		
+## Updates the Pokemon's HP
+func health_changed(event: HealthChangedEvent) -> void:
+	if _battler == null:
+		return
+	if _battler.id == event.pokemon.id:
+		if _animate:
+			event.await_signals.push_back(animation_finished)
+		_update_data(event.new_hp)
 
 
 ## Changes to the new active battler in this position when the current one leaves battle
@@ -117,13 +122,6 @@ func _update_data(new_health) -> void:
 			_set_hp_bar_color(new_health)
 		else:
 			hp_bar.value = _battler.pokemon.current_hp
-
-
-## Sets the status texture if battler has a status
-func _on_status_set(event: StatusSetEvent) -> void:
-	if event.pokemon.id == _battler.id:
-		status_texture.texture = event.status.icon
-		status_texture.visible = event.status.icon != null
 
 
 ## Sets the new HP. Used to tween the value increasing/decreasing
