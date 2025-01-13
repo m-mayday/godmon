@@ -419,7 +419,7 @@ class TwoHitMove extends MoveHandler:
 
 class CrashDamage extends MoveHandler:
 	func on_miss(battle: Battle, user: Battler, _target: Battler) -> void:
-		battle.add_battle_event(BattleDialogueEvent.new("{0} got fucked up trying to jump kick!", [user.pokemon.name])) # TODO: Change message
+		battle.add_battle_event(BattleDialogueEvent.new("{0} kept going and crashed!", [user.pokemon.name]))
 		user.damage(int(user.pokemon.stats.hp / 2))
 
 
