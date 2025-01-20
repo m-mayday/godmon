@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var menu = $Control
-@onready var options_container = $Control/NinePatchRect/MarginContainer/VBoxContainer
+@export var menu: Control
+@export var options_container: VBoxContainer
 
 
 ## The scenes to be shown when a button is pressed. To be set from the editor.

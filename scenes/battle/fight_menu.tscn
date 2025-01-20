@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_tfdtp"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_8tb5x"]
 
-[node name="FightMenu" type="Control"]
+[node name="FightMenu" type="Control" node_paths=PackedStringArray("move_container", "pp_amount", "move_type")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nn76s")
+move_container = NodePath("HBoxContainer/Moves/MarginContainer/GridContainer")
+pp_amount = NodePath("HBoxContainer/MoveInfo/MarginContainer/VBoxContainer/HBoxContainer/PPAmountLabel")
+move_type = NodePath("HBoxContainer/MoveInfo/MarginContainer/VBoxContainer/MoveTypeLabel")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

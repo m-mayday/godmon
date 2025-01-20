@@ -2,10 +2,10 @@
 extends Area2D
 
 @export var encounter_table: EncounterTable
+
 var _rng: RandomNumberGenerator
 var _odds: Array[float]
-
-var player_in_area: bool = false
+var _player_in_area: bool = false
 
 
 func _ready() -> void:
@@ -20,15 +20,15 @@ func _ready() -> void:
 
 
 func _on_area_shape_entered(_area_rid: RID, _area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	player_in_area = true
+	_player_in_area = true
 	
 
 func _on_area_shape_exited(_area_rid: RID, _area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	player_in_area = false
+	_player_in_area = false
 	
 	
 func _should_trigger_encounter() -> void:
-	if player_in_area:
+	if _player_in_area:
 		var number: float = _rng.randf_range(0.0, 2879.0)
 		if number < 320.0:
 			var encounter: Encounter = encounter_table.encounters[_rng.rand_weighted(_odds)]

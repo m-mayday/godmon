@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="2_2wrho"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="2_7unhi"]
 
-[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("options")]
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("menu", "options_container", "options")]
 script = ExtResource("1_gsnt3")
+menu = NodePath("Control")
+options_container = NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer")
 screens = Dictionary[String, PackedScene]({
 "pokedex": null,
 "pokemon": ExtResource("2_2wrho")

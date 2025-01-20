@@ -3,7 +3,10 @@ extends CanvasLayer
 signal screen_closed
 signal switch(switch_out: Battler, switch_in: Battler, is_instant_switch: bool)
 
-enum CONTEXT {OVERWORLD, BATTLE}
+enum CONTEXT {
+	OVERWORLD,
+	BATTLE,
+}
 
 @export var context: CONTEXT = CONTEXT.OVERWORLD
 @export var slots_container: Node
@@ -31,6 +34,13 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel") or event.is_action_pressed("ui_cancel"):
 		screen_closed.emit()
+
+
+## A battler needs to be switched in, so show the menu
+func request_switch(event: RequestSwitchEvent):
+	show()
+	_switch_out_battler = event.battler
+	_is_instant_switch = event.is_instant_switch
 
 
 func _on_cancel_pressed() -> void:
@@ -87,13 +97,6 @@ func _get_first_visible_slot_option() -> Button:
 func _grab_slot_option_focus(option: Button) -> void:
 	if option != null:
 		option.grab_focus()
-
-
-## A battler needs to be switched in, so show the menu
-func request_switch(event: RequestSwitchEvent):
-	show()
-	_switch_out_battler = event.battler
-	_is_instant_switch = event.is_instant_switch
 
 
 ## Check if battler can be send out

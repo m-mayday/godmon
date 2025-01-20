@@ -3,6 +3,9 @@ extends NinePatchRect
 
 signal target_chosen(target, move)
 
+@export var foe_side: HBoxContainer
+@export var user_side: HBoxContainer
+
 ## Possible targets for the chosen move
 var targets: Array[Battler]:
 	set(value):
@@ -15,9 +18,6 @@ var _foe_battlers: Array[Battler]
 
 var _move: Move ## Move chosen
 var _current_focus: Array = [-1, false] ## Current button in focus. First value is index and second if it's ally side.
-
-@onready var _foe_side: HBoxContainer = $MarginContainer/VBoxContainer/FoeSide
-@onready var _user_side: HBoxContainer = $MarginContainer/VBoxContainer/UserSide
 
 
 func _ready():
@@ -64,10 +64,10 @@ func _on_targets_changed() -> void:
 
 ## Sets the labels' text with the targets' names. Sets which target button should be in focus later
 func _populate_labels(is_ally_side: bool, should_allow_focus: bool, is_focus_set: bool = false) -> bool:
-	var side: HBoxContainer = _user_side
+	var side: HBoxContainer = user_side
 	var battlers: Array[Battler] = _user_battlers
 	if not is_ally_side:
-		side = _foe_side
+		side = foe_side
 		battlers = _foe_battlers
 	for i in battlers.size():
 		var slot: Button = side.get_child(i)
@@ -90,10 +90,10 @@ func _on_label_draw(index: int, is_ally_side: bool) -> void:
 	var button: Button
 	if is_ally_side:
 		if _current_focus[0] == index and _current_focus[1]:
-			button = _user_side.get_child(index)
+			button = user_side.get_child(index)
 	else:
 		if _current_focus[0] == index and not _current_focus[1]:
-			button = _foe_side.get_child(index)
+			button = foe_side.get_child(index)
 	if button != null and button.focus_mode != FOCUS_NONE:
 		button.grab_focus()
 

@@ -40,8 +40,11 @@ _data = {
 &"fade_out": SubResource("Animation_0wfyh")
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("current_scene_node", "animator", "canvas")]
 script = ExtResource("1_o5qli")
+current_scene_node = NodePath("CurrentScene")
+animator = NodePath("AnimationPlayer")
+canvas = NodePath("CanvasModulate")
 
 [node name="CurrentScene" type="Node" parent="."]
 

@@ -5,13 +5,6 @@ signal movement_finished
 signal turning_started
 signal turning_finished
 
-@export var entity: Node2D
-@export var speed: float = 0.25
-@export var run_speed: float = 0.15
-@export var animation_tree: AnimationTree
-
-var moving_direction: Vector2 = Vector2.ZERO
-
 enum STATE {IDLE, WALKING, RUNNING, TURNING}
 enum DIRECTION {UP, DOWN, RIGHT, LEFT}
 
@@ -22,8 +15,16 @@ const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 	"turn": "parameters/turn/blend_position",
 }
 
+@export var entity: Node2D
+@export var speed: float = 0.25
+@export var run_speed: float = 0.15
+@export var animation_tree: AnimationTree
+
+var moving_direction: Vector2 = Vector2.ZERO
+
 var _current_state: STATE = STATE.IDLE ## Current node state
 var _face_direction: DIRECTION = DIRECTION.DOWN ## Current node direction
+
 @onready var _anim_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
 
@@ -92,6 +93,7 @@ func _need_to_turn(direction: Vector2) -> bool:
 		_face_direction = new_face_direction
 		return true
 	return false
+
 
 ## Called after node stops moving
 func _movement_finsished() -> void:

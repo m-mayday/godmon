@@ -1,6 +1,9 @@
 extends TextureButton
 
-enum CONTEXT {OVERWORLD, BATTLE}
+enum CONTEXT {
+	OVERWORLD,
+	BATTLE,
+}
 
 @export var context: CONTEXT = CONTEXT.OVERWORLD
 @export var level_label: Label

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_264xs"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_o7k4u"]
 
-[node name="TargetMenu" type="NinePatchRect"]
+[node name="TargetMenu" type="NinePatchRect" node_paths=PackedStringArray("foe_side", "user_side")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,6 +17,8 @@ patch_margin_top = 7
 patch_margin_right = 7
 patch_margin_bottom = 7
 script = ExtResource("1_50osn")
+foe_side = NodePath("MarginContainer/VBoxContainer/FoeSide")
+user_side = NodePath("MarginContainer/VBoxContainer/UserSide")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

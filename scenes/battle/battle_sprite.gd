@@ -35,14 +35,8 @@ func with_data(p_sprite_type: SPRITE_TYPE) -> void:
 	else:
 		_battler = Global.get_foe_battler(get_index())
 	animator.play("send_out")
-
-
-## Animates this battler switching out and changes battler to the one switching in
-func _on_pokemon_changed(switched_out: Battler, switched_in: Battler, _index_out: int, _index_in: int, _action: BaseEvent = null) -> void:
-	if switched_out.id == _battler.id:
-		_battler = switched_in
-
-
+	
+	
 ## Plays the specified animation if it corresponds to this battler and exists in this battler's AnimationPlayer
 func play_animation(event: AnimationEvent) -> void:
 	if event.animation == "" or event.battler == null:
@@ -51,6 +45,28 @@ func play_animation(event: AnimationEvent) -> void:
 		return
 	event.await_signals.push_back(animator.animation_finished)
 	animator.play(event.animation)
+
+
+## Tweens this battler if is the current target being chosen
+func on_choosing_targets(current_targets: Array[Battler], _move: Move) -> void:
+	_kill_target_tween()
+	if _battler in current_targets and not _battler.is_fainted():
+		_target_tween = create_tween()
+		_target_tween.set_loops()
+		_target_tween.tween_property(self, "modulate:a", 0, 0.2)
+		_target_tween.tween_property(self, "modulate:a", 1.0, 0.2)
+		_target_tween.play()
+
+
+## Cancels the tween when this battler is no longer being chosen
+func cancel_target_choosing() -> void:
+	_kill_target_tween()
+
+
+## Animates this battler switching out and changes battler to the one switching in
+func _on_pokemon_changed(switched_out: Battler, switched_in: Battler, _index_out: int, _index_in: int, _action: BaseEvent = null) -> void:
+	if switched_out.id == _battler.id:
+		_battler = switched_in
 
 
 ## Updates the sprite's texture, offset and scale, depending on type sprite and battler species
@@ -111,19 +127,3 @@ func _kill_target_tween() -> void:
 	if _target_tween and not _battler.is_fainted():
 		_target_tween.kill()
 		modulate.a = 1.0
-
-
-## Tweens this battler if is the current target being chosen
-func on_choosing_targets(current_targets: Array[Battler], _move: Move) -> void:
-	_kill_target_tween()
-	if _battler in current_targets and not _battler.is_fainted():
-		_target_tween = create_tween()
-		_target_tween.set_loops()
-		_target_tween.tween_property(self, "modulate:a", 0, 0.2)
-		_target_tween.tween_property(self, "modulate:a", 1.0, 0.2)
-		_target_tween.play()
-
-
-## Cancels the tween when this battler is no longer being chosen
-func cancel_target_choosing() -> void:
-	_kill_target_tween()

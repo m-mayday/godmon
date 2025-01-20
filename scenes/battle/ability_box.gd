@@ -3,7 +3,6 @@ extends Sprite2D
 
 enum ABILITY_SIDE { ALLY, FOE } ## The two sides this node can belong to
 
-
 @export var name_label: Label
 @export var ability_label: Label
 

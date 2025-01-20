@@ -74,6 +74,26 @@ func play_animation(event: AnimationEvent) -> void:
 	tween.play()
 
 
+## Tweens this databox if its battler is the current target being chosen
+func on_choosing_targets(targets: Array[Battler], _move: Move) -> void:
+	_kill_tween()
+	if _battler in targets and not _battler.is_fainted():
+		_original_position = position
+		_tween = create_tween()
+		_tween.set_loops()
+		_tween.tween_property(self, "position:y", -3, 0.3).as_relative()
+		_tween.tween_property(self, "position:y", 3, 0.3).as_relative()
+		_tween.play()
+
+
+## Cancels the tween when this battler is no longer being chosen and it's not the current one choosing an action
+func cancel_target_choosing() -> void:
+	if _is_choosing_action:
+		_on_battler_ready(_battler)
+	else:
+		_kill_tween()
+
+
 ## Sets the status texture if battler has a status
 func status_set(event: StatusSetEvent) -> void:
 	if event.pokemon.id == _battler.id:
@@ -161,23 +181,3 @@ func _kill_tween() -> void:
 	if _tween and not _battler.is_fainted(): 
 		_tween.kill()
 		position = _original_position
-
-
-## Tweens this databox if its battler is the current target being chosen
-func on_choosing_targets(targets: Array[Battler], _move: Move) -> void:
-	_kill_tween()
-	if _battler in targets and not _battler.is_fainted():
-		_original_position = position
-		_tween = create_tween()
-		_tween.set_loops()
-		_tween.tween_property(self, "position:y", -3, 0.3).as_relative()
-		_tween.tween_property(self, "position:y", 3, 0.3).as_relative()
-		_tween.play()
-
-
-## Cancels the tween when this battler is no longer being chosen and it's not the current one choosing an action
-func cancel_target_choosing() -> void:
-	if _is_choosing_action:
-		_on_battler_ready(_battler)
-	else:
-		_kill_tween()
