@@ -125,10 +125,19 @@ func _on_battle_started(event: BattleStartEvent) -> void:
 	animator.queue("battleback")
 	await animator.animation_changed
 	await animator.animation_finished
-	_display_battle_message("A wild group of Pokemon appeared!", null, true)
+	_display_battle_message("A group of wild Pokemon appeared!", null, true)
 	await _tween.finished
 	await enter
-	_display_battle_message("Go!")
+	var names: String = active_user[0].pokemon.name
+	if len(active_user) > 1:
+		names += ", "
+		for index in range(1, active_user.size()):
+			if index == len(active_user)-1:
+				names += active_user[index].pokemon.name
+			else:
+				names += active_user[index].pokemon.name + ", "
+	names += "!"
+	_display_battle_message("Go! " + names)
 	await _tween.finished
 	await get_tree().create_timer(0.5).timeout
 	animator.play("trainer_send_out")
@@ -141,8 +150,9 @@ func _on_battle_started(event: BattleStartEvent) -> void:
 
 
 func _on_battler_switched(event: SwitchEvent) -> void:
-	_display_battle_message("{0} come back!".format([event.switch_out.pokemon.name]))
-	await _tween.finished
+	if not event.switch_out.is_fainted():
+		_display_battle_message("{0} come back!".format([event.switch_out.pokemon.name]))
+		await _tween.finished
 	await _on_battle_event(AnimationEvent.new("call_back", [event.switch_out]), false)
 	_display_battle_message("Go {0}!".format([event.switch_in.pokemon.name]))
 	await _tween.finished
