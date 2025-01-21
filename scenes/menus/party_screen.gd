@@ -104,9 +104,11 @@ func _on_send_out_pressed() -> void:
 	var battler: Battler = Global.get_player_battler(_selected_slot_index)
 	if battler == null:
 		return
-	if battler.can_switch_in():
+	var switch_in: Array = battler.can_switch_in()
+	if switch_in[0]:
 		switch.emit(_switch_out_battler, battler, _is_instant_switch)
 		_switch_out_battler = null
+	# TODO: else: show message (switch_in[1])
 
 
 func _on_battler_ready(battler: Battler) -> void:

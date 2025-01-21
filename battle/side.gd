@@ -84,20 +84,17 @@ func get_random_switch() -> Battler:
 
 
 ## [Public] Checks if a battler can switch in or not
-func can_switch_in(switch_in: Battler, display_messages: bool = true) -> bool:
+func can_switch_in(switch_in: Battler) -> Array:
 	var message := ""
 	if switch_in not in battlers:
 		message = "This Pokemon doesn't belong to you"
 	elif switch_in in active:
-		message = "Pokemon is already in battle"
+		message = "{0} is already in battle!".format([switch_in.pokemon.name])
 	elif switch_in.is_fainted():
-		message = "Pokemon is fainted"
+		message = "{0} is fainted!".format([switch_in.pokemon.name])
 	else:
 		for battle_switch in switch_in.battle.battle_actions:
 			if battle_switch is SwitchAction and battle_switch.switch_in == switch_in:
-				message = "Will already be switched in"
+				message = "{0} has already been selected!".format([switch_in.pokemon.name])
 				break
-	if message and display_messages:
-		SignalBus.display_message.emit(message)
-		return false
-	return message.is_empty()
+	return [message.is_empty(), message]

@@ -314,7 +314,7 @@ func _end_turn_phase():
 	if len(faint_queue) > 0:
 		var possible_switches: int = 0
 		for battler in sides[0].battlers:
-			if battler.can_switch_in(false):
+			if battler.can_switch_in()[0]:
 				possible_switches += 1
 		for fainted in faint_queue:
 			# TODO: Actually check for player side if necessary, depending on how AI is implemented.

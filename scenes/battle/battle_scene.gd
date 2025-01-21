@@ -34,8 +34,7 @@ func with_data(data: Array) -> void:
 		assert(data[2] is Array, "An array of Pokemon must be provided for wild battle")
 		for pokemon in data[2]:
 			wild_pokemon.append(pokemon)
-			
-	SignalBus.display_message.connect(_display_battle_message)
+
 	SignalBus.battle_started.connect(_on_battle_started)
 	SignalBus.turn_started.connect(_on_turn_started)
 	SignalBus.battler_ready.connect(_set_current_battler)

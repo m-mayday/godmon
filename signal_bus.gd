@@ -1,8 +1,5 @@
 extends Node
 
-signal display_message(message: String)
-
-
 ## Battle signals
 signal battle_started(user_side_active, user_side_team, foe_side_active, foe_side_team) ## Emitted when the battle is setup and starts
 signal battler_ready(battler: Battler) ## Emitted when battler must choose an action

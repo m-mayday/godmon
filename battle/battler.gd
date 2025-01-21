@@ -174,15 +174,15 @@ func is_semi_invulnerable() -> bool:
 
 
 ## [Public] Checks if battler can be switched into battle
-func can_switch_in(display_message: bool = true) -> bool:
-	return side.can_switch_in(self, display_message)
+func can_switch_in() -> Array:
+	return side.can_switch_in(self)
 
 
 ## [Public] Checks if battler can be switched out
 func can_switch_out() -> bool:
 	var allies: Array[Battler] = side.get_allies(self)
 	for ally in allies:
-		if ally.can_switch_in(false):
+		if ally.can_switch_in()[0]:
 			return true
 	return false
 
