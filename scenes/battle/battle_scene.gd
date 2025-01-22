@@ -153,7 +153,7 @@ func _on_battler_switched(event: SwitchEvent) -> void:
 	if not event.switch_out.is_fainted():
 		_display_battle_message("{0} come back!".format([event.switch_out.pokemon.name]))
 		await _tween.finished
-	await _on_battle_event(AnimationEvent.new("call_back", [event.switch_out]), false)
+		await _on_battle_event(AnimationEvent.new("call_back", [event.switch_out]), false)
 	_display_battle_message("Go {0}!".format([event.switch_in.pokemon.name]))
 	await _tween.finished
 	SignalBus.pokemon_changed.emit(event.switch_out, event.switch_in, event.switch_out.get_team_position(), event.switch_in.get_team_position())

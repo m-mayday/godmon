@@ -84,6 +84,9 @@ func _on_slot_cancel_pressed() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		slots_container.get_child(0).grab_focus()
+	else:
+		%SlotOptions.hide()
+		cancel_button.show()
 
 
 ## Get the first visible slot option (usually to grab focus)
