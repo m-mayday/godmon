@@ -40,6 +40,7 @@ func with_data(data: Array) -> void:
 	SignalBus.battler_ready.connect(_set_current_battler)
 	SignalBus.battle_event.connect(_on_battle_event)
 	SignalBus.turn_ended.connect(_target_menu.on_turn_ended)
+	party_screen.screen_closed.connect(_on_party_screen_closed)
 	_battle = Battle.new(Global.player_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
 	_fight_menu.move_chosen.connect(_target_menu.on_move_chosen)
 	_target_menu.target_chosen.connect(_on_target_chosen)
@@ -245,7 +246,15 @@ func _on_target_chosen(target: Battler, move: Move) -> void:
 ## Open up the Pokemon Party Menu
 func _on_battle_menu_switch_pressed() -> void:
 	set_process_input(false)
+	_battle_menu.hide() # To show when screen is closed, so it regrabs focus of the last option
 	party_screen.show()
+	
+
+## Close the Pokemon Party Menu
+func _on_party_screen_closed() -> void:
+	party_screen.hide()
+	_battle_menu.show()
+	set_process_input(true)
 
 
 ## Queues the chosen pokemon switch in battle
