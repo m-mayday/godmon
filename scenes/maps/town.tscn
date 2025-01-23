@@ -2165,7 +2165,7 @@ shape = SubResource("RectangleShape2D_6xgci")
 polygon = PackedVector2Array(248, 544, 248, 576, 312, 576, 312, 536, 352, 536, 352, 512, 280, 512, 280, 544)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="EncounterArea"]
-polygon = PackedVector2Array(72, 520, 72, 552, 32, 552, 32, 576, 136, 576, 136, 536, 152, 536, 152, 528, 168, 528, 168, 512, 144, 512, 144, 520)
+polygon = PackedVector2Array(72, 520, 72, 552, 32, 552, 32, 576, 136, 576, 136, 536, 152, 536, 152, 520, 168, 520, 168, 512, 144, 512, 144, 520)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="EncounterArea"]
 position = Vector2(240, 424)
