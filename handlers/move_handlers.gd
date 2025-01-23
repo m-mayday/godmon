@@ -957,7 +957,7 @@ class UserHPBasePower extends MoveHandler:
 
 
 class BellyDrum extends MoveHandler:
-	func on_move_hit(battle: Battle, user: Battler, _target: Battler) -> void:
+	func on_move_hit(_battle: Battle, user: Battler, _target: Battler) -> void:
 		if user.pokemon.current_hp <= user.pokemon.stats.hp / 2 or user.stat_stages.attack >= 6:
 			return
 		user.damage(user.pokemon.stats.hp / 2)
@@ -989,13 +989,13 @@ class LowerAttackByTwo extends MoveHandler:
 
 class GraduallyStronger extends MoveHandler:
 	func base_power(user: Battler, _target: Battler) -> int:
-		var base_power: int = move.power
+		var power: int = move.power
 		var move_arr: Array = user.battler_flags.get("gradually_stronger", [])
 		if len(move_arr) > 0:
-			base_power *= pow(2, move_arr[2])
+			power *= pow(2, move_arr[2])
 		if user.battler_flags.has("defense_curl"):
-			base_power *= 2
-		return base_power
+			power *= 2
+		return power
 
 	# Might need to move to a different function
 	func on_move_hit(_battle: Battle, user: Battler, target: Battler) -> void:
@@ -1035,12 +1035,12 @@ class Swagger extends MoveHandler:
 
 class FuryCutter extends MoveHandler:
 	func base_power(user: Battler, _target: Battler) -> int:
-		var base_power: int = move.power
+		var power: int = move.power
 		if user.last_move_used != move.id:
 			user.battler_flags.erase("fury_cutter")
 		var hit: int = user.battler_flags.get("fury_cutter", 0) + 1
 		user.battler_flags["fury_cutter"] = hit
-		return clampi(base_power * pow(2, hit-1), 1, 160)
+		return clampi(power * pow(2, hit-1), 1, 160)
 
 	func on_miss(_battle: Battle, user: Battler, _target: Battler) -> void:
 		user.battler_flags.erase("fury_cutter")

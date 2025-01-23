@@ -64,7 +64,7 @@ func move(direction: Vector2) -> void:
 				_current_state = STATE.RUNNING
 				_anim_state.travel("run")
 			else:
-				_current_state == STATE.WALKING
+				_current_state = STATE.WALKING
 				_anim_state.travel("walk")
 			
 			movement_started.emit()
