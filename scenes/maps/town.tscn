@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=24 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Texture2D" uid="uid://c8gbu1dvhm8eg" path="res://assets/tilesets/Outside A5.png" id="1_qveo5"]
 [ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/Outside A2A.png" id="2_oxh25"]
@@ -2122,7 +2122,16 @@ encounters = Array[ExtResource("8_r73tn")]([SubResource("Resource_r73tn"), SubRe
 metadata/_custom_type_script = ExtResource("8_6xgci")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xgci"]
-size = Vector2(32, 64)
+size = Vector2(32, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r73tn"]
+size = Vector2(80, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgcdf"]
+size = Vector2(80, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uiiy6"]
+size = Vector2(176, 64)
 
 [node name="Town" type="Node2D"]
 
@@ -2151,3 +2160,21 @@ encounter_table = SubResource("Resource_uiiy6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
 position = Vector2(208, 592)
 shape = SubResource("RectangleShape2D_6xgci")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EncounterArea"]
+polygon = PackedVector2Array(248, 544, 248, 576, 312, 576, 312, 536, 352, 536, 352, 512, 280, 512, 280, 544)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="EncounterArea"]
+polygon = PackedVector2Array(72, 520, 72, 552, 32, 552, 32, 576, 136, 576, 136, 536, 152, 536, 152, 528, 168, 528, 168, 512, 144, 512, 144, 520)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EncounterArea"]
+position = Vector2(240, 424)
+shape = SubResource("RectangleShape2D_r73tn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EncounterArea"]
+position = Vector2(304, 248)
+shape = SubResource("RectangleShape2D_cgcdf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="EncounterArea"]
+position = Vector2(256, 136)
+shape = SubResource("RectangleShape2D_uiiy6")
