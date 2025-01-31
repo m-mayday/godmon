@@ -36,6 +36,7 @@ func with_data(data: Array) -> void:
 			wild_pokemon.append(pokemon)
 
 	SignalBus.battle_started.connect(_on_battle_started)
+	SignalBus.battle_ended.connect(_on_battle_end)
 	SignalBus.turn_started.connect(_on_turn_started)
 	SignalBus.battler_ready.connect(_set_current_battler)
 	SignalBus.battle_event.connect(_on_battle_event)
@@ -71,9 +72,9 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 		await _on_battler_switched(event)
 	elif event is FaintEvent:
 		await _on_battle_event(AnimationEvent.new("faint", [event.battler]), false)
-		_display_battle_message("{0} fainted!".format([event.battler.pokemon.name]))
+		_display_battle_message("{0} fainted!".format([event.battler.pokemon.name]), null, true)
 		await _tween.finished
-		await get_tree().create_timer(0.3).timeout
+		await enter
 	elif event is AbilityEvent:
 		get_tree().call_group("ability", "ability_activated", event)
 		await _await_event_signals(event)
@@ -292,3 +293,8 @@ func _pop_menu() -> void:
 func _kill_tween() -> void:
 	if _tween:
 		_tween.kill()
+
+
+func _on_battle_end(win: bool) -> void:
+	if win:
+		get_tree().root.get_node("Main").to_previous_scene()

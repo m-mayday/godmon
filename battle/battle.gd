@@ -67,7 +67,6 @@ func battle_start() -> void:
 func queue_move(move: Move, user: Battler, target: Battler = null) -> void:
 	battle_actions.push_back(MoveAction.new(move, user, target, self))
 	user.side.battlers_actioned.push_back(user)
-	user.side.current_battler_index += 1
 	action_chosen.emit()
 
 
@@ -83,7 +82,6 @@ func queue_switch(switch_out: Battler, switch_in: Battler, is_instant_switch: bo
 		_battle_events_processing_phase()
 		return
 	switch_in.side.battlers_actioned.push_back(switch_out)
-	switch_in.side.current_battler_index += 1
 	action_chosen.emit()
 
 
@@ -103,8 +101,9 @@ func unqueue_action(side: Side) -> void:
 				if battle_actions[i].switch_out.id == unqueued_battler.id:
 					battle_actions.remove_at(i)
 					break
-		side.current_battler_index -= 1
-		action_chosen.emit() # A bit of a hack to avoid an infinite loop on command_phase
+		# A bit of a hack to avoid an infinite loop on command_phase
+		side.current_battler_index -= 2
+		action_chosen.emit()
 
 
 ## [Public] Runs an action event for all handlers found for it on the target and user
@@ -252,6 +251,7 @@ func _command_phase():
 			SignalBus.battler_ready.emit(battler)
 			while true:
 				await action_chosen
+				sides[0].current_battler_index +=1
 				break
 		else:
 			sides[0].current_battler_index += 1
@@ -268,7 +268,7 @@ func _command_phase():
 ## It changes the state to PROCESSING_EVENTS after each action and to END_TURN_PHASE after all actions have been executed
 func _attacking_phase():
 	print("\n\n\n")
-	if len(battle_actions) <= 0:
+	if len(battle_actions) <= 0 or _battle_ended(false):
 		_change_state(STATE.END_TURN_PHASE)
 		return
 	var action = battle_actions.pop_back()
@@ -322,6 +322,10 @@ func _end_turn_phase():
 				add_battle_event(RequestSwitchEvent.new(self, fainted, true))
 				possible_switches -= 1
 		faint_queue.clear()
+	
+	if _battle_ended():
+		return
+	
 	add_battle_event(ChangeStateEvent.new(STATE.COMMAND_PHASE))
 	_change_state(STATE.PROCESSING_EVENTS)
 	for side in sides:
@@ -330,6 +334,22 @@ func _end_turn_phase():
 	Global.assign_player_battler_array(sides[0].battlers)
 	Global.assign_foe_battler_array(sides[1].battlers)
 	SignalBus.turn_ended.emit(sides[0].active, sides[1].active)
+
+
+## [Private] Checks if battle has ended (1 side has no more battlers left). Emits battle_ended signal if parameter is true.
+func _battle_ended(emit_end_signal: bool = true) -> bool:
+	var player_side_fainted: bool = sides[0].all_fainted()
+	var foe_side_fainted: bool = sides[1].all_fainted()
+	var ended: bool = false
+	var won: bool = false
+	if (player_side_fainted and foe_side_fainted) or player_side_fainted :
+		ended = true
+	elif foe_side_fainted:
+		ended = true
+		won = true
+	if ended and emit_end_signal:
+		SignalBus.battle_ended.emit(won)
+	return ended
 
 
 ## [Public] Gets targets depending on the move being used and the type of battle

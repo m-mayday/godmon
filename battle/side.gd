@@ -98,3 +98,11 @@ func can_switch_in(switch_in: Battler) -> Array:
 				message = "{0} has already been selected!".format([switch_in.pokemon.name])
 				break
 	return [message.is_empty(), message]
+
+
+## [Public] Checks if all battlers on this side have fainted
+func all_fainted() -> bool:
+	for battler in battlers:
+		if not battler.is_fainted():
+			return false
+	return true

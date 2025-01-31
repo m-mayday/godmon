@@ -2,6 +2,7 @@ extends Node
 
 ## Battle signals
 signal battle_started(user_side_active, user_side_team, foe_side_active, foe_side_team) ## Emitted when the battle is setup and starts
+signal battle_ended(win: bool) ## Emitted when the battle ends
 signal battler_ready(battler: Battler) ## Emitted when battler must choose an action
 signal turn_started() ## Emitted when a new turn starts
 signal turn_ended(side_a_team, side_b_team) ## Emitted after all actions are executed

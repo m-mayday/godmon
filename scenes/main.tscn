@@ -8,43 +8,44 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/path = NodePath("Transition/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_0wfyh"]
-resource_name = "fade_out"
+[sub_resource type="Animation" id="Animation_jyhfs"]
+resource_name = "fade_in"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/path = NodePath("Transition/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jyhfs"]
 _data = {
 &"RESET": SubResource("Animation_sugp2"),
-&"fade_out": SubResource("Animation_0wfyh")
+&"fade_in": SubResource("Animation_jyhfs")
 }
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("current_scene_node", "animator", "canvas")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("current_scene_node", "animator", "transition_layer", "transition_color")]
 script = ExtResource("1_o5qli")
 current_scene_node = NodePath("CurrentScene")
 animator = NodePath("AnimationPlayer")
-canvas = NodePath("CanvasModulate")
+transition_layer = NodePath("Transition")
+transition_color = NodePath("Transition/ColorRect")
 
 [node name="CurrentScene" type="Node" parent="."]
 
@@ -55,4 +56,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_jyhfs")
 }
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="Transition" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
