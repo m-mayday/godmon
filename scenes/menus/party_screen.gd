@@ -32,8 +32,9 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("cancel") or event.is_action_pressed("ui_cancel"):
-		screen_closed.emit()
+	if visible:
+		if event.is_action_pressed("cancel") or event.is_action_pressed("ui_cancel"):
+			screen_closed.emit()
 
 
 ## A battler needs to be switched in, so show the menu
