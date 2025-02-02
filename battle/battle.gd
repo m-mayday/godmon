@@ -30,6 +30,7 @@ var battle_events: Array[BaseEvent] ## Events to run through after an action is 
 var sides: Array[Side] ## Array of sides in battle. There are 2 sides: Player and Opponent.
 var state: STATE = STATE.IDLE ## Current battle state
 var battle_size: Constants.BATTLE_SIZE ## The type of battle, indicating the amount of active battlers per side
+var escaped: bool = false
 
 
 func _init(p_player_team: Array[Pokemon], p_opponent_team: Array[Pokemon], size: Constants.BATTLE_SIZE = Constants.BATTLE_SIZE.NORMAL) -> void:
@@ -83,10 +84,22 @@ func queue_switch(switch_out: Battler, switch_in: Battler, is_instant_switch: bo
 		return
 	switch_in.side.battlers_actioned.push_back(switch_out)
 	action_chosen.emit()
+	
+	
+## [Public] Unqueues all other same side battlers' actions
+## and adds an EscapeAction to battle_actions and the battler to its side battlers_actioned
+func queue_escape(battler: Battler) -> void:
+	for i in battler.side.battlers_actioned.size():
+		unqueue_action(battler.side, false)
+	battle_actions.push_back(EscapeAction.new(battler, self))
+	battler.side.battlers_actioned.clear()
+	battler.side.battlers_actioned.push_back(battler)
+	battler.side.current_battler_index = len(battler.side.active)
+	action_chosen.emit()
 
 
 ## [Public] Rmoves the last action on the side and from battle_actions
-func unqueue_action(side: Side) -> void:
+func unqueue_action(side: Side, choose_new_action: bool = true) -> void:
 	if state != STATE.COMMAND_PHASE or side == null:
 		return
 	if len(side.battlers_actioned) > 0:
@@ -101,9 +114,23 @@ func unqueue_action(side: Side) -> void:
 				if battle_actions[i].switch_out.id == unqueued_battler.id:
 					battle_actions.remove_at(i)
 					break
-		# A bit of a hack to avoid an infinite loop on command_phase
-		side.current_battler_index -= 2
-		action_chosen.emit()
+			elif battle_actions[i] is EscapeAction:
+				if battle_actions[i].battler.id == unqueued_battler.id:
+					battle_actions.remove_at(i)
+					break
+		if choose_new_action:
+			# A bit of a hack to avoid an infinite loop on command_phase
+			side.current_battler_index -= 2
+			action_chosen.emit()
+
+
+## [Public] If it's possible to escape from battle.
+func can_escape(battler: Battler) -> String:
+	if battler not in sides[0].active:
+		return "Can't choose for {0}!"
+	# TODO: trainer battle. Although it's possible to run from them in Gen IX
+	# TODO: abilities or items that prevent escaping
+	return ""
 
 
 ## [Public] Runs an action event for all handlers found for it on the target and user
@@ -193,6 +220,8 @@ func _calculate_priority(is_mid_turn: bool = false) -> void:
 			for priority in priority_modifiers:
 				move_priority += priority
 			action_priority_entry.push_back([action, order, move_priority + sub_priority, battler_speed])
+		elif action is EscapeAction:
+			action_priority_entry.push_back([action, order, 0, action.battler.pokemon.stats.speed])
 	
 	# Sort in reverse so push/pop_back can be used 
 	action_priority_entry.sort_custom(func(a, b) -> bool:
@@ -338,17 +367,21 @@ func _end_turn_phase():
 
 ## [Private] Checks if battle has ended (1 side has no more battlers left). Emits battle_ended signal if parameter is true.
 func _battle_ended(emit_end_signal: bool = true) -> bool:
-	var player_side_fainted: bool = sides[0].all_fainted()
-	var foe_side_fainted: bool = sides[1].all_fainted()
 	var ended: bool = false
 	var won: bool = false
-	if (player_side_fainted and foe_side_fainted) or player_side_fainted :
-		ended = true
-	elif foe_side_fainted:
+	if escaped:
 		ended = true
 		won = true
+	else:
+		var player_side_fainted: bool = sides[0].all_fainted()
+		var foe_side_fainted: bool = sides[1].all_fainted()
+		if (player_side_fainted and foe_side_fainted) or player_side_fainted :
+			ended = true
+		elif foe_side_fainted:
+			ended = true
+			won = true
 	if ended and emit_end_signal:
-		SignalBus.battle_ended.emit(won)
+			SignalBus.battle_ended.emit(won)
 	return ended
 
 

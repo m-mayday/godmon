@@ -3,6 +3,7 @@ extends NinePatchRect
 
 signal switch_pressed
 signal fight_pressed
+signal run_pressed
 
 @export var options_container: GridContainer
 
@@ -30,3 +31,9 @@ func _on_switch_pressed() -> void:
 func _on_fight_pressed() -> void:
 	_last_selected = 0
 	fight_pressed.emit()
+
+
+## Changes the last_selected to fight option and emits run_pressed
+func _on_run_pressed() -> void:
+	_last_selected = 3
+	run_pressed.emit()

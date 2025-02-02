@@ -263,7 +263,14 @@ func _on_pokemon_menu_switch(switch_out: Battler, switch_in: Battler, is_instant
 	_battle.queue_switch(switch_out, switch_in, is_instant_switch)
 	party_screen.hide()
 	set_process_input(true)
-	
+
+
+## Queues action to try to escape from battle
+func _on_battle_menu_run_pressed() -> void:
+	var run_message: String = _battle.can_escape(_current_battler)
+	if run_message == "":
+		_battle.queue_escape(_current_battler)
+
 
 ## Pushes a menu into the ui_stack if it's not in it yet
 func _push_menu(control: Control) -> void:

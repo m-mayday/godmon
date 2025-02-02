@@ -114,3 +114,4 @@ vertical_alignment = 1
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="pressed" from="GridContainer/Fight" to="." method="_on_fight_pressed"]
 [connection signal="pressed" from="GridContainer/Switch" to="." method="_on_switch_pressed"]
+[connection signal="pressed" from="GridContainer/Run" to="." method="_on_run_pressed"]

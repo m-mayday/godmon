@@ -8,6 +8,7 @@ var active: Array[Battler] ## All active battlers on this side
 var side_flags: Dictionary ## Flags that affect side
 var battlers_actioned: Array[Battler] ## The active battlers that have chosen an action
 var current_battler_index: int = 0 ## The index of the current active battler choosing an action
+var escape_attempts: int = 0 ## Current escape attempts, makes it easier to escape the higher it is
 
 
 func _init(team: Array[Battler], size: int = 1):
