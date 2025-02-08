@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://c3jmut8lgkcj0"
+path="res://.godot/imported/blue_house.dialogue-f84219caee6acfd806c0e647d73f87dd.tres"
+
+[deps]
+
+source_file="res://scenes/maps/town/dialogue/blue_house.dialogue"
+dest_files=["res://.godot/imported/blue_house.dialogue-f84219caee6acfd806c0e647d73f87dd.tres"]
+
+[params]
+
+defaults=true

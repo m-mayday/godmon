@@ -21,6 +21,7 @@ var _selected_option: Button = null ## Current option that was selected, to grab
 
 
 func _ready() -> void:
+	SignalBus.input_paused.connect(_on_input_paused)
 	menu.hide()
 
 
@@ -33,7 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		first_option.grab_focus()
 		get_tree().paused = true
 		process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-	elif event.is_action_pressed("cancel"):
+	elif event.is_action_pressed("cancel") and menu.visible:
 		menu.hide()
 		get_tree().paused = false
 		process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -47,6 +48,10 @@ func _on_prevent_pausing() -> void:
 ## Resumes handling input
 func _on_allow_pausing() -> void:
 	set_process_unhandled_input(true)
+	
+	
+func _on_input_paused(paused: bool) -> void:
+	set_process_unhandled_input(!paused)
 
 
 ## Instantiate the right screen when an option is pressed

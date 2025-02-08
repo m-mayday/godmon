@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://bm5rbiqaj4tbk"
+path="res://.godot/imported/red_house.dialogue-f12f0bf5c44cc9767e8f6863f086789e.tres"
+
+[deps]
+
+source_file="res://scenes/maps/town/dialogue/red_house.dialogue"
+dest_files=["res://.godot/imported/red_house.dialogue-f12f0bf5c44cc9767e8f6863f086789e.tres"]
+
+[params]
+
+defaults=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=30 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Texture2D" uid="uid://c8gbu1dvhm8eg" path="res://assets/tilesets/Outside A5.png" id="1_qveo5"]
 [ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/Outside A2A.png" id="2_oxh25"]
@@ -9,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://ch6u6x5ill6rs" path="res://scenes/maps/encounter_area.tscn" id="7_j5q7k"]
 [ext_resource type="Script" path="res://data/_base_classes/encounter_table.gd" id="8_6xgci"]
 [ext_resource type="Script" path="res://data/_base_classes/encounter.gd" id="8_r73tn"]
+[ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="10_cgcdf"]
+[ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
+[ext_resource type="Resource" uid="uid://bm5rbiqaj4tbk" path="res://scenes/maps/town/dialogue/red_house.dialogue" id="12_fffuf"]
+[ext_resource type="Resource" uid="uid://dr2nf3uc3rl7k" path="res://scenes/maps/town/dialogue/trainer_tips.dialogue" id="13_k4x0e"]
+[ext_resource type="Resource" uid="uid://bxh7hcbi8d2he" path="res://scenes/maps/town/dialogue/girl_npc.dialogue" id="14_7avvi"]
+[ext_resource type="Resource" uid="uid://bcej05h2cp0od" path="res://scenes/maps/town/dialogue/oak_lab.dialogue" id="15_oti17"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgcdf"]
 texture = ExtResource("1_qveo5")
@@ -2155,8 +2161,6 @@ tile_map_data = PackedByteArray("AAACACUAAAAAAAEAAAADACUAAAABAAEAAAAEACUAAAAAAAE
 tile_set = SubResource("TileSet_6esvp")
 
 [node name="EncounterArea" parent="." instance=ExtResource("7_j5q7k")]
-collision_layer = 2
-collision_mask = 1
 encounter_table = SubResource("Resource_uiiy6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
@@ -2180,3 +2184,28 @@ shape = SubResource("RectangleShape2D_cgcdf")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="EncounterArea"]
 position = Vector2(256, 136)
 shape = SubResource("RectangleShape2D_uiiy6")
+
+[node name="Dialogue7" type="Node" parent="."]
+
+[node name="Blue" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+position = Vector2(216, 760)
+
+[node name="Town" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+position = Vector2(152, 824)
+dialogue = ExtResource("11_603mb")
+
+[node name="Red" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+position = Vector2(72, 760)
+dialogue = ExtResource("12_fffuf")
+
+[node name="Tip" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+position = Vector2(88, 872)
+dialogue = ExtResource("13_k4x0e")
+
+[node name="NPC" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+position = Vector2(136, 856)
+dialogue = ExtResource("14_7avvi")
+
+[node name="Lab" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+position = Vector2(264, 888)
+dialogue = ExtResource("15_oti17")

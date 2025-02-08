@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://cuwp1mp0m56ba"
+path="res://.godot/imported/town_sign.dialogue-afd6656c51264b9398de8160b9fdffa0.tres"
+
+[deps]
+
+source_file="res://scenes/maps/town/dialogue/town_sign.dialogue"
+dest_files=["res://.godot/imported/town_sign.dialogue-afd6656c51264b9398de8160b9fdffa0.tres"]
+
+[params]
+
+defaults=true

@@ -10,3 +10,5 @@ signal battle_event(event: BaseEvent) ## Emitted for each battle event in a turn
 signal event_handled() ## Emitted when a battle event is finished
 signal ability_activated(event: AbilityEvent) ## Emitted when an ability activates
 signal pokemon_changed(switched_out: Battler, switched_in: Battler, index_out: int, index_in: int) ## Emitted when a battler switches in
+
+signal input_paused(paused: bool) ## Emitted when input should be paused or unpaused

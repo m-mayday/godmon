@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://bcej05h2cp0od"
+path="res://.godot/imported/oak_lab.dialogue-bf520504327f8c08b3791bb69bdd361e.tres"
+
+[deps]
+
+source_file="res://scenes/maps/town/dialogue/oak_lab.dialogue"
+dest_files=["res://.godot/imported/oak_lab.dialogue-bf520504327f8c08b3791bb69bdd361e.tres"]
+
+[params]
+
+defaults=true
