@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://2sxaveov18qb"]
+
+[ext_resource type="Texture2D" uid="uid://c67pep116xdmr" path="res://assets/battle/ui/text_advance_arrow.png" id="1_ja6dw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwwr5"]
+atlas = ExtResource("1_ja6dw")
+region = Rect2(0, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgbdg"]
+atlas = ExtResource("1_ja6dw")
+region = Rect2(10, 0, 10, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnpnm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwwr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgbdg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="InputArrow" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_dnpnm")

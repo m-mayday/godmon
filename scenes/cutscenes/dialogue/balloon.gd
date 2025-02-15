@@ -7,6 +7,8 @@ extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+@export_enum("OVERWLORD", "BATTLE") var context: String = "OVERWORLD"
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -32,7 +34,9 @@ var dialogue_line: DialogueLine:
 			apply_dialogue_line()
 		else:
 			# The dialogue has finished so close the balloon
-			queue_free()
+			if context != "BATTLE":
+				queue_free()
+			
 	get:
 		return dialogue_line
 
@@ -98,6 +102,7 @@ func apply_dialogue_line() -> void:
 	mutation_cooldown.stop()
 
 	is_waiting_for_input = false
+	$InputArrow.visible = false
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
 
@@ -131,6 +136,18 @@ func apply_dialogue_line() -> void:
 		is_waiting_for_input = true
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
+		if dialogue_line.icon:
+			# I hope these calculations are temporary (width doesn't even work properly)
+			$InputArrow.global_position = %DialogueLabel.global_position
+			var lines: int = %DialogueLabel.get_line_count()
+			var height: int = %DialogueLabel.get_content_height()
+			if lines > 1:
+				height = %DialogueLabel.get_content_height() / 2 + %DialogueLabel.get_content_height() / 4
+			else:
+				height /= 2
+			$InputArrow.global_position += Vector2(%DialogueLabel.get_content_width() + 32, height - 7)
+			$InputArrow.visible = true
+			$InputArrow.play()
 
 
 ## Go to the next line
@@ -171,7 +188,7 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		next(dialogue_line.next_id)
-	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
+	elif event.is_action_released(next_action) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
 
 
