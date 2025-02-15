@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=31 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Texture2D" uid="uid://c8gbu1dvhm8eg" path="res://assets/tilesets/Outside A5.png" id="1_qveo5"]
 [ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/Outside A2A.png" id="2_oxh25"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://data/_base_classes/encounter.gd" id="8_r73tn"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="10_cgcdf"]
 [ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
+[ext_resource type="PackedScene" uid="uid://ciggbtucojvh7" path="res://scenes/cutscenes/dialogue/balloon_signs.tscn" id="11_tpn7j"]
 [ext_resource type="Resource" uid="uid://bm5rbiqaj4tbk" path="res://scenes/maps/town/dialogue/red_house.dialogue" id="12_fffuf"]
 [ext_resource type="Resource" uid="uid://dr2nf3uc3rl7k" path="res://scenes/maps/town/dialogue/trainer_tips.dialogue" id="13_k4x0e"]
 [ext_resource type="Resource" uid="uid://bxh7hcbi8d2he" path="res://scenes/maps/town/dialogue/girl_npc.dialogue" id="14_7avvi"]
@@ -2185,27 +2186,32 @@ shape = SubResource("RectangleShape2D_cgcdf")
 position = Vector2(256, 136)
 shape = SubResource("RectangleShape2D_uiiy6")
 
-[node name="Dialogue7" type="Node" parent="."]
+[node name="Dialogue" type="Node" parent="."]
 
-[node name="Blue" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+[node name="Blue" parent="Dialogue" instance=ExtResource("10_cgcdf")]
 position = Vector2(216, 760)
+balloon = ExtResource("11_tpn7j")
 
-[node name="Town" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+[node name="Town" parent="Dialogue" instance=ExtResource("10_cgcdf")]
 position = Vector2(152, 824)
 dialogue = ExtResource("11_603mb")
+balloon = ExtResource("11_tpn7j")
 
-[node name="Red" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+[node name="Red" parent="Dialogue" instance=ExtResource("10_cgcdf")]
 position = Vector2(72, 760)
 dialogue = ExtResource("12_fffuf")
+balloon = ExtResource("11_tpn7j")
 
-[node name="Tip" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+[node name="Tip" parent="Dialogue" instance=ExtResource("10_cgcdf")]
 position = Vector2(88, 872)
 dialogue = ExtResource("13_k4x0e")
+balloon = ExtResource("11_tpn7j")
 
-[node name="NPC" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+[node name="NPC" parent="Dialogue" instance=ExtResource("10_cgcdf")]
 position = Vector2(136, 856)
 dialogue = ExtResource("14_7avvi")
 
-[node name="Lab" parent="Dialogue7" instance=ExtResource("10_cgcdf")]
+[node name="Lab" parent="Dialogue" instance=ExtResource("10_cgcdf")]
 position = Vector2(264, 888)
 dialogue = ExtResource("15_oti17")
+balloon = ExtResource("11_tpn7j")
