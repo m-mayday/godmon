@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf8icqs8aj2cw"]
+[gd_scene load_steps=5 format=3 uid="uid://cf8icqs8aj2cw"]
 
 [ext_resource type="Script" path="res://scenes/battle/target_menu.gd" id="1_50osn"]
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_264xs"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_o7k4u"]
+[ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/interact_shortcut.tres" id="4_i3553"]
 
 [node name="TargetMenu" type="NinePatchRect" node_paths=PackedStringArray("foe_side", "user_side")]
 anchors_preset = 15
@@ -40,14 +41,16 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Battler1" type="Button" parent="MarginContainer/VBoxContainer/FoeSide"]
+[node name="Battler1" type="Button" parent="MarginContainer/VBoxContainer/FoeSide" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = ExtResource("3_o7k4u")
+shortcut = ExtResource("4_i3553")
 flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FoeSide/Battler1"]
@@ -65,14 +68,16 @@ theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
 text = "Foe 1"
 vertical_alignment = 1
 
-[node name="Battler2" type="Button" parent="MarginContainer/VBoxContainer/FoeSide"]
+[node name="Battler2" type="Button" parent="MarginContainer/VBoxContainer/FoeSide" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = ExtResource("3_o7k4u")
+shortcut = ExtResource("4_i3553")
 flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FoeSide/Battler2"]
@@ -90,14 +95,16 @@ theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
 text = "Foe 2"
 vertical_alignment = 1
 
-[node name="Battler3" type="Button" parent="MarginContainer/VBoxContainer/FoeSide"]
+[node name="Battler3" type="Button" parent="MarginContainer/VBoxContainer/FoeSide" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = ExtResource("3_o7k4u")
+shortcut = ExtResource("4_i3553")
 flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FoeSide/Battler3"]
@@ -119,14 +126,16 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Battler1" type="Button" parent="MarginContainer/VBoxContainer/UserSide"]
+[node name="Battler1" type="Button" parent="MarginContainer/VBoxContainer/UserSide" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = ExtResource("3_o7k4u")
+shortcut = ExtResource("4_i3553")
 flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/UserSide/Battler1"]
@@ -144,14 +153,16 @@ theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
 text = "Ally 1"
 vertical_alignment = 1
 
-[node name="Battler2" type="Button" parent="MarginContainer/VBoxContainer/UserSide"]
+[node name="Battler2" type="Button" parent="MarginContainer/VBoxContainer/UserSide" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = ExtResource("3_o7k4u")
+shortcut = ExtResource("4_i3553")
 flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/UserSide/Battler2"]
@@ -169,14 +180,16 @@ theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
 text = "Ally 2"
 vertical_alignment = 1
 
-[node name="Battler3" type="Button" parent="MarginContainer/VBoxContainer/UserSide"]
+[node name="Battler3" type="Button" parent="MarginContainer/VBoxContainer/UserSide" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = ExtResource("3_o7k4u")
+shortcut = ExtResource("4_i3553")
 flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/UserSide/Battler3"]

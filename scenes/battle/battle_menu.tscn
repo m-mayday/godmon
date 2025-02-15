@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfhq7istddlx"]
+[gd_scene load_steps=5 format=3 uid="uid://cfhq7istddlx"]
 
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7o8ru"]
 [ext_resource type="Script" path="res://scenes/battle/battle_menu.gd" id="1_fp6dl"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_qiefk"]
+[ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/interact_shortcut.tres" id="4_vphip"]
 
 [node name="BattleMenu" type="NinePatchRect" node_paths=PackedStringArray("options_container")]
 anchors_preset = 15
@@ -29,12 +30,14 @@ theme_override_constants/h_separation = -16
 theme_override_constants/v_separation = -16
 columns = 2
 
-[node name="Fight" type="Button" parent="GridContainer"]
+[node name="Fight" type="Button" parent="GridContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(90, 24)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+shortcut_context = NodePath(".")
 theme_override_styles/focus = ExtResource("3_qiefk")
+shortcut = ExtResource("4_vphip")
 flat = true
 
 [node name="Label" type="Label" parent="GridContainer/Fight"]
@@ -48,14 +51,16 @@ theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
 text = "   FIGHT   "
 vertical_alignment = 1
 
-[node name="Bag" type="Button" parent="GridContainer"]
+[node name="Bag" type="Button" parent="GridContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(90, 24)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = ExtResource("3_qiefk")
+shortcut = ExtResource("4_vphip")
 flat = true
 
 [node name="Label" type="Label" parent="GridContainer/Bag"]
@@ -69,14 +74,16 @@ theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
 text = "   BAG"
 vertical_alignment = 1
 
-[node name="Switch" type="Button" parent="GridContainer"]
+[node name="Switch" type="Button" parent="GridContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(90, 24)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = ExtResource("3_qiefk")
+shortcut = ExtResource("4_vphip")
 flat = true
 
 [node name="Label" type="Label" parent="GridContainer/Switch"]
@@ -90,14 +97,16 @@ theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
 text = "    POKéMON"
 vertical_alignment = 1
 
-[node name="Run" type="Button" parent="GridContainer"]
+[node name="Run" type="Button" parent="GridContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(90, 24)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = ExtResource("3_qiefk")
+shortcut = ExtResource("4_vphip")
 flat = true
 
 [node name="Label" type="Label" parent="GridContainer/Run"]
