@@ -28,7 +28,7 @@ func _ready():
 func _input(event):
 	if !visible or len(targets) <= 0:
 		return
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("interact"):
 		if _move.target not in [Constants.MOVE_TARGET.SINGLE_ADJACENT, Constants.MOVE_TARGET.SINGLE_ADJACENT_ALLY, Constants.MOVE_TARGET.SINGLE_ADJACENT_FOE, Constants.MOVE_TARGET.SINGLE_ALLY_OR_USER, Constants.MOVE_TARGET.SINGLE_BUT_USER]:
 			target_chosen.emit(targets[0], _move)
 
