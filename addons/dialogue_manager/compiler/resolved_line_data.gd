@@ -11,7 +11,8 @@ var speeds: Dictionary = {}
 var mutations: Array[Array] = []
 ## A duration reference for the line. Represented as "auto" or a stringified number.
 var time: String = ""
-
+## If "input" icon should be shown at the end.
+var icon: bool = false
 
 func _init(line: String) -> void:
 	text = line
@@ -39,7 +40,7 @@ func _init(line: String) -> void:
 	var accumulaive_length_offset = 0
 	for position in bbcode_positions:
 		# Ignore our own markers
-		if position.code in ["wait", "speed", "/speed", "do", "do!", "set", "next", "if", "else", "/if"]:
+		if position.code in ["wait", "speed", "/speed", "do", "do!", "set", "next", "if", "else", "/if", "icon"]:
 			continue
 
 		bbcodes.append({
@@ -92,6 +93,8 @@ func _init(line: String) -> void:
 				mutations.append([index, args.get("value")])
 			"next":
 				time = args.get("value") if args.has("value") else "0"
+			"icon":
+				icon = true
 
 		# Find any BB codes that are after this index and remove the length from their start
 		var length = bbcode.bbcode.length()

@@ -56,6 +56,7 @@ var mutation: Dictionary = {}
 ## The conditions to check before including this line in the flow of dialogue. If failed the line will be skipped over.
 var conditions: Dictionary = {}
 
+var icon: bool = false
 
 func _init(data: Dictionary = {}) -> void:
 	if data.size() > 0:
@@ -77,7 +78,7 @@ func _init(data: Dictionary = {}) -> void:
 				time = data.get("time", "")
 				tags = data.get("tags", [])
 				concurrent_lines = data.get("concurrent_lines", [] as Array[DialogueLine])
-
+				icon = data.get("icon", false)
 			DMConstants.TYPE_MUTATION:
 				mutation = data.mutation
 

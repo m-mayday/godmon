@@ -566,7 +566,8 @@ func create_dialogue_line(data: Dictionary, extra_game_states: Array) -> Dialogu
 				inline_mutations = resolved_data.mutations,
 				time = resolved_data.time,
 				tags = data.get(&"tags", []),
-				extra_game_states = extra_game_states
+				extra_game_states = extra_game_states,
+				icon = resolved_data.icon
 			})
 
 		DMConstants.TYPE_RESPONSE:
