@@ -119,7 +119,6 @@ class LockedMove extends FlagHandler:
 			battler.battler_flags.erase("lockedmove")
 			battler.battler_flags["confusion"] = [
 				FlagHandler.get_flag_handler(Constants.FLAGS.CONFUSION, battler),
-				locked[2],
 				battle.random_range(1, 4),
 			]
 
