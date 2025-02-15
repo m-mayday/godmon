@@ -8,7 +8,7 @@ signal enter ## Emitted when the user presses enter
 @export var pokemon_sprite: Resource ## The sprite node to use
 @export var party_screen: CanvasLayer ## Party screen for switches
 @export var message_box: NinePatchRect ## The box where messages are displayed
-@export var message_label: RichTextLabel ## Where messages are written to
+@export var message_balloon: CanvasLayer ## Balloon to use to show messages
 
 ## The different menus in battle
 @export var _fight_menu: Control
@@ -20,7 +20,7 @@ signal enter ## Emitted when the user presses enter
 var _battle: Battle ## Reference to the current battle
 var _ui_stack: Array[Control] = [] ## Stack of menus (Choose action, choose move, choose target, etc.)
 var _current_battler: Battler ## Current battler choosing an action
-var _tween: Tween
+
 
 var text_advance_arrow_path: String = "res://Assets/Battle/UI/text_advance_arrow.png" # I will leave this like so for now
 	
@@ -53,7 +53,7 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 			await _on_battle_started(event)
 	elif event is BattleDialogueEvent:
 		_display_battle_message(event.text, null, event.should_wait_input)
-		await _tween.finished
+		await DialogueManager.dialogue_ended
 		if event.should_wait_input:
 			await enter
 	elif event is AnimationEvent:
@@ -66,6 +66,7 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 		get_tree().call_group("battlers", "status_set", event)
 		await _await_event_signals(event)
 	elif event is RequestSwitchEvent:
+		message_balloon.hide()
 		party_screen.request_switch(event)
 		await _await_event_signals(event)
 	elif event is SwitchEvent:
@@ -73,7 +74,7 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 	elif event is FaintEvent:
 		await _on_battle_event(AnimationEvent.new("faint", [event.battler]), false)
 		_display_battle_message("{0} fainted!".format([event.battler.pokemon.name]), null, true)
-		await _tween.finished
+		await DialogueManager.dialogue_ended
 		await enter
 	elif event is AbilityEvent:
 		get_tree().call_group("ability", "ability_activated", event)
@@ -97,9 +98,9 @@ func _await_event_signals(event: BaseEvent) -> void:
 
 
 func _input(event):
-	if event.is_action_released("ui_accept"):
+	if event.is_action_released("interact"):
 		enter.emit()
-	elif event.is_action_pressed("ui_cancel"):
+	elif event.is_action_pressed("cancel"):
 		if _ui_stack.size() > 1:
 			_pop_menu()
 		elif _current_battler != null:
@@ -113,7 +114,7 @@ func _on_turn_started() -> void:
 ## Passes the current battler to some nodes
 func _set_current_battler(battler: Battler) -> void:
 	_current_battler = battler
-	message_label.text = "What will {0} do?".format([battler.pokemon.name])
+	_display_battle_message("What will {0} do?".format([battler.pokemon.name]), null, false, true)
 	_push_menu(_battle_menu)
 
 
@@ -128,8 +129,7 @@ func _on_battle_started(event: BattleStartEvent) -> void:
 	await animator.animation_changed
 	await animator.animation_finished
 	_display_battle_message("A group of wild Pokemon appeared!", null, true)
-	await _tween.finished
-	await enter
+	await DialogueManager.dialogue_ended
 	var names: String = active_user[0].pokemon.name
 	if len(active_user) > 1:
 		names += ", "
@@ -140,7 +140,7 @@ func _on_battle_started(event: BattleStartEvent) -> void:
 				names += active_user[index].pokemon.name + ", "
 	names += "!"
 	_display_battle_message("Go! " + names)
-	await _tween.finished
+	await DialogueManager.dialogue_ended
 	await get_tree().create_timer(0.5).timeout
 	animator.play("trainer_send_out")
 	await animator.animation_finished
@@ -154,10 +154,10 @@ func _on_battle_started(event: BattleStartEvent) -> void:
 func _on_battler_switched(event: SwitchEvent) -> void:
 	if not event.switch_out.is_fainted():
 		_display_battle_message("{0} come back!".format([event.switch_out.pokemon.name]))
-		await _tween.finished
+		await DialogueManager.dialogue_ended
 		await _on_battle_event(AnimationEvent.new("call_back", [event.switch_out]), false)
 	_display_battle_message("Go {0}!".format([event.switch_in.pokemon.name]))
-	await _tween.finished
+	await DialogueManager.dialogue_ended
 	SignalBus.pokemon_changed.emit(event.switch_out, event.switch_in, event.switch_out.get_team_position(), event.switch_in.get_team_position())
 	await _on_battle_event(AnimationEvent.new("send_out", [event.switch_in]), false)
 
@@ -203,26 +203,24 @@ func _setup_side(battlers: Array[Battler], is_player_side: bool) -> void:
 
 
 ## Displays a battle message
-func _display_battle_message(message: String, action: BattleDialogueEvent = null, wait_input: bool = false) -> void:
-	_kill_tween()
-	# Animate letters appearing
-	message_label.visible_ratio = 0.0
-	message_label.text = message
-	_tween = get_tree().create_tween()
-	_tween.tween_property(message_label, "visible_ratio", 1.0, 0.8)
-	
-	# Check if should wait for input
+func _display_battle_message(message: String, action: BattleDialogueEvent = null, wait_input: bool = false, instant:bool = false) -> void:
+	message_balloon.show()
+	var text = "~ start\n"+message
 	if (action != null and action.should_wait_input) or wait_input:
-		# TODO: Animate arrow
-		message_label.append_text(" [img=24 region=0,0,10,7]"+text_advance_arrow_path+"[/img]") # 24 is the width
-	elif action != null:
-		action.await_signals.push_back(_tween.finished)
-	_tween.play()
+		text += "[icon]"
+	else:
+		text += "[next=0.4]"
+	text += "\n=> END"
+	var resource = DialogueManager.create_resource_from_text(text)
+	message_balloon.start(resource, "start")
+	if instant:
+		message_balloon.dialogue_label.skip_typing()
 
 
 ## Pushes the fight menu in the ui_stack
 func _on_battle_menu_fight_pressed() -> void:
 	_push_menu(_fight_menu)
+	message_balloon.hide()
 
 
 ## Pushes the target menu in the ui_stack
@@ -278,8 +276,6 @@ func _push_menu(control: Control) -> void:
 		_ui_stack.back().hide()
 	if control not in _ui_stack:
 		_ui_stack.push_back(control)
-	if control == _target_menu:
-		message_box.hide()
 	control.show()
 
 
@@ -296,12 +292,7 @@ func _pop_menu() -> void:
 		message_box.show()
 
 
-## Kills the _tween to stop any looping animations
-func _kill_tween() -> void:
-	if _tween:
-		_tween.kill()
-
-
+## Returning to previous scene when battle ends
 func _on_battle_end(win: bool) -> void:
 	if win:
 		get_tree().root.get_node("Main").to_previous_scene()

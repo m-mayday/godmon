@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d0d7xsr8ntfjk"]
+[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
 
 [ext_resource type="Script" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
 [ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://olwv2a6i376h" path="res://assets/red_back.png" id="9_gs2os"]
 [ext_resource type="Texture2D" uid="uid://d27vygdgddeqg" path="res://assets/poke_balls.png" id="9_vogny"]
 [ext_resource type="Texture2D" uid="uid://b8h7feuujfllj" path="res://assets/battle/ui/grass_battleback_0.png" id="11_viky4"]
+[ext_resource type="PackedScene" uid="uid://ddyxe1m3u6mth" path="res://scenes/cutscenes/dialogue/balloon_battle.tscn" id="12_tc5fe"]
 [ext_resource type="Texture2D" uid="uid://vun8u75k2w74" path="res://assets/battle/ui/grass_intro.png" id="13_abmdw"]
 [ext_resource type="PackedScene" uid="uid://bv5p4qx8ddr0v" path="res://scenes/battle/animator.tscn" id="18_cr648"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="19_tpsmh"]
@@ -445,14 +446,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("party_screen", "message_box", "message_label", "_fight_menu", "_battle_menu", "_target_menu", "animator")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("party_screen", "message_box", "message_balloon", "_fight_menu", "_battle_menu", "_target_menu", "animator")]
 script = ExtResource("1_hrc2y")
 player_single_databox = ExtResource("2_tc5fe")
 pokemon_databox = ExtResource("2_cbhpy")
 pokemon_sprite = ExtResource("3_fssma")
 party_screen = NodePath("PartyScreen")
 message_box = NodePath("CanvasLayer/MessageBox")
-message_label = NodePath("CanvasLayer/MessageBox/MarginContainer/MessageLabel")
+message_balloon = NodePath("CanvasLayer/MessageBox/BalloonBattle")
 _fight_menu = NodePath("CanvasLayer/FightMenu")
 _battle_menu = NodePath("CanvasLayer/BattleMenu")
 _target_menu = NodePath("CanvasLayer/TargetMenu")
@@ -581,31 +582,9 @@ patch_margin_top = 7
 patch_margin_right = 8
 patch_margin_bottom = 7
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MessageBox"]
-custom_minimum_size = Vector2(232, 48)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="MessageLabel" type="RichTextLabel" parent="CanvasLayer/MessageBox/MarginContainer"]
-unique_name_in_owner = true
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_shadow_color = Color(0.407843, 0.345098, 0.439216, 1)
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_outline_size = 4
-bbcode_enabled = true
-fit_content = true
-autowrap_mode = 0
+[node name="BalloonBattle" parent="CanvasLayer/MessageBox" instance=ExtResource("12_tc5fe")]
+visible = false
+context = "BATTLE"
 
 [node name="BattleMenu" parent="CanvasLayer" instance=ExtResource("2_i5pvj")]
 visible = false
