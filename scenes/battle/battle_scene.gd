@@ -289,6 +289,8 @@ func _pop_menu() -> void:
 		_ui_stack.back().show()
 	if pop_ui == _target_menu:
 		get_tree().call_group("battlers", "cancel_target_choosing")
+	elif pop_ui == _fight_menu:
+		_display_battle_message("What will {0} do?".format([_current_battler.pokemon.name]), null, false, true)
 		message_box.show()
 
 
