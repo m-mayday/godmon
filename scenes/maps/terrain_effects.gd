@@ -32,7 +32,10 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 ## Applies effects if the node is in a terrain cell
 func _on_node_in_cell() -> void:
 	if _cell_data != null:
-		var terrain: String = _cell_data.get_custom_data("terrain")
+		var data: Variant = _cell_data.get_custom_data("terrain")
+		var terrain: String = ""
+		if data != null:
+			terrain = data as String
 		if terrain == "GRASS":
 			if grass_overlay_texture != null:
 				_grass_overlay_rect = TextureRect.new()

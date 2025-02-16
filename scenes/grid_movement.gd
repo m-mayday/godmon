@@ -5,7 +5,7 @@ signal movement_finished
 signal turning_started
 signal turning_finished
 
-enum STATE {IDLE, WALKING, RUNNING, TURNING}
+enum STATE {IDLE, WALKING, RUNNING, TURNING, JUMPING}
 enum DIRECTION {UP, DOWN, RIGHT, LEFT}
 
 const ANIMATION_PARAMETERS: Dictionary[String, String] = {
@@ -33,7 +33,7 @@ func _ready():
 
 
 func move(direction: Vector2) -> void:
-	if _current_state == STATE.TURNING:
+	if _current_state == STATE.TURNING or _current_state == STATE.JUMPING:
 		return
 	elif moving_direction == Vector2.ZERO && direction != Vector2.ZERO:
 		for key in ANIMATION_PARAMETERS.keys():
@@ -71,6 +71,23 @@ func move(direction: Vector2) -> void:
 			var tween = create_tween()
 			tween.tween_property(entity, "position", new_position, current_speed).set_trans(Tween.TRANS_LINEAR)
 			tween.tween_callback(_movement_finsished)
+		elif _should_jump(movement):
+				var mid_position: Vector2 = entity.position
+				if movement == Vector2.LEFT or movement == Vector2.RIGHT:
+					mid_position.x += (Constants.TILE_SIZE / 2) * movement.x
+
+				moving_direction = movement
+				
+				var new_position = entity.global_position + (moving_direction * Constants.TILE_SIZE * 2)
+				_current_state = STATE.JUMPING
+				_anim_state.travel("walk")
+				movement_started.emit()
+				mid_position.y -= Constants.TILE_SIZE / 2  # Move up slightly
+
+				var tween = create_tween()
+				tween.tween_property(entity, "position", mid_position, 0.2)
+				tween.tween_property(entity, "position", new_position, 0.2)
+				tween.tween_callback(_movement_finsished)
 
 
 ## Gets new facing direction according to input
@@ -108,3 +125,34 @@ func _animation_finished(anim: StringName) -> void:
 	if anim.begins_with("turn"):
 		_current_state = STATE.IDLE
 		turning_finished.emit()
+
+
+## Determines if the player is colliding with a ledge and should jump it
+func _should_jump(movement: Vector2) -> bool:
+	var collider: Object = $RayCast2D.get_collider()
+	if collider is TileMapLayer:
+		var layer: TileMapLayer = collider as TileMapLayer
+		var body_rid: RID = $RayCast2D.get_collider_rid()
+		var cell_data: TileData = layer.get_cell_tile_data(layer.get_coords_for_body_rid(body_rid))
+		var data: Variant = cell_data.get_custom_data("ledge")
+		var ledge: Vector2 = Vector2.ZERO
+		if data != null:
+			ledge = data as Vector2
+		if ledge != Vector2.ZERO:
+			var can_jump: bool = false
+			if movement == Vector2.LEFT and ledge.x == -1: can_jump = true
+			elif movement == Vector2.RIGHT and ledge.x == 1: can_jump = true
+			elif movement == Vector2.DOWN and ledge.y == 1: can_jump = true
+			elif movement == Vector2.UP and ledge.y == -1: can_jump = true
+			
+			## Verify there's no collision on the other side of the ledge
+			if can_jump:
+				var original_position: Vector2 = $RayCast2D.position
+				$RayCast2D.position += movement * Constants.TILE_SIZE
+				$RayCast2D.force_raycast_update()
+				if $RayCast2D.is_colliding():
+					can_jump = false
+				$RayCast2D.position = original_position
+				$RayCast2D.force_raycast_update()
+			return can_jump
+	return false

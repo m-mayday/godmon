@@ -15,7 +15,7 @@ func _ready() -> void:
 	transition_layer.visible = false
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_backspace"): # Speed up
 		if Engine.time_scale == 5.0:
 			Engine.time_scale = 1.0
