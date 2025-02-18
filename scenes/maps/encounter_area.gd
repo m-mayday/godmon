@@ -11,8 +11,7 @@ var _player_in_area: bool = false
 func _ready() -> void:
 	var player = get_node("../Player")
 	assert(player != null, "Player node must be in scene tree")
-	player.get_node("GridMovement").movement_finished.connect(_should_trigger_encounter)
-	player.get_node("GridMovement").turning_finished.connect(_should_trigger_encounter)
+	player.get_node("GridMovement").movement_finished.connect(_should_trigger_encounter.unbind(2))
 	for encounter in encounter_table.encounters:
 		_odds.append(encounter.odds)
 	_rng = RandomNumberGenerator.new()

@@ -29,19 +29,33 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 		_node_in_cell = true
 
 
+func _on_movement_finished(previous_state: Constants.MOVEMENT_STATE, _new_state: Constants.MOVEMENT_STATE) -> void:
+	if previous_state == Constants.MOVEMENT_STATE.TURNING:
+		return
+	if previous_state == Constants.MOVEMENT_STATE.JUMPING and _get_terrain() == "":
+		_on_jumping_finished()
+	else:
+		_on_node_in_cell()
+
+
+func _on_movement_started(_previous_state: Constants.MOVEMENT_STATE, new_state: Constants.MOVEMENT_STATE) -> void:
+	if new_state == Constants.MOVEMENT_STATE.TURNING:
+		return
+	_on_node_exit_cell()
+
+
 ## Applies effects if the node is in a terrain cell
 func _on_node_in_cell() -> void:
-	if _cell_data != null:
-		var data: Variant = _cell_data.get_custom_data("terrain")
-		var terrain: String = ""
-		if data != null:
-			terrain = data as String
-		if terrain == "GRASS":
-			if grass_overlay_texture != null:
-				_grass_overlay_rect = TextureRect.new()
-				_grass_overlay_rect.texture = grass_overlay_texture
-				_grass_overlay_rect.position = node.position
-				node.get_parent().add_child(_grass_overlay_rect)
+	var terrain: String = _get_terrain()
+	if terrain == "GRASS":
+		if grass_overlay_texture != null:
+			_grass_overlay_rect = TextureRect.new()
+			_grass_overlay_rect.texture = grass_overlay_texture
+			_grass_overlay_rect.position = node.position
+			node.get_parent().add_child(_grass_overlay_rect)
+			$EffectAnimation.visible = true
+			$EffectAnimation.position = node.position
+			$EffectAnimation.play("grass")
 
 
 ## Cleans up certain variables when node exits the cell
@@ -51,3 +65,23 @@ func _on_node_exit_cell() -> void:
 	_cell_data = null
 	if is_instance_valid(_grass_overlay_rect):
 		_grass_overlay_rect.queue_free()
+		
+
+func _on_effect_animation_animation_finished() -> void:
+	$EffectAnimation.visible = false
+
+
+func _on_jumping_finished() -> void:
+	$EffectAnimation.visible = true
+	$EffectAnimation.position = get_parent().position
+	$EffectAnimation.play("dust")
+
+
+func _get_terrain() -> String:
+	if _cell_data != null:
+		var data: Variant = _cell_data.get_custom_data("terrain")
+		var terrain: String = ""
+		if data != null:
+			terrain = data as String
+		return terrain
+	return ""

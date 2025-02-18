@@ -1,6 +1,69 @@
-[gd_scene load_steps=2 format=3 uid="uid://i38ylwaqlkhp"]
+[gd_scene load_steps=10 format=3 uid="uid://i38ylwaqlkhp"]
 
 [ext_resource type="Script" path="res://scenes/maps/terrain_effects.gd" id="1_xrw43"]
+[ext_resource type="Texture2D" uid="uid://b6grlybkbk3iq" path="res://assets/terrain_effects.png" id="2_veyqd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veyqd"]
+atlas = ExtResource("2_veyqd")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc67a"]
+atlas = ExtResource("2_veyqd")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inkn6"]
+atlas = ExtResource("2_veyqd")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6glve"]
+atlas = ExtResource("2_veyqd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxkmy"]
+atlas = ExtResource("2_veyqd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmqy8"]
+atlas = ExtResource("2_veyqd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dc67a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veyqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc67a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inkn6")
+}],
+"loop": false,
+"name": &"dust",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6glve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxkmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmqy8")
+}],
+"loop": false,
+"name": &"grass",
+"speed": 6.0
+}]
 
 [node name="TerrainEffects" type="Node"]
 script = ExtResource("1_xrw43")
+
+[node name="EffectAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dc67a")
+animation = &"dust"
+centered = false
+
+[connection signal="animation_finished" from="EffectAnimation" to="." method="_on_effect_animation_animation_finished"]

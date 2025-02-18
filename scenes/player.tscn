@@ -694,9 +694,7 @@ shape = SubResource("RectangleShape2D_tuyoq")
 debug_color = Color(0.93724, 0.0933426, 0.576389, 0.42)
 
 [connection signal="body_shape_entered" from="." to="TerrainEffects" method="_on_body_shape_entered"]
-[connection signal="movement_finished" from="GridMovement" to="Camera2D/PauseMenu" method="_on_allow_pausing"]
-[connection signal="movement_finished" from="GridMovement" to="TerrainEffects" method="_on_node_in_cell"]
-[connection signal="movement_started" from="GridMovement" to="Camera2D/PauseMenu" method="_on_prevent_pausing"]
-[connection signal="movement_started" from="GridMovement" to="TerrainEffects" method="_on_node_exit_cell"]
-[connection signal="turning_finished" from="GridMovement" to="Camera2D/PauseMenu" method="_on_allow_pausing"]
-[connection signal="turning_started" from="GridMovement" to="Camera2D/PauseMenu" method="_on_prevent_pausing"]
+[connection signal="movement_finished" from="GridMovement" to="TerrainEffects" method="_on_movement_finished"]
+[connection signal="movement_finished" from="GridMovement" to="Camera2D/PauseMenu" method="_on_allow_pausing" unbinds=2]
+[connection signal="movement_started" from="GridMovement" to="TerrainEffects" method="_on_movement_started"]
+[connection signal="movement_started" from="GridMovement" to="Camera2D/PauseMenu" method="_on_prevent_pausing" unbinds=2]

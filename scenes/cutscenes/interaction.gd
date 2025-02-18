@@ -16,10 +16,8 @@ func _ready():
 	area.area_exited.connect(_on_area_exited)
 	var player = get_node("../../Player")
 	assert(player != null, "Player node must be in scene tree")
-	player.get_node("GridMovement").movement_finished.connect(_set_is_active_true)
-	player.get_node("GridMovement").turning_finished.connect(_set_is_active_true)
-	player.get_node("GridMovement").movement_started.connect(_set_is_active_false)
-	player.get_node("GridMovement").turning_started.connect(_set_is_active_false)
+	player.get_node("GridMovement").movement_finished.connect(_set_is_active_true.unbind(2))
+	player.get_node("GridMovement").movement_started.connect(_set_is_active_false.unbind(2))
 
 
 func _unhandled_input(event: InputEvent) -> void:

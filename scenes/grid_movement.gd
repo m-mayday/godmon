@@ -1,11 +1,8 @@
 extends Node2D
 
-signal movement_started
-signal movement_finished
-signal turning_started
-signal turning_finished
+signal movement_started(previous_state: Constants.MOVEMENT_STATE, new_state: Constants.MOVEMENT_STATE)
+signal movement_finished(previous_state: Constants.MOVEMENT_STATE, new_state: Constants.MOVEMENT_STATE)
 
-enum STATE {IDLE, WALKING, RUNNING, TURNING, JUMPING}
 enum DIRECTION {UP, DOWN, RIGHT, LEFT}
 
 const ANIMATION_PARAMETERS: Dictionary[String, String] = {
@@ -22,7 +19,7 @@ const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 
 var moving_direction: Vector2 = Vector2.ZERO
 
-var _current_state: STATE = STATE.IDLE ## Current node state
+var _current_state: Constants.MOVEMENT_STATE = Constants.MOVEMENT_STATE.IDLE ## Current node state
 var _face_direction: DIRECTION = DIRECTION.DOWN ## Current node direction
 
 @onready var _anim_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
@@ -33,7 +30,7 @@ func _ready():
 
 
 func move(direction: Vector2) -> void:
-	if _current_state == STATE.TURNING or _current_state == STATE.JUMPING:
+	if _current_state == Constants.MOVEMENT_STATE.TURNING or _current_state == Constants.MOVEMENT_STATE.JUMPING:
 		return
 	elif moving_direction == Vector2.ZERO && direction != Vector2.ZERO:
 		for key in ANIMATION_PARAMETERS.keys():
@@ -46,9 +43,10 @@ func move(direction: Vector2) -> void:
 		$RayCast2D.target_position = movement * Constants.TILE_SIZE / 2
 		$RayCast2D.force_raycast_update() # Update the `target_position` immediately
 		
+		var previous_state: Constants.MOVEMENT_STATE = _current_state
 		if _need_to_turn(direction):
-			_current_state = STATE.TURNING
-			turning_started.emit()
+			_current_state = Constants.MOVEMENT_STATE.TURNING
+			movement_started.emit(previous_state, _current_state)
 			_anim_state.travel("turn")
 			return
 		
@@ -61,13 +59,13 @@ func move(direction: Vector2) -> void:
 			var new_position = entity.global_position + (moving_direction * Constants.TILE_SIZE)
 			if Input.is_action_pressed("cancel"):
 				current_speed = run_speed
-				_current_state = STATE.RUNNING
+				_current_state = Constants.MOVEMENT_STATE.RUNNING
 				_anim_state.travel("run")
 			else:
-				_current_state = STATE.WALKING
+				_current_state = Constants.MOVEMENT_STATE.WALKING
 				_anim_state.travel("walk")
 			
-			movement_started.emit()
+			movement_started.emit(previous_state, _current_state)
 			var tween = create_tween()
 			tween.tween_property(entity, "position", new_position, current_speed).set_trans(Tween.TRANS_LINEAR)
 			tween.tween_callback(_movement_finsished)
@@ -79,9 +77,9 @@ func move(direction: Vector2) -> void:
 				moving_direction = movement
 				
 				var new_position = entity.global_position + (moving_direction * Constants.TILE_SIZE * 2)
-				_current_state = STATE.JUMPING
+				_current_state = Constants.MOVEMENT_STATE.JUMPING
 				_anim_state.travel("walk")
-				movement_started.emit()
+				movement_started.emit(previous_state, _current_state)
 				mid_position.y -= Constants.TILE_SIZE / 2  # Move up slightly
 
 				var tween = create_tween()
@@ -115,16 +113,17 @@ func _need_to_turn(direction: Vector2) -> bool:
 ## Called after node stops moving
 func _movement_finsished() -> void:
 	moving_direction = Vector2.ZERO
-	_current_state = STATE.IDLE
+	var previous_state: Constants.MOVEMENT_STATE = _current_state
+	_current_state = Constants.MOVEMENT_STATE.IDLE
 	_anim_state.travel("idle")
-	movement_finished.emit()
+	movement_finished.emit(previous_state, _current_state)
 
 
 ## Used to set the state back to IDLE when node stops turning
 func _animation_finished(anim: StringName) -> void:
 	if anim.begins_with("turn"):
-		_current_state = STATE.IDLE
-		turning_finished.emit()
+		_current_state = Constants.MOVEMENT_STATE.IDLE
+		movement_finished.emit(Constants.MOVEMENT_STATE.TURNING, _current_state)
 
 
 ## Determines if the player is colliding with a ledge and should jump it
