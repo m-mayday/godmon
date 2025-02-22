@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4ccidygyc74"]
+
+[ext_resource type="Texture2D" uid="uid://bvee2xlog1myh" path="res://assets/chars/NPC01.png" id="1_nh2m4"]
+[ext_resource type="Script" path="res://scenes/npc.gd" id="2_abqhh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv78h"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh2m4"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_nh2m4"]
+resource_name = "idle_down"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_abqhh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_rv78h"]
+resource_name = "idle_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_7n8xq"]
+resource_name = "idle_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_4wlns"]
+resource_name = "idle_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7n8xq"]
+_data = {
+&"RESET": SubResource("Animation_abqhh"),
+&"idle_down": SubResource("Animation_nh2m4"),
+&"idle_left": SubResource("Animation_rv78h"),
+&"idle_right": SubResource("Animation_7n8xq"),
+&"idle_up": SubResource("Animation_4wlns")
+}
+
+[node name="NPC" type="Sprite2D"]
+texture = ExtResource("1_nh2m4")
+centered = false
+offset = Vector2(0, -8)
+hframes = 3
+vframes = 4
+frame = 1
+script = ExtResource("2_abqhh")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(8, 8)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rv78h")
+debug_color = Color(0.971686, 0.880756, 7.70092e-07, 0.42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_nh2m4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7n8xq")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

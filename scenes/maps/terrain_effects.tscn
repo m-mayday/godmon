@@ -62,6 +62,7 @@ animations = [{
 script = ExtResource("1_xrw43")
 
 [node name="EffectAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_dc67a")
 animation = &"dust"
 centered = false

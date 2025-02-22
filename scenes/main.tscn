@@ -41,13 +41,15 @@ _data = {
 }
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("current_scene_node", "animator", "transition_layer", "transition_color")]
+y_sort_enabled = true
 script = ExtResource("1_o5qli")
 current_scene_node = NodePath("CurrentScene")
 animator = NodePath("AnimationPlayer")
 transition_layer = NodePath("Transition")
 transition_color = NodePath("Transition/ColorRect")
 
-[node name="CurrentScene" type="Node" parent="."]
+[node name="CurrentScene" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Town" parent="CurrentScene" instance=ExtResource("2_0wfyh")]
 

@@ -640,6 +640,8 @@ script = ExtResource("1_g2els")
 movement = NodePath("GridMovement")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(0, -5.24521e-06)
 texture = ExtResource("1_3vyb7")
 centered = false
