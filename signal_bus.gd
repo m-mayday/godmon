@@ -12,3 +12,5 @@ signal ability_activated(event: AbilityEvent) ## Emitted when an ability activat
 signal pokemon_changed(switched_out: Battler, switched_in: Battler, index_out: int, index_in: int) ## Emitted when a battler switches in
 
 signal input_paused(paused: bool) ## Emitted when input should be paused or unpaused
+
+signal zone_changed(path: String) ## Emitted when entering a new zone (scene)

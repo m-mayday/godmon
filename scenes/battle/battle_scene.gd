@@ -297,4 +297,4 @@ func _pop_menu() -> void:
 ## Returning to previous scene when battle ends
 func _on_battle_end(win: bool) -> void:
 	if win:
-		get_tree().root.get_node("Main").to_previous_scene()
+		get_tree().root.get_node("Main").return_to_previous_scenes()

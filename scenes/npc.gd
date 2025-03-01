@@ -17,8 +17,8 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 func _on_interaction(_paused: bool) -> void:
 	if interactable:
-		var player: Node = get_parent().get_node("Player/GridMovement")
-		var player_direction: int = player._face_direction
+		var player: Node = get_tree().get_first_node_in_group("player")
+		var player_direction: int = player.get_node("GridMovement")._face_direction
 		var animation: String = "idle_down"
 		if player_direction == 1:
 			animation = "idle_up"

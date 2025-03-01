@@ -14,7 +14,7 @@ func _ready():
 	SignalBus.input_paused.connect(_on_input_paused)
 	area.area_entered.connect(_on_area_entered)
 	area.area_exited.connect(_on_area_exited)
-	var player = get_node("../../Player")
+	var player = get_tree().get_first_node_in_group("player")
 	assert(player != null, "Player node must be in scene tree")
 	player.get_node("GridMovement").movement_finished.connect(_set_is_active_true.unbind(2))
 	player.get_node("GridMovement").movement_started.connect(_set_is_active_false.unbind(2))

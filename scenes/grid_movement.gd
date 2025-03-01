@@ -131,6 +131,8 @@ func _should_jump(movement: Vector2) -> bool:
 	var collider: Object = $RayCast2D.get_collider()
 	if collider is TileMapLayer:
 		var layer: TileMapLayer = collider as TileMapLayer
+		if layer.tile_set.get_custom_data_layer_by_name("ledge") == -1:
+			return false
 		var body_rid: RID = $RayCast2D.get_collider_rid()
 		var cell_data: TileData = layer.get_cell_tile_data(layer.get_coords_for_body_rid(body_rid))
 		var data: Variant = cell_data.get_custom_data("ledge")

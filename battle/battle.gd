@@ -381,6 +381,8 @@ func _battle_ended(emit_end_signal: bool = true) -> bool:
 			ended = true
 			won = true
 	if ended and emit_end_signal:
+			Global.player_side_battlers = []
+			Global.foe_side_battlers = []
 			SignalBus.battle_ended.emit(won)
 	return ended
 

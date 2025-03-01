@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dexs5i187o0bc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://dexgstl8ktef5" path="res://scenes/maps/town/town.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bmigxfi2xkns7" path="res://scenes/player.tscn" id="3_sugp2"]
 
 [sub_resource type="Animation" id="Animation_sugp2"]
 length = 0.001
@@ -40,18 +40,14 @@ _data = {
 &"fade_in": SubResource("Animation_jyhfs")
 }
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("current_scene_node", "animator", "transition_layer", "transition_color")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("world", "animator", "transition_layer", "transition_color", "player")]
 y_sort_enabled = true
 script = ExtResource("1_o5qli")
-current_scene_node = NodePath("CurrentScene")
+world = NodePath("World")
 animator = NodePath("AnimationPlayer")
 transition_layer = NodePath("Transition")
 transition_color = NodePath("Transition/ColorRect")
-
-[node name="CurrentScene" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Town" parent="CurrentScene" instance=ExtResource("2_0wfyh")]
+player = NodePath("Player")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -68,3 +64,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("3_sugp2")]
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true

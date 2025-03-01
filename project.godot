@@ -48,6 +48,10 @@ folder_colors={
 "res://scenes/": "green"
 }
 
+[global_group]
+
+player=""
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
