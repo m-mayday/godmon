@@ -30,6 +30,7 @@ func _should_trigger_encounter() -> void:
 	if _player_in_area:
 		var number: float = _rng.randf_range(0.0, 2879.0)
 		if number < 320.0:
+			SignalBus.input_paused.emit(true)
 			var encounter: Encounter = encounter_table.encounters[_rng.rand_weighted(_odds)]
 			var pokemon1: Pokemon = Pokemon.new(encounter.species, randi_range(encounter.minimum_level, encounter.maximum_level))
 			var pokemon2: Pokemon = Pokemon.new(encounter.species, randi_range(encounter.minimum_level, encounter.maximum_level))

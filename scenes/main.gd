@@ -115,6 +115,7 @@ func return_to_previous_scenes() -> void:
 			add_child(player)
 		animator.play("fade_in")
 		await animator.animation_finished
+		SignalBus.input_paused.emit(false)
 		transition_color.color.a = 0
 		transition_layer.visible = false
 
