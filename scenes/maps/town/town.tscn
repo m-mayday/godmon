@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=25 format=4 uid="uid://dexgstl8ktef5"]
 
-[ext_resource type="Script" path="res://scenes/chunk.gd" id="1_7avvi"]
+[ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_7avvi"]
 [ext_resource type="Texture2D" uid="uid://c8gbu1dvhm8eg" path="res://assets/tilesets/Outside A5.png" id="1_qveo5"]
 [ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/Outside A2A.png" id="2_oxh25"]
 [ext_resource type="Texture2D" uid="uid://cddh4ip31gb45" path="res://assets/tilesets/Outside B.png" id="3_j5q7k"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://dr2nf3uc3rl7k" path="res://scenes/maps/town/dialogue/trainer_tips.dialogue" id="13_k4x0e"]
 [ext_resource type="Resource" uid="uid://bxh7hcbi8d2he" path="res://scenes/maps/town/dialogue/girl_npc.dialogue" id="14_7avvi"]
 [ext_resource type="Resource" uid="uid://bcej05h2cp0od" path="res://scenes/maps/town/dialogue/oak_lab.dialogue" id="15_oti17"]
+[ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="15_tpn7j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7avvi"]
 texture = ExtResource("1_qveo5")
@@ -2260,6 +2261,9 @@ shape = SubResource("RectangleShape2D_oti17")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(192, 312)
 shape = SubResource("RectangleShape2D_7avvi")
+
+[node name="Door" parent="." instance=ExtResource("15_tpn7j")]
+position = Vector2(96, 112)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered" binds= [Vector2(0, 1)]]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_area_entered" binds= [Vector2(0, -1)]]

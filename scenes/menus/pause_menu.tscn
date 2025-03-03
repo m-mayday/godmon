@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://nokxwtpo54sn"]
 
 [ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7unhi"]
-[ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_gsnt3"]
+[ext_resource type="Script" uid="uid://i5qlkwl8vf2y" path="res://scenes/menus/pause_menu.gd" id="1_gsnt3"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="2_2wrho"]
 [ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="2_7unhi"]
 

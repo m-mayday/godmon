@@ -86,6 +86,13 @@ func move(direction: Vector2) -> void:
 				tween.tween_property(entity, "position", mid_position, 0.2)
 				tween.tween_property(entity, "position", new_position, 0.2)
 				tween.tween_callback(_movement_finsished)
+		elif $RayCast2D.get_collider() is Door:
+			var door: Door = $RayCast2D.get_collider()
+			moving_direction = movement
+			var new_position = entity.global_position + (moving_direction * Constants.TILE_SIZE)
+			_anim_state.travel("walk")
+			await door.transition(entity, new_position)
+			_anim_state.travel("idle")
 
 
 ## Gets new facing direction according to input

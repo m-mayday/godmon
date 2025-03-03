@@ -1,14 +1,14 @@
 [gd_scene load_steps=25 format=4 uid="uid://e6s1giwptv8o"]
 
 [ext_resource type="Texture2D" uid="uid://c8gbu1dvhm8eg" path="res://assets/tilesets/Outside A5.png" id="1_m71el"]
-[ext_resource type="Script" path="res://scenes/chunk.gd" id="1_ua0mi"]
+[ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
 [ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/Outside A2A.png" id="2_ua0mi"]
 [ext_resource type="Texture2D" uid="uid://cddh4ip31gb45" path="res://assets/tilesets/Outside B.png" id="3_w8l4j"]
 [ext_resource type="Texture2D" uid="uid://cx7sb6nf8ayuq" path="res://assets/tilesets/Outside E1.png" id="4_fho5e"]
 [ext_resource type="Texture2D" uid="uid://lntac520ofni" path="res://assets/tilesets/Outside D.png" id="5_f5i15"]
 [ext_resource type="PackedScene" uid="uid://ch6u6x5ill6rs" path="res://scenes/maps/encounter_area.tscn" id="6_o7v6n"]
-[ext_resource type="Script" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
-[ext_resource type="Script" path="res://data/_base_classes/encounter_table.gd" id="8_q4b38"]
+[ext_resource type="Script" uid="uid://cu2j1bo2txyy6" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
+[ext_resource type="Script" uid="uid://be7ltbr0qyaqn" path="res://data/_base_classes/encounter_table.gd" id="8_q4b38"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kdbn"]
 texture = ExtResource("1_m71el")

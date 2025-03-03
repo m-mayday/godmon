@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://i38ylwaqlkhp"]
 
-[ext_resource type="Script" path="res://scenes/maps/terrain_effects.gd" id="1_xrw43"]
+[ext_resource type="Script" uid="uid://deosj40qsdmg6" path="res://scenes/maps/terrain_effects.gd" id="1_xrw43"]
 [ext_resource type="Texture2D" uid="uid://b6grlybkbk3iq" path="res://assets/terrain_effects.png" id="2_veyqd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_veyqd"]

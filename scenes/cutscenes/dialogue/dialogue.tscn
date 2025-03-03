@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3ymjt62jb6v5"]
 
-[ext_resource type="Script" path="res://scenes/cutscenes/dialogue/dialogue.gd" id="1_1urmx"]
+[ext_resource type="Script" uid="uid://cawdojirqv1mv" path="res://scenes/cutscenes/dialogue/dialogue.gd" id="1_1urmx"]
 [ext_resource type="Resource" uid="uid://c3jmut8lgkcj0" path="res://scenes/maps/town/dialogue/blue_house.dialogue" id="2_66i66"]
 [ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="3_66i66"]
 

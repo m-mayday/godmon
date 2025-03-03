@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=4 uid="uid://dxpx1hrlmq3ka"]
 
 [ext_resource type="Texture2D" uid="uid://c8gbu1dvhm8eg" path="res://assets/tilesets/Outside A5.png" id="1_7bjlw"]
-[ext_resource type="Script" path="res://scenes/chunk.gd" id="1_wq6m7"]
+[ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_wq6m7"]
 [ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/Outside A2A.png" id="2_wq6m7"]
 [ext_resource type="Texture2D" uid="uid://cddh4ip31gb45" path="res://assets/tilesets/Outside B.png" id="3_eb71h"]
 [ext_resource type="Texture2D" uid="uid://cx7sb6nf8ayuq" path="res://assets/tilesets/Outside E1.png" id="4_ng0rb"]
