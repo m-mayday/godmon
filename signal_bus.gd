@@ -14,3 +14,4 @@ signal pokemon_changed(switched_out: Battler, switched_in: Battler, index_out: i
 signal input_paused(paused: bool) ## Emitted when input should be paused or unpaused
 
 signal zone_changed(path: String) ## Emitted when entering a new zone (scene)
+signal scene_loaded(previous_scene: String, new_scene: String) ## Emitted when loading a new scene

@@ -713,7 +713,7 @@ shape = SubResource("RectangleShape2D_g2els")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
+zoom = Vector2(3.5, 3.5)
 
 [node name="PauseMenu" parent="Camera2D" node_paths=PackedStringArray("options") instance=ExtResource("3_qlg0r")]
 options = {

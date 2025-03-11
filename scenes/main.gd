@@ -23,10 +23,10 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_backspace"): # Speed up
-		if Engine.time_scale == 5.0:
+		if Engine.time_scale == 3.0:
 			Engine.time_scale = 1.0
 		else:
-			Engine.time_scale = 5.0
+			Engine.time_scale = 3.0
 
 
 ## Loads a new scene with the optional data provided if the scene has a "with_data" method
@@ -41,7 +41,9 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 	transition_layer.visible = true
 	animator.play("fade_in")
 	await animator.animation_finished
-
+	var previous_scene_path: String = ""
+	if current_scene != null:
+		previous_scene_path = current_scene.scene_file_path
 	if free_current and current_scene != null:
 		current_scene.queue_free()
 		_clear_chunks()
@@ -76,6 +78,7 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 		player.position = current_scene.get_spawn_position()
 
 	_update_adjacent_scenes(current_scene)
+	SignalBus.scene_loaded.emit(previous_scene_path, scene_path)
 	
 	animator.play_backwards("fade_in")
 	await animator.animation_finished
@@ -113,7 +116,7 @@ func return_to_previous_scenes() -> void:
 		previous_world = null
 		if player_removed:
 			add_child(player)
-		animator.play("fade_in")
+		animator.play_backwards("fade_in")
 		await animator.animation_finished
 		SignalBus.input_paused.emit(false)
 		transition_color.color.a = 0

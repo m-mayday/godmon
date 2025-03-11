@@ -35,7 +35,7 @@ func move(direction: Vector2) -> void:
 	elif moving_direction == Vector2.ZERO && direction != Vector2.ZERO:
 		for key in ANIMATION_PARAMETERS.keys():
 			animation_tree.set(ANIMATION_PARAMETERS[key], direction)
-		var movement = Vector2.DOWN
+		var movement: Vector2 = Vector2.DOWN
 		if direction.y > 0: movement = Vector2.DOWN
 		elif direction.y < 0: movement = Vector2.UP
 		elif direction.x > 0: movement = Vector2.RIGHT
@@ -50,9 +50,10 @@ func move(direction: Vector2) -> void:
 			_anim_state.travel("turn")
 			return
 		
+		var current_speed: float = speed
+		
 		# Allow movement only if no collision in next tile
 		if !$RayCast2D.is_colliding():
-			var current_speed = speed
 
 			moving_direction = movement
 			
@@ -66,7 +67,7 @@ func move(direction: Vector2) -> void:
 				_anim_state.travel("walk")
 			
 			movement_started.emit(previous_state, _current_state)
-			var tween = create_tween()
+			var tween: Tween = create_tween()
 			tween.tween_property(entity, "position", new_position, current_speed).set_trans(Tween.TRANS_LINEAR)
 			tween.tween_callback(_movement_finsished)
 		elif _should_jump(movement):
@@ -76,24 +77,32 @@ func move(direction: Vector2) -> void:
 
 				moving_direction = movement
 				
-				var new_position = entity.global_position + (moving_direction * Constants.TILE_SIZE * 2)
+				var new_position: Vector2 = entity.global_position + (moving_direction * Constants.TILE_SIZE * 2)
 				_current_state = Constants.MOVEMENT_STATE.JUMPING
 				_anim_state.travel("walk")
 				movement_started.emit(previous_state, _current_state)
 				mid_position.y -= Constants.TILE_SIZE / 2  # Move up slightly
 
-				var tween = create_tween()
+				var tween: Tween = create_tween()
 				tween.tween_property(entity, "position", mid_position, 0.2)
 				tween.tween_property(entity, "position", new_position, 0.2)
 				tween.tween_callback(_movement_finsished)
-		elif $RayCast2D.get_collider() is Door:
-			var door: Door = $RayCast2D.get_collider()
-			moving_direction = movement
-			var new_position = entity.global_position + (moving_direction * Constants.TILE_SIZE)
-			_anim_state.travel("walk")
-			await door.transition(entity, new_position)
-			_anim_state.travel("idle")
+		elif $RayCast2D.get_collider().get_parent() is Door:
+			var door: Door = $RayCast2D.get_collider().get_parent()
+			door.execute()
 
+
+## Moves player in the given direction for the number of tiles provided.
+## It doesn't emit any movement signals and it's useful for cutscenes (thus the name).
+func cutscene_move(direction: Vector2, tiles: int) -> void:
+	var new_position: Vector2 = entity.global_position + (direction * Constants.TILE_SIZE * tiles)
+	_anim_state.travel("walk")
+	var tween = create_tween()
+	tween.tween_property(entity, "position", new_position, speed * tiles).set_trans(Tween.TRANS_LINEAR)
+	await tween.finished
+	_anim_state.travel("idle")
+	_current_state = Constants.MOVEMENT_STATE.IDLE
+	
 
 ## Gets new facing direction according to input
 func _get_face_direction(direction: Vector2) -> DIRECTION:
