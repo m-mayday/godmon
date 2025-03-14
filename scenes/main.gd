@@ -158,3 +158,12 @@ func _update_adjacent_scenes(new_scene: Variant) -> void:
 	if thread.is_started():
 		thread.wait_to_finish()
 	thread.start(_load_adjacent_scenes.bind(new_scene)) # Load adjacent scenes in thread
+
+
+## Plays the transtion animation at the provided speed
+func play_transition(speed: float = 1.0) -> void:
+	transition_layer.visible = true
+	animator.play("fade_in", -1, speed)
+	await animator.animation_finished
+	transition_color.color.a = 0
+	transition_layer.visible = false

@@ -24,17 +24,17 @@ func _execute() -> void:
 		_animator.play("door_open")
 		await _animator.animation_finished
 		player.visible = true
-		await mover.cutscene_move(player_exit_direction, exit_tiles)
+		await mover.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
 		_animator.play_backwards("door_open")
 		await _animator.animation_finished
 		return
 	elif is_exit_only: # move player / load scene
-		await mover.cutscene_move(player_exit_direction, exit_tiles)
+		await mover.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
 		player.visible = false
 	else: # open door / move player / close door / load scene
 		_animator.play("door_open")
 		await _animator.animation_finished
-		await mover.cutscene_move(player_enter_direction, enter_tiles)
+		await mover.cutscene_move(player.position + _get_target_position(player_enter_direction, enter_tiles), enter_tiles)
 		player.visible = false
 		_animator.play_backwards("door_open")
 		await _animator.animation_finished
@@ -45,3 +45,8 @@ func _execute() -> void:
 func execute(exiting: bool = false):
 	_is_exiting = exiting
 	run()
+
+
+## Calculates the player's new position
+func _get_target_position(direction: Vector2, tiles: int) -> Vector2:
+	return Vector2(Constants.TILE_SIZE*tiles, Constants.TILE_SIZE*tiles)*direction

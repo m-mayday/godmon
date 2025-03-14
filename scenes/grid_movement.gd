@@ -90,19 +90,21 @@ func move(direction: Vector2) -> void:
 		elif $RayCast2D.get_collider().get_parent() is Door:
 			var door: Door = $RayCast2D.get_collider().get_parent()
 			door.execute()
+		elif $RayCast2D.get_collider() is Stairs:
+			var stairs: Stairs = $RayCast2D.get_collider()
+			stairs.execute()
 
 
-## Moves player in the given direction for the number of tiles provided.
+## Moves player to the target position by walking speed * multiplier provided.
 ## It doesn't emit any movement signals and it's useful for cutscenes (thus the name).
-func cutscene_move(direction: Vector2, tiles: int) -> void:
-	var new_position: Vector2 = entity.global_position + (direction * Constants.TILE_SIZE * tiles)
+func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0) -> void:
 	_anim_state.travel("walk")
 	var tween = create_tween()
-	tween.tween_property(entity, "position", new_position, speed * tiles).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(entity, "position", target_position, speed * speed_multiplier).set_trans(Tween.TRANS_LINEAR)
 	await tween.finished
 	_anim_state.travel("idle")
 	_current_state = Constants.MOVEMENT_STATE.IDLE
-	
+
 
 ## Gets new facing direction according to input
 func _get_face_direction(direction: Vector2) -> DIRECTION:

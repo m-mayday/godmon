@@ -20,7 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jyhfs"]
 resource_name = "fade_in"
-length = 0.8
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,10 +28,10 @@ tracks/0/path = NodePath("Transition/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.6),
+"times": PackedFloat32Array(0, 0.0333333, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jyhfs"]
@@ -56,6 +56,7 @@ libraries = {
 
 [node name="Transition" type="CanvasLayer" parent="."]
 layer = 100
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Transition"]
 anchors_preset = 15
