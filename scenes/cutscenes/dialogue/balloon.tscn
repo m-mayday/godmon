@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://cbkgos7xpfwc1"]
 
-[ext_resource type="Script" path="res://scenes/cutscenes/dialogue/balloon.gd" id="1_36de5"]
+[ext_resource type="Script" uid="uid://cout4suqk1g83" path="res://scenes/cutscenes/dialogue/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="FontFile" uid="uid://bst06r5x135uk" path="res://assets/fonts/power red and green.ttf" id="2_mwsgq"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
+[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 [ext_resource type="PackedScene" uid="uid://2sxaveov18qb" path="res://scenes/cutscenes/dialogue/input_arrow.tscn" id="5_eddjt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -130,9 +130,10 @@ scroll_active = false
 
 [node name="DialogueLabel" parent="Balloon/Panel/Dialogue/VBoxContainer" instance=ExtResource("2_a8ve6")]
 unique_name_in_owner = true
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
-text = "PALLET TOWN
+text = "PALLET TOWN?
 Shades of your journey await!"
 
 [node name="Responses" type="MarginContainer" parent="Balloon"]

@@ -8,6 +8,7 @@ extends Node2D
 @export var player_spawns: Dictionary[String, Node2D]
 var current_spawn: Node2D
 
+
 func _ready():
 	SignalBus.scene_loaded.connect(_on_scene_loaded)
 
@@ -38,6 +39,4 @@ func _on_area_2d_area_entered(area: Area2D, direction: Vector2) -> void:
 
 func _on_scene_loaded(previous_scene: String, new_scene: String) -> void:
 	if new_scene == scene_file_path and previous_scene in player_spawns.keys():
-		print(player_spawns[previous_scene].get_class())
-		print(player_spawns[previous_scene].is_class("Door"))
 		player_spawns[previous_scene].execute(true)
