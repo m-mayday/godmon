@@ -17,24 +17,23 @@ var _is_exiting: bool = false ## If player is currently exiting from this door.
 ## Animates the door opening/closing, moves the player and loads the target scene
 func _execute() -> void:
 	var player = get_tree().get_first_node_in_group("player")
-	var mover = player.get_node("GridMovement")
 	if _is_exiting: # open door / move player / close door
 		player.visible = false
 		await get_tree().create_timer(0.5).timeout
 		_animator.play("door_open")
 		await _animator.animation_finished
 		player.visible = true
-		await mover.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
+		await player.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
 		_animator.play_backwards("door_open")
 		await _animator.animation_finished
 		return
 	elif is_exit_only: # move player / load scene
-		await mover.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
+		await player.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
 		player.visible = false
 	else: # open door / move player / close door / load scene
 		_animator.play("door_open")
 		await _animator.animation_finished
-		await mover.cutscene_move(player.position + _get_target_position(player_enter_direction, enter_tiles), enter_tiles)
+		await player.cutscene_move(player.position + _get_target_position(player_enter_direction, enter_tiles), enter_tiles)
 		player.visible = false
 		_animator.play_backwards("door_open")
 		await _animator.animation_finished

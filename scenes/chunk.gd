@@ -31,11 +31,8 @@ func get_spawn_position() -> Vector2:
 
 ## Emits the "zone_changed" signal if the Player (area) comes from a valid direction
 func _on_area_2d_area_entered(area: Area2D, direction: Vector2) -> void:
-	var face_direction: int = area.get_node("GridMovement")._face_direction
-	if direction == Vector2.UP and face_direction == 0 \
-		or direction == Vector2.DOWN and face_direction == 1 \
-		or direction == Vector2.RIGHT and face_direction == 2 \
-		or direction == Vector2.LEFT and face_direction == 3:
+	var face_direction: Vector2 = area.face_direction
+	if direction == face_direction:
 		SignalBus.zone_changed.emit(scene_file_path)
 
 

@@ -16,8 +16,8 @@ func _ready():
 	area.area_exited.connect(_on_area_exited)
 	var player = get_tree().get_first_node_in_group("player")
 	assert(player != null, "Player node must be in scene tree")
-	player.get_node("GridMovement").movement_finished.connect(_set_is_active_true.unbind(2))
-	player.get_node("GridMovement").movement_started.connect(_set_is_active_false.unbind(2))
+	player.movement_finished.connect(_set_is_active_true.unbind(2))
+	player.movement_started.connect(_set_is_active_false.unbind(2))
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -32,13 +32,13 @@ func _on_input_paused(paused: bool) -> void:
 
 
 ## Find the entering player's interaction finder and enable input
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	_is_active = true
 	set_process_unhandled_input(true)
 
 
 ## Disable input when the player's interaction finder exits the area
-func _on_area_exited(area: Area2D) -> void:
+func _on_area_exited(_area: Area2D) -> void:
 	_is_active = false
 	set_process_unhandled_input(false)
 

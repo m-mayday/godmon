@@ -1,6 +1,7 @@
 extends Node
 
 ## Battle signals
+@warning_ignore_start("unused_signal")
 signal battle_started(user_side_active, user_side_team, foe_side_active, foe_side_team) ## Emitted when the battle is setup and starts
 signal battle_ended(win: bool) ## Emitted when the battle ends
 signal battler_ready(battler: Battler) ## Emitted when battler must choose an action
@@ -15,3 +16,4 @@ signal input_paused(paused: bool) ## Emitted when input should be paused or unpa
 
 signal zone_changed(path: String) ## Emitted when entering a new zone (scene)
 signal scene_loaded(previous_scene: String, new_scene: String) ## Emitted when loading a new scene
+@warning_ignore_restore("unused_signal")

@@ -27,6 +27,7 @@ func run() -> void:
 	_is_cutscene_in_progress = true
 	
 	# The _execute method may or may not be asynchronous, depending on the particular cutscene.
+	@warning_ignore("redundant_await")
 	await _execute()
 	
 	_is_cutscene_in_progress = false
