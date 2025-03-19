@@ -74,7 +74,7 @@ RichTextLabel/constants/shadow_outline_size = 4
 RichTextLabel/font_sizes/normal_font_size = 36
 RichTextLabel/fonts/normal_font = ExtResource("2_mwsgq")
 
-[node name="ExampleBalloon" type="CanvasLayer"]
+[node name="Balloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_36de5")
 next_action = &"interact"

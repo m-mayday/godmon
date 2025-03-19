@@ -20,32 +20,45 @@ func _execute() -> void:
 	if _is_exiting: # open door / move player / close door
 		player.visible = false
 		await get_tree().create_timer(0.5).timeout
-		_animator.play("door_open")
-		await _animator.animation_finished
+		await open_door()
 		player.visible = true
 		await player.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
-		_animator.play_backwards("door_open")
-		await _animator.animation_finished
+		await close_door()
 		return
 	elif is_exit_only: # move player / load scene
 		await player.cutscene_move(player.position + _get_target_position(player_exit_direction, exit_tiles), exit_tiles)
 		player.visible = false
 	else: # open door / move player / close door / load scene
-		_animator.play("door_open")
-		await _animator.animation_finished
+		await open_door()
 		await player.cutscene_move(player.position + _get_target_position(player_enter_direction, enter_tiles), enter_tiles)
 		player.visible = false
-		_animator.play_backwards("door_open")
-		await _animator.animation_finished
-	get_tree().root.get_node("Main").load_scene(target_scene_path, true, false, [current_scene_path])
+		await close_door()
+	load_target_scene()
 
 
 ## Runs the cutscene
 func execute(exiting: bool = false):
 	_is_exiting = exiting
-	run()
+	await run()
 
 
 ## Calculates the player's new position
 func _get_target_position(direction: Vector2, tiles: int) -> Vector2:
 	return Vector2(Constants.TILE_SIZE*tiles, Constants.TILE_SIZE*tiles)*direction
+
+
+## Plays the open animation
+func open_door() -> void:
+	_animator.play("door_open")
+	await _animator.animation_finished
+
+
+## Plays the close animation
+func close_door() -> void:
+	_animator.play_backwards("door_open")
+	await _animator.animation_finished
+
+
+## Loads the target scene
+func load_target_scene() -> void:
+	get_tree().root.get_node("Main").load_scene(target_scene_path, true, false, [current_scene_path])

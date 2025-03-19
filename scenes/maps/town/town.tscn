@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=29 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_7avvi"]
 [ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/outside-terrain.png" id="2_oxh25"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://bxh7hcbi8d2he" path="res://scenes/maps/town/dialogue/girl_npc.dialogue" id="14_7avvi"]
 [ext_resource type="Resource" uid="uid://bcej05h2cp0od" path="res://scenes/maps/town/dialogue/oak_lab.dialogue" id="15_oti17"]
 [ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="15_tpn7j"]
+[ext_resource type="Script" uid="uid://b5q2jma6geawl" path="res://scenes/maps/town/oak_event.gd" id="16_tpn7j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oti17"]
 texture = ExtResource("2_oxh25")
@@ -4026,6 +4027,9 @@ size = Vector2(32, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7avvi"]
 size = Vector2(94, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2osm"]
+size = Vector2(30, 14)
+
 [node name="Town" type="Node2D" node_paths=PackedStringArray("player_spawn_marker", "player_spawns")]
 y_sort_enabled = true
 script = ExtResource("1_7avvi")
@@ -4138,11 +4142,25 @@ region_rect = Rect2(0, 16, 64, 16)
 target_scene_path = "res://scenes/maps/town/oakslab.tscn"
 current_scene_path = "res://scenes/maps/town/town.tscn"
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1.0
-offset_right = 39.0
-offset_bottom = 40.0
-color = Color(0.360784, 0.8, 0.596078, 1)
+[node name="PlayerPath" type="Line2D" parent="."]
+points = PackedVector2Array(192, 32, 176, 32, 176, 48, 176, 64, 176, 80, 176, 96, 176, 112, 176, 128, 176, 144, 176, 160, 176, 176, 176, 192, 176, 208, 176, 224, 192, 224, 208, 224, 224, 224, 240, 224, 256, 224)
+width = 1.0
+
+[node name="OakPath" type="Line2D" parent="."]
+points = PackedVector2Array(160, 128, 160, 112, 176, 112, 176, 64, 192, 64, 192, 32)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="EventTrigger" type="Area2D" parent="."]
+position = Vector2(30, 19)
+monitoring = false
+monitorable = false
+script = ExtResource("16_tpn7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EventTrigger"]
+position = Vector2(178, 5)
+shape = SubResource("RectangleShape2D_y2osm")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered" binds= [Vector2(0, 1)]]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_area_entered" binds= [Vector2(0, -1)]]
+[connection signal="area_entered" from="EventTrigger" to="EventTrigger" method="_on_area_entered"]

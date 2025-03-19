@@ -50,6 +50,11 @@ func _process(_delta: float) -> void:
 
 
 func move(direction: Vector2) -> void:
+	# A temporary fix. The player gets "stuck" when turning too many times too fast
+	if _current_state == Constants.MOVEMENT_STATE.TURNING and Input.is_action_pressed("cancel"):
+		_current_state = Constants.MOVEMENT_STATE.IDLE
+		return
+
 	if _current_state == Constants.MOVEMENT_STATE.TURNING or _current_state == Constants.MOVEMENT_STATE.JUMPING:
 		return
 	elif moving_direction == Vector2.ZERO && direction != Vector2.ZERO:
@@ -92,7 +97,10 @@ func move(direction: Vector2) -> void:
 
 ## Moves player to the target position by walking speed * multiplier provided.
 ## It doesn't emit any movement signals and it's useful for cutscenes (thus the name).
-func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0) -> void:
+func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, face_direction: Vector2 = Vector2.ONE) -> void:
+	if face_direction in [Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT]:
+		for key in ANIMATION_PARAMETERS.keys():
+			animation_tree.set(ANIMATION_PARAMETERS[key], face_direction)
 	_anim_state.travel("walk")
 	var tween = create_tween()
 	tween.tween_property(self, "position", target_position, speed * speed_multiplier).set_trans(Tween.TRANS_LINEAR)

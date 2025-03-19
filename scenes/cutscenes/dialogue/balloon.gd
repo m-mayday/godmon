@@ -106,11 +106,15 @@ func apply_dialogue_line() -> void:
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
 
-	character_label.visible = not dialogue_line.character.is_empty()
-	character_label.text = tr(dialogue_line.character, "dialogue")
+	#character_label.visible = not dialogue_line.character.is_empty()
+	#character_label.text = tr(dialogue_line.character, "dialogue")
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
+	
+	# For now, show the character name as part of the dialogue
+	if not dialogue_line.character.is_empty():
+		dialogue_line.text = dialogue_line.character + ": " + dialogue_line.text
 
 	responses_menu.hide()
 	responses_menu.responses = dialogue_line.responses

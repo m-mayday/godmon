@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4ccidygyc74"]
+[gd_scene load_steps=26 format=3 uid="uid://c4ccidygyc74"]
 
 [ext_resource type="Texture2D" uid="uid://bvee2xlog1myh" path="res://assets/chars/NPC01.png" id="1_nh2m4"]
-[ext_resource type="Script" path="res://scenes/npc.gd" id="2_abqhh"]
+[ext_resource type="Script" uid="uid://beae2vsvxylu2" path="res://scenes/npc.gd" id="2_abqhh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rv78h"]
 size = Vector2(14, 14)
@@ -9,9 +9,8 @@ size = Vector2(14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nh2m4"]
 size = Vector2(16, 16)
 
-[sub_resource type="Animation" id="Animation_nh2m4"]
-resource_name = "idle_down"
-length = 0.5
+[sub_resource type="Animation" id="Animation_abqhh"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -25,8 +24,9 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_abqhh"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_nh2m4"]
+resource_name = "idle_down"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,16 +88,138 @@ tracks/0/keys = {
 "values": [4]
 }
 
+[sub_resource type="Animation" id="Animation_tl2vt"]
+resource_name = "walk_down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_0tygy"]
+resource_name = "walk_left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 7]
+}
+
+[sub_resource type="Animation" id="Animation_sptji"]
+resource_name = "walk_right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 10]
+}
+
+[sub_resource type="Animation" id="Animation_hwkja"]
+resource_name = "walk_up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7n8xq"]
 _data = {
 &"RESET": SubResource("Animation_abqhh"),
 &"idle_down": SubResource("Animation_nh2m4"),
 &"idle_left": SubResource("Animation_rv78h"),
 &"idle_right": SubResource("Animation_7n8xq"),
-&"idle_up": SubResource("Animation_4wlns")
+&"idle_up": SubResource("Animation_4wlns"),
+&"walk_down": SubResource("Animation_tl2vt"),
+&"walk_left": SubResource("Animation_0tygy"),
+&"walk_right": SubResource("Animation_sptji"),
+&"walk_up": SubResource("Animation_hwkja")
 }
 
-[node name="NPC" type="Sprite2D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_abqhh"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rv78h"]
+animation = &"idle_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7n8xq"]
+animation = &"idle_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wlns"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_tl2vt"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_abqhh")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_rv78h")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_7n8xq")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_4wlns")
+blend_point_3/pos = Vector2(1, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hwkja"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0tygy"]
+animation = &"walk_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sptji"]
+animation = &"walk_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v4e37"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_1h837"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_hwkja")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_0tygy")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_sptji")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_v4e37")
+blend_point_3/pos = Vector2(1, 0)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_v4e37"]
+states/idle/node = SubResource("AnimationNodeBlendSpace2D_tl2vt")
+states/idle/position = Vector2(342, 100)
+states/walk/node = SubResource("AnimationNodeBlendSpace2D_1h837")
+states/walk/position = Vector2(574, 100)
+
+[node name="NPC" type="Sprite2D" node_paths=PackedStringArray("animation_tree")]
 texture = ExtResource("1_nh2m4")
 centered = false
 offset = Vector2(0, -8)
@@ -105,6 +227,7 @@ hframes = 3
 vframes = 4
 frame = 1
 script = ExtResource("2_abqhh")
+animation_tree = NodePath("AnimationTree")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(8, 8)
@@ -126,6 +249,12 @@ shape = SubResource("RectangleShape2D_nh2m4")
 libraries = {
 &"": SubResource("AnimationLibrary_7n8xq")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_v4e37")
+anim_player = NodePath("../AnimationPlayer")
+parameters/idle/blend_position = Vector2(-0.00589103, 0.253012)
+parameters/walk/blend_position = Vector2(0, 0)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
