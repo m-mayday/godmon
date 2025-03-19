@@ -1,11 +1,6 @@
-[gd_scene load_steps=29 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=24 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_7avvi"]
-[ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/outside-terrain.png" id="2_oxh25"]
-[ext_resource type="Texture2D" uid="uid://cddh4ip31gb45" path="res://assets/tilesets/outside.png" id="3_j5q7k"]
-[ext_resource type="Texture2D" uid="uid://b4njmnqwkwmsj" path="res://assets/tilesets/animated-water.png" id="4_oti17"]
-[ext_resource type="Texture2D" uid="uid://b05q0l56cpyxh" path="res://assets/tilesets/animated-tiles.png" id="5_oti17"]
-[ext_resource type="Texture2D" uid="uid://bc06bdlv6qpsb" path="res://assets/tilesets/buildings.png" id="6_tpn7j"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="10_cgcdf"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/npc.tscn" id="10_y2osm"]
 [ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
@@ -18,7 +13,6 @@
 [ext_resource type="Script" uid="uid://b5q2jma6geawl" path="res://scenes/maps/town/oak_event.gd" id="16_tpn7j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oti17"]
-texture = ExtResource("2_oxh25")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 2
@@ -1627,7 +1621,6 @@ texture = ExtResource("2_oxh25")
 94:13/0/terrain_set = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tpn7j"]
-texture = ExtResource("3_j5q7k")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -1953,50 +1946,11 @@ sources/1 = SubResource("TileSetAtlasSource_oti17")
 sources/2 = SubResource("TileSetAtlasSource_tpn7j")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2osm"]
-texture = ExtResource("4_oti17")
-0:0/animation_columns = 8
-0:0/animation_speed = 4.0
-0:0/animation_frame_0/duration = 1.0
-0:0/animation_frame_1/duration = 1.0
-0:0/animation_frame_2/duration = 1.0
-0:0/animation_frame_3/duration = 1.0
-0:0/animation_frame_4/duration = 1.0
-0:0/animation_frame_5/duration = 1.0
-0:0/animation_frame_6/duration = 1.0
-0:0/animation_frame_7/duration = 1.0
 0:0/0 = 0
-8:0/animation_columns = 8
-8:0/animation_speed = 4.0
-8:0/animation_frame_0/duration = 1.0
-8:0/animation_frame_1/duration = 1.0
-8:0/animation_frame_2/duration = 1.0
-8:0/animation_frame_3/duration = 1.0
-8:0/animation_frame_4/duration = 1.0
-8:0/animation_frame_5/duration = 1.0
-8:0/animation_frame_6/duration = 1.0
-8:0/animation_frame_7/duration = 1.0
 8:0/0 = 0
-16:0/animation_columns = 8
-16:0/animation_speed = 4.0
-16:0/animation_frame_0/duration = 1.0
-16:0/animation_frame_1/duration = 1.0
-16:0/animation_frame_2/duration = 1.0
-16:0/animation_frame_3/duration = 1.0
-16:0/animation_frame_4/duration = 1.0
-16:0/animation_frame_5/duration = 1.0
-16:0/animation_frame_6/duration = 1.0
-16:0/animation_frame_7/duration = 1.0
 16:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kyibo"]
-texture = ExtResource("5_oti17")
-0:1/animation_columns = 5
-0:1/animation_speed = 4.0
-0:1/animation_frame_0/duration = 1.0
-0:1/animation_frame_1/duration = 1.0
-0:1/animation_frame_2/duration = 1.0
-0:1/animation_frame_3/duration = 1.0
-0:1/animation_frame_4/duration = 1.0
 0:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_p6h8o"]
@@ -2004,7 +1958,6 @@ sources/0 = SubResource("TileSetAtlasSource_y2osm")
 sources/1 = SubResource("TileSetAtlasSource_kyibo")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmr37"]
-texture = ExtResource("3_j5q7k")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -2296,7 +2249,6 @@ texture = ExtResource("3_j5q7k")
 15:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6h8o"]
-texture = ExtResource("6_tpn7j")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -4068,6 +4020,7 @@ tile_set = SubResource("TileSet_6esvp")
 
 [node name="NPC" parent="." instance=ExtResource("10_y2osm")]
 position = Vector2(144, 256)
+texture = null
 
 [node name="Dialogue" type="Node" parent="."]
 
@@ -4125,16 +4078,19 @@ shape = SubResource("RectangleShape2D_7avvi")
 
 [node name="RedsDoor" parent="." instance=ExtResource("15_tpn7j")]
 position = Vector2(96, 112)
+texture = null
 target_scene_path = "res://scenes/maps/town/redshouse.tscn"
 current_scene_path = "res://scenes/maps/town/town.tscn"
 
 [node name="BluesDoor" parent="." instance=ExtResource("15_tpn7j")]
 position = Vector2(240, 112)
+texture = null
 target_scene_path = "res://scenes/maps/town/blueshouse.tscn"
 current_scene_path = "res://scenes/maps/town/town.tscn"
 
 [node name="OaksDoor" parent="." instance=ExtResource("15_tpn7j")]
 position = Vector2(256, 208)
+texture = null
 hframes = 4
 vframes = 1
 region_enabled = true

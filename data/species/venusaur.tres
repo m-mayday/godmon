@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="Species" load_steps=23 format=3 uid="uid://coos7hdynlxio"]
+[gd_resource type="Resource" script_class="Species" load_steps=21 format=3 uid="uid://coos7hdynlxio"]
 
-[ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_67kb6"]
-[ext_resource type="Texture2D" uid="uid://d4jdkxbhrbmi7" path="res://assets/battle/sprites/back/VENUSAUR.png" id="1_l5dn3"]
+[ext_resource type="Script" uid="uid://oyduvbth7hyh" path="res://data/_base_classes/species.gd" id="1_67kb6"]
 [ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_lmivb"]
-[ext_resource type="Texture2D" uid="uid://0vbiwcmfsgxt" path="res://assets/battle/sprites/front/VENUSAUR.png" id="3_ag5t2"]
-[ext_resource type="Script" path="res://data/_base_classes/learnset.gd" id="4_lhktv"]
+[ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_lhktv"]
 [ext_resource type="Resource" uid="uid://b22wrkxs4g5fx" path="res://data/types/grass.tres" id="6_3cvy8"]
 [ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_f6xt7"]
 [ext_resource type="Resource" uid="uid://bcw82a0vg3qd3" path="res://data/types/poison.tres" id="7_j3utj"]
@@ -110,6 +108,4 @@ height = 0.1
 weight = 0.1
 category = &"???"
 pokedex = "???"
-front_sprite = ExtResource("3_ag5t2")
-back_sprite = ExtResource("1_l5dn3")
 sprite_metrics = SubResource("Resource_t1212")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddyxe1m3u6mth"]
+[gd_scene load_steps=10 format=3 uid="uid://ddyxe1m3u6mth"]
 
 [ext_resource type="Script" uid="uid://cout4suqk1g83" path="res://scenes/cutscenes/dialogue/balloon.gd" id="1_vh5il"]
-[ext_resource type="FontFile" uid="uid://bst06r5x135uk" path="res://assets/fonts/power red and green.ttf" id="2_e5ci5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_hgs1k"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="4_jldgk"]
 [ext_resource type="PackedScene" uid="uid://2sxaveov18qb" path="res://scenes/cutscenes/dialogue/input_arrow.tscn" id="5_alhrc"]
@@ -72,7 +71,7 @@ RichTextLabel/colors/font_shadow_color = Color(0.427645, 0.427321, 0.384771, 1)
 RichTextLabel/constants/line_separation = 16
 RichTextLabel/constants/shadow_outline_size = 4
 RichTextLabel/font_sizes/normal_font_size = 36
-RichTextLabel/fonts/normal_font = ExtResource("2_e5ci5")
+RichTextLabel/fonts/normal_font = null
 
 [node name="BalloonBatle" type="CanvasLayer"]
 layer = 100

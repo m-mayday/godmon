@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfhq7istddlx"]
+[gd_scene load_steps=3 format=3 uid="uid://cfhq7istddlx"]
 
-[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7o8ru"]
-[ext_resource type="Script" path="res://scenes/battle/battle_menu.gd" id="1_fp6dl"]
-[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_qiefk"]
+[ext_resource type="Script" uid="uid://bapq6enaknl0y" path="res://scenes/battle/battle_menu.gd" id="1_fp6dl"]
 [ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/interact_shortcut.tres" id="4_vphip"]
 
 [node name="BattleMenu" type="NinePatchRect" node_paths=PackedStringArray("options_container")]
@@ -11,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_7o8ru")
 patch_margin_left = 7
 patch_margin_top = 7
 patch_margin_right = 7
@@ -36,7 +33,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 shortcut_context = NodePath(".")
-theme_override_styles/focus = ExtResource("3_qiefk")
 shortcut = ExtResource("4_vphip")
 flat = true
 
@@ -59,7 +55,6 @@ size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = ExtResource("3_qiefk")
 shortcut = ExtResource("4_vphip")
 flat = true
 
@@ -82,7 +77,6 @@ size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = ExtResource("3_qiefk")
 shortcut = ExtResource("4_vphip")
 flat = true
 
@@ -105,7 +99,6 @@ size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = ExtResource("3_qiefk")
 shortcut = ExtResource("4_vphip")
 flat = true
 

@@ -1,8 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ciggbtucojvh7"]
+[gd_scene load_steps=10 format=3 uid="uid://ciggbtucojvh7"]
 
 [ext_resource type="Script" uid="uid://cout4suqk1g83" path="res://scenes/cutscenes/dialogue/balloon.gd" id="1_x46ux"]
-[ext_resource type="FontFile" uid="uid://bst06r5x135uk" path="res://assets/fonts/power red and green.ttf" id="2_gsnm6"]
-[ext_resource type="Texture2D" uid="uid://tndwyholsi0n" path="res://assets/frames/signs.png" id="2_ss2qv"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_ss2qv"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="4_7lkga"]
 [ext_resource type="PackedScene" uid="uid://2sxaveov18qb" path="res://scenes/cutscenes/dialogue/input_arrow.tscn" id="7_7lkga"]
@@ -44,7 +42,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7lkga"]
-texture = ExtResource("2_ss2qv")
 texture_margin_left = 16.0
 texture_margin_right = 16.0
 
@@ -64,7 +61,7 @@ RichTextLabel/colors/font_shadow_color = Color(0.843137, 0.843137, 0.815686, 1)
 RichTextLabel/constants/line_separation = 16
 RichTextLabel/constants/shadow_outline_size = 4
 RichTextLabel/font_sizes/normal_font_size = 36
-RichTextLabel/fonts/normal_font = ExtResource("2_gsnm6")
+RichTextLabel/fonts/normal_font = null
 
 [node name="BalloonSigns" type="CanvasLayer"]
 layer = 100

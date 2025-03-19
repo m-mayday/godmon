@@ -1,9 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ungtvhyngc34"]
+[gd_scene load_steps=4 format=3 uid="uid://ungtvhyngc34"]
 
-[ext_resource type="Texture2D" uid="uid://dbak7u1ihirwk" path="res://assets/system/party_screen_main_slot.png" id="1_xo7vr"]
-[ext_resource type="Texture2D" uid="uid://dicteullcqmct" path="res://assets/system/party_screen_main_slot_selected.png" id="2_mhypw"]
-[ext_resource type="Script" path="res://scenes/menus/party_slot.gd" id="3_mhypw"]
-[ext_resource type="Texture2D" uid="uid://b36nuhnj1axpk" path="res://assets/battle/ui/HP_bar.png" id="3_qncxk"]
+[ext_resource type="Script" uid="uid://b4ctsqhb14hjs" path="res://scenes/menus/party_slot.gd" id="3_mhypw"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dnbnc"]
 
@@ -12,8 +9,6 @@
 [node name="PartySlotMain" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label", "hp_bar")]
 offset_right = 269.0
 offset_bottom = 205.0
-texture_normal = ExtResource("1_xo7vr")
-texture_focused = ExtResource("2_mhypw")
 stretch_mode = 0
 script = ExtResource("3_mhypw")
 level_label = NodePath("HBoxContainer/LvLabel")
@@ -80,7 +75,6 @@ offset_left = 0.041996
 offset_top = -0.0149994
 offset_right = 0.987976
 offset_bottom = 0.994995
-texture = ExtResource("3_qncxk")
 
 [node name="HPBar" type="TextureProgressBar" parent="HPTexture"]
 show_behind_parent = true

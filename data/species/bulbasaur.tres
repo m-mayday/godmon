@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="Species" load_steps=26 format=3 uid="uid://cllceonldboth"]
+[gd_resource type="Resource" script_class="Species" load_steps=24 format=3 uid="uid://cllceonldboth"]
 
 [ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_4basm"]
-[ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_a5rft"]
-[ext_resource type="Texture2D" uid="uid://cl7jcpjyhhfs" path="res://assets/battle/sprites/back/BULBASAUR.png" id="1_orslx"]
-[ext_resource type="Texture2D" uid="uid://c8av245yl7aiu" path="res://assets/battle/sprites/front/BULBASAUR.png" id="3_05lqo"]
-[ext_resource type="Script" path="res://data/_base_classes/learnset.gd" id="4_yyf8n"]
+[ext_resource type="Script" uid="uid://oyduvbth7hyh" path="res://data/_base_classes/species.gd" id="1_a5rft"]
+[ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_yyf8n"]
 [ext_resource type="Resource" uid="uid://b22wrkxs4g5fx" path="res://data/types/grass.tres" id="6_lqbct"]
 [ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_jvu2p"]
 [ext_resource type="Resource" uid="uid://bcw82a0vg3qd3" path="res://data/types/poison.tres" id="7_sgd3q"]
@@ -132,6 +130,4 @@ height = 0.1
 weight = 0.1
 category = &"???"
 pokedex = "???"
-front_sprite = ExtResource("3_05lqo")
-back_sprite = ExtResource("1_orslx")
 sprite_metrics = SubResource("Resource_gnhe0")

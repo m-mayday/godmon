@@ -1,16 +1,11 @@
-[gd_scene load_steps=23 format=4 uid="uid://e6s1giwptv8o"]
+[gd_scene load_steps=19 format=4 uid="uid://e6s1giwptv8o"]
 
-[ext_resource type="Texture2D" uid="uid://c8gbu1dvhm8eg" path="res://assets/tilesets/outside-other.png" id="1_m71el"]
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
-[ext_resource type="Texture2D" uid="uid://g3hvacuerhwi" path="res://assets/tilesets/outside-terrain.png" id="2_ua0mi"]
-[ext_resource type="Texture2D" uid="uid://cddh4ip31gb45" path="res://assets/tilesets/outside.png" id="3_w8l4j"]
-[ext_resource type="Texture2D" uid="uid://bc06bdlv6qpsb" path="res://assets/tilesets/buildings.png" id="5_m71el"]
 [ext_resource type="PackedScene" uid="uid://ch6u6x5ill6rs" path="res://scenes/maps/encounter_area.tscn" id="6_o7v6n"]
 [ext_resource type="Script" uid="uid://cu2j1bo2txyy6" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
 [ext_resource type="Script" uid="uid://be7ltbr0qyaqn" path="res://data/_base_classes/encounter_table.gd" id="8_q4b38"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kdbn"]
-texture = ExtResource("1_m71el")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -141,7 +136,6 @@ texture = ExtResource("1_m71el")
 7:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ptm5c"]
-texture = ExtResource("2_ua0mi")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 2
@@ -1288,7 +1282,6 @@ sources/0 = SubResource("TileSetAtlasSource_1kdbn")
 sources/1 = SubResource("TileSetAtlasSource_ptm5c")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ewxqu"]
-texture = ExtResource("3_w8l4j")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -1580,7 +1573,6 @@ texture = ExtResource("3_w8l4j")
 15:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua0mi"]
-texture = ExtResource("5_m71el")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

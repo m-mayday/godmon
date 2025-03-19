@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf84jval72kf1"]
+[gd_scene load_steps=6 format=3 uid="uid://bf84jval72kf1"]
 
 [ext_resource type="Script" uid="uid://cbn74a8tx750k" path="res://scenes/cutscenes/doors/door.gd" id="1_g2n2w"]
-[ext_resource type="Texture2D" uid="uid://cr4a56h7ktkmg" path="res://assets/overworld-animations.png" id="1_m2e5v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb7t"]
 size = Vector2(16, 16)
@@ -44,7 +43,6 @@ _data = {
 }
 
 [node name="Sprite2D" type="Sprite2D" node_paths=PackedStringArray("_animator")]
-texture = ExtResource("1_m2e5v")
 centered = false
 hframes = 9
 vframes = 12

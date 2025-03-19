@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://nokxwtpo54sn"]
+[gd_scene load_steps=3 format=3 uid="uid://nokxwtpo54sn"]
 
-[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_7unhi"]
 [ext_resource type="Script" uid="uid://i5qlkwl8vf2y" path="res://scenes/menus/pause_menu.gd" id="1_gsnt3"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="2_2wrho"]
-[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="2_7unhi"]
 
 [node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("menu", "options_container", "options")]
 script = ExtResource("1_gsnt3")
@@ -34,7 +32,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_7unhi")
 patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
@@ -62,7 +59,6 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
-theme_override_styles/focus = ExtResource("2_7unhi")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokedex"]
@@ -84,7 +80,6 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
-theme_override_styles/focus = ExtResource("2_7unhi")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon"]
@@ -106,7 +101,6 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
-theme_override_styles/focus = ExtResource("2_7unhi")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Bag"]
@@ -128,7 +122,6 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
-theme_override_styles/focus = ExtResource("2_7unhi")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Player"]
@@ -150,7 +143,6 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
-theme_override_styles/focus = ExtResource("2_7unhi")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Options"]
@@ -172,7 +164,6 @@ custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
-theme_override_styles/focus = ExtResource("2_7unhi")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Exit"]

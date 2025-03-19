@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://chhq8ivedwqi"]
+[gd_scene load_steps=3 format=3 uid="uid://chhq8ivedwqi"]
 
-[ext_resource type="Script" path="res://scenes/battle/fight_menu.gd" id="1_nn76s"]
-[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_tfdtp"]
-[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_8tb5x"]
+[ext_resource type="Script" uid="uid://bc1qhku66wiqr" path="res://scenes/battle/fight_menu.gd" id="1_nn76s"]
 [ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/interact_shortcut.tres" id="4_vwna1"]
 
 [node name="FightMenu" type="Control" node_paths=PackedStringArray("move_container", "pp_amount", "move_type")]
@@ -30,7 +28,6 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
-texture = ExtResource("1_tfdtp")
 patch_margin_left = 7
 patch_margin_top = 7
 patch_margin_right = 7
@@ -60,7 +57,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = ExtResource("3_8tb5x")
 shortcut = ExtResource("4_vwna1")
 flat = true
 
@@ -88,7 +84,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = ExtResource("3_8tb5x")
 shortcut = ExtResource("4_vwna1")
 flat = true
 
@@ -116,7 +111,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = ExtResource("3_8tb5x")
 shortcut = ExtResource("4_vwna1")
 flat = true
 
@@ -144,7 +138,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = ExtResource("3_8tb5x")
 shortcut = ExtResource("4_vwna1")
 flat = true
 
@@ -168,7 +161,6 @@ uppercase = true
 [node name="MoveInfo" type="NinePatchRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_tfdtp")
 patch_margin_left = 7
 patch_margin_top = 7
 patch_margin_right = 7

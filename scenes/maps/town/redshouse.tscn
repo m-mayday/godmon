@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://c6h08agqk36nb"]
+[gd_scene load_steps=10 format=4 uid="uid://c6h08agqk36nb"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_82fhn"]
-[ext_resource type="Texture2D" uid="uid://dwjxp1336xgam" path="res://assets/tilesets/interior.png" id="2_kmppb"]
 [ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="3_kmppb"]
 [ext_resource type="PackedScene" uid="uid://132oh70ugaoq" path="res://scenes/cutscenes/stairs/stairs.tscn" id="4_rwgo6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwgo6"]
-texture = ExtResource("2_kmppb")
 0:0/next_alternative_id = 2
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -147,7 +145,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rwgo6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynbiv"]
-texture = ExtResource("2_kmppb")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -282,7 +279,6 @@ texture = ExtResource("2_kmppb")
 sources/0 = SubResource("TileSetAtlasSource_ynbiv")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rekou"]
-texture = ExtResource("2_kmppb")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

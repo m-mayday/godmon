@@ -1,21 +1,14 @@
-[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
+[gd_scene load_steps=23 format=3 uid="uid://d0d7xsr8ntfjk"]
 
-[ext_resource type="Script" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
+[ext_resource type="Script" uid="uid://ccnmswu7u4ea3" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
 [ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
 [ext_resource type="PackedScene" uid="uid://cfhq7istddlx" path="res://scenes/battle/battle_menu.tscn" id="2_i5pvj"]
-[ext_resource type="Texture2D" uid="uid://by2kdrc8mp07f" path="res://assets/battle/backgrounds/field_bg.png" id="2_o7ey8"]
 [ext_resource type="PackedScene" uid="uid://qt207sey5bpy" path="res://scenes/battle/databox_main.tscn" id="2_tc5fe"]
 [ext_resource type="PackedScene" uid="uid://chhq8ivedwqi" path="res://scenes/battle/fight_menu.tscn" id="3_cv04l"]
 [ext_resource type="PackedScene" uid="uid://qiu0yskh5npf" path="res://scenes/battle/battle_sprite.tscn" id="3_fssma"]
-[ext_resource type="Texture2D" uid="uid://bj8ttyo3qhfen" path="res://assets/battle/ui/grass_battleback.png" id="3_w8dgg"]
-[ext_resource type="Texture2D" uid="uid://dtix6uvd2o27l" path="res://assets/battle/ui/panel_dialogue.png" id="4_beauk"]
 [ext_resource type="PackedScene" uid="uid://cf8icqs8aj2cw" path="res://scenes/battle/target_menu.tscn" id="6_5lyw6"]
 [ext_resource type="PackedScene" uid="uid://bnt5o5mxpc03m" path="res://scenes/battle/ability_box.tscn" id="6_kyq73"]
-[ext_resource type="Texture2D" uid="uid://olwv2a6i376h" path="res://assets/red_back.png" id="9_gs2os"]
-[ext_resource type="Texture2D" uid="uid://d27vygdgddeqg" path="res://assets/poke_balls.png" id="9_vogny"]
-[ext_resource type="Texture2D" uid="uid://b8h7feuujfllj" path="res://assets/battle/ui/grass_battleback_0.png" id="11_viky4"]
 [ext_resource type="PackedScene" uid="uid://ddyxe1m3u6mth" path="res://scenes/cutscenes/dialogue/balloon_battle.tscn" id="12_tc5fe"]
-[ext_resource type="Texture2D" uid="uid://vun8u75k2w74" path="res://assets/battle/ui/grass_intro.png" id="13_abmdw"]
 [ext_resource type="PackedScene" uid="uid://bv5p4qx8ddr0v" path="res://scenes/battle/animator.tscn" id="18_cr648"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="19_tpsmh"]
 
@@ -404,23 +397,18 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2bxv"]
-atlas = ExtResource("9_gs2os")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gbcw"]
-atlas = ExtResource("9_gs2os")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2oj5"]
-atlas = ExtResource("9_gs2os")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tpy5"]
-atlas = ExtResource("9_gs2os")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tv2g"]
-atlas = ExtResource("9_gs2os")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xtv0i"]
@@ -468,7 +456,6 @@ offset_right = 512.0
 offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_o7ey8")
 
 [node name="FoeSide" type="Node" parent="."]
 
@@ -477,7 +464,6 @@ offset_left = -465.0
 offset_top = 163.0
 offset_right = -90.0
 offset_bottom = 263.0
-texture = ExtResource("3_w8dgg")
 
 [node name="Sprites" type="HBoxContainer" parent="FoeSide"]
 modulate = Color(0.568627, 0.568627, 0.568627, 1)
@@ -503,6 +489,7 @@ metadata/_edit_lock_ = true
 
 [node name="Ability" parent="FoeSide" instance=ExtResource("6_kyq73")]
 position = Vector2(769, 90)
+texture = null
 side = 1
 
 [node name="UserSide" type="Node" parent="."]
@@ -512,7 +499,6 @@ offset_left = 768.0
 offset_top = 396.0
 offset_right = 1282.0
 offset_bottom = 485.0
-texture = ExtResource("11_viky4")
 
 [node name="Sprites" type="HBoxContainer" parent="UserSide"]
 anchors_preset = 2
@@ -547,6 +533,7 @@ metadata/_edit_lock_ = true
 
 [node name="Ability" parent="UserSide" instance=ExtResource("6_kyq73")]
 position = Vector2(-256, 307)
+texture = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -559,7 +546,6 @@ libraries = {
 visible = false
 position = Vector2(137.25, 406.333)
 scale = Vector2(4.29167, 4.29167)
-texture = ExtResource("9_vogny")
 region_enabled = true
 region_rect = Rect2(0, 0, 12, 12)
 
@@ -576,7 +562,6 @@ anchor_bottom = 1.0
 offset_top = -100.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("4_beauk")
 patch_margin_left = 8
 patch_margin_top = 7
 patch_margin_right = 8
@@ -595,6 +580,7 @@ offset_left = -262.0
 offset_top = -100.0
 grow_horizontal = 0
 grow_vertical = 0
+texture = null
 
 [node name="FightMenu" parent="CanvasLayer" instance=ExtResource("3_cv04l")]
 visible = false
@@ -611,6 +597,7 @@ anchor_top = 1.0
 offset_top = -100.0
 grow_vertical = 0
 size_flags_horizontal = 3
+texture = null
 
 [node name="TransitionTop" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -644,7 +631,6 @@ offset_left = 1.0
 offset_top = 326.0
 offset_right = 766.0
 offset_bottom = 479.0
-texture = ExtResource("13_abmdw")
 metadata/_edit_lock_ = true
 
 [node name="Animator" parent="." node_paths=PackedStringArray("allies", "opponents") instance=ExtResource("18_cr648")]

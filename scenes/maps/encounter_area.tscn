@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ch6u6x5ill6rs"]
 
-[ext_resource type="Script" path="res://scenes/maps/encounter_area.gd" id="1_1j7a5"]
+[ext_resource type="Script" uid="uid://db3ixl5by1eyi" path="res://scenes/maps/encounter_area.gd" id="1_1j7a5"]
 
 [node name="EncounterArea" type="Area2D"]
 collision_layer = 2

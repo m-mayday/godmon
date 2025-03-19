@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="Species" load_steps=22 format=3 uid="uid://bep0hloqk8s4o"]
+[gd_resource type="Resource" script_class="Species" load_steps=20 format=3 uid="uid://bep0hloqk8s4o"]
 
-[ext_resource type="Texture2D" uid="uid://d0h387k5fo8w1" path="res://assets/battle/sprites/back/CHARIZARD.png" id="1_2j183"]
-[ext_resource type="Script" path="res://data/_base_classes/species.gd" id="1_imqwd"]
+[ext_resource type="Script" uid="uid://oyduvbth7hyh" path="res://data/_base_classes/species.gd" id="1_imqwd"]
 [ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_sau7s"]
-[ext_resource type="Texture2D" uid="uid://ktky8mtpbo7w" path="res://assets/battle/sprites/front/CHARIZARD.png" id="3_loij1"]
-[ext_resource type="Script" path="res://data/_base_classes/learnset.gd" id="4_dk3e4"]
+[ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_dk3e4"]
 [ext_resource type="Resource" uid="uid://cshrkwblaiitr" path="res://data/types/fire.tres" id="6_67e61"]
 [ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_16ane"]
 [ext_resource type="Resource" uid="uid://cftowb5lcbqh6" path="res://data/types/flying.tres" id="7_kxs23"]
@@ -108,6 +106,4 @@ height = 0.1
 weight = 0.1
 category = &"???"
 pokedex = "???"
-front_sprite = ExtResource("3_loij1")
-back_sprite = ExtResource("1_2j183")
 sprite_metrics = SubResource("Resource_xesgn")

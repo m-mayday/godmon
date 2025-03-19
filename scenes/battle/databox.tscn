@@ -1,11 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://111uiosseoy1"]
+[gd_scene load_steps=5 format=3 uid="uid://111uiosseoy1"]
 
-[ext_resource type="Texture2D" uid="uid://b2ra5xqyh7aph" path="res://assets/battle/ui/battle_databox_top.png" id="2_e8luf"]
-[ext_resource type="Script" path="res://scenes/battle/databox.gd" id="2_jscsl"]
+[ext_resource type="Script" uid="uid://c68yjnqlo0c3w" path="res://scenes/battle/databox.gd" id="2_jscsl"]
 [ext_resource type="LabelSettings" uid="uid://l5o3s2k08eoa" path="res://scenes/themes/battle_label.tres" id="4_cimg2"]
-[ext_resource type="Texture2D" uid="uid://b3oeg7smifate" path="res://assets/battle/ui/battle_thin_databox_bottom.png" id="4_x2l2s"]
-[ext_resource type="Texture2D" uid="uid://b36nuhnj1axpk" path="res://assets/battle/ui/HP_bar.png" id="6_v2xas"]
-[ext_resource type="Texture2D" uid="uid://1odgoid7itxc" path="res://assets/statuses/poison.png" id="8_skb30"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pmy0x"]
 
@@ -33,7 +29,6 @@ anchor_right = 0.885
 anchor_bottom = 0.405
 offset_right = -0.119995
 offset_bottom = 0.0449982
-texture = ExtResource("2_e8luf")
 
 [node name="BottomThin" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(291, 35)
@@ -45,7 +40,6 @@ offset_top = 41.0
 offset_right = -0.0960083
 offset_bottom = -0.0359955
 pivot_offset = Vector2(138, 15)
-texture = ExtResource("4_x2l2s")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -118,14 +112,12 @@ visible = false
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 2
-texture = ExtResource("8_skb30")
 
 [node name="HPTexture" type="TextureRect" parent="StatusContainer/HBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(180, 21)
 layout_mode = 2
 size_flags_horizontal = 10
-texture = ExtResource("6_v2xas")
 metadata/_edit_use_anchors_ = true
 
 [node name="HPBar" type="TextureProgressBar" parent="StatusContainer/HBoxContainer/HPTexture"]

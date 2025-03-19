@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf8icqs8aj2cw"]
+[gd_scene load_steps=3 format=3 uid="uid://cf8icqs8aj2cw"]
 
-[ext_resource type="Script" path="res://scenes/battle/target_menu.gd" id="1_50osn"]
-[ext_resource type="Texture2D" uid="uid://spyfswp7y47j" path="res://assets/battle/ui/battle_panel.png" id="1_264xs"]
-[ext_resource type="StyleBox" uid="uid://4c5rtg4di21c" path="res://assets/battle/ui/select_arrow.tres" id="3_o7k4u"]
+[ext_resource type="Script" uid="uid://dovjxbm8cwlop" path="res://scenes/battle/target_menu.gd" id="1_50osn"]
 [ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/interact_shortcut.tres" id="4_i3553"]
 
 [node name="TargetMenu" type="NinePatchRect" node_paths=PackedStringArray("foe_side", "user_side")]
@@ -11,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_264xs")
 region_rect = Rect2(0, 0, 48, 48)
 patch_margin_left = 7
 patch_margin_top = 7
@@ -49,7 +46,6 @@ size_flags_vertical = 4
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("3_o7k4u")
 shortcut = ExtResource("4_i3553")
 flat = true
 
@@ -76,7 +72,6 @@ size_flags_vertical = 4
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("3_o7k4u")
 shortcut = ExtResource("4_i3553")
 flat = true
 
@@ -103,7 +98,6 @@ size_flags_vertical = 4
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("3_o7k4u")
 shortcut = ExtResource("4_i3553")
 flat = true
 
@@ -134,7 +128,6 @@ size_flags_vertical = 4
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("3_o7k4u")
 shortcut = ExtResource("4_i3553")
 flat = true
 
@@ -161,7 +154,6 @@ size_flags_vertical = 4
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("3_o7k4u")
 shortcut = ExtResource("4_i3553")
 flat = true
 
@@ -188,7 +180,6 @@ size_flags_vertical = 4
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = ExtResource("3_o7k4u")
 shortcut = ExtResource("4_i3553")
 flat = true
 
