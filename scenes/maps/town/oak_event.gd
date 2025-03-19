@@ -3,7 +3,6 @@ extends Cutscene
 var player: Area2D
 
 func _ready() -> void:
-	var p_player = get_tree().get_first_node_in_group("player")
 	$"../PlayerPath".hide()
 	$"../OakPath".hide()
 
