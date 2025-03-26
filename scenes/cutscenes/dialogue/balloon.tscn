@@ -70,7 +70,7 @@ RichTextLabel/colors/default_color = Color(0.188235, 0.313726, 0.784314, 1)
 RichTextLabel/colors/font_shadow_color = Color(0.843137, 0.843137, 0.815686, 1)
 RichTextLabel/constants/line_separation = 16
 RichTextLabel/constants/shadow_outline_size = 4
-RichTextLabel/font_sizes/normal_font_size = 36
+RichTextLabel/font_sizes/normal_font_size = 48
 RichTextLabel/fonts/normal_font = null
 
 [node name="Balloon" type="CanvasLayer"]

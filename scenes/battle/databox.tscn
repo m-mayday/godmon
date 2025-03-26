@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://111uiosseoy1"]
+[gd_scene load_steps=8 format=3 uid="uid://111uiosseoy1"]
 
+[ext_resource type="Texture2D" uid="uid://dc7654vtbjp5x" path="res://assets/battle/ui/databox_top.png" id="2_f8bmp"]
 [ext_resource type="Script" uid="uid://c68yjnqlo0c3w" path="res://scenes/battle/databox.gd" id="2_jscsl"]
+[ext_resource type="Texture2D" uid="uid://i13h4aj6vwj8" path="res://assets/battle/ui/databox_thin_bottom.png" id="3_u00sb"]
 [ext_resource type="LabelSettings" uid="uid://l5o3s2k08eoa" path="res://scenes/themes/battle_label.tres" id="4_cimg2"]
+[ext_resource type="Texture2D" uid="uid://8xo0hhftm0u0" path="res://assets/ui/hp_bar.png" id="4_f8bmp"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pmy0x"]
 
@@ -29,6 +32,7 @@ anchor_right = 0.885
 anchor_bottom = 0.405
 offset_right = -0.119995
 offset_bottom = 0.0449982
+texture = ExtResource("2_f8bmp")
 
 [node name="BottomThin" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(291, 35)
@@ -40,6 +44,7 @@ offset_top = 41.0
 offset_right = -0.0960083
 offset_bottom = -0.0359955
 pivot_offset = Vector2(138, 15)
+texture = ExtResource("3_u00sb")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -69,8 +74,8 @@ label_settings = ExtResource("4_cimg2")
 [node name="Gender" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
 text = "♂"
-label_settings = ExtResource("4_cimg2")
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 42)
@@ -108,7 +113,6 @@ offset_bottom = 61.0
 layout_mode = 2
 
 [node name="Status" type="TextureRect" parent="StatusContainer/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -118,6 +122,7 @@ clip_contents = true
 custom_minimum_size = Vector2(180, 21)
 layout_mode = 2
 size_flags_horizontal = 10
+texture = ExtResource("4_f8bmp")
 metadata/_edit_use_anchors_ = true
 
 [node name="HPBar" type="TextureProgressBar" parent="StatusContainer/HBoxContainer/HPTexture"]

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://c3v824smo5q1t"]
 
-[ext_resource type="Texture2D" uid="uid://1odgoid7itxc" path="res://assets/statuses/poison.png" id="1_0yymg"]
-[ext_resource type="Script" path="res://data/_base_classes/status.gd" id="1_v2tla"]
+[ext_resource type="Script" uid="uid://xjd1nh3rlm50" path="res://data/_base_classes/status.gd" id="1_v2tla"]
+[ext_resource type="Texture2D" uid="uid://cllj1cyg4hlso" path="res://assets/statuses/poison.png" id="1_w8a6b"]
 
 [resource]
 script = ExtResource("1_v2tla")
 id = 4
 name = "Poison"
 immune_types = Array[int]([13, 16])
-icon = ExtResource("1_0yymg")
+icon = ExtResource("1_w8a6b")

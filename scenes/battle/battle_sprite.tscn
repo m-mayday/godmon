@@ -1,6 +1,7 @@
-[gd_scene load_steps=48 format=3 uid="uid://qiu0yskh5npf"]
+[gd_scene load_steps=49 format=3 uid="uid://qiu0yskh5npf"]
 
 [ext_resource type="Script" uid="uid://qm41lh5wd4ew" path="res://scenes/battle/battle_sprite.gd" id="1_w5r5j"]
+[ext_resource type="Texture2D" uid="uid://b64svyma0qpxx" path="res://assets/battle/shadow.png" id="2_35bw7"]
 [ext_resource type="Shader" uid="uid://dxoy6nb625smq" path="res://scenes/battle/battle_sprite.gdshader" id="3_p1xg4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyyhb"]
@@ -559,6 +560,7 @@ animator = NodePath("AnimationPlayer")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 visible = false
+texture = ExtResource("2_35bw7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xyyhb")

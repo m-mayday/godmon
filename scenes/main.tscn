@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dexs5i187o0bc"]
 
 [ext_resource type="Script" uid="uid://y8ft1hgrhe1p" path="res://scenes/main.gd" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://bmigxfi2xkns7" path="res://scenes/player.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bmigxfi2xkns7" path="res://scenes/characters/player.tscn" id="3_sugp2"]
 
 [sub_resource type="Animation" id="Animation_sugp2"]
 length = 0.001

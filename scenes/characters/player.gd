@@ -32,6 +32,7 @@ func _ready():
 	pokemon_party.append(Pokemon.new(Constants.SPECIES.BULBASAUR, 60))
 	pokemon_party.append(Pokemon.new(Constants.SPECIES.BLASTOISE, 60))
 	pokemon_party.append(Pokemon.new(Constants.SPECIES.CHARIZARD, 60))
+	pokemon_party[0].ability = Constants.get_ability_by_id(Constants.ABILITIES.TRUANT)
 	Global.set_player_party_value(0, pokemon_party[0])
 	Global.set_player_party_value(1, pokemon_party[1])
 	Global.set_player_party_value(2, pokemon_party[2])

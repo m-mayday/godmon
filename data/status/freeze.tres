@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://igv1ix3rfyrn"]
 
-[ext_resource type="Texture2D" uid="uid://cs0lvow3784b0" path="res://assets/statuses/freeze.png" id="1_eni0x"]
-[ext_resource type="Script" path="res://data/_base_classes/status.gd" id="1_fe0ve"]
+[ext_resource type="Texture2D" uid="uid://iwdr326pcink" path="res://assets/statuses/freeze.png" id="1_bxugl"]
+[ext_resource type="Script" uid="uid://xjd1nh3rlm50" path="res://data/_base_classes/status.gd" id="1_fe0ve"]
 
 [resource]
 script = ExtResource("1_fe0ve")
 id = 2
 name = "Freeze"
 immune_types = Array[int]([11])
-icon = ExtResource("1_eni0x")
+icon = ExtResource("1_bxugl")

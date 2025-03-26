@@ -128,6 +128,9 @@ func _update_data(new_health) -> void:
 	if _battler != null:
 		level_label.text = str(_battler.pokemon.level)
 		name_label.text = _battler.pokemon.name
+		if _battler.pokemon.status.id != Constants.STATUSES.NONE:
+			status_texture.texture = _battler.pokemon.status.icon
+			status_texture.visible = _battler.pokemon.status.icon != null
 		if hp_container != null:
 			hp_label.text = "{0} / {1}".format([new_health, _battler.pokemon.stats.hp])
 		

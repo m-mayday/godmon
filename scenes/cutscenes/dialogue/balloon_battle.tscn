@@ -1,6 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ddyxe1m3u6mth"]
 
 [ext_resource type="Script" uid="uid://cout4suqk1g83" path="res://scenes/cutscenes/dialogue/balloon.gd" id="1_vh5il"]
+[ext_resource type="FontFile" uid="uid://bsuxtvw5den2q" path="res://assets/fonts/Kenney Pixel.ttf" id="2_vh5il"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_hgs1k"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="4_jldgk"]
 [ext_resource type="PackedScene" uid="uid://2sxaveov18qb" path="res://scenes/cutscenes/dialogue/input_arrow.tscn" id="5_alhrc"]
@@ -41,20 +42,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy0d5"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.424404, 0.658394, 0.73373, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_color = Color(0, 0, 0, 1)
-shadow_size = 4
-
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font_size = 20
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
@@ -65,13 +52,12 @@ MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 30
 MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 20
-Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 RichTextLabel/colors/default_color = Color(0.939315, 0.956449, 0.996276, 1)
 RichTextLabel/colors/font_shadow_color = Color(0.427645, 0.427321, 0.384771, 1)
-RichTextLabel/constants/line_separation = 16
+RichTextLabel/constants/line_separation = 10
 RichTextLabel/constants/shadow_outline_size = 4
-RichTextLabel/font_sizes/normal_font_size = 36
-RichTextLabel/fonts/normal_font = null
+RichTextLabel/font_sizes/normal_font_size = 48
+RichTextLabel/fonts/normal_font = ExtResource("2_vh5il")
 
 [node name="BalloonBatle" type="CanvasLayer"]
 layer = 100

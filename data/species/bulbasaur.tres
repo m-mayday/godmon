@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Species" load_steps=24 format=3 uid="uid://cllceonldboth"]
+[gd_resource type="Resource" script_class="Species" load_steps=26 format=3 uid="uid://cllceonldboth"]
 
 [ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_4basm"]
 [ext_resource type="Script" uid="uid://oyduvbth7hyh" path="res://data/_base_classes/species.gd" id="1_a5rft"]
+[ext_resource type="Texture2D" uid="uid://bfc4c6amq7laj" path="res://assets/battle/back/BULBASAUR.png" id="1_yyf8n"]
+[ext_resource type="Texture2D" uid="uid://ckmli5p1gkcht" path="res://assets/battle/front/BULBASAUR.png" id="3_jvu2p"]
 [ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_yyf8n"]
 [ext_resource type="Resource" uid="uid://b22wrkxs4g5fx" path="res://data/types/grass.tres" id="6_lqbct"]
 [ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_jvu2p"]
@@ -94,11 +96,11 @@ metadata/_custom_type_script = ExtResource("4_yyf8n")
 [sub_resource type="Resource" id="Resource_gnhe0"]
 script = ExtResource("8_sxy2a")
 back_sprite_offset = Vector2(0, 0)
-back_sprite_scale = Vector2(1.2, 1.2)
-front_sprite_offset = Vector2(0, 42)
-front_sprite_scale = Vector2(1.2, 1.2)
-shadow_scale = Vector2(1.1, 1.2)
-shadow_offset = Vector2(5, -10)
+back_sprite_scale = Vector2(4, 4)
+front_sprite_offset = Vector2(0, 0)
+front_sprite_scale = Vector2(4, 4)
+shadow_scale = Vector2(1.2, 1.2)
+shadow_offset = Vector2(5, 46)
 
 [resource]
 script = ExtResource("1_a5rft")
@@ -130,4 +132,6 @@ height = 0.1
 weight = 0.1
 category = &"???"
 pokedex = "???"
+front_sprite = ExtResource("3_jvu2p")
+back_sprite = ExtResource("1_yyf8n")
 sprite_metrics = SubResource("Resource_gnhe0")

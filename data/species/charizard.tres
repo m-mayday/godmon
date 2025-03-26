@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Species" load_steps=20 format=3 uid="uid://bep0hloqk8s4o"]
+[gd_resource type="Resource" script_class="Species" load_steps=22 format=3 uid="uid://bep0hloqk8s4o"]
 
+[ext_resource type="Texture2D" uid="uid://d30t01ilwifka" path="res://assets/battle/back/CHARIZARD.png" id="1_dk3e4"]
 [ext_resource type="Script" uid="uid://oyduvbth7hyh" path="res://data/_base_classes/species.gd" id="1_imqwd"]
 [ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_sau7s"]
+[ext_resource type="Texture2D" uid="uid://bcfgaku3g6stf" path="res://assets/battle/front/CHARIZARD.png" id="3_xolsu"]
 [ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_dk3e4"]
 [ext_resource type="Resource" uid="uid://cshrkwblaiitr" path="res://data/types/fire.tres" id="6_67e61"]
 [ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_16ane"]
@@ -74,11 +76,11 @@ metadata/_custom_type_script = ExtResource("4_dk3e4")
 [sub_resource type="Resource" id="Resource_xesgn"]
 script = ExtResource("7_16ane")
 back_sprite_offset = Vector2(0, 0)
-back_sprite_scale = Vector2(1.2, 1.2)
+back_sprite_scale = Vector2(4, 4)
 front_sprite_offset = Vector2(0, -2)
-front_sprite_scale = Vector2(1.2, 1.2)
+front_sprite_scale = Vector2(4, 4)
 shadow_scale = Vector2(1.7, 1.8)
-shadow_offset = Vector2(-1, -33)
+shadow_offset = Vector2(3, 18)
 
 [resource]
 script = ExtResource("1_imqwd")
@@ -106,4 +108,6 @@ height = 0.1
 weight = 0.1
 category = &"???"
 pokedex = "???"
+front_sprite = ExtResource("3_xolsu")
+back_sprite = ExtResource("1_dk3e4")
 sprite_metrics = SubResource("Resource_xesgn")

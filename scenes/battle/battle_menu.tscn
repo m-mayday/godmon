@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfhq7istddlx"]
+[gd_scene load_steps=5 format=3 uid="uid://cfhq7istddlx"]
 
 [ext_resource type="Script" uid="uid://bapq6enaknl0y" path="res://scenes/battle/battle_menu.gd" id="1_fp6dl"]
-[ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/interact_shortcut.tres" id="4_vphip"]
+[ext_resource type="Texture2D" uid="uid://3nfpanty48va" path="res://assets/ui/panel_beigeLight.png" id="1_gips1"]
+[ext_resource type="StyleBox" uid="uid://dqdeaqixjmvf3" path="res://scenes/themes/selection_arrow_box.tres" id="3_vphip"]
+[ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/menus/interact_shortcut.tres" id="4_vphip"]
 
 [node name="BattleMenu" type="NinePatchRect" node_paths=PackedStringArray("options_container")]
 anchors_preset = 15
@@ -9,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_gips1")
 patch_margin_left = 7
 patch_margin_top = 7
 patch_margin_right = 7
@@ -33,6 +36,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 shortcut_context = NodePath(".")
+theme_override_styles/focus = ExtResource("3_vphip")
 shortcut = ExtResource("4_vphip")
 flat = true
 
@@ -44,6 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_font_sizes/font_size = 32
 text = "   FIGHT   "
 vertical_alignment = 1
 
@@ -55,6 +60,7 @@ size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("3_vphip")
 shortcut = ExtResource("4_vphip")
 flat = true
 
@@ -66,6 +72,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_font_sizes/font_size = 32
 text = "   BAG"
 vertical_alignment = 1
 
@@ -77,6 +84,7 @@ size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("3_vphip")
 shortcut = ExtResource("4_vphip")
 flat = true
 
@@ -88,6 +96,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_font_sizes/font_size = 32
 text = "    POKéMON"
 vertical_alignment = 1
 
@@ -99,6 +108,7 @@ size_flags_vertical = 6
 shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("3_vphip")
 shortcut = ExtResource("4_vphip")
 flat = true
 
@@ -110,6 +120,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_font_sizes/font_size = 32
 text = "   RUN"
 vertical_alignment = 1
 

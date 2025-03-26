@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dswfxggc17xr3"]
+[gd_scene load_steps=9 format=3 uid="uid://dswfxggc17xr3"]
 
 [ext_resource type="Script" uid="uid://c3uwa0gdwk1cy" path="res://scenes/menus/party_screen.gd" id="1_wgxl4"]
+[ext_resource type="Texture2D" uid="uid://3nfpanty48va" path="res://assets/ui/panel_beigeLight.png" id="2_t8ff1"]
 [ext_resource type="PackedScene" uid="uid://ungtvhyngc34" path="res://scenes/menus/party_slot_main.tscn" id="2_x3v3m"]
+[ext_resource type="Texture2D" uid="uid://ujghvquaawh2" path="res://assets/ui/panel_blue.png" id="5_ybr7a"]
 [ext_resource type="PackedScene" uid="uid://qc51fa6s3uqi" path="res://scenes/menus/party_slot.tscn" id="6_wgxl4"]
+[ext_resource type="Texture2D" uid="uid://en456rclestl" path="res://assets/ui/menu_cancel.png" id="6_ybr7a"]
+[ext_resource type="Texture2D" uid="uid://sunxn08nsjro" path="res://assets/ui/menu_cancel_hover.png" id="7_a2588"]
+[ext_resource type="StyleBox" uid="uid://dqdeaqixjmvf3" path="res://scenes/themes/selection_arrow_box.tres" id="8_a2588"]
 
 [node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button", "send_out_option", "summary_option", "switch_option", "item_option")]
 script = ExtResource("1_wgxl4")
@@ -29,7 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
+texture = ExtResource("2_t8ff1")
 
 [node name="Slots" type="Node" parent="Control/Background"]
 
@@ -45,8 +50,6 @@ focus_neighbor_right = NodePath("../PartySlot2")
 focus_neighbor_bottom = NodePath("../PartySlot2")
 focus_next = NodePath("../PartySlot2")
 focus_previous = NodePath("../../MarginContainer/HBoxContainer/Cancel")
-texture_normal = null
-texture_focused = null
 
 [node name="PartySlot2" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
 visible = false
@@ -64,8 +67,6 @@ focus_neighbor_right = NodePath("../PartySlot3")
 focus_neighbor_bottom = NodePath("../PartySlot3")
 focus_next = NodePath("../PartySlot3")
 focus_previous = NodePath("../PartySlotMain")
-texture_normal = null
-texture_focused = null
 
 [node name="PartySlot3" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
 visible = false
@@ -83,8 +84,6 @@ focus_neighbor_right = NodePath("../PartySlot4")
 focus_neighbor_bottom = NodePath("../PartySlot4")
 focus_next = NodePath("../PartySlot4")
 focus_previous = NodePath("../PartySlot2")
-texture_normal = null
-texture_focused = null
 
 [node name="PartySlot4" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
 visible = false
@@ -102,8 +101,6 @@ focus_neighbor_right = NodePath("../PartySlot5")
 focus_neighbor_bottom = NodePath("../PartySlot5")
 focus_next = NodePath("../PartySlot5")
 focus_previous = NodePath("../PartySlot3")
-texture_normal = null
-texture_focused = null
 
 [node name="PartySlot5" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
 visible = false
@@ -121,8 +118,6 @@ focus_neighbor_right = NodePath("../PartySlot6")
 focus_neighbor_bottom = NodePath("../PartySlot6")
 focus_next = NodePath("../PartySlot6")
 focus_previous = NodePath("../PartySlot4")
-texture_normal = null
-texture_focused = null
 
 [node name="PartySlot6" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
 visible = false
@@ -140,10 +135,9 @@ focus_neighbor_right = NodePath("../../MarginContainer/HBoxContainer/Cancel")
 focus_neighbor_bottom = NodePath("../../MarginContainer/HBoxContainer/Cancel")
 focus_next = NodePath("../../MarginContainer/HBoxContainer/Cancel")
 focus_previous = NodePath("../PartySlot5")
-texture_normal = null
-texture_focused = null
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Background"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -164,6 +158,7 @@ alignment = 1
 [node name="MessageBox" type="NinePatchRect" parent="Control/Background/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+texture = ExtResource("5_ybr7a")
 patch_margin_left = 9
 patch_margin_top = 9
 patch_margin_right = 9
@@ -181,8 +176,9 @@ offset_top = -8.5
 offset_right = 184.733
 offset_bottom = 8.5
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 4
-theme_override_font_sizes/font_size = 48
 text = "Choose a POKéMON."
 
 [node name="Cancel" type="TextureButton" parent="Control/Background/MarginContainer/HBoxContainer"]
@@ -194,6 +190,8 @@ focus_neighbor_right = NodePath("../../../Slots/PartySlot6")
 focus_neighbor_bottom = NodePath("../../../Slots/PartySlotMain")
 focus_next = NodePath("../../../Slots/PartySlotMain")
 focus_previous = NodePath("../../../Slots/PartySlot6")
+texture_normal = ExtResource("6_ybr7a")
+texture_focused = ExtResource("7_a2588")
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/Cancel"]
@@ -203,14 +201,13 @@ anchor_left = 0.439
 anchor_top = 0.349
 anchor_right = 0.873
 anchor_bottom = 0.628
-offset_left = -0.116035
-offset_top = -0.0139999
-offset_right = 0.987961
-offset_bottom = 0.991997
+offset_left = -0.116005
+offset_top = -5.014
+offset_right = 0.987991
+offset_bottom = 6.992
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 36
 text = "CANCEL"
 
 [node name="SlotOptions" type="Control" parent="Control/Background/MarginContainer/HBoxContainer"]
@@ -227,6 +224,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("5_ybr7a")
 patch_margin_left = 9
 patch_margin_top = 8
 patch_margin_right = 9
@@ -254,66 +252,76 @@ theme_override_constants/separation = 8
 visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 36
 text = "  SEND OUT"
 
 [node name="Summary" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Summary"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 36
 text = "  SUMMARY"
 
 [node name="Switch" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Switch"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 36
 text = "  SWITCH"
 
 [node name="Item" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Item"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 36
 text = "  ITEM"
 
 [node name="SlotCancel" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+theme_override_styles/focus = ExtResource("8_a2588")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SlotCancel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 36
 text = "  CANCEL"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

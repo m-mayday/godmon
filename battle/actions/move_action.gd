@@ -17,6 +17,8 @@ func _init(p_move: Move, p_user: Battler, p_target: Battler, p_battle: Battle):
 	user = p_user
 	original_target = p_target
 	battle = p_battle
+	if original_target == null:
+		original_target = battle.get_oppossite_side(user.side).active[0]
 	target_position = -1
 	if original_target != null:
 		target_position = original_target.side.get_active_battler_position(original_target)

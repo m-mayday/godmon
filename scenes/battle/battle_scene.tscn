@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0d7xsr8ntfjk"]
+[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
 
 [ext_resource type="Script" uid="uid://ccnmswu7u4ea3" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
 [ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
@@ -6,9 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://qt207sey5bpy" path="res://scenes/battle/databox_main.tscn" id="2_tc5fe"]
 [ext_resource type="PackedScene" uid="uid://chhq8ivedwqi" path="res://scenes/battle/fight_menu.tscn" id="3_cv04l"]
 [ext_resource type="PackedScene" uid="uid://qiu0yskh5npf" path="res://scenes/battle/battle_sprite.tscn" id="3_fssma"]
+[ext_resource type="Texture2D" uid="uid://cqf8t7mxqxvs" path="res://assets/battle/ui/grass_battleback_front.png" id="5_puhd7"]
+[ext_resource type="Texture2D" uid="uid://doeri1y2w3cb2" path="res://assets/battle/ui/field_bg.png" id="5_te27b"]
 [ext_resource type="PackedScene" uid="uid://cf8icqs8aj2cw" path="res://scenes/battle/target_menu.tscn" id="6_5lyw6"]
 [ext_resource type="PackedScene" uid="uid://bnt5o5mxpc03m" path="res://scenes/battle/ability_box.tscn" id="6_kyq73"]
+[ext_resource type="Texture2D" uid="uid://ubkmnnbbhb3y" path="res://assets/battle/ui/grass_battleback_back.png" id="7_mpswg"]
+[ext_resource type="Texture2D" uid="uid://bk1omj05cx5sx" path="res://assets/ui/panel_brown.png" id="8_mpswg"]
+[ext_resource type="Texture2D" uid="uid://c4l47qmny0q14" path="res://assets/battle/player_back.png" id="9_7s01p"]
+[ext_resource type="Texture2D" uid="uid://3tyc21g5q2uc" path="res://assets/battle/ball.png" id="9_tc5fe"]
 [ext_resource type="PackedScene" uid="uid://ddyxe1m3u6mth" path="res://scenes/cutscenes/dialogue/balloon_battle.tscn" id="12_tc5fe"]
+[ext_resource type="Texture2D" uid="uid://bgj6n38m7q5gt" path="res://assets/battle/ui/grass_intro.png" id="14_7i1my"]
 [ext_resource type="PackedScene" uid="uid://bv5p4qx8ddr0v" path="res://scenes/battle/animator.tscn" id="18_cr648"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="19_tpsmh"]
 
@@ -396,38 +403,43 @@ _data = {
 &"transition": SubResource("Animation_vtu8c")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n2bxv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc5fe"]
+atlas = ExtResource("9_7s01p")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4gbcw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpsmh"]
+atlas = ExtResource("9_7s01p")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s2oj5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_43ebt"]
+atlas = ExtResource("9_7s01p")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7tpy5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjiip"]
+atlas = ExtResource("9_7s01p")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4tv2g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_22msv"]
+atlas = ExtResource("9_7s01p")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xtv0i"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n2bxv")
+"texture": SubResource("AtlasTexture_tc5fe")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4gbcw")
+"texture": SubResource("AtlasTexture_tpsmh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s2oj5")
+"texture": SubResource("AtlasTexture_43ebt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7tpy5")
+"texture": SubResource("AtlasTexture_mjiip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4tv2g")
+"texture": SubResource("AtlasTexture_22msv")
 }],
 "loop": true,
 "name": &"default",
@@ -456,6 +468,7 @@ offset_right = 512.0
 offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("5_te27b")
 
 [node name="FoeSide" type="Node" parent="."]
 
@@ -464,6 +477,7 @@ offset_left = -465.0
 offset_top = 163.0
 offset_right = -90.0
 offset_bottom = 263.0
+texture = ExtResource("5_puhd7")
 
 [node name="Sprites" type="HBoxContainer" parent="FoeSide"]
 modulate = Color(0.568627, 0.568627, 0.568627, 1)
@@ -489,7 +503,6 @@ metadata/_edit_lock_ = true
 
 [node name="Ability" parent="FoeSide" instance=ExtResource("6_kyq73")]
 position = Vector2(769, 90)
-texture = null
 side = 1
 
 [node name="UserSide" type="Node" parent="."]
@@ -499,6 +512,7 @@ offset_left = 768.0
 offset_top = 396.0
 offset_right = 1282.0
 offset_bottom = 485.0
+texture = ExtResource("7_mpswg")
 
 [node name="Sprites" type="HBoxContainer" parent="UserSide"]
 anchors_preset = 2
@@ -533,7 +547,6 @@ metadata/_edit_lock_ = true
 
 [node name="Ability" parent="UserSide" instance=ExtResource("6_kyq73")]
 position = Vector2(-256, 307)
-texture = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -546,6 +559,7 @@ libraries = {
 visible = false
 position = Vector2(137.25, 406.333)
 scale = Vector2(4.29167, 4.29167)
+texture = ExtResource("9_tc5fe")
 region_enabled = true
 region_rect = Rect2(0, 0, 12, 12)
 
@@ -562,6 +576,7 @@ anchor_bottom = 1.0
 offset_top = -100.0
 grow_horizontal = 2
 grow_vertical = 0
+texture = ExtResource("8_mpswg")
 patch_margin_left = 8
 patch_margin_top = 7
 patch_margin_right = 8
@@ -580,7 +595,6 @@ offset_left = -262.0
 offset_top = -100.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = null
 
 [node name="FightMenu" parent="CanvasLayer" instance=ExtResource("3_cv04l")]
 visible = false
@@ -597,7 +611,6 @@ anchor_top = 1.0
 offset_top = -100.0
 grow_vertical = 0
 size_flags_horizontal = 3
-texture = null
 
 [node name="TransitionTop" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -631,6 +644,7 @@ offset_left = 1.0
 offset_top = 326.0
 offset_right = 766.0
 offset_bottom = 479.0
+texture = ExtResource("14_7i1my")
 metadata/_edit_lock_ = true
 
 [node name="Animator" parent="." node_paths=PackedStringArray("allies", "opponents") instance=ExtResource("18_cr648")]

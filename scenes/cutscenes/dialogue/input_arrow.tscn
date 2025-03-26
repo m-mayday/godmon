@@ -1,19 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://2sxaveov18qb"]
+[gd_scene load_steps=5 format=3 uid="uid://2sxaveov18qb"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vwwr5"]
+[ext_resource type="Texture2D" uid="uid://2wwyf36qit0g" path="res://assets/ui/down_arrow.png" id="1_ja6dw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja6dw"]
+atlas = ExtResource("1_ja6dw")
 region = Rect2(0, 0, 10, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lgbdg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwwr5"]
+atlas = ExtResource("1_ja6dw")
 region = Rect2(10, 0, 10, 7)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dnpnm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vwwr5")
+"texture": SubResource("AtlasTexture_ja6dw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lgbdg")
+"texture": SubResource("AtlasTexture_vwwr5")
 }],
 "loop": true,
 "name": &"default",
@@ -22,3 +26,4 @@ animations = [{
 
 [node name="InputArrow" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_dnpnm")
+frame_progress = 0.386739

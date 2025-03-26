@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Species" load_steps=21 format=3 uid="uid://coos7hdynlxio"]
+[gd_resource type="Resource" script_class="Species" load_steps=23 format=3 uid="uid://coos7hdynlxio"]
 
 [ext_resource type="Script" uid="uid://oyduvbth7hyh" path="res://data/_base_classes/species.gd" id="1_67kb6"]
+[ext_resource type="Texture2D" uid="uid://d48en8rdkk1u" path="res://assets/battle/back/VENUSAUR.png" id="1_lhktv"]
 [ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_lmivb"]
+[ext_resource type="Texture2D" uid="uid://clgrli2eyhn11" path="res://assets/battle/front/VENUSAUR.png" id="3_kycrs"]
 [ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_lhktv"]
 [ext_resource type="Resource" uid="uid://b22wrkxs4g5fx" path="res://data/types/grass.tres" id="6_3cvy8"]
 [ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_f6xt7"]
@@ -75,9 +77,9 @@ metadata/_custom_type_script = ExtResource("4_lhktv")
 [sub_resource type="Resource" id="Resource_t1212"]
 script = ExtResource("7_f6xt7")
 back_sprite_offset = Vector2(0, 0)
-back_sprite_scale = Vector2(1.2, 1.2)
+back_sprite_scale = Vector2(4, 4)
 front_sprite_offset = Vector2(0, 20)
-front_sprite_scale = Vector2(1.2, 1.2)
+front_sprite_scale = Vector2(4, 4)
 shadow_scale = Vector2(2, 1.6)
 shadow_offset = Vector2(-4, -22)
 
@@ -108,4 +110,6 @@ height = 0.1
 weight = 0.1
 category = &"???"
 pokedex = "???"
+front_sprite = ExtResource("3_kycrs")
+back_sprite = ExtResource("1_lhktv")
 sprite_metrics = SubResource("Resource_t1212")

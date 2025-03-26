@@ -76,7 +76,7 @@ interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://scenes/maps/town/dialogue/red_house.dialogue", "res://scenes/maps/town/dialogue/blue_house.dialogue", "res://scenes/maps/town/dialogue/town_sign.dialogue", "res://scenes/maps/town/dialogue/trainer_tips.dialogue", "res://scenes/maps/town/dialogue/girl_npc.dialogue", "res://scenes/maps/town/dialogue/oak_lab.dialogue")
+locale/translations_pot_files=PackedStringArray("res://scenes/maps/town/dialogue/red_house.dialogue", "res://scenes/maps/town/dialogue/blue_house.dialogue", "res://scenes/maps/town/dialogue/town_sign.dialogue", "res://scenes/maps/town/dialogue/trainer_tips.dialogue", "res://scenes/maps/town/dialogue/oak_lab.dialogue", "res://scenes/maps/town/dialogue/npc.dialogue")
 
 [layer_names]
 
