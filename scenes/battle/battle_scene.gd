@@ -245,6 +245,7 @@ func _on_target_chosen(target: Battler, move: Move) -> void:
 ## Open up the Pokemon Party Menu
 func _on_battle_menu_switch_pressed() -> void:
 	set_process_input(false)
+	message_balloon.hide()
 	_battle_menu.hide() # To show when screen is closed, so it regrabs focus of the last option
 	party_screen.show()
 	
@@ -253,6 +254,7 @@ func _on_battle_menu_switch_pressed() -> void:
 func _on_party_screen_closed() -> void:
 	party_screen.hide()
 	_battle_menu.show()
+	message_balloon.show()
 	set_process_input(true)
 
 
@@ -296,5 +298,9 @@ func _pop_menu() -> void:
 
 ## Returning to previous scene when battle ends
 func _on_battle_end(win: bool) -> void:
-	if win:
-		get_tree().root.get_node("Main").return_to_previous_scenes()
+	# Temporary. Heal party if battle is lost
+	if not win:
+		for pokemon in Global.player_party:
+			pokemon.current_hp = pokemon.stats.hp
+			
+	get_tree().root.get_node("Main").return_to_previous_scenes()
