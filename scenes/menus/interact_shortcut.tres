@@ -1,8 +1,8 @@
 [gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://cofnn6d48msxh"]
 
-[sub_resource type="InputEventAction" id="InputEventAction_5k5m7"]
+[sub_resource type="InputEventAction" id="InputEventAction_oi80k"]
 action = &"interact"
 pressed = true
 
 [resource]
-events = [SubResource("InputEventAction_5k5m7")]
+events = [SubResource("InputEventAction_oi80k")]

@@ -36,7 +36,7 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 	if scene_path in _loaded_chunks:
 		_change_scene(scene_path)
 		return
-	
+	SignalBus.input_paused.emit(true)
 	# Fade out transition
 	transition_layer.visible = true
 	animator.play("fade_in")
@@ -79,11 +79,11 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 
 	_update_adjacent_scenes(current_scene)
 	SignalBus.scene_loaded.emit(previous_scene_path, scene_path)
-	
 	animator.play_backwards("fade_in")
 	await animator.animation_finished
 	transition_color.color.a = 0
 	transition_layer.visible = false
+	SignalBus.input_paused.emit(false)
 
 
 ## Loads adjacent scenes given the current scene and adds them to _loaded_chunks

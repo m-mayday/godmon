@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://nokxwtpo54sn"]
+[gd_scene load_steps=6 format=3 uid="uid://nokxwtpo54sn"]
 
 [ext_resource type="Script" uid="uid://i5qlkwl8vf2y" path="res://scenes/menus/pause_menu.gd" id="1_gsnt3"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="2_2wrho"]
 [ext_resource type="Texture2D" uid="uid://3nfpanty48va" path="res://assets/ui/panel_beigeLight.png" id="3_gsnt3"]
 [ext_resource type="StyleBox" uid="uid://dqdeaqixjmvf3" path="res://scenes/themes/selection_arrow_box.tres" id="4_2wrho"]
+[ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/menus/interact_shortcut.tres" id="5_gh0u6"]
 
 [node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("menu", "options_container", "options")]
 script = ExtResource("1_gsnt3")
@@ -63,6 +64,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
 theme_override_styles/focus = ExtResource("4_2wrho")
+shortcut = ExtResource("5_gh0u6")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokedex"]
@@ -79,12 +81,14 @@ text = "POKéDEX"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Pokemon" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="Pokemon" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
 theme_override_styles/focus = ExtResource("4_2wrho")
+shortcut = ExtResource("5_gh0u6")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon"]
@@ -107,6 +111,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
 theme_override_styles/focus = ExtResource("4_2wrho")
+shortcut = ExtResource("5_gh0u6")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Bag"]
@@ -129,6 +134,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
 theme_override_styles/focus = ExtResource("4_2wrho")
+shortcut = ExtResource("5_gh0u6")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Player"]
@@ -151,6 +157,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
 theme_override_styles/focus = ExtResource("4_2wrho")
+shortcut = ExtResource("5_gh0u6")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Options"]
@@ -167,12 +174,14 @@ text = "OPTIONS"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Exit" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
 theme_override_styles/focus = ExtResource("4_2wrho")
+shortcut = ExtResource("5_gh0u6")
 flat = true
 
 [node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Exit"]
@@ -190,3 +199,4 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [connection signal="pressed" from="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon" to="." method="_on_option_pressed" binds= ["pokemon"]]
+[connection signal="pressed" from="Control/NinePatchRect/MarginContainer/VBoxContainer/Exit" to="." method="_close_menu"]

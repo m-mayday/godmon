@@ -35,9 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().paused = true
 		process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	elif event.is_action_pressed("cancel") and menu.visible:
-		menu.hide()
-		get_tree().paused = false
-		process_mode = Node.PROCESS_MODE_PAUSABLE
+		_close_menu()
 
 
 ## Stops handling input
@@ -84,3 +82,9 @@ func _get_first_visible_option() -> Node:
 		if button.visible:
 			return button
 	return null
+
+
+func _close_menu() -> void:
+	menu.hide()
+	get_tree().paused = false
+	process_mode = Node.PROCESS_MODE_PAUSABLE

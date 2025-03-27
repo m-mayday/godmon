@@ -67,6 +67,7 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_sugp2")]
+visible = false
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true

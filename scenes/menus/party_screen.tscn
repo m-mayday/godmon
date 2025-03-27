@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dswfxggc17xr3"]
+[gd_scene load_steps=10 format=3 uid="uid://dswfxggc17xr3"]
 
 [ext_resource type="Script" uid="uid://c3uwa0gdwk1cy" path="res://scenes/menus/party_screen.gd" id="1_wgxl4"]
 [ext_resource type="Texture2D" uid="uid://3nfpanty48va" path="res://assets/ui/panel_beigeLight.png" id="2_t8ff1"]
 [ext_resource type="PackedScene" uid="uid://ungtvhyngc34" path="res://scenes/menus/party_slot_main.tscn" id="2_x3v3m"]
+[ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/menus/interact_shortcut.tres" id="4_u7bpa"]
 [ext_resource type="Texture2D" uid="uid://ujghvquaawh2" path="res://assets/ui/panel_blue.png" id="5_ybr7a"]
 [ext_resource type="PackedScene" uid="uid://qc51fa6s3uqi" path="res://scenes/menus/party_slot.tscn" id="6_wgxl4"]
 [ext_resource type="Texture2D" uid="uid://en456rclestl" path="res://assets/ui/menu_cancel.png" id="6_ybr7a"]
@@ -38,7 +39,7 @@ texture = ExtResource("2_t8ff1")
 
 [node name="Slots" type="Node" parent="Control/Background"]
 
-[node name="PartySlotMain" parent="Control/Background/Slots" instance=ExtResource("2_x3v3m")]
+[node name="PartySlotMain" parent="Control/Background/Slots" node_paths=PackedStringArray("shortcut_context") instance=ExtResource("2_x3v3m")]
 visible = false
 offset_left = 6.0
 offset_top = 65.0
@@ -50,8 +51,10 @@ focus_neighbor_right = NodePath("../PartySlot2")
 focus_neighbor_bottom = NodePath("../PartySlot2")
 focus_next = NodePath("../PartySlot2")
 focus_previous = NodePath("../../MarginContainer/HBoxContainer/Cancel")
+shortcut_context = NodePath(".")
+shortcut = ExtResource("4_u7bpa")
 
-[node name="PartySlot2" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+[node name="PartySlot2" parent="Control/Background/Slots" node_paths=PackedStringArray("shortcut_context") instance=ExtResource("6_wgxl4")]
 visible = false
 anchor_right = 0.991
 anchor_bottom = 0.2
@@ -67,8 +70,10 @@ focus_neighbor_right = NodePath("../PartySlot3")
 focus_neighbor_bottom = NodePath("../PartySlot3")
 focus_next = NodePath("../PartySlot3")
 focus_previous = NodePath("../PartySlotMain")
+shortcut_context = NodePath(".")
+shortcut = ExtResource("4_u7bpa")
 
-[node name="PartySlot3" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+[node name="PartySlot3" parent="Control/Background/Slots" node_paths=PackedStringArray("shortcut_context") instance=ExtResource("6_wgxl4")]
 visible = false
 anchor_right = 0.991
 anchor_bottom = 0.2
@@ -84,8 +89,10 @@ focus_neighbor_right = NodePath("../PartySlot4")
 focus_neighbor_bottom = NodePath("../PartySlot4")
 focus_next = NodePath("../PartySlot4")
 focus_previous = NodePath("../PartySlot2")
+shortcut_context = NodePath(".")
+shortcut = ExtResource("4_u7bpa")
 
-[node name="PartySlot4" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+[node name="PartySlot4" parent="Control/Background/Slots" node_paths=PackedStringArray("shortcut_context") instance=ExtResource("6_wgxl4")]
 visible = false
 anchor_right = 0.991
 anchor_bottom = 0.2
@@ -101,8 +108,10 @@ focus_neighbor_right = NodePath("../PartySlot5")
 focus_neighbor_bottom = NodePath("../PartySlot5")
 focus_next = NodePath("../PartySlot5")
 focus_previous = NodePath("../PartySlot3")
+shortcut_context = NodePath(".")
+shortcut = ExtResource("4_u7bpa")
 
-[node name="PartySlot5" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+[node name="PartySlot5" parent="Control/Background/Slots" node_paths=PackedStringArray("shortcut_context") instance=ExtResource("6_wgxl4")]
 visible = false
 anchor_right = 0.991
 anchor_bottom = 0.2
@@ -118,8 +127,10 @@ focus_neighbor_right = NodePath("../PartySlot6")
 focus_neighbor_bottom = NodePath("../PartySlot6")
 focus_next = NodePath("../PartySlot6")
 focus_previous = NodePath("../PartySlot4")
+shortcut_context = NodePath(".")
+shortcut = ExtResource("4_u7bpa")
 
-[node name="PartySlot6" parent="Control/Background/Slots" instance=ExtResource("6_wgxl4")]
+[node name="PartySlot6" parent="Control/Background/Slots" node_paths=PackedStringArray("shortcut_context") instance=ExtResource("6_wgxl4")]
 visible = false
 anchor_right = 0.991
 anchor_bottom = 0.2
@@ -135,6 +146,8 @@ focus_neighbor_right = NodePath("../../MarginContainer/HBoxContainer/Cancel")
 focus_neighbor_bottom = NodePath("../../MarginContainer/HBoxContainer/Cancel")
 focus_next = NodePath("../../MarginContainer/HBoxContainer/Cancel")
 focus_previous = NodePath("../PartySlot5")
+shortcut_context = NodePath(".")
+shortcut = ExtResource("4_u7bpa")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Background"]
 z_index = 1
@@ -181,7 +194,7 @@ theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 4
 text = "Choose a POKéMON."
 
-[node name="Cancel" type="TextureButton" parent="Control/Background/MarginContainer/HBoxContainer"]
+[node name="Cancel" type="TextureButton" parent="Control/Background/MarginContainer/HBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(244, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../Slots/PartySlotMain")
@@ -190,6 +203,8 @@ focus_neighbor_right = NodePath("../../../Slots/PartySlot6")
 focus_neighbor_bottom = NodePath("../../../Slots/PartySlotMain")
 focus_next = NodePath("../../../Slots/PartySlotMain")
 focus_previous = NodePath("../../../Slots/PartySlot6")
+shortcut_context = NodePath(".")
+shortcut = ExtResource("4_u7bpa")
 texture_normal = ExtResource("6_ybr7a")
 texture_focused = ExtResource("7_a2588")
 stretch_mode = 0
@@ -248,11 +263,13 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 8
 
-[node name="SendOut" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="SendOut" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+shortcut_context = NodePath(".")
 theme_override_styles/focus = ExtResource("8_a2588")
+shortcut = ExtResource("4_u7bpa")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut"]
@@ -264,10 +281,12 @@ theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
 text = "  SEND OUT"
 
-[node name="Summary" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="Summary" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+shortcut_context = NodePath(".")
 theme_override_styles/focus = ExtResource("8_a2588")
+shortcut = ExtResource("4_u7bpa")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Summary"]
@@ -279,10 +298,12 @@ theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
 text = "  SUMMARY"
 
-[node name="Switch" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="Switch" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+shortcut_context = NodePath(".")
 theme_override_styles/focus = ExtResource("8_a2588")
+shortcut = ExtResource("4_u7bpa")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Switch"]
@@ -294,10 +315,12 @@ theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
 text = "  SWITCH"
 
-[node name="Item" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="Item" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+shortcut_context = NodePath(".")
 theme_override_styles/focus = ExtResource("8_a2588")
+shortcut = ExtResource("4_u7bpa")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Item"]
@@ -309,10 +332,12 @@ theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
 text = "  ITEM"
 
-[node name="SlotCancel" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="SlotCancel" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+shortcut_context = NodePath(".")
 theme_override_styles/focus = ExtResource("8_a2588")
+shortcut = ExtResource("4_u7bpa")
 flat = true
 
 [node name="Label" type="Label" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SlotCancel"]
