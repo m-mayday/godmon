@@ -38,5 +38,5 @@ Too much to list but most notably:
 
 ### Notes
 * You can press 'Backspace' to turn on speed up. Press it again to go back to normal speed.
-* When you turn to fast, the character gets stuck and can't move anymore. Press 'cancel' (X) and a direction to move again.
+* When you turn too fast, the character gets stuck and can't move anymore. Press 'cancel' (X) and a direction to move again.
 * As mentioned before, this is a work in progress, expect a lot of bugs.
