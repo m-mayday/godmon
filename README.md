@@ -8,6 +8,10 @@ Credit to Kenney and their awesome [assets](https://www.kenney.nl/) and credit t
 
 I've extended the tilemaps and made some sprites myself too, you'll know which ones, they look awful!
 
+### Addons
+* [GUT](https://github.com/bitwes/Gut/) for tests. Not updated to Godot 4.4 yet.
+* [Dialogue Manager](https://github.com/nathanhoad/godot_dialogue_manager) for most of the dialogue in the game.
+
 ### What's done so far
 * Player movement: walking, turning, running and jumping
 * Map loading:
@@ -40,3 +44,4 @@ Too much to list but most notably:
 * You can press 'Backspace' to turn on speed up. Press it again to go back to normal speed.
 * When you turn too fast, the character gets stuck and can't move anymore. Press 'cancel' (X) and a direction to move again.
 * As mentioned before, this is a work in progress, expect a lot of bugs.
+* The 'Constants' singleton is huge. It'll be split at some point.
