@@ -3,25 +3,25 @@ extends Cutscene
 var player: Area2D
 
 func _ready() -> void:
-	$"../PlayerPath".hide()
-	$"../OakPath".hide()
+	$PlayerPath.hide()
+	$OakPath.hide()
 
 
 ## Execution of the event
 func _execute() -> void:
 	if player != null:
 		var resource: DialogueResource = DialogueManager.create_resource_from_text("~ start\nOAK: Hey! Wait!\\nDon't go out![next=0.4]\n=> END")
-		var points: PackedVector2Array = $"../PlayerPath".points
-		var oak_points: PackedVector2Array = $"../OakPath".points
+		var points: PackedVector2Array = $PlayerPath.points
+		var oak_points: PackedVector2Array = $OakPath.points
 		var npc: Sprite2D = $"../NPC"
-		npc.position = $"../OakPath".get_point_position(0)
+		npc.position = $OakPath.get_point_position(0)
 		npc.position.y += Constants.TILE_SIZE
 		DialogueManager.show_dialogue_balloon_scene("res://scenes/cutscenes/dialogue/balloon.tscn", resource)
 		await DialogueManager.dialogue_ended
 		await player.cutscene_move(player.position, 1, Vector2.DOWN)
 		
 		for i in oak_points.size():
-			var target_position: Vector2 = $"../OakPath".get_point_position(i).snapped(Vector2.ONE * Constants.TILE_SIZE)
+			var target_position: Vector2 = $OakPath.get_point_position(i).snapped(Vector2.ONE * Constants.TILE_SIZE)
 			var tiles: Vector2 = abs(npc.position-target_position) / Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE)
 			var speed: float = maxf(tiles.x, tiles.y)
 			await npc.cutscene_move(target_position, speed, (npc.position - target_position).normalized() * -1)
@@ -30,8 +30,8 @@ func _execute() -> void:
 		DialogueManager.show_dialogue_balloon_scene("res://scenes/cutscenes/dialogue/balloon.tscn", resource)
 		await DialogueManager.dialogue_ended
 		for i in points.size()-1:
-			var target_position: Vector2 = $"../PlayerPath".get_point_position(i).snapped(Vector2.ONE * Constants.TILE_SIZE)
-			var npc_target_position: Vector2 = $"../PlayerPath".get_point_position(i+1).snapped(Vector2.ONE * Constants.TILE_SIZE)
+			var target_position: Vector2 = $PlayerPath.get_point_position(i).snapped(Vector2.ONE * Constants.TILE_SIZE)
+			var npc_target_position: Vector2 = $PlayerPath.get_point_position(i+1).snapped(Vector2.ONE * Constants.TILE_SIZE)
 			var tiles: Vector2 = abs(player.position-target_position) / Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE)
 			var npc_tiles: Vector2 = abs(npc.position-npc_target_position) / Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE)
 			var speed: float = maxf(tiles.x, tiles.y)

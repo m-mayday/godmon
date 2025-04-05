@@ -7,6 +7,7 @@ extends Cutscene
 @export var area: Area2D ## Area2D that monitors the interaction
 
 var _is_active: bool = false ## If the current interaction is active or not
+var _is_npc: bool = false ## If the interaction is a child of an NPC
 
 
 func _ready():
@@ -18,10 +19,14 @@ func _ready():
 	assert(player != null, "Player node must be in scene tree")
 	player.movement_finished.connect(_set_is_active_true.unbind(2))
 	player.movement_started.connect(_set_is_active_false.unbind(2))
+	if get_parent() is Node2D: # This is not a good way to check
+		_is_npc = true
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _is_active and event.is_action_released("interact"):
+		if _is_npc and get_parent().get("is_moving"):
+			return
 		run()
 
 

@@ -14,11 +14,12 @@ var player_removed: bool = false # If the player has been removed from the scene
 var _loaded_chunks: Dictionary[String, Node] = {}  # Dictionary of currently loaded map chunks
 var thread: Thread # Thread to load adjacent scenes
 
-
 func _ready() -> void:
+	SignalBus.input_paused.emit(true)
 	thread = Thread.new()
-	load_scene("res://scenes/maps/town/town.tscn")
+	await load_scene("res://scenes/maps/town/town.tscn")
 	SignalBus.zone_changed.connect(_change_scene)
+	SignalBus.input_paused.emit(false)
 
 
 func _input(event: InputEvent) -> void:
@@ -36,7 +37,6 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 	if scene_path in _loaded_chunks:
 		_change_scene(scene_path)
 		return
-	SignalBus.input_paused.emit(true)
 	# Fade out transition
 	transition_layer.visible = true
 	animator.play("fade_in")
@@ -83,7 +83,6 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 	await animator.animation_finished
 	transition_color.color.a = 0
 	transition_layer.visible = false
-	SignalBus.input_paused.emit(false)
 
 
 ## Loads adjacent scenes given the current scene and adds them to _loaded_chunks

@@ -51,10 +51,10 @@ func _on_node_in_cell() -> void:
 		if grass_overlay_texture != null:
 			_grass_overlay_rect = TextureRect.new()
 			_grass_overlay_rect.texture = grass_overlay_texture
-			_grass_overlay_rect.position = node.position
+			_grass_overlay_rect.position = node.global_position
 			node.get_parent().add_child(_grass_overlay_rect)
 			$EffectAnimation.visible = true
-			$EffectAnimation.position = node.position
+			$EffectAnimation.position = node.global_position
 			$EffectAnimation.play("grass")
 
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4ccidygyc74"]
+[gd_scene load_steps=27 format=3 uid="uid://c4ccidygyc74"]
 
 [ext_resource type="Texture2D" uid="uid://p2k0gynrsjm3" path="res://assets/characters/NPC01.png" id="1_abqhh"]
 [ext_resource type="Script" uid="uid://beae2vsvxylu2" path="res://scenes/characters/npc.gd" id="2_abqhh"]
+[ext_resource type="PackedScene" uid="uid://i38ylwaqlkhp" path="res://scenes/maps/terrain_effects.tscn" id="3_bgitj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rv78h"]
 size = Vector2(14, 14)
@@ -233,7 +234,7 @@ animation_tree = NodePath("AnimationTree")
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(8, 8)
 collision_layer = 2
-collision_mask = 4
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_rv78h")
@@ -241,6 +242,7 @@ debug_color = Color(0.971686, 0.880756, 7.70092e-07, 0.42)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
+collision_priority = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(8, 8)
@@ -257,5 +259,11 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/idle/blend_position = Vector2(-0.00589103, 0.253012)
 parameters/walk/blend_position = Vector2(0, 0)
 
+[node name="TerrainEffects" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_bgitj")]
+node = NodePath("..")
+
+[connection signal="movement_finished" from="." to="TerrainEffects" method="_on_movement_finished"]
+[connection signal="movement_started" from="." to="TerrainEffects" method="_on_movement_started"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_shape_entered" from="Area2D" to="TerrainEffects" method="_on_body_shape_entered"]

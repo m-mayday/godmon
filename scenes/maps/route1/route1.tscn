@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://e6s1giwptv8o"]
+[gd_scene load_steps=16 format=4 uid="uid://e6s1giwptv8o"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_r7agj"]
+[ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="6_c7nk4"]
 [ext_resource type="PackedScene" uid="uid://ch6u6x5ill6rs" path="res://scenes/maps/encounter_area.tscn" id="6_o7v6n"]
+[ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="7_3t3aa"]
 [ext_resource type="Script" uid="uid://cu2j1bo2txyy6" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
 [ext_resource type="Script" uid="uid://be7ltbr0qyaqn" path="res://data/_base_classes/encounter_table.gd" id="8_q4b38"]
 
@@ -44,6 +46,7 @@ size = Vector2(176, 64)
 size = Vector2(32, 14)
 
 [node name="Route1" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ua0mi")
 adjacent_scenes = Dictionary[String, Vector2]({
 "res://scenes/maps/town/town.tscn": Vector2(0, 640)
@@ -59,6 +62,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAEAAAAAAAAAAEAAQAEAAEAAAAAAAIAAQAEAAA
 tile_set = ExtResource("2_r7agj")
 
 [node name="EncounterArea" parent="." instance=ExtResource("6_o7v6n")]
+monitoring = false
+monitorable = false
 encounter_table = SubResource("Resource_gm8nn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
@@ -89,5 +94,16 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(208, 632)
 shape = SubResource("RectangleShape2D_ua0mi")
+
+[node name="NPC" parent="." instance=ExtResource("6_c7nk4")]
+position = Vector2(80, 432)
+
+[node name="Line2D" type="Line2D" parent="NPC"]
+position = Vector2(-80, -432)
+points = PackedVector2Array(80, 432, 80, 448, 80, 464)
+width = 2.0
+
+[node name="Dialogue" parent="NPC" instance=ExtResource("7_3t3aa")]
+position = Vector2(8, 8)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered" binds= [Vector2(0, -1)]]
