@@ -348,7 +348,7 @@ texture = ExtResource("1_wxipi")
 7:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [resource]
-physics_layer_0/collision_layer = 2
+physics_layer_0/collision_layer = 8
 custom_data_layer_0/name = "terrain"
 custom_data_layer_0/type = 4
 custom_data_layer_1/name = "ledge"

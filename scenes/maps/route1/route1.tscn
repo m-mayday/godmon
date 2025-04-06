@@ -45,12 +45,13 @@ size = Vector2(176, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua0mi"]
 size = Vector2(32, 14)
 
-[node name="Route1" type="Node2D"]
+[node name="Route1" type="Node2D" node_paths=PackedStringArray("moving_objects")]
 y_sort_enabled = true
 script = ExtResource("1_ua0mi")
 adjacent_scenes = Dictionary[String, Vector2]({
 "res://scenes/maps/town/town.tscn": Vector2(0, 640)
 })
+moving_objects = [NodePath("NPC")]
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1
@@ -96,6 +97,7 @@ position = Vector2(208, 632)
 shape = SubResource("RectangleShape2D_ua0mi")
 
 [node name="NPC" parent="." instance=ExtResource("6_c7nk4")]
+process_priority = -1
 position = Vector2(80, 432)
 
 [node name="Line2D" type="Line2D" parent="NPC"]

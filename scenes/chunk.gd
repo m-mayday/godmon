@@ -6,6 +6,7 @@ extends Node2D
 ## The player spawn position in this chunk
 @export var player_spawn_marker: Marker2D
 @export var player_spawns: Dictionary[String, Node2D]
+@export var moving_objects: Array[Node2D] = [] ## The moving objects (i.e. NPCs) in this chunk
 var current_spawn: Node2D
 
 

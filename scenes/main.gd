@@ -166,3 +166,18 @@ func play_transition(speed: float = 1.0) -> void:
 	await animator.animation_finished
 	transition_color.color.a = 0
 	transition_layer.visible = false
+
+
+## Checks if there is or was an object at the specified coordinates
+func will_collide_with_moving_object(coords: Vector2) -> bool:
+	for object in current_scene.moving_objects:
+		if current_scene.to_global(object.next_position) == coords or current_scene.to_global(object.previous_position) == coords:
+			return true
+	return false
+
+
+## Checks if the player is or was at the specified coordinates
+func will_collide_with_player(coords: Vector2) -> bool:
+	if player.next_position == coords or player.previous_position == coords:
+		return true
+	return false

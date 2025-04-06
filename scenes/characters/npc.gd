@@ -10,13 +10,15 @@ const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 }
 
 @export var animation_tree: AnimationTree
+@export var initial_direction: Vector2 = Vector2.DOWN ## NPC's initial facing direction
 
 var interactable: bool = false ## If the NPC can be interacted with
-var face_direction: Vector2 = Vector2.DOWN ## Current player direction
 var is_moving: bool = false ## If the NPC is currently moving
+var next_position: Vector2
+var previous_position: Vector2
 
 var _anim_state: AnimationNodeStateMachinePlayback
-var _move_path: Line2D
+var _move_path: Line2D ## The path the NPC moves on
 var _waiting: bool = false ## If the NPC is currently waiting before moving again
 
 
@@ -28,6 +30,8 @@ func _ready() -> void:
 			_move_path = child
 			_move_path.hide()
 			break
+	next_position = position
+	previous_position = position
 
 
 ## Set the NPC as interactable when the InteractionFinder enters it
@@ -73,13 +77,14 @@ func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, dire
 ## Randomly moves the NPC according to the _move_path defined
 func _process(_delta: float) -> void:
 	if _move_path != null and not is_moving and not _waiting:
-		is_moving = true
 		var target_position: Vector2 = _get_new_position()
 		if position == target_position:
-			is_moving = false
 			return
 		for key in ANIMATION_PARAMETERS.keys():
 			animation_tree.set(ANIMATION_PARAMETERS[key], (position - target_position).normalized() * -1)
+		previous_position = position
+		next_position = target_position
+		is_moving = true
 		movement_started.emit(Constants.MOVEMENT_STATE.IDLE, Constants.MOVEMENT_STATE.WALKING)
 		_anim_state.travel("walk")
 		var tween = create_tween()
@@ -93,6 +98,7 @@ func _movement_finished() -> void:
 	movement_finished.emit(Constants.MOVEMENT_STATE.WALKING, Constants.MOVEMENT_STATE.IDLE)
 	is_moving = false
 	_waiting = true
+	previous_position = position
 	await get_tree().create_timer([1, 2, 4].pick_random()).timeout
 	_waiting = false
 
@@ -118,8 +124,7 @@ func _get_new_position() -> Vector2:
 
 ## Checks if the target position isn't being occupied by the player
 func _can_move(target_position: Vector2) -> bool:
-	var player: Node2D = get_tree().get_first_node_in_group("player")
-	var player_position: Vector2 = get_parent().to_local(player.position)
-	if player_position.is_equal_approx(target_position):
+	var main: Node2D = get_tree().root.get_node("Main")
+	if main.will_collide_with_player(get_parent().to_global(target_position)):
 		return false
 	return true

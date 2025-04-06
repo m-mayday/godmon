@@ -18,6 +18,8 @@ const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 
 var moving_direction: Vector2 = Vector2.ZERO
 var face_direction: Vector2 = Vector2.DOWN ## Current player direction
+var previous_position: Vector2
+var next_position: Vector2
 
 var _anim_state: AnimationNodeStateMachinePlayback
 
@@ -40,6 +42,7 @@ func _ready():
 	SignalBus.input_paused.connect(_on_input_paused)
 	SignalBus.scene_loaded.connect(_on_scene_loaded)
 	_anim_state = animation_tree.get("parameters/playback")
+	previous_position = position
 	
 
 func _process(_delta: float) -> void:
@@ -47,10 +50,24 @@ func _process(_delta: float) -> void:
 		_input_direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	if _input_direction.x == 0:
 		_input_direction.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-	move(_input_direction)
+	_move(_input_direction)
 
 
-func move(direction: Vector2) -> void:
+## Moves player to the target position by walking speed * multiplier provided.
+## It doesn't emit any movement signals and it's useful for cutscenes (thus the name).
+func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, direction: Vector2 = Vector2.ONE) -> void:
+	if direction in [Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT]:
+		for key in ANIMATION_PARAMETERS.keys():
+			animation_tree.set(ANIMATION_PARAMETERS[key], direction)
+	_anim_state.travel("walk")
+	var tween = create_tween()
+	tween.tween_property(self, "position", target_position, speed * speed_multiplier).set_trans(Tween.TRANS_LINEAR)
+	await tween.finished
+	_anim_state.travel("idle")
+	_current_state = Constants.MOVEMENT_STATE.IDLE
+
+
+func _move(direction: Vector2) -> void:
 	# A temporary fix. The player gets "stuck" when turning too many times too fast
 	if _current_state == Constants.MOVEMENT_STATE.TURNING and Input.is_action_pressed("cancel"):
 		_current_state = Constants.MOVEMENT_STATE.IDLE
@@ -80,6 +97,12 @@ func move(direction: Vector2) -> void:
 			moving_direction = movement
 			
 			var new_position = global_position + (moving_direction * Constants.TILE_SIZE)
+			previous_position = position
+			next_position = new_position
+			var main = get_tree().root.get_node("Main")
+			if main.will_collide_with_moving_object(new_position):
+				_movement_finsished()
+				return
 			if Input.is_action_pressed("cancel"):
 				current_speed = run_speed
 				_current_state = Constants.MOVEMENT_STATE.RUNNING
@@ -87,27 +110,13 @@ func move(direction: Vector2) -> void:
 			else:
 				_current_state = Constants.MOVEMENT_STATE.WALKING
 				_anim_state.travel("walk")
-			
+			previous_position = position
 			movement_started.emit(previous_state, _current_state)
 			var tween: Tween = create_tween()
 			tween.tween_property(self, "position", new_position, current_speed).set_trans(Tween.TRANS_LINEAR)
 			tween.tween_callback(_movement_finsished)
 		else:
 			_handle_collision(movement)
-
-
-## Moves player to the target position by walking speed * multiplier provided.
-## It doesn't emit any movement signals and it's useful for cutscenes (thus the name).
-func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, face_direction: Vector2 = Vector2.ONE) -> void:
-	if face_direction in [Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT]:
-		for key in ANIMATION_PARAMETERS.keys():
-			animation_tree.set(ANIMATION_PARAMETERS[key], face_direction)
-	_anim_state.travel("walk")
-	var tween = create_tween()
-	tween.tween_property(self, "position", target_position, speed * speed_multiplier).set_trans(Tween.TRANS_LINEAR)
-	await tween.finished
-	_anim_state.travel("idle")
-	_current_state = Constants.MOVEMENT_STATE.IDLE
 
 
 ## Gets new facing direction according to input
@@ -138,6 +147,7 @@ func _movement_finsished() -> void:
 	var previous_state: Constants.MOVEMENT_STATE = _current_state
 	_current_state = Constants.MOVEMENT_STATE.IDLE
 	_anim_state.travel("idle")
+	previous_position = position
 	movement_finished.emit(previous_state, _current_state)
 
 
