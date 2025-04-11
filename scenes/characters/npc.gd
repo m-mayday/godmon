@@ -3,24 +3,41 @@ extends Sprite2D
 signal movement_started(previous_state: Constants.MOVEMENT_STATE, new_state: Constants.MOVEMENT_STATE)
 signal movement_finished(previous_state: Constants.MOVEMENT_STATE, new_state: Constants.MOVEMENT_STATE)
 
+enum MOVEMENT_TYPE {
+	NONE, ## Standing still, looking in a single direction.
+	FIXED_RANDOM, ## Standing still, but turning randomly.
+	PATH_FOLLOW, ## Follow the specified path.
+	PATH_RANDOM, ## Move randomly on the specified path, without turning.
+	PATH_RANDOM_WITH_TURN, ## Move and turn randomly on the path. Moving is more likely than turning.
+	SEQUENCE, ## Follow the movement specified by [code]movement_sequence[/code].
+}
 
 const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 	"idle": "parameters/idle/blend_position",
 	"walk": "parameters/walk/blend_position",
 }
 
+
 @export var animation_tree: AnimationTree
-@export var initial_direction: Vector2 = Vector2.DOWN ## NPC's initial facing direction
+@export var face_direction: Vector2 = Vector2.DOWN ## NPC's direction
+@export var movement_type: MOVEMENT_TYPE = MOVEMENT_TYPE.NONE:
+	set = _set_movement_type
+@export var movement_sequence: Array[MovementSequence] ## Movement sequence to follow when [code]movement_type = SEQUENCE[/code].[br]Ignored otherwise.
+@export var wait_seconds_choices: Array[float] = [1, 2, 3] ## An array of seconds to wait before the next movement is executed. Picked at random.
 
 var interactable: bool = false ## If the NPC can be interacted with
 var is_moving: bool = false ## If the NPC is currently moving
-var next_position: Vector2
-var previous_position: Vector2
+var next_position: Vector2 ## The position the NPC will be moving to
+var previous_position: Vector2 ## The position the NPC is moving from
+var directions: Array[Vector2] = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT] ## Possible directions to turn
 
 var _anim_state: AnimationNodeStateMachinePlayback
 var _move_path: Line2D ## The path the NPC moves on
-var _waiting: bool = false ## If the NPC is currently waiting before moving again
-
+var _last_point_index: int = 0
+var _looping_backwards: bool = false
+var _is_waiting: bool = false ## If the NPC is currently waiting before moving again
+var _rng = RandomNumberGenerator.new()
+var _move: Callable
 
 func _ready() -> void:
 	SignalBus.input_paused.connect(_on_interaction)
@@ -32,6 +49,21 @@ func _ready() -> void:
 			break
 	next_position = position
 	previous_position = position
+
+
+func _set_movement_type(value: MOVEMENT_TYPE) -> void:
+	match value:
+		MOVEMENT_TYPE.FIXED_RANDOM:
+			_move = _movement_type_fixed_random
+		MOVEMENT_TYPE.PATH_FOLLOW:
+			_move = _movement_type_path_follow
+		MOVEMENT_TYPE.PATH_RANDOM:
+			_move = _movement_type_path_random
+		MOVEMENT_TYPE.PATH_RANDOM_WITH_TURN:
+			_move = _movement_type_path_random_turn
+		MOVEMENT_TYPE.SEQUENCE:
+			_move = _movement_type_sequence
+	movement_type = value
 
 
 ## Set the NPC as interactable when the InteractionFinder enters it
@@ -65,8 +97,7 @@ func _on_interaction(paused: bool) -> void:
 ## Used to move the NPC during a cutscene
 func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, direction: Vector2 = Vector2.ONE) -> void:
 	if direction in [Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT]:
-		for key in ANIMATION_PARAMETERS.keys():
-			animation_tree.set(ANIMATION_PARAMETERS[key], direction)
+		_set_animation_parameters(direction)
 	_anim_state.travel("walk")
 	var tween = create_tween()
 	tween.tween_property(self, "position", target_position, 0.25 * speed_multiplier).set_trans(Tween.TRANS_LINEAR)
@@ -76,20 +107,9 @@ func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, dire
 
 ## Randomly moves the NPC according to the _move_path defined
 func _process(_delta: float) -> void:
-	if _move_path != null and not is_moving and not _waiting:
-		var target_position: Vector2 = _get_new_position()
-		if position == target_position:
-			return
-		for key in ANIMATION_PARAMETERS.keys():
-			animation_tree.set(ANIMATION_PARAMETERS[key], (position - target_position).normalized() * -1)
-		previous_position = position
-		next_position = target_position
-		is_moving = true
-		movement_started.emit(Constants.MOVEMENT_STATE.IDLE, Constants.MOVEMENT_STATE.WALKING)
-		_anim_state.travel("walk")
-		var tween = create_tween()
-		tween.tween_property(self, "position", target_position, 0.25 * 1).set_trans(Tween.TRANS_LINEAR)
-		tween.tween_callback(_movement_finished)
+	if is_moving or _is_waiting or movement_type == MOVEMENT_TYPE.NONE:
+		return
+	_move.call()
 
 
 ## Sets the NPC back to idle and waits for a random time before moving again
@@ -97,10 +117,13 @@ func _movement_finished() -> void:
 	_anim_state.travel("idle")
 	movement_finished.emit(Constants.MOVEMENT_STATE.WALKING, Constants.MOVEMENT_STATE.IDLE)
 	is_moving = false
-	_waiting = true
+	_is_waiting = true
 	previous_position = position
-	await get_tree().create_timer([1, 2, 4].pick_random()).timeout
-	_waiting = false
+	if wait_seconds_choices.is_empty():
+		_is_waiting = false
+		return
+	await get_tree().create_timer(wait_seconds_choices.pick_random()).timeout
+	_is_waiting = false
 
 
 ## Gets a new position to move the NPC
@@ -128,3 +151,109 @@ func _can_move(target_position: Vector2) -> bool:
 	if main.will_collide_with_player(get_parent().to_global(target_position)):
 		return false
 	return true
+	
+
+func _movement_type_fixed_random() -> void:
+	directions.shuffle()
+	for direction in directions:
+		if direction != face_direction:
+			face_direction = direction
+			break
+	_set_animation_parameters(face_direction)
+	is_moving = true
+	_anim_state.travel("idle")
+	_movement_finished()
+
+
+func _movement_type_path_follow() -> void:
+	if _move_path != null:
+		var _next_index: int = _last_point_index
+		if _move_path.closed:
+			_next_index = wrapi(_next_index+1, 0, _move_path.get_point_count())
+		else:
+			var multiplier: int = 1
+			if _looping_backwards:
+				multiplier = -1
+			_next_index = _next_index + (1 * multiplier)
+			
+		var point: Vector2 = _move_path.get_point_position(_next_index)
+		
+		if not _can_move(point):
+			return
+		
+		if _next_index >= _move_path.get_point_count()-1 or _next_index <= 0:
+			_looping_backwards = !_looping_backwards
+		
+		previous_position = position
+		next_position = point
+		_last_point_index = _next_index
+		face_direction = (position - point).normalized() * -1
+		_set_animation_parameters(face_direction)
+		previous_position = position
+		next_position = point
+		is_moving = true
+		movement_started.emit(Constants.MOVEMENT_STATE.IDLE, Constants.MOVEMENT_STATE.WALKING)
+		_anim_state.travel("walk")
+		var tween = create_tween()
+		tween.tween_property(self, "position", point, 0.25 * 1).set_trans(Tween.TRANS_LINEAR)
+		tween.tween_callback(_movement_finished)
+
+
+func _movement_type_path_random() -> void:
+	if _move_path != null:
+		var target_position: Vector2 = _get_new_position()
+		if position == target_position:
+			return
+		face_direction = (position - target_position).normalized() * -1
+		_set_animation_parameters(face_direction)
+		previous_position = position
+		next_position = target_position
+		is_moving = true
+		movement_started.emit(Constants.MOVEMENT_STATE.IDLE, Constants.MOVEMENT_STATE.WALKING)
+		_anim_state.travel("walk")
+		var tween = create_tween()
+		tween.tween_property(self, "position", target_position, 0.25 * 1).set_trans(Tween.TRANS_LINEAR)
+		tween.tween_callback(_movement_finished)
+
+
+func _movement_type_path_random_turn() -> void:
+	if _move_path != null:
+		var movement: Array[Constants.MOVEMENT_STATE] = [Constants.MOVEMENT_STATE.TURNING, Constants.MOVEMENT_STATE.WALKING]
+		if movement[_rng.rand_weighted([0.3, 0.7])] == Constants.MOVEMENT_STATE.WALKING:
+			_movement_type_path_random()
+		else:
+			_movement_type_fixed_random()
+
+
+func _movement_type_sequence() -> void:
+	if not movement_sequence.is_empty():
+		var current_index: int = _last_point_index
+		var sequence: MovementSequence = movement_sequence[_last_point_index]
+		var direction: Vector2 = sequence.direction_to_vector(sequence.direction)
+		_last_point_index = wrapi(_last_point_index+1, 0, movement_sequence.size())
+		if sequence.type == MovementSequence.TYPES.TURN:
+			for key in ANIMATION_PARAMETERS.keys():
+				animation_tree.set(ANIMATION_PARAMETERS[key], direction)
+			is_moving = true
+			_anim_state.travel("idle")
+			_movement_finished()
+			return
+		var target_position: Vector2 = position + Vector2(direction.x * Constants.TILE_SIZE, direction.y * Constants.TILE_SIZE)
+		if not _can_move(target_position):
+			_last_point_index = current_index
+			return
+		face_direction = (position - target_position).normalized() * -1
+		_set_animation_parameters(face_direction)
+		previous_position = position
+		next_position = target_position
+		is_moving = true
+		movement_started.emit(Constants.MOVEMENT_STATE.IDLE, Constants.MOVEMENT_STATE.WALKING)
+		_anim_state.travel("walk")
+		var tween = create_tween()
+		tween.tween_property(self, "position", target_position, 0.25 * 1).set_trans(Tween.TRANS_LINEAR)
+		tween.tween_callback(_movement_finished)
+ 
+
+func _set_animation_parameters(direction: Vector2):
+	for key in ANIMATION_PARAMETERS.keys():
+		animation_tree.set(ANIMATION_PARAMETERS[key], direction)

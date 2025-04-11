@@ -48,6 +48,16 @@ tile_set = ExtResource("2_k4x0e")
 
 [node name="NPC" parent="." instance=ExtResource("10_y2osm")]
 position = Vector2(144, 256)
+movement_type = 5
+
+[node name="NPC2" parent="." instance=ExtResource("10_y2osm")]
+position = Vector2(48, 160)
+movement_type = 3
+
+[node name="Line2D" type="Line2D" parent="NPC2"]
+position = Vector2(-48, -160)
+points = PackedVector2Array(64, 224, 48, 224, 32, 224, 32, 208, 48, 208, 64, 208, 64, 192, 48, 192, 32, 192, 32, 176, 48, 176, 48, 160, 32, 160, 32, 144, 32, 128, 32, 112, 32, 96, 48, 96, 64, 96, 48, 112, 48, 128, 64, 128, 64, 144, 64, 160, 48, 144)
+width = 2.0
 
 [node name="Dialogue" type="Node" parent="."]
 
