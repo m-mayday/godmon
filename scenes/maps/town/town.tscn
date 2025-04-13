@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=57 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_7avvi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_k4x0e"]
+[ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="5_tpn7j"]
+[ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="6_y2osm"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="10_cgcdf"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="10_y2osm"]
 [ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
@@ -13,12 +15,297 @@
 [ext_resource type="Resource" uid="uid://bcej05h2cp0od" path="res://scenes/maps/town/dialogue/oak_lab.dialogue" id="15_oti17"]
 [ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="15_tpn7j"]
 [ext_resource type="Script" uid="uid://b5q2jma6geawl" path="res://scenes/maps/town/oak_event.gd" id="16_tpn7j"]
+[ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="17_kmr37"]
+[ext_resource type="Resource" uid="uid://ctt4wdrhm5lss" path="res://scenes/maps/town/dialogue/oak_dont_go_out.dialogue" id="18_p6h8o"]
+[ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="19_0pwko"]
+[ext_resource type="Resource" uid="uid://dgjl8r518ttxa" path="res://scenes/maps/town/dialogue/oak_gass_warning.dialogue" id="20_0pwko"]
+[ext_resource type="Script" uid="uid://d1wwwa85ui1p5" path="res://events/general/parallel_actions.gd" id="21_ao3hy"]
+[ext_resource type="Script" uid="uid://xn4cofvwrdou" path="res://events/general/movement_sequence_action.gd" id="21_vug5f"]
+[ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="22_ao3hy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oti17"]
 size = Vector2(32, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7avvi"]
 size = Vector2(94, 14)
+
+[sub_resource type="Resource" id="Resource_vug5f"]
+script = ExtResource("19_0pwko")
+dialogue = ExtResource("18_p6h8o")
+balloon = ExtResource("17_kmr37")
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_idgr4"]
+script = ExtResource("6_y2osm")
+type = 1
+direction = 1
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_vkhl3"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 0
+tiles = 8
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_x245t"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 3
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_th1nf"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 0
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_cyr0y"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 3
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_knrhf"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 0
+tiles = 3
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_nrmrb"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 3
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_ywbuj"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 0
+tiles = 2
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_xqdd3"]
+script = ExtResource("19_0pwko")
+dialogue = ExtResource("20_0pwko")
+balloon = ExtResource("17_kmr37")
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_g81db"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 1
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_itapk"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 2
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_j1n7v"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 1
+tiles = 11
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_2uw8l"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 3
+tiles = 5
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_0ygfw"]
+script = ExtResource("6_y2osm")
+type = 1
+direction = 0
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_rohfa"]
+script = ExtResource("21_vug5f")
+movement_actions = Array[ExtResource("6_y2osm")]([SubResource("Resource_g81db"), SubResource("Resource_itapk"), SubResource("Resource_j1n7v"), SubResource("Resource_2uw8l"), SubResource("Resource_0ygfw")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://xn4cofvwrdou"
+
+[sub_resource type="Resource" id="Resource_riftg"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 1
+tiles = 2
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_mpasi"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 2
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_mgtn0"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 1
+tiles = 11
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_16vh6"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 3
+tiles = 4
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_rsm8c"]
+script = ExtResource("21_vug5f")
+movement_actions = Array[ExtResource("6_y2osm")]([SubResource("Resource_riftg"), SubResource("Resource_mpasi"), SubResource("Resource_mgtn0"), SubResource("Resource_16vh6")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://xn4cofvwrdou"
+
+[sub_resource type="Resource" id="Resource_nkeh7"]
+script = ExtResource("21_ao3hy")
+actions = Array[ExtResource("5_tpn7j")]([SubResource("Resource_rohfa"), SubResource("Resource_rsm8c")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
+
+[sub_resource type="Resource" id="Resource_66jht"]
+script = ExtResource("22_ao3hy")
+node_path = NodePath("../OaksDoor")
+function_name = "open_door"
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_qy63m"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 0
+tiles = 1
+node_path = NodePath("../NPC")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_01khh"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 3
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_wh2tf"]
+script = ExtResource("21_ao3hy")
+actions = Array[ExtResource("5_tpn7j")]([SubResource("Resource_qy63m"), SubResource("Resource_01khh")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
+
+[sub_resource type="Resource" id="Resource_0dksf"]
+script = ExtResource("22_ao3hy")
+node_path = NodePath("../NPC")
+function_name = "hide"
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_dpo68"]
+script = ExtResource("6_y2osm")
+type = 0
+direction = 0
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_ne6ej"]
+script = ExtResource("22_ao3hy")
+node_path = NodePath("")
+function_name = "hide"
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_rki12"]
+script = ExtResource("22_ao3hy")
+node_path = NodePath("../OaksDoor")
+function_name = "close_door"
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_vgrd7"]
+script = ExtResource("22_ao3hy")
+node_path = NodePath("../OaksDoor")
+function_name = "load_target_scene"
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2osm"]
 size = Vector2(30, 14)
@@ -48,7 +335,7 @@ tile_set = ExtResource("2_k4x0e")
 
 [node name="NPC" parent="." instance=ExtResource("10_y2osm")]
 position = Vector2(144, 256)
-movement_type = 5
+wait_seconds_choices = Array[float]([])
 
 [node name="NPC2" parent="." instance=ExtResource("10_y2osm")]
 position = Vector2(48, 160)
@@ -140,17 +427,7 @@ position = Vector2(30, 19)
 monitoring = false
 monitorable = false
 script = ExtResource("16_tpn7j")
-
-[node name="PlayerPath" type="Line2D" parent="EventTrigger"]
-position = Vector2(-30, -19)
-points = PackedVector2Array(192, 32, 176, 32, 176, 48, 176, 64, 176, 80, 176, 96, 176, 112, 176, 128, 176, 144, 176, 160, 176, 176, 176, 192, 176, 208, 176, 224, 192, 224, 208, 224, 224, 224, 240, 224, 256, 224)
-width = 1.0
-
-[node name="OakPath" type="Line2D" parent="EventTrigger"]
-position = Vector2(-30, -19)
-points = PackedVector2Array(160, 128, 160, 112, 176, 112, 176, 64, 192, 64, 192, 32)
-width = 2.0
-default_color = Color(0, 0, 0, 1)
+actions = Array[ExtResource("5_tpn7j")]([SubResource("Resource_vug5f"), SubResource("Resource_idgr4"), SubResource("Resource_vkhl3"), SubResource("Resource_x245t"), SubResource("Resource_th1nf"), SubResource("Resource_cyr0y"), SubResource("Resource_knrhf"), SubResource("Resource_nrmrb"), SubResource("Resource_ywbuj"), SubResource("Resource_xqdd3"), SubResource("Resource_nkeh7"), SubResource("Resource_66jht"), SubResource("Resource_wh2tf"), SubResource("Resource_0dksf"), SubResource("Resource_dpo68"), SubResource("Resource_ne6ej"), SubResource("Resource_rki12"), SubResource("Resource_vgrd7")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EventTrigger"]
 position = Vector2(178, 5)

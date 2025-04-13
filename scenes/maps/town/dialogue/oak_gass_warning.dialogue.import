@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://dgjl8r518ttxa"
+path="res://.godot/imported/oak_gass_warning.dialogue-27fcfd5d5b57b53930114f5ff3d35a37.tres"
+
+[deps]
+
+source_file="res://scenes/maps/town/dialogue/oak_gass_warning.dialogue"
+dest_files=["res://.godot/imported/oak_gass_warning.dialogue-27fcfd5d5b57b53930114f5ff3d35a37.tres"]
+
+[params]
+
+defaults=true

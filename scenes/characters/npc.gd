@@ -9,7 +9,7 @@ enum MOVEMENT_TYPE {
 	PATH_FOLLOW, ## Follow the specified path.
 	PATH_RANDOM, ## Move randomly on the specified path, without turning.
 	PATH_RANDOM_WITH_TURN, ## Move and turn randomly on the path. Moving is more likely than turning.
-	SEQUENCE, ## Follow the movement specified by [code]movement_sequence[/code].
+	SEQUENCE, ## Follow the movement specified by [code]sequence[/code].
 }
 
 const ANIMATION_PARAMETERS: Dictionary[String, String] = {
@@ -19,25 +19,28 @@ const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 
 
 @export var animation_tree: AnimationTree
-@export var face_direction: Vector2 = Vector2.DOWN ## NPC's direction
-@export var movement_type: MOVEMENT_TYPE = MOVEMENT_TYPE.NONE:
+@export var face_direction: Vector2 = Vector2.DOWN ## NPC's direction.
+@export var movement_type: MOVEMENT_TYPE = MOVEMENT_TYPE.NONE: ## How this NPC moves.
 	set = _set_movement_type
-@export var movement_sequence: Array[MovementSequence] ## Movement sequence to follow when [code]movement_type = SEQUENCE[/code].[br]Ignored otherwise.
-@export var wait_seconds_choices: Array[float] = [1, 2, 3] ## An array of seconds to wait before the next movement is executed. Picked at random.
+@export var sequence: Array[MovementAction] ## Sequence of actions used if [code]movement_type = MOVEMENT_TYPE.SEQUENCE[/code].
 
-var interactable: bool = false ## If the NPC can be interacted with
-var is_moving: bool = false ## If the NPC is currently moving
-var next_position: Vector2 ## The position the NPC will be moving to
-var previous_position: Vector2 ## The position the NPC is moving from
-var directions: Array[Vector2] = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT] ## Possible directions to turn
+## An array of seconds to wait before the next movement is executed. Picked at random.
+## If [code]movement_type = MOVEMENT_TYPE.SEQUENCE[/code], then the [code]wait_after[/code] of each action is used instead.
+@export var wait_seconds_choices: Array[float] = [1, 2, 3]
+
+var interactable: bool = false ## If the NPC can be interacted with.
+var is_moving: bool = false ## If the NPC is currently moving.
+var next_position: Vector2 ## The position the NPC will be moving to.
+var previous_position: Vector2 ## The position the NPC is moving from.
+var directions: Array[Vector2] = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT] ## Possible directions to turn.
 
 var _anim_state: AnimationNodeStateMachinePlayback
 var _move_path: Line2D ## The path the NPC moves on
-var _last_point_index: int = 0
-var _looping_backwards: bool = false
-var _is_waiting: bool = false ## If the NPC is currently waiting before moving again
-var _rng = RandomNumberGenerator.new()
-var _move: Callable
+var _last_point_index: int = 0 ## Last index of certain movement options.
+var _looping_backwards: bool = false ## Used for [code]MOVEMENT_TYPE.PATH_FOLLOW[/code], to loop the movement back and forth.
+var _is_waiting: bool = false ## If the NPC is currently waiting before moving again.
+var _rng = RandomNumberGenerator.new() ## Used for [code]MOVEMENT_TYPE.PATH_RANDOM_WITH_TURN[/code] to decide if NPC should walk or turn.
+var _move: Callable ## The movement function to execute according to [code]movement_type[/code].
 
 func _ready() -> void:
 	SignalBus.input_paused.connect(_on_interaction)
@@ -51,6 +54,40 @@ func _ready() -> void:
 	previous_position = position
 
 
+## Randomly moves the NPC according to the _move_path defined
+func _process(_delta: float) -> void:
+	if is_moving or _is_waiting or movement_type == MOVEMENT_TYPE.NONE:
+		return
+	_move.call()
+
+## Walks to the target position, if possible.
+func walk(target_position: Vector2) -> bool:
+	if not _can_move(target_position):
+		return false
+	face_direction = (position - target_position).normalized() * -1
+	_set_animation_parameters(face_direction)
+	previous_position = position
+	next_position = target_position
+	is_moving = true
+	movement_started.emit(Constants.MOVEMENT_STATE.IDLE, Constants.MOVEMENT_STATE.WALKING)
+	_anim_state.travel("walk")
+	var tween = create_tween()
+	tween.tween_property(self, "position", target_position, 0.25 * 1).set_trans(Tween.TRANS_LINEAR)
+	await tween.finished
+	# Calling _movement_finished directly instead of relying on tween_callback prevents weird desync
+	# when running parallel actions and Engine.time_scale > 1
+	_movement_finished()
+	return true
+
+## Turns to the provided direction.
+func turn(direction: Vector2) -> void:
+	_set_animation_parameters(direction)
+	is_moving = true
+	_anim_state.travel("idle")
+	_movement_finished()
+
+
+## Set [code]_move[/code] to the corresponding function.
 func _set_movement_type(value: MOVEMENT_TYPE) -> void:
 	match value:
 		MOVEMENT_TYPE.FIXED_RANDOM:
@@ -92,24 +129,6 @@ func _on_interaction(paused: bool) -> void:
 		for key in ANIMATION_PARAMETERS.keys():
 			animation_tree.set(ANIMATION_PARAMETERS[key], npc_direction)
 		_anim_state.travel("idle")
-
-
-## Used to move the NPC during a cutscene
-func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, direction: Vector2 = Vector2.ONE) -> void:
-	if direction in [Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT]:
-		_set_animation_parameters(direction)
-	_anim_state.travel("walk")
-	var tween = create_tween()
-	tween.tween_property(self, "position", target_position, 0.25 * speed_multiplier).set_trans(Tween.TRANS_LINEAR)
-	await tween.finished
-	_anim_state.travel("idle")
-
-
-## Randomly moves the NPC according to the _move_path defined
-func _process(_delta: float) -> void:
-	if is_moving or _is_waiting or movement_type == MOVEMENT_TYPE.NONE:
-		return
-	_move.call()
 
 
 ## Sets the NPC back to idle and waits for a random time before moving again
@@ -226,33 +245,15 @@ func _movement_type_path_random_turn() -> void:
 
 
 func _movement_type_sequence() -> void:
-	if not movement_sequence.is_empty():
+	if not sequence.is_empty():
 		var current_index: int = _last_point_index
-		var sequence: MovementSequence = movement_sequence[_last_point_index]
-		var direction: Vector2 = sequence.direction_to_vector(sequence.direction)
-		_last_point_index = wrapi(_last_point_index+1, 0, movement_sequence.size())
-		if sequence.type == MovementSequence.TYPES.TURN:
-			for key in ANIMATION_PARAMETERS.keys():
-				animation_tree.set(ANIMATION_PARAMETERS[key], direction)
-			is_moving = true
-			_anim_state.travel("idle")
-			_movement_finished()
-			return
-		var target_position: Vector2 = position + Vector2(direction.x * Constants.TILE_SIZE, direction.y * Constants.TILE_SIZE)
-		if not _can_move(target_position):
+		var action: MovementAction = sequence[_last_point_index]
+		_last_point_index = wrapi(_last_point_index+1, 0, sequence.size())
+		wait_seconds_choices = action.wait_after
+		var executed: bool = await action.execute(self)
+		if not executed:
 			_last_point_index = current_index
-			return
-		face_direction = (position - target_position).normalized() * -1
-		_set_animation_parameters(face_direction)
-		previous_position = position
-		next_position = target_position
-		is_moving = true
-		movement_started.emit(Constants.MOVEMENT_STATE.IDLE, Constants.MOVEMENT_STATE.WALKING)
-		_anim_state.travel("walk")
-		var tween = create_tween()
-		tween.tween_property(self, "position", target_position, 0.25 * 1).set_trans(Tween.TRANS_LINEAR)
-		tween.tween_callback(_movement_finished)
- 
+
 
 func _set_animation_parameters(direction: Vector2):
 	for key in ANIMATION_PARAMETERS.keys():

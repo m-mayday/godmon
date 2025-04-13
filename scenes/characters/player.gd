@@ -53,6 +53,31 @@ func _process(_delta: float) -> void:
 	_move(_input_direction)
 
 
+## Walk to the target position. Collisions are not checked.
+func walk(target_position: Vector2) -> bool:
+	face_direction = (position - target_position).normalized() * -1
+	for key in ANIMATION_PARAMETERS.keys():
+		animation_tree.set(ANIMATION_PARAMETERS[key], face_direction)
+	previous_position = position
+	next_position = target_position
+	_current_state = Constants.MOVEMENT_STATE.WALKING
+	_anim_state.travel("walk")
+	var tween = create_tween()
+	tween.tween_property(self, "position", target_position, 0.25 * 1).set_trans(Tween.TRANS_LINEAR)
+	await tween.finished
+	_anim_state.travel("idle")
+	_current_state = Constants.MOVEMENT_STATE.IDLE
+	return true
+
+
+## Turns to the provided direction.
+func turn(direction: Vector2) -> void:
+	for key in ANIMATION_PARAMETERS.keys():
+		animation_tree.set(ANIMATION_PARAMETERS[key], direction)
+	_anim_state.travel("turn")
+	_movement_finsished()
+
+
 ## Moves player to the target position by walking speed * multiplier provided.
 ## It doesn't emit any movement signals and it's useful for cutscenes (thus the name).
 func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, direction: Vector2 = Vector2.ONE) -> void:
