@@ -40,7 +40,6 @@ func _ready():
 	Global.set_player_party_value(2, pokemon_party[2])
 	Global.set_player_party_value(3, pokemon_party[3])
 	SignalBus.input_paused.connect(_on_input_paused)
-	SignalBus.scene_loaded.connect(_on_scene_loaded)
 	_anim_state = animation_tree.get("parameters/playback")
 	previous_position = position
 	
@@ -240,9 +239,3 @@ func _should_jump(movement: Vector2) -> bool:
 
 func _on_input_paused(paused: bool):
 	set_process(!paused)
-
-
-## Player could be invisible due to a different script
-## so make him visible when a new scene is loaded
-func _on_scene_loaded(_previous_scene: String, _new_scene: String) -> void:
-	visible = true

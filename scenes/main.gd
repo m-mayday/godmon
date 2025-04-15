@@ -37,6 +37,7 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 	if scene_path in _loaded_chunks:
 		_change_scene(scene_path)
 		return
+	Cutscene._is_cutscene_in_progress = true # Loading a scene is a special case that we'd like to treat as a cutscene
 	# Fade out transition
 	transition_layer.visible = true
 	animator.play("fade_in")
@@ -76,13 +77,15 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 	world.add_child(current_scene)
 	if not player_removed and current_scene.has_method("get_spawn_position"):
 		player.position = current_scene.get_spawn_position()
-
+		
 	_update_adjacent_scenes(current_scene)
 	SignalBus.scene_loaded.emit(previous_scene_path, scene_path)
 	animator.play_backwards("fade_in")
 	await animator.animation_finished
 	transition_color.color.a = 0
 	transition_layer.visible = false
+	Cutscene._is_cutscene_in_progress = false
+	SignalBus.scene_transition_finished.emit(previous_scene_path, scene_path)
 
 
 ## Loads adjacent scenes given the current scene and adds them to _loaded_chunks

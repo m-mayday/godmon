@@ -40,12 +40,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Stops handling input
 func _on_prevent_pausing() -> void:
-	set_process_unhandled_input(false)
+	if not Cutscene.is_cutscene_in_progress():
+		set_process_unhandled_input(false)
 
 
 ## Resumes handling input
 func _on_allow_pausing() -> void:
-	set_process_unhandled_input(true)
+	if not Cutscene.is_cutscene_in_progress():
+		set_process_unhandled_input(true)
 	
 	
 func _on_input_paused(paused: bool) -> void:

@@ -16,4 +16,5 @@ signal input_paused(paused: bool) ## Emitted when input should be paused or unpa
 
 signal zone_changed(path: String) ## Emitted when entering a new zone (scene)
 signal scene_loaded(previous_scene: String, new_scene: String) ## Emitted when loading a new scene
+signal scene_transition_finished(previous_scene: String, new_scene: String) ## Emitted when the transition animation to a new scene finishes
 @warning_ignore_restore("unused_signal")
