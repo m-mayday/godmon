@@ -49,10 +49,7 @@ func _on_node_in_cell() -> void:
 	var terrain: String = _get_terrain()
 	if terrain == "GRASS":
 		if grass_overlay_texture != null:
-			_grass_overlay_rect = TextureRect.new()
-			_grass_overlay_rect.texture = grass_overlay_texture
-			_grass_overlay_rect.position = node.position
-			node.get_parent().add_child(_grass_overlay_rect)
+			_add_grass_overlay()
 			$EffectAnimation.visible = true
 			$EffectAnimation.position = node.global_position
 			$EffectAnimation.play("grass")
@@ -77,6 +74,7 @@ func _on_jumping_finished() -> void:
 	$EffectAnimation.play("dust")
 
 
+## Get terrain on [code]_cell_data[/code] if it exists
 func _get_terrain() -> String:
 	if _cell_data != null:
 		var data: Variant = _cell_data.get_custom_data("terrain")
@@ -85,3 +83,19 @@ func _get_terrain() -> String:
 			terrain = data as String
 		return terrain
 	return ""
+
+
+## Used when a new scene is loaded
+func _enter_tree() -> void:
+	if _node_in_cell:
+		var terrain: String = _get_terrain()
+		if terrain == "GRASS":
+			_add_grass_overlay()
+
+
+func _add_grass_overlay():
+	if grass_overlay_texture != null:
+		_grass_overlay_rect = TextureRect.new()
+		_grass_overlay_rect.texture = grass_overlay_texture
+		_grass_overlay_rect.position = node.position
+		node.get_parent().add_child(_grass_overlay_rect)
