@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=60 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_7avvi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_k4x0e"]
+[ext_resource type="Texture2D" uid="uid://rci0vqyh8ory" path="res://assets/characters/NPC03.png" id="4_vug5f"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="5_tpn7j"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="6_y2osm"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="10_cgcdf"]
@@ -9,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
 [ext_resource type="PackedScene" uid="uid://ciggbtucojvh7" path="res://scenes/cutscenes/dialogue/balloon_signs.tscn" id="11_tpn7j"]
 [ext_resource type="Resource" uid="uid://bm5rbiqaj4tbk" path="res://scenes/maps/town/dialogue/red_house.dialogue" id="12_fffuf"]
+[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/NPC02.png" id="12_idgr4"]
 [ext_resource type="Texture2D" uid="uid://ckloy1tk22xle" path="res://assets/overworld-animations.png" id="13_7avvi"]
 [ext_resource type="Resource" uid="uid://dr2nf3uc3rl7k" path="res://scenes/maps/town/dialogue/trainer_tips.dialogue" id="13_k4x0e"]
 [ext_resource type="Resource" uid="uid://bxh7hcbi8d2he" path="res://scenes/maps/town/dialogue/npc.dialogue" id="14_7avvi"]
@@ -29,6 +31,14 @@ size = Vector2(32, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7avvi"]
 size = Vector2(94, 14)
 
+[sub_resource type="Resource" id="Resource_vkhl3"]
+script = ExtResource("22_ao3hy")
+node_path = NodePath("../Professor")
+function_name = "show"
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
 [sub_resource type="Resource" id="Resource_vug5f"]
 script = ExtResource("19_0pwko")
 dialogue = ExtResource("18_p6h8o")
@@ -46,22 +56,12 @@ is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
-[sub_resource type="Resource" id="Resource_vkhl3"]
-script = ExtResource("6_y2osm")
-type = 0
-direction = 0
-tiles = 8
-node_path = NodePath("../NPC")
-is_player = false
-wait_after = Array[float]([])
-metadata/_custom_type_script = "uid://1txtbitbdrum"
-
 [sub_resource type="Resource" id="Resource_x245t"]
 script = ExtResource("6_y2osm")
 type = 0
 direction = 3
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -71,7 +71,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 0
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -81,7 +81,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 3
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -91,7 +91,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 0
 tiles = 3
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -101,7 +101,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 3
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -111,7 +111,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 0
 tiles = 2
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -128,7 +128,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 1
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -138,7 +138,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 2
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -148,7 +148,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 1
 tiles = 11
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -158,7 +158,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 3
 tiles = 5
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -168,7 +168,7 @@ script = ExtResource("6_y2osm")
 type = 1
 direction = 0
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -244,7 +244,7 @@ script = ExtResource("6_y2osm")
 type = 0
 direction = 0
 tiles = 1
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
@@ -267,7 +267,7 @@ metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
 
 [sub_resource type="Resource" id="Resource_0dksf"]
 script = ExtResource("22_ao3hy")
-node_path = NodePath("../NPC")
+node_path = NodePath("../Professor")
 function_name = "hide"
 is_player = false
 wait_after = Array[float]([])
@@ -307,10 +307,18 @@ is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
+[sub_resource type="Resource" id="Resource_wj3eu"]
+script = ExtResource("22_ao3hy")
+node_path = NodePath("")
+function_name = ""
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2osm"]
 size = Vector2(30, 14)
 
-[node name="Town" type="Node2D" node_paths=PackedStringArray("player_spawn_marker", "player_spawns")]
+[node name="Town" type="Node2D" node_paths=PackedStringArray("player_spawn_marker", "player_spawns", "moving_objects")]
 y_sort_enabled = true
 script = ExtResource("1_7avvi")
 adjacent_scenes = Dictionary[String, Vector2]({
@@ -323,6 +331,7 @@ player_spawns = {
 "res://scenes/maps/town/oakslab.tscn": NodePath("OaksDoor"),
 "res://scenes/maps/town/redshouse.tscn": NodePath("RedsDoor")
 }
+moving_objects = [NodePath("Girl")]
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1
@@ -333,48 +342,52 @@ tile_set = ExtResource("2_k4x0e")
 tile_map_data = PackedByteArray("AAAOAAAAAQAEAAAAAAAOAAEAAQAEAAEAAAAPAAAAAQAEAAAAAAAPAAEAAQAEAAEAAAAQAAAAAQAEAAAAAAAQAAEAAQAEAAEAAAARAAAAAQAEAAAAAAARAAEAAQAEAAEAAAASAAAAAQAEAAAAAAASAAEAAQAEAAEAAAATAAAAAQAEAAAAAAATAAEAAQAEAAEAAAAUAAAAAQAEAAAAAAAUAAEAAQAEAAEAAAAVAAAAAQAEAAAAAAAVAAEAAQAEAAEAAAAWAAAAAQAEAAAAAAAWAAEAAQAEAAEAAAAWAAIAAQAEAAAAAAAWAAMAAQAEAAEAAAAWAAQAAQAEAAAAAAAWAAUAAQAEAAEAAAAWAAYAAQAEAAAAAAAWAAcAAQAEAAEAAAAWAAgAAQAEAAAAAAAWAAkAAQAEAAEAAAAWAAoAAQAEAAAAAAAWAAsAAQAEAAEAAAAWAAwAAQAEAAAAAAAWAA0AAQAEAAEAAAAWAA4AAQAEAAAAAAAWAA8AAQAEAAEAAAAWABAAAQAEAAAAAAAWABEAAQAEAAEAAAAWABIAAQAEAAAAAAAWABMAAQAEAAEAAAAVABIAAQAEAAAAAAAVABMAAQAEAAEAAAAUABIAAQAEAAAAAAAUABMAAQAEAAEAAAATABIAAQAEAAAAAAATABMAAQAEAAEAAAASABIAAQAEAAAAAAASABMAAQAEAAEAAAARABIAAQAEAAAAAAARABMAAQAEAAEAAAAQABIAAQAEAAAAAAAQABMAAQAEAAEAAAAPABIAAQAEAAAAAAAPABMAAQAEAAEAAAAOABIAAQAEAAAAAAAOABMAAQAEAAEAAAAHABIAAQAEAAAAAAAHABMAAQAEAAEAAAAGABIAAQAEAAAAAAAGABMAAQAEAAEAAAAFABIAAQAEAAAAAAAFABMAAQAEAAEAAAAEABIAAQAEAAAAAAAEABMAAQAEAAEAAAADABIAAQAEAAAAAAADABMAAQAEAAEAAAACABIAAQAEAAAAAAACABMAAQAEAAEAAAABABIAAQAEAAAAAAABABMAAQAEAAEAAAAAABIAAQAEAAAAAAAAABMAAQAEAAEAAAABABAAAQAEAAAAAAABABEAAQAEAAEAAAABAA4AAQAEAAAAAAABAA8AAQAEAAEAAAABAAwAAQAEAAAAAAABAA0AAQAEAAEAAAABAAoAAQAEAAAAAAABAAsAAQAEAAEAAAABAAAAAQAEAAAAAAABAAEAAQAEAAEAAAABAAIAAQAEAAAAAAABAAMAAQAEAAEAAAABAAQAAQAEAAAAAAABAAUAAQAEAAEAAAABAAYAAQAEAAAAAAABAAcAAQAEAAEAAAABAAgAAQAEAAAAAAABAAkAAQAEAAEAAAACAAAAAQAEAAAAAAACAAEAAQAEAAEAAAADAAAAAQAEAAAAAAADAAEAAQAEAAEAAAAEAAAAAQAEAAAAAAAEAAEAAQAEAAEAAAAFAAAAAQAEAAAAAAAFAAEAAQAEAAEAAAAGAAAAAQAEAAAAAAAGAAEAAQAEAAEAAAAHAAAAAQAEAAAAAAAHAAEAAQAEAAEAAAAIAAAAAQAEAAAAAAAIAAEAAQAEAAEAAAAJAAAAAQAEAAAAAAAJAAEAAQAEAAEAAAAKAAAAAQAEAAAAAAAKAAEAAQAEAAEAAAALAAAAAQAEAAAAAAALAAEAAQAEAAEAAAAAAAAAAQAEAAAAAAAAAAEAAQAEAAEAAAAAAAIAAQAEAAAAAAAAAAMAAQAEAAEAAAAAAAQAAQAEAAAAAAAAAAUAAQAEAAEAAAAAAAYAAQAEAAAAAAAAAAcAAQAEAAEAAAAAAAgAAQAEAAAAAAAAAAkAAQAEAAEAAAAAAAoAAQAEAAAAAAAAAAsAAQAEAAEAAAAAAAwAAQAEAAAAAAAAAA0AAQAEAAEAAAAAAA4AAQAEAAAAAAAAAA8AAQAEAAEAAAAAABAAAQAEAAAAAAAAABEAAQAEAAEAAAD4/wAAAQAEAAAAAAD4/wEAAQAEAAEAAAD4/wIAAQAEAAAAAAD4/wMAAQAEAAEAAAD4/wQAAQAEAAAAAAD4/wUAAQAEAAEAAAD4/wYAAQAEAAAAAAD4/wcAAQAEAAEAAAD4/wgAAQAEAAAAAAD4/wkAAQAEAAEAAAD4/woAAQAEAAAAAAD4/wsAAQAEAAEAAAD4/wwAAQAEAAAAAAD4/w0AAQAEAAEAAAD4/w4AAQAEAAAAAAD4/w8AAQAEAAEAAAD4/xAAAQAEAAAAAAD4/xEAAQAEAAEAAAD4/xIAAQAEAAAAAAD4/xMAAQAEAAEAAAD5/wAAAQAEAAAAAAD5/wEAAQAEAAEAAAD5/wIAAQAEAAAAAAD5/wMAAQAEAAEAAAD5/wQAAQAEAAAAAAD5/wUAAQAEAAEAAAD5/wYAAQAEAAAAAAD5/wcAAQAEAAEAAAD5/wgAAQAEAAAAAAD5/wkAAQAEAAEAAAD5/woAAQAEAAAAAAD5/wsAAQAEAAEAAAD5/wwAAQAEAAAAAAD5/w0AAQAEAAEAAAD5/w4AAQAEAAAAAAD5/w8AAQAEAAEAAAD5/xAAAQAEAAAAAAD5/xEAAQAEAAEAAAD5/xIAAQAEAAAAAAD5/xMAAQAEAAEAAAD6/wAAAQAEAAAAAAD6/wEAAQAEAAEAAAD6/wIAAQAEAAAAAAD6/wMAAQAEAAEAAAD6/wQAAQAEAAAAAAD6/wUAAQAEAAEAAAD6/wYAAQAEAAAAAAD6/wcAAQAEAAEAAAD6/wgAAQAEAAAAAAD6/wkAAQAEAAEAAAD6/woAAQAEAAAAAAD6/wsAAQAEAAEAAAD6/wwAAQAEAAAAAAD6/w0AAQAEAAEAAAD6/w4AAQAEAAAAAAD6/w8AAQAEAAEAAAD6/xAAAQAEAAAAAAD6/xEAAQAEAAEAAAD6/xIAAQAEAAAAAAD6/xMAAQAEAAEAAAD7/wAAAQAEAAAAAAD7/wEAAQAEAAEAAAD7/wIAAQAEAAAAAAD7/wMAAQAEAAEAAAD7/wQAAQAEAAAAAAD7/wUAAQAEAAEAAAD7/wYAAQAEAAAAAAD7/wcAAQAEAAEAAAD7/wgAAQAEAAAAAAD7/wkAAQAEAAEAAAD7/woAAQAEAAAAAAD7/wsAAQAEAAEAAAD7/wwAAQAEAAAAAAD7/w0AAQAEAAEAAAD7/w4AAQAEAAAAAAD7/w8AAQAEAAEAAAD7/xAAAQAEAAAAAAD7/xEAAQAEAAEAAAD7/xIAAQAEAAAAAAD7/xMAAQAEAAEAAAD8/wAAAQAEAAAAAAD8/wEAAQAEAAEAAAD8/wIAAQAEAAAAAAD8/wMAAQAEAAEAAAD8/wQAAQAEAAAAAAD8/wUAAQAEAAEAAAD8/wYAAQAEAAAAAAD8/wcAAQAEAAEAAAD8/wgAAQAEAAAAAAD8/wkAAQAEAAEAAAD8/woAAQAEAAAAAAD8/wsAAQAEAAEAAAD8/wwAAQAEAAAAAAD8/w0AAQAEAAEAAAD8/w4AAQAEAAAAAAD8/w8AAQAEAAEAAAD8/xAAAQAEAAAAAAD8/xEAAQAEAAEAAAD8/xIAAQAEAAAAAAD8/xMAAQAEAAEAAAD9/wAAAQAEAAAAAAD9/wEAAQAEAAEAAAD9/wIAAQAEAAAAAAD9/wMAAQAEAAEAAAD9/wQAAQAEAAAAAAD9/wUAAQAEAAEAAAD9/wYAAQAEAAAAAAD9/wcAAQAEAAEAAAD9/wgAAQAEAAAAAAD9/wkAAQAEAAEAAAD9/woAAQAEAAAAAAD9/wsAAQAEAAEAAAD9/wwAAQAEAAAAAAD9/w0AAQAEAAEAAAD9/w4AAQAEAAAAAAD9/w8AAQAEAAEAAAD9/xAAAQAEAAAAAAD9/xEAAQAEAAEAAAD9/xIAAQAEAAAAAAD9/xMAAQAEAAEAAAD+/wAAAQAEAAAAAAD+/wEAAQAEAAEAAAD+/wIAAQAEAAAAAAD+/wMAAQAEAAEAAAD+/wQAAQAEAAAAAAD+/wUAAQAEAAEAAAD+/wYAAQAEAAAAAAD+/wcAAQAEAAEAAAD+/wgAAQAEAAAAAAD+/wkAAQAEAAEAAAD+/woAAQAEAAAAAAD+/wsAAQAEAAEAAAD+/wwAAQAEAAAAAAD+/w0AAQAEAAEAAAD+/w4AAQAEAAAAAAD+/w8AAQAEAAEAAAD+/xAAAQAEAAAAAAD+/xEAAQAEAAEAAAD+/xIAAQAEAAAAAAD+/xMAAQAEAAEAAAD//wAAAQAEAAAAAAD//wEAAQAEAAEAAAD//wIAAQAEAAAAAAD//wMAAQAEAAEAAAD//wQAAQAEAAAAAAD//wUAAQAEAAEAAAD//wYAAQAEAAAAAAD//wcAAQAEAAEAAAD//wgAAQAEAAAAAAD//wkAAQAEAAEAAAD//woAAQAEAAAAAAD//wsAAQAEAAEAAAD//wwAAQAEAAAAAAD//w0AAQAEAAEAAAD//w4AAQAEAAAAAAD//w8AAQAEAAEAAAD//xAAAQAEAAAAAAD//xEAAQAEAAEAAAD//xIAAQAEAAAAAAD//xMAAQAEAAEAAAAXAAAAAQAEAAAAAAAXAAEAAQAEAAEAAAAXAAIAAQAEAAAAAAAXAAMAAQAEAAEAAAAXAAQAAQAEAAAAAAAXAAUAAQAEAAEAAAAXAAYAAQAEAAAAAAAXAAcAAQAEAAEAAAAXAAgAAQAEAAAAAAAXAAkAAQAEAAEAAAAXAAoAAQAEAAAAAAAXAAsAAQAEAAEAAAAXAAwAAQAEAAAAAAAXAA0AAQAEAAEAAAAXAA4AAQAEAAAAAAAXAA8AAQAEAAEAAAAXABAAAQAEAAAAAAAXABEAAQAEAAEAAAAXABIAAQAEAAAAAAAXABMAAQAEAAEAAAAYAAAAAQAEAAAAAAAYAAEAAQAEAAEAAAAYAAIAAQAEAAAAAAAYAAMAAQAEAAEAAAAYAAQAAQAEAAAAAAAYAAUAAQAEAAEAAAAYAAYAAQAEAAAAAAAYAAcAAQAEAAEAAAAYAAgAAQAEAAAAAAAYAAkAAQAEAAEAAAAYAAoAAQAEAAAAAAAYAAsAAQAEAAEAAAAYAAwAAQAEAAAAAAAYAA0AAQAEAAEAAAAYAA4AAQAEAAAAAAAYAA8AAQAEAAEAAAAYABAAAQAEAAAAAAAYABEAAQAEAAEAAAAYABIAAQAEAAAAAAAYABMAAQAEAAEAAAAZAAAAAQAEAAAAAAAZAAEAAQAEAAEAAAAZAAIAAQAEAAAAAAAZAAMAAQAEAAEAAAAZAAQAAQAEAAAAAAAZAAUAAQAEAAEAAAAZAAYAAQAEAAAAAAAZAAcAAQAEAAEAAAAZAAgAAQAEAAAAAAAZAAkAAQAEAAEAAAAZAAoAAQAEAAAAAAAZAAsAAQAEAAEAAAAZAAwAAQAEAAAAAAAZAA0AAQAEAAEAAAAZAA4AAQAEAAAAAAAZAA8AAQAEAAEAAAAZABAAAQAEAAAAAAAZABEAAQAEAAEAAAAZABIAAQAEAAAAAAAZABMAAQAEAAEAAAAaAAAAAQAEAAAAAAAaAAEAAQAEAAEAAAAaAAIAAQAEAAAAAAAaAAMAAQAEAAEAAAAaAAQAAQAEAAAAAAAaAAUAAQAEAAEAAAAaAAYAAQAEAAAAAAAaAAcAAQAEAAEAAAAaAAgAAQAEAAAAAAAaAAkAAQAEAAEAAAAaAAoAAQAEAAAAAAAaAAsAAQAEAAEAAAAaAAwAAQAEAAAAAAAaAA0AAQAEAAEAAAAaAA4AAQAEAAAAAAAaAA8AAQAEAAEAAAAaABAAAQAEAAAAAAAaABEAAQAEAAEAAAAaABIAAQAEAAAAAAAaABMAAQAEAAEAAAAbAAAAAQAEAAAAAAAbAAEAAQAEAAEAAAAbAAIAAQAEAAAAAAAbAAMAAQAEAAEAAAAbAAQAAQAEAAAAAAAbAAUAAQAEAAEAAAAbAAYAAQAEAAAAAAAbAAcAAQAEAAEAAAAbAAgAAQAEAAAAAAAbAAkAAQAEAAEAAAAbAAoAAQAEAAAAAAAbAAsAAQAEAAEAAAAbAAwAAQAEAAAAAAAbAA0AAQAEAAEAAAAbAA4AAQAEAAAAAAAbAA8AAQAEAAEAAAAbABAAAQAEAAAAAAAbABEAAQAEAAEAAAAbABIAAQAEAAAAAAAbABMAAQAEAAEAAAAcAAAAAQAEAAAAAAAcAAEAAQAEAAEAAAAcAAIAAQAEAAAAAAAcAAMAAQAEAAEAAAAcAAQAAQAEAAAAAAAcAAUAAQAEAAEAAAAcAAYAAQAEAAAAAAAcAAcAAQAEAAEAAAAcAAgAAQAEAAAAAAAcAAkAAQAEAAEAAAAcAAoAAQAEAAAAAAAcAAsAAQAEAAEAAAAcAAwAAQAEAAAAAAAcAA0AAQAEAAEAAAAcAA4AAQAEAAAAAAAcAA8AAQAEAAEAAAAcABAAAQAEAAAAAAAcABEAAQAEAAEAAAAcABIAAQAEAAAAAAAcABMAAQAEAAEAAAAdAAAAAQAEAAAAAAAdAAEAAQAEAAEAAAAdAAIAAQAEAAAAAAAdAAMAAQAEAAEAAAAdAAQAAQAEAAAAAAAdAAUAAQAEAAEAAAAdAAYAAQAEAAAAAAAdAAcAAQAEAAEAAAAdAAgAAQAEAAAAAAAdAAkAAQAEAAEAAAAdAAoAAQAEAAAAAAAdAAsAAQAEAAEAAAAdAAwAAQAEAAAAAAAdAA0AAQAEAAEAAAAdAA4AAQAEAAAAAAAdAA8AAQAEAAEAAAAdABAAAQAEAAAAAAAdABEAAQAEAAEAAAAdABIAAQAEAAAAAAAdABMAAQAEAAEAAAAeAAAAAQAEAAAAAAAeAAEAAQAEAAEAAAAeAAIAAQAEAAAAAAAeAAMAAQAEAAEAAAAeAAQAAQAEAAAAAAAeAAUAAQAEAAEAAAAeAAYAAQAEAAAAAAAeAAcAAQAEAAEAAAAeAAgAAQAEAAAAAAAeAAkAAQAEAAEAAAAeAAoAAQAEAAAAAAAeAAsAAQAEAAEAAAAeAAwAAQAEAAAAAAAeAA0AAQAEAAEAAAAeAA4AAQAEAAAAAAAeAA8AAQAEAAEAAAAeABAAAQAEAAAAAAAeABEAAQAEAAEAAAAeABIAAQAEAAAAAAAeABMAAQAEAAEAAAAfAAAAAQAEAAAAAAAfAAEAAQAEAAEAAAAfAAIAAQAEAAAAAAAfAAMAAQAEAAEAAAAfAAQAAQAEAAAAAAAfAAUAAQAEAAEAAAAfAAYAAQAEAAAAAAAfAAcAAQAEAAEAAAAfAAgAAQAEAAAAAAAfAAkAAQAEAAEAAAAfAAoAAQAEAAAAAAAfAAsAAQAEAAEAAAAfAAwAAQAEAAAAAAAfAA0AAQAEAAEAAAAfAA4AAQAEAAAAAAAfAA8AAQAEAAEAAAAfABAAAQAEAAAAAAAfABEAAQAEAAEAAAAfABIAAQAEAAAAAAAfABMAAQAEAAEAAAAgAAAAAQAEAAAAAAAgAAEAAQAEAAEAAAAgAAIAAQAEAAAAAAAgAAMAAQAEAAEAAAAgAAQAAQAEAAAAAAAgAAUAAQAEAAEAAAAgAAYAAQAEAAAAAAAgAAcAAQAEAAEAAAAgAAgAAQAEAAAAAAAgAAkAAQAEAAEAAAAgAAoAAQAEAAAAAAAgAAsAAQAEAAEAAAAgAAwAAQAEAAAAAAAgAA0AAQAEAAEAAAAgAA4AAQAEAAAAAAAgAA8AAQAEAAEAAAAgABAAAQAEAAAAAAAgABEAAQAEAAEAAAAgABIAAQAEAAAAAAAgABMAAQAEAAEAAAAhAAAAAQAEAAAAAAAhAAEAAQAEAAEAAAAhAAIAAQAEAAAAAAAhAAMAAQAEAAEAAAAhAAQAAQAEAAAAAAAhAAUAAQAEAAEAAAAhAAYAAQAEAAAAAAAhAAcAAQAEAAEAAAAhAAgAAQAEAAAAAAAhAAkAAQAEAAEAAAAhAAoAAQAEAAAAAAAhAAsAAQAEAAEAAAAhAAwAAQAEAAAAAAAhAA0AAQAEAAEAAAAhAA4AAQAEAAAAAAAhAA8AAQAEAAEAAAAhABAAAQAEAAAAAAAhABEAAQAEAAEAAAAhABIAAQAEAAAAAAAhABMAAQAEAAEAAAAiAAAAAQAEAAAAAAAiAAEAAQAEAAEAAAAiAAIAAQAEAAAAAAAiAAMAAQAEAAEAAAAiAAQAAQAEAAAAAAAiAAUAAQAEAAEAAAAiAAYAAQAEAAAAAAAiAAcAAQAEAAEAAAAiAAgAAQAEAAAAAAAiAAkAAQAEAAEAAAAiAAoAAQAEAAAAAAAiAAsAAQAEAAEAAAAiAAwAAQAEAAAAAAAiAA0AAQAEAAEAAAAiAA4AAQAEAAAAAAAiAA8AAQAEAAEAAAAiABAAAQAEAAAAAAAiABEAAQAEAAEAAAAiABIAAQAEAAAAAAAiABMAAQAEAAEAAAAjAAAAAQAEAAAAAAAjAAEAAQAEAAEAAAAjAAIAAQAEAAAAAAAjAAMAAQAEAAEAAAAjAAQAAQAEAAAAAAAjAAUAAQAEAAEAAAAjAAYAAQAEAAAAAAAjAAcAAQAEAAEAAAAjAAgAAQAEAAAAAAAjAAkAAQAEAAEAAAAjAAoAAQAEAAAAAAAjAAsAAQAEAAEAAAAjAAwAAQAEAAAAAAAjAA0AAQAEAAEAAAAjAA4AAQAEAAAAAAAjAA8AAQAEAAEAAAAjABAAAQAEAAAAAAAjABEAAQAEAAEAAAAjABIAAQAEAAAAAAAjABMAAQAEAAEAAAANAA8AAQAIAAYAAAAOAA8AAQAJAAYAAAAPAA8AAQAKAAYAAAARAA8AAQAIAAYAAAASAA8AAQAJAAYAAAATAA8AAQAKAAYAAAAQAA8AAQALAAYAAAAFAA4AAQALAAYAAAAJAAsAAQALAAYAAAAEAAcAAQAJAA4AAAANAAcAAQAJAA4AAAAGAAcAAQAFAAcAAAAPAAcAAQAFAAcAAAAFAAcAAQAEAAYAAAAHAAcAAQAEAAcAAAAIAAcAAQAEAAcAAAAJAAcAAQAHAAYAAAAJAAYAAQAHAAYAAAAJAAUAAQAIAAwAAAAFAAUAAQAGAAwAAAAFAAYAAQAEAAYAAAAGAAYAAQAEAAcAAAAIAAYAAQAFAAYAAAAHAAYAAQAFAAYAAAAOAAUAAQADAAwAAAAOAAYAAQAEAAYAAAAOAAcAAQAEAAYAAAAPAAUAAQAEAAwAAAAPAAYAAQAEAAcAAAAQAAUAAQAEAAwAAAAQAAYAAQAFAAYAAAAQAAcAAQAEAAcAAAARAAUAAQAEAAwAAAARAAYAAQAFAAYAAAARAAcAAQAEAAcAAAASAAUAAQAFAAwAAAASAAYAAQAHAAYAAAASAAcAAQAHAAYAAAAOAAsAAQAAABEAAAAOAAwAAQAEAAYAAAAOAA0AAQAEAAYAAAAPAAsAAQABABEAAAAPAAwAAQAFAAYAAAAPAA0AAQAEAAcAAAAQAAsAAQABABEAAAAQAAwAAQAFAAYAAAAQAA0AAQAFAAcAAAARAAsAAQABABEAAAARAAwAAQAFAAYAAAARAA0AAQAEAAcAAAASAAsAAQABABEAAAASAAwAAQAFAAYAAAASAA0AAQAEAAcAAAATAAsAAQACABEAAAATAAwAAQAHAAYAAAATAA0AAQAHAAYAAAAOAAoAAQAAABAAAAAPAAoAAQABABAAAAAQAAoAAQABABAAAAARAAoAAQABABAAAAASAAoAAQADAA8AAAATAAoAAQACABAAAAAEAAsAAQAIAAYAAAAIAAsAAQAKAAYAAAAFAAsAAQAJAAYAAAAGAAsAAQAJAAYAAAAHAAsAAQAJAAYAAAAGAAUAAQAHAAwAAAAHAAUAAQAHAAwAAAAIAAUAAQAHAAwAAAAFAAQAAQAGAAsAAAAGAAQAAQAHAAsAAAAHAAQAAQAHAAsAAAAIAAQAAQAHAAsAAAAJAAQAAQAIAAsAAAAQAAQAAQAEAAsAAAARAAQAAQAEAAsAAAASAAQAAQAFAAsAAAAOAAQAAQADAAsAAAAPAAQAAQAEAAsAAAAOAAkAAQAAAA8AAAAPAAkAAQABAA8AAAAQAAkAAQABAA8AAAARAAkAAQABAA8AAAASAAkAAQABAA8AAAATAAkAAQACAA8AAAAEAAYAAQAJAA0AAAANAAYAAQAJAA0AAAA=")
 tile_set = ExtResource("2_k4x0e")
 
-[node name="NPC" parent="." instance=ExtResource("10_y2osm")]
-position = Vector2(144, 256)
-wait_seconds_choices = Array[float]([])
-
-[node name="NPC2" parent="." instance=ExtResource("10_y2osm")]
-position = Vector2(48, 160)
-movement_type = 3
-
-[node name="Line2D" type="Line2D" parent="NPC2"]
-position = Vector2(-48, -160)
-points = PackedVector2Array(64, 224, 48, 224, 32, 224, 32, 208, 48, 208, 64, 208, 64, 192, 48, 192, 32, 192, 32, 176, 48, 176, 48, 160, 32, 160, 32, 144, 32, 128, 32, 112, 32, 96, 48, 96, 64, 96, 48, 112, 48, 128, 64, 128, 64, 144, 64, 160, 48, 144)
-width = 2.0
-
-[node name="Dialogue" type="Node" parent="."]
-
-[node name="Blue" parent="Dialogue" instance=ExtResource("10_cgcdf")]
+[node name="Blue" parent="Props" instance=ExtResource("10_cgcdf")]
 position = Vector2(216, 120)
 balloon = ExtResource("11_tpn7j")
 
-[node name="Town" parent="Dialogue" instance=ExtResource("10_cgcdf")]
+[node name="Town" parent="Props" instance=ExtResource("10_cgcdf")]
 position = Vector2(152, 184)
 dialogue = ExtResource("11_603mb")
 balloon = ExtResource("11_tpn7j")
 
-[node name="Red" parent="Dialogue" instance=ExtResource("10_cgcdf")]
+[node name="Red" parent="Props" instance=ExtResource("10_cgcdf")]
 position = Vector2(72, 120)
 dialogue = ExtResource("12_fffuf")
 balloon = ExtResource("11_tpn7j")
 
-[node name="Tip" parent="Dialogue" instance=ExtResource("10_cgcdf")]
+[node name="Tip" parent="Props" instance=ExtResource("10_cgcdf")]
 position = Vector2(88, 232)
 dialogue = ExtResource("13_k4x0e")
 balloon = ExtResource("11_tpn7j")
 
-[node name="NPC" parent="Dialogue" instance=ExtResource("10_cgcdf")]
-position = Vector2(152, 264)
-dialogue = ExtResource("14_7avvi")
-
-[node name="Lab" parent="Dialogue" instance=ExtResource("10_cgcdf")]
+[node name="Lab" parent="Props" instance=ExtResource("10_cgcdf")]
 position = Vector2(264, 248)
 dialogue = ExtResource("15_oti17")
 balloon = ExtResource("11_tpn7j")
+
+[node name="Man" parent="." instance=ExtResource("10_y2osm")]
+position = Vector2(144, 256)
+wait_seconds_choices = Array[float]([])
+
+[node name="NPC" parent="Man" instance=ExtResource("10_cgcdf")]
+position = Vector2(8, 8)
+dialogue = ExtResource("14_7avvi")
+
+[node name="Girl" parent="." instance=ExtResource("10_y2osm")]
+position = Vector2(48, 160)
+texture = ExtResource("4_vug5f")
+movement_type = 3
+
+[node name="Line2D" type="Line2D" parent="Girl"]
+position = Vector2(-48, -160)
+points = PackedVector2Array(64, 224, 48, 224, 32, 224, 32, 208, 48, 208, 64, 208, 64, 192, 48, 192, 32, 192, 32, 176, 48, 176, 48, 160, 32, 160, 32, 144, 32, 128, 32, 112, 32, 96, 48, 96, 64, 96, 48, 112, 48, 128, 64, 128, 64, 144, 64, 160, 48, 144)
+width = 2.0
+
+[node name="Professor" parent="." instance=ExtResource("10_y2osm")]
+visible = false
+position = Vector2(144, 128)
+texture = ExtResource("12_idgr4")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 visible = false
@@ -424,10 +437,8 @@ current_scene_path = "res://scenes/maps/town/town.tscn"
 
 [node name="EventTrigger" type="Area2D" parent="."]
 position = Vector2(30, 19)
-monitoring = false
-monitorable = false
 script = ExtResource("16_tpn7j")
-actions = Array[ExtResource("5_tpn7j")]([SubResource("Resource_vug5f"), SubResource("Resource_idgr4"), SubResource("Resource_vkhl3"), SubResource("Resource_x245t"), SubResource("Resource_th1nf"), SubResource("Resource_cyr0y"), SubResource("Resource_knrhf"), SubResource("Resource_nrmrb"), SubResource("Resource_ywbuj"), SubResource("Resource_xqdd3"), SubResource("Resource_nkeh7"), SubResource("Resource_66jht"), SubResource("Resource_wh2tf"), SubResource("Resource_0dksf"), SubResource("Resource_dpo68"), SubResource("Resource_ne6ej"), SubResource("Resource_rki12"), SubResource("Resource_vgrd7")])
+actions = Array[ExtResource("5_tpn7j")]([SubResource("Resource_vkhl3"), SubResource("Resource_vug5f"), SubResource("Resource_idgr4"), SubResource("Resource_x245t"), SubResource("Resource_th1nf"), SubResource("Resource_cyr0y"), SubResource("Resource_knrhf"), SubResource("Resource_nrmrb"), SubResource("Resource_ywbuj"), SubResource("Resource_xqdd3"), SubResource("Resource_nkeh7"), SubResource("Resource_66jht"), SubResource("Resource_wh2tf"), SubResource("Resource_0dksf"), SubResource("Resource_dpo68"), SubResource("Resource_ne6ej"), SubResource("Resource_rki12"), SubResource("Resource_vgrd7"), SubResource("Resource_wj3eu")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EventTrigger"]
 position = Vector2(178, 5)

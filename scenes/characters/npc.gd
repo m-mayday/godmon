@@ -60,6 +60,7 @@ func _process(_delta: float) -> void:
 		return
 	_move.call()
 
+
 ## Walks to the target position, if possible.
 func walk(target_position: Vector2) -> bool:
 	if not _can_move(target_position):

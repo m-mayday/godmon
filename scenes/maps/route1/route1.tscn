@@ -31,16 +31,16 @@ encounters = Array[ExtResource("7_mwtrc")]([SubResource("Resource_r73tn"), SubRe
 metadata/_custom_type_script = ExtResource("8_q4b38")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dv3st"]
-size = Vector2(32, 66)
+size = Vector2(32, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bvfvq"]
-size = Vector2(80, 64)
+size = Vector2(96, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ixb0"]
-size = Vector2(80, 64)
+size = Vector2(96, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucavs"]
-size = Vector2(176, 64)
+size = Vector2(192, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua0mi"]
 size = Vector2(32, 14)
@@ -63,8 +63,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAEAAAAAAAAAAEAAQAEAAEAAAAAAAIAAQAEAAA
 tile_set = ExtResource("2_r7agj")
 
 [node name="EncounterArea" parent="." instance=ExtResource("6_o7v6n")]
-monitoring = false
-monitorable = false
 encounter_table = SubResource("Resource_gm8nn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
@@ -72,10 +70,10 @@ position = Vector2(208, 600)
 shape = SubResource("RectangleShape2D_dv3st")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EncounterArea"]
-polygon = PackedVector2Array(248, 544, 248, 576, 312, 576, 312, 536, 352, 536, 352, 512, 280, 512, 280, 544)
+polygon = PackedVector2Array(240, 544, 240, 576, 320, 576, 320, 544, 352, 544, 352, 512, 272, 512, 272, 544)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="EncounterArea"]
-polygon = PackedVector2Array(72, 520, 72, 552, 32, 552, 32, 576, 136, 576, 136, 536, 168, 536, 168, 520, 168, 512, 144, 512, 144, 520)
+polygon = PackedVector2Array(64, 512, 64, 544, 32, 544, 32, 576, 144, 576, 144, 544, 176, 544, 176, 512)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="EncounterArea"]
 position = Vector2(240, 424)
@@ -95,6 +93,7 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(208, 632)
 shape = SubResource("RectangleShape2D_ua0mi")
+debug_color = Color(0.927299, 3.58093e-05, 0.66909, 0.42)
 
 [node name="NPC" parent="." instance=ExtResource("6_c7nk4")]
 position = Vector2(80, 432)
