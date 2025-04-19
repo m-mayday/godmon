@@ -1,0 +1,173 @@
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=25 format=3 uid="uid://clus7ake5cf1m"]
+
+[ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_3eka1"]
+[ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="2_1p2ri"]
+[ext_resource type="Script" uid="uid://xn4cofvwrdou" path="res://events/general/movement_sequence_action.gd" id="3_vd0wc"]
+[ext_resource type="Script" uid="uid://d1wwwa85ui1p5" path="res://events/general/parallel_actions.gd" id="4_wlxnn"]
+[ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="5_5lg16"]
+[ext_resource type="Script" uid="uid://vnb7rb7na36b" path="res://events/general/event_action_sequence.gd" id="6_2vy0v"]
+
+[sub_resource type="Resource" id="Resource_8qdyj"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 1
+tiles = 11
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_ibu8v"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 3
+tiles = 5
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_qswh4"]
+script = ExtResource("2_1p2ri")
+type = 1
+direction = 0
+tiles = 1
+node_path = NodePath("")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_6mpgq"]
+script = ExtResource("3_vd0wc")
+movement_actions = Array[ExtResource("2_1p2ri")]([SubResource("Resource_8qdyj"), SubResource("Resource_ibu8v"), SubResource("Resource_qswh4")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://xn4cofvwrdou"
+
+[sub_resource type="Resource" id="Resource_oo36s"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 2
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_g65op"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 1
+tiles = 11
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_kehbu"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 3
+tiles = 4
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_wttah"]
+script = ExtResource("3_vd0wc")
+movement_actions = Array[ExtResource("2_1p2ri")]([SubResource("Resource_oo36s"), SubResource("Resource_g65op"), SubResource("Resource_kehbu")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://xn4cofvwrdou"
+
+[sub_resource type="Resource" id="Resource_nkeh7"]
+script = ExtResource("4_wlxnn")
+actions = Array[ExtResource("1_3eka1")]([SubResource("Resource_6mpgq"), SubResource("Resource_wttah")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
+
+[sub_resource type="Resource" id="Resource_66jht"]
+script = ExtResource("5_5lg16")
+node_path = NodePath("../OaksDoor")
+function_name = "open_door"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_awxmx"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 0
+tiles = 1
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_2lj6y"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 3
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_wh2tf"]
+script = ExtResource("4_wlxnn")
+actions = Array[ExtResource("1_3eka1")]([SubResource("Resource_awxmx"), SubResource("Resource_2lj6y")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
+
+[sub_resource type="Resource" id="Resource_0dksf"]
+script = ExtResource("5_5lg16")
+node_path = NodePath("../Professor")
+function_name = "hide"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_dpo68"]
+script = ExtResource("2_1p2ri")
+type = 0
+direction = 0
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_ne6ej"]
+script = ExtResource("5_5lg16")
+node_path = NodePath("")
+function_name = "hide"
+arguments = []
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_rki12"]
+script = ExtResource("5_5lg16")
+node_path = NodePath("../OaksDoor")
+function_name = "close_door"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_vgrd7"]
+script = ExtResource("5_5lg16")
+node_path = NodePath("../OaksDoor")
+function_name = "load_target_scene"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[resource]
+script = ExtResource("6_2vy0v")
+event_actions = Array[ExtResource("1_3eka1")]([SubResource("Resource_nkeh7"), SubResource("Resource_66jht"), SubResource("Resource_wh2tf"), SubResource("Resource_0dksf"), SubResource("Resource_dpo68"), SubResource("Resource_ne6ej"), SubResource("Resource_rki12"), SubResource("Resource_vgrd7")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://vnb7rb7na36b"

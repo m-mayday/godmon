@@ -4,6 +4,7 @@ extends EventAction
 
 @export var node_path: NodePath ## The path to the node that has the function.
 @export var function_name: String ## The name of the function.
+@export var arguments: Array[Variant] ## Arguments to pass to the function.
 @export var is_player: bool = false ## If the node the function is in is the player.
 
 ## Node is used to get the node specified as [code]node_path[/code].
@@ -15,5 +16,5 @@ func execute(node: Node) -> bool:
 		node_func = node.get_node_or_null(node_path)
 	if node_func == null:
 		return false
-	await node_func.call(function_name)
+	await node_func.callv(function_name, arguments)
 	return true

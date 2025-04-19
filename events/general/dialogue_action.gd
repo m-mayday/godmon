@@ -5,7 +5,8 @@ extends EventAction
 @export var dialogue: DialogueResource ## Dialogue to display.
 @export var balloon: PackedScene ## Balloon to display the dialogue.
 
-func execute(_node: Node) -> void:
+func execute(_node: Node) -> bool:
 	if dialogue != null:
 		DialogueManager.show_dialogue_balloon_scene(balloon, dialogue, "start")
 		await DialogueManager.dialogue_ended
+	return true

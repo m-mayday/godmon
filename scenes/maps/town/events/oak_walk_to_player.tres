@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=17 format=3 uid="uid://dxs42bly2828o"]
+
+[ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_w76w8"]
+[ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="2_ird8w"]
+[ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="3_uqwmd"]
+[ext_resource type="Resource" uid="uid://dgjl8r518ttxa" path="res://scenes/maps/town/dialogue/oak_gass_warning.dialogue" id="4_2dlod"]
+[ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="5_so0c0"]
+[ext_resource type="Script" uid="uid://d1wwwa85ui1p5" path="res://events/general/parallel_actions.gd" id="6_0h5c4"]
+[ext_resource type="Script" uid="uid://vnb7rb7na36b" path="res://events/general/event_action_sequence.gd" id="7_6adpj"]
+
+[sub_resource type="Resource" id="Resource_th1nf"]
+script = ExtResource("2_ird8w")
+type = 0
+direction = 0
+tiles = 1
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_cyr0y"]
+script = ExtResource("2_ird8w")
+type = 0
+direction = 3
+tiles = 1
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_knrhf"]
+script = ExtResource("2_ird8w")
+type = 0
+direction = 0
+tiles = 3
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_nrmrb"]
+script = ExtResource("2_ird8w")
+type = 0
+direction = 3
+tiles = 1
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_ywbuj"]
+script = ExtResource("2_ird8w")
+type = 0
+direction = 0
+tiles = 2
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_xqdd3"]
+script = ExtResource("5_so0c0")
+dialogue = ExtResource("4_2dlod")
+balloon = ExtResource("3_uqwmd")
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_5v01r"]
+script = ExtResource("2_ird8w")
+type = 0
+direction = 1
+tiles = 1
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_nijvm"]
+script = ExtResource("2_ird8w")
+type = 0
+direction = 1
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_iymaw"]
+script = ExtResource("6_0h5c4")
+actions = Array[ExtResource("1_w76w8")]([SubResource("Resource_5v01r"), SubResource("Resource_nijvm")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
+
+[resource]
+script = ExtResource("7_6adpj")
+event_actions = Array[ExtResource("1_w76w8")]([SubResource("Resource_th1nf"), SubResource("Resource_cyr0y"), SubResource("Resource_knrhf"), SubResource("Resource_nrmrb"), SubResource("Resource_ywbuj"), SubResource("Resource_xqdd3"), SubResource("Resource_iymaw")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://vnb7rb7na36b"

@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=12 format=3 uid="uid://cqakm0iwlmhhm"]
+
+[ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_3tcbp"]
+[ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="2_bdjhg"]
+[ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="3_yh1b7"]
+[ext_resource type="Resource" uid="uid://ctt4wdrhm5lss" path="res://scenes/maps/town/dialogue/oak_dont_go_out.dialogue" id="4_fu2s8"]
+[ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="5_4b5ak"]
+[ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="6_5ufyc"]
+[ext_resource type="Script" uid="uid://vnb7rb7na36b" path="res://events/general/event_action_sequence.gd" id="7_c3uu8"]
+
+[sub_resource type="Resource" id="Resource_wj3eu"]
+script = ExtResource("2_bdjhg")
+node_path = NodePath("../Professor")
+function_name = "set"
+arguments = ["process_mode", 0]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_vkhl3"]
+script = ExtResource("2_bdjhg")
+node_path = NodePath("../Professor")
+function_name = "show"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_vug5f"]
+script = ExtResource("5_4b5ak")
+dialogue = ExtResource("4_fu2s8")
+balloon = ExtResource("3_yh1b7")
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_idgr4"]
+script = ExtResource("6_5ufyc")
+type = 1
+direction = 1
+tiles = 1
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[resource]
+script = ExtResource("7_c3uu8")
+event_actions = Array[ExtResource("1_3tcbp")]([SubResource("Resource_wj3eu"), SubResource("Resource_vkhl3"), SubResource("Resource_vug5f"), SubResource("Resource_idgr4")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://vnb7rb7na36b"
