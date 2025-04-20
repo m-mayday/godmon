@@ -1,9 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://bmigxfi2xkns7"]
+[gd_scene load_steps=47 format=3 uid="uid://bmigxfi2xkns7"]
 
 [ext_resource type="Script" uid="uid://bqqbd3ven62ai" path="res://scenes/characters/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b600mjw1hubap" path="res://assets/characters/player2.png" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://i38ylwaqlkhp" path="res://scenes/maps/terrain_effects.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://nokxwtpo54sn" path="res://scenes/menus/pause_menu.tscn" id="3_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://b64svyma0qpxx" path="res://assets/battle/shadow.png" id="5_atpat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(14, 14)
@@ -687,12 +688,13 @@ graph_offset = Vector2(-170, -4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyoq"]
 size = Vector2(14, 14)
 
-[node name="Player" type="Area2D" node_paths=PackedStringArray("animation_tree", "raycast")]
+[node name="Player" type="Area2D" node_paths=PackedStringArray("animation_tree", "raycast", "shadow")]
 collision_layer = 3
 collision_mask = 11
 script = ExtResource("1_g2els")
 animation_tree = NodePath("AnimationTree")
 raycast = NodePath("RayCast2D")
+shadow = NodePath("Node/Shadow")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_as_relative = false
@@ -750,6 +752,15 @@ debug_color = Color(0.93724, 0.0933426, 0.576389, 0.42)
 position = Vector2(8, 8)
 target_position = Vector2(0, 16)
 collision_mask = 11
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="Node"]
+visible = false
+scale = Vector2(0.222222, 0.328125)
+texture = ExtResource("5_atpat")
+centered = false
+offset = Vector2(0, 36)
 
 [connection signal="body_shape_entered" from="." to="TerrainEffects" method="_on_body_shape_entered"]
 [connection signal="movement_finished" from="." to="TerrainEffects" method="_on_movement_finished"]

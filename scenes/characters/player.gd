@@ -15,6 +15,7 @@ const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 @export var jump_speed: float = 0.20
 @export var animation_tree: AnimationTree
 @export var raycast: RayCast2D
+@export var shadow: Sprite2D
 
 var moving_direction: Vector2 = Vector2.ZERO
 var face_direction: Vector2 = Vector2.DOWN ## Current player direction
@@ -170,6 +171,8 @@ func _movement_finsished() -> void:
 	moving_direction = Vector2.ZERO
 	var previous_state: Constants.MOVEMENT_STATE = _current_state
 	_current_state = Constants.MOVEMENT_STATE.IDLE
+	if previous_state == Constants.MOVEMENT_STATE.JUMPING:
+		shadow.hide()
 	_anim_state.travel("idle")
 	previous_position = position
 	movement_finished.emit(previous_state, _current_state)
@@ -193,8 +196,11 @@ func _handle_collision(movement: Vector2) -> void:
 		mid_position.y -= Constants.TILE_SIZE / 2  # Move up slightly
 
 		var tween: Tween = create_tween()
+		shadow.position = position
+		shadow.show()
 		tween.tween_property(self, "position", mid_position, jump_speed)
 		tween.tween_property(self, "position", new_position, jump_speed)
+		tween.parallel().tween_property(shadow, "position", new_position, jump_speed)
 		tween.tween_callback(_movement_finsished)
 	elif collider.get_parent() is Door:
 		var door: Door = collider.get_parent()

@@ -243,6 +243,8 @@ current_scene_path = "res://scenes/maps/town/town.tscn"
 
 [node name="EventTriggerLeft" type="Area2D" parent="."]
 position = Vector2(30, 19)
+monitoring = false
+monitorable = false
 script = ExtResource("16_tpn7j")
 actions = Array[ExtResource("5_tpn7j")]([ExtResource("17_idgr4"), SubResource("Resource_x245t"), ExtResource("19_p6h8o"), SubResource("Resource_0ygfw"), ExtResource("20_0pwko")])
 
@@ -251,6 +253,8 @@ position = Vector2(170.5, 5)
 shape = SubResource("RectangleShape2D_y2osm")
 
 [node name="EventTriggerRight" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
 script = ExtResource("16_tpn7j")
 actions = Array[ExtResource("5_tpn7j")]([ExtResource("17_idgr4"), SubResource("Resource_vug5f"), ExtResource("19_p6h8o"), SubResource("Resource_j1n7v"), ExtResource("20_0pwko")])
 
