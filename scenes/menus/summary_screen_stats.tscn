@@ -1,0 +1,328 @@
+[gd_scene load_steps=12 format=3 uid="uid://uln42kdtnid2"]
+
+[ext_resource type="Texture2D" uid="uid://8xo0hhftm0u0" path="res://assets/ui/hp_bar.png" id="1_gqbg1"]
+[ext_resource type="Script" uid="uid://dyxnjlwlsfeji" path="res://scenes/menus/summary_screen_stats.gd" id="1_vt5ml"]
+
+[sub_resource type="Gradient" id="Gradient_vt5ml"]
+offsets = PackedFloat32Array(0.5, 0.50497)
+colors = PackedColorArray(0.407843, 0.439216, 0.847059, 1, 0.533333, 0.564706, 0.972549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y36w8"]
+gradient = SubResource("Gradient_vt5ml")
+height = 104
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+repeat = 1
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_gqbg1"]
+offsets = PackedFloat32Array(0.5, 0.503185)
+colors = PackedColorArray(0.972549, 0.972549, 0.784314, 1, 0.972549, 0.972549, 0.972549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_65or0"]
+gradient = SubResource("Gradient_gqbg1")
+height = 104
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vt5ml"]
+texture = SubResource("GradientTexture2D_65or0")
+axis_stretch_vertical = 1
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gqbg1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vt5ml"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gqbg1"]
+gradient = SubResource("Gradient_gqbg1")
+height = 74
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fu5np"]
+texture = SubResource("GradientTexture2D_gqbg1")
+axis_stretch_vertical = 1
+
+[node name="SummaryScreenStats" type="Control" groups=["summary"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vt5ml")
+metadata/title = "POKéMON SKILLS"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y36w8")
+stretch_mode = 1
+
+[node name="HP" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.423
+offset_right = -0.0420074
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.423
+offset_top = 52.0
+offset_right = -0.0420074
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "ATTACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Defense" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.423
+offset_top = 104.0
+offset_right = -0.0420074
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "DEFENSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpAttack" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.423
+offset_top = 156.0
+offset_right = -0.0420074
+offset_bottom = 208.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "SP. ATK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpDefense" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.423
+offset_top = 208.0
+offset_right = -0.0420074
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "SP. DEF"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.423
+offset_top = 260.0
+offset_right = -0.0420074
+offset_bottom = 312.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "SPEED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 1.0
+anchor_right = 0.441
+anchor_bottom = 1.0
+offset_left = -0.134
+offset_top = -210.705
+offset_right = -0.214005
+offset_bottom = -155.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "ABILITY"
+vertical_alignment = 1
+
+[node name="Stats" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.423
+anchor_right = 0.948
+offset_left = -0.0420074
+offset_right = -0.0640869
+offset_bottom = 311.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vt5ml")
+
+[node name="HP" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "264/267"
+horizontal_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Stats/HP"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.248
+anchor_top = 1.0
+anchor_right = 0.955
+anchor_bottom = 1.0
+offset_left = 0.0118713
+offset_top = -15.0
+offset_right = -0.0349426
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_gqbg1")
+texture_progress = SubResource("CanvasTexture_vt5ml")
+tint_under = Color(0.313726, 0.407843, 0.345098, 1)
+tint_progress = Color(0.439216, 0.972549, 0.658824, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Stats/HP"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -20.0
+offset_right = -8.32794
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_gqbg1")
+
+[node name="Attack" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 52.0
+offset_bottom = 104.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "190"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Defense" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 104.0
+offset_bottom = 156.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "183"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpAttack" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 156.0
+offset_bottom = 208.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "236"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpDefense" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 208.0
+offset_bottom = 260.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "204"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 260.0
+offset_bottom = 312.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "165"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 135.0
+offset_top = -204.0
+offset_right = -2.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vt5ml")
+
+[node name="Label" type="Label" parent="Ability2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEUTRALIZING GAS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -153.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_fu5np")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_colors/font_shadow_color = Color(0.815686, 0.815686, 0.784314, 1)
+text = "While the Pokémon is in the battle, the effects of all other Pokémon's Abilities will be nullified or will not be triggered. "

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dswfxggc17xr3"]
+[gd_scene load_steps=11 format=3 uid="uid://dswfxggc17xr3"]
 
 [ext_resource type="Script" uid="uid://c3uwa0gdwk1cy" path="res://scenes/menus/party_screen.gd" id="1_wgxl4"]
 [ext_resource type="Texture2D" uid="uid://3nfpanty48va" path="res://assets/ui/panel_beigeLight.png" id="2_t8ff1"]
@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://en456rclestl" path="res://assets/ui/menu_cancel.png" id="6_ybr7a"]
 [ext_resource type="Texture2D" uid="uid://sunxn08nsjro" path="res://assets/ui/menu_cancel_hover.png" id="7_a2588"]
 [ext_resource type="StyleBox" uid="uid://dqdeaqixjmvf3" path="res://scenes/themes/selection_arrow_box.tres" id="8_a2588"]
+[ext_resource type="PackedScene" uid="uid://mb67c2sn7ffy" path="res://scenes/menus/summary_screen.tscn" id="10_mnmnj"]
 
-[node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button", "send_out_option", "summary_option", "switch_option", "item_option")]
+[node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button", "send_out_option", "summary_option", "switch_option", "item_option") groups=["summary"]]
 script = ExtResource("1_wgxl4")
 slots_container = NodePath("Control/Background/Slots")
 slot_options = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer")
@@ -349,6 +350,15 @@ theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_constants/shadow_outline_size = 3
 text = "  CANCEL"
 
+[node name="SummaryScreen" parent="Control" node_paths=PackedStringArray("button_screens") instance=ExtResource("10_mnmnj")]
+visible = false
+button_screens = {
+0: NodePath("SummaryScreenInfo"),
+1: NodePath("SummayScreenMemo"),
+2: NodePath("SummaryScreenStats"),
+3: NodePath("SummaryScreenMoves")
+}
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlotMain" method="_on_parent_visibility_changed"]
 [connection signal="visibility_changed" from="." to="Control/Background/Slots/PartySlot2" method="_on_parent_visibility_changed"]
@@ -366,4 +376,5 @@ text = "  CANCEL"
 [connection signal="focus_exited" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_focus_exited"]
 [connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut" to="." method="_on_send_out_pressed"]
+[connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Summary" to="." method="_on_summary_pressed"]
 [connection signal="pressed" from="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SlotCancel" to="." method="_on_slot_cancel_pressed"]

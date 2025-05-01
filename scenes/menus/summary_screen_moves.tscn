@@ -1,0 +1,657 @@
+[gd_scene load_steps=21 format=3 uid="uid://bhh10dqwjsny2"]
+
+[ext_resource type="StyleBox" uid="uid://ycg3fwlj4ref" path="res://move_position_full.tres" id="1_2k71t"]
+[ext_resource type="Script" uid="uid://3r2ytfa38tct" path="res://scenes/menus/summary_screen_moves.gd" id="1_b68b6"]
+[ext_resource type="Texture2D" uid="uid://cwgryiicyknfw" path="res://assets/icons/physical.png" id="2_gq0vr"]
+[ext_resource type="StyleBox" uid="uid://psel2a7klx4b" path="res://move_position_empty.tres" id="2_wfnbk"]
+[ext_resource type="Texture2D" uid="uid://bhkwtv1nrlyvq" path="res://assets/icons/special.png" id="3_wfnbk"]
+[ext_resource type="Texture2D" uid="uid://sft7jubwt6uk" path="res://assets/icons/status.png" id="4_2qicn"]
+
+[sub_resource type="Gradient" id="Gradient_1v04r"]
+offsets = PackedFloat32Array(0.5, 0.50497)
+colors = PackedColorArray(0.972549, 0.501961, 0.470588, 1, 0.941176, 0.658824, 0.627451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b68b6"]
+gradient = SubResource("Gradient_1v04r")
+height = 104
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+repeat = 1
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2k71t"]
+bg_color = Color(0.972549, 0.0156863, 0.0117647, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.972549, 0.0156863, 0.0117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpqmi"]
+bg_color = Color(0.972549, 0.972549, 0.972549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8urp"]
+bg_color = Color(0.972549, 0.0156863, 0.0117647, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.972549, 0.0156863, 0.0117647, 1)
+
+[sub_resource type="Gradient" id="Gradient_2k71t"]
+offsets = PackedFloat32Array(0.5, 0.505308)
+colors = PackedColorArray(0.941176, 0.658824, 0.627451, 1, 0.972549, 0.784314, 0.752941, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wfnbk"]
+gradient = SubResource("Gradient_2k71t")
+height = 104
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b68b6"]
+texture = SubResource("GradientTexture2D_wfnbk")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gq0vr"]
+bg_color = Color(0.972549, 0.501961, 0.466667, 1)
+
+[sub_resource type="Gradient" id="Gradient_2qicn"]
+offsets = PackedFloat32Array(0.5, 0.501062)
+colors = PackedColorArray(0.972549, 0.972549, 0.784314, 1, 0.972549, 0.972549, 0.972549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p8urp"]
+gradient = SubResource("Gradient_2qicn")
+height = 74
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_llyad"]
+texture = SubResource("GradientTexture2D_p8urp")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b68b6"]
+bg_color = Color(0.972549, 0.972549, 0.972549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qicn"]
+bg_color = Color(0.972549, 0.972549, 0.784314, 1)
+
+[node name="SummaryScreenMoves" type="Control" node_paths=PackedStringArray("moves") groups=["summary"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b68b6")
+moves = NodePath("Moves")
+category_icons = Dictionary[int, Texture2D]({
+0: ExtResource("2_gq0vr"),
+1: ExtResource("3_wfnbk"),
+2: ExtResource("4_2qicn")
+})
+metadata/title = "BATTLE MOVES"
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_b68b6")
+stretch_mode = 1
+
+[node name="Moves" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Move" type="Button" parent="Moves"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 103.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../../Cancel")
+focus_previous = NodePath("../../Cancel")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2k71t")
+flat = true
+
+[node name="Type" type="Label" parent="Moves/Move"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.392
+offset_left = 25.0
+offset_right = 0.0319977
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "FIGHTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Move" type="Label" parent="Moves/Move"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "CHILLY RECEPTION"
+vertical_alignment = 1
+
+[node name="PP" type="Label" parent="Moves/Move"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_top = 52.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rpqmi")
+text = "PP 20/40"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Position" type="GridContainer" parent="Moves/Move"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.395
+anchor_right = 0.395
+offset_left = -154.36
+offset_top = 57.0
+offset_right = -0.360016
+offset_bottom = 99.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Panel" type="Panel" parent="Moves/Move/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_2k71t")
+
+[node name="Panel2" type="Panel" parent="Moves/Move/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel3" type="Panel" parent="Moves/Move/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel4" type="Panel" parent="Moves/Move/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Move2" type="Button" parent="Moves"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 104.0
+offset_bottom = 207.0
+grow_horizontal = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_2k71t")
+flat = true
+
+[node name="Type" type="Label" parent="Moves/Move2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.37
+offset_left = 25.0
+offset_right = 10.02
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "FIGHTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Move" type="Label" parent="Moves/Move2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "CHILLY RECEPTION"
+vertical_alignment = 1
+
+[node name="PP" type="Label" parent="Moves/Move2"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_top = 52.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rpqmi")
+text = "PP 20/40"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Position" type="GridContainer" parent="Moves/Move2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.395
+anchor_right = 0.395
+offset_left = -154.36
+offset_top = 56.0
+offset_right = -0.360016
+offset_bottom = 98.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Panel" type="Panel" parent="Moves/Move2/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel2" type="Panel" parent="Moves/Move2/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_2k71t")
+
+[node name="Panel3" type="Panel" parent="Moves/Move2/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel4" type="Panel" parent="Moves/Move2/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Move3" type="Button" parent="Moves"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 208.0
+offset_bottom = 311.0
+grow_horizontal = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_2k71t")
+flat = true
+
+[node name="Type" type="Label" parent="Moves/Move3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.37
+offset_left = 25.0
+offset_right = 10.02
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "FIGHTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Move" type="Label" parent="Moves/Move3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "CHILLY RECEPTION"
+vertical_alignment = 1
+
+[node name="PP" type="Label" parent="Moves/Move3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_top = 52.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rpqmi")
+text = "PP 20/40"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Position" type="GridContainer" parent="Moves/Move3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.395
+anchor_right = 0.395
+offset_left = -154.36
+offset_top = 56.0
+offset_right = -0.360016
+offset_bottom = 98.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Panel" type="Panel" parent="Moves/Move3/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel2" type="Panel" parent="Moves/Move3/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel3" type="Panel" parent="Moves/Move3/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_2k71t")
+
+[node name="Panel4" type="Panel" parent="Moves/Move3/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Move4" type="Button" parent="Moves"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 312.0
+offset_bottom = 415.0
+grow_horizontal = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_2k71t")
+flat = true
+
+[node name="Type" type="Label" parent="Moves/Move4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.37
+offset_left = 25.0
+offset_right = 10.02
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "FIGHTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Move" type="Label" parent="Moves/Move4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "CHILLY RECEPTION"
+vertical_alignment = 1
+
+[node name="PP" type="Label" parent="Moves/Move4"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_right = 1.0
+offset_left = 0.142014
+offset_top = 52.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rpqmi")
+text = "PP 20/40"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Position" type="GridContainer" parent="Moves/Move4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.395
+anchor_right = 0.395
+offset_left = -154.36
+offset_top = 57.0
+offset_right = -0.360016
+offset_bottom = 99.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Panel" type="Panel" parent="Moves/Move4/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel2" type="Panel" parent="Moves/Move4/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel3" type="Panel" parent="Moves/Move4/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_wfnbk")
+
+[node name="Panel4" type="Panel" parent="Moves/Move4/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_2k71t")
+
+[node name="Cancel" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 416.0
+offset_bottom = 468.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../Moves/Move")
+focus_next = NodePath("../Moves/Move")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p8urp")
+flat = true
+
+[node name="Label" type="Label" parent="Cancel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "CANCEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Details" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_right = 0.07
+anchor_bottom = 1.0
+offset_left = -345.76
+offset_top = 55.0
+offset_right = -16.76
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b68b6")
+
+[node name="Type" type="Label" parent="Details"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0vr")
+text = "WATER / STEEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Category" type="Label" parent="Details"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 52.0
+offset_right = -156.5
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "CATEGORY"
+vertical_alignment = 1
+
+[node name="PowerLabel" type="Label" parent="Details"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 104.0
+offset_right = -156.5
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "POWER"
+vertical_alignment = 1
+
+[node name="AccuracyLabel" type="Label" parent="Details"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 156.0
+offset_right = -156.5
+offset_bottom = 208.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "ACCURACY"
+vertical_alignment = 1
+
+[node name="Description" type="Panel" parent="Details"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -257.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_llyad")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Details/Description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_colors/font_shadow_color = Color(0.815686, 0.815686, 0.784314, 1)
+text = "It swamps the entire battlefield with a giant wave.
+It can also be used for crossing water."
+
+[node name="Power" type="Label" parent="Details"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_top = 104.0
+offset_right = -21.0
+offset_bottom = 156.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_b68b6")
+text = "120"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Accuracy" type="Label" parent="Details"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_top = 156.0
+offset_right = -21.0
+offset_bottom = 208.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_2qicn")
+text = "120"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CategoryIcon" type="TextureRect" parent="Details"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_top = 52.0
+offset_right = -21.0
+offset_bottom = 104.0
+grow_horizontal = 2
+texture = ExtResource("3_wfnbk")
+
+[node name="Border" type="ReferenceRect" parent="Details"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 0, 0, 1)
+border_width = 2.0
+editor_only = false
+
+[connection signal="focus_entered" from="Moves/Move" to="." method="_on_move_focus_entered" binds= [0]]
+[connection signal="focus_exited" from="Moves/Move" to="." method="_on_move_focus_exited"]
+[connection signal="focus_entered" from="Moves/Move2" to="." method="_on_move_focus_entered" binds= [1]]
+[connection signal="focus_exited" from="Moves/Move2" to="." method="_on_move_focus_exited"]
+[connection signal="focus_entered" from="Moves/Move3" to="." method="_on_move_focus_entered" binds= [2]]
+[connection signal="focus_exited" from="Moves/Move3" to="." method="_on_move_focus_exited"]
+[connection signal="focus_entered" from="Moves/Move4" to="." method="_on_move_focus_entered" binds= [3]]
+[connection signal="focus_exited" from="Moves/Move4" to="." method="_on_move_focus_exited"]
+[connection signal="focus_entered" from="Cancel" to="." method="_on_cancel_focus_entered"]
+[connection signal="focus_exited" from="Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]

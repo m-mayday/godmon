@@ -19,6 +19,7 @@ enum CONTEXT {
 
 
 var _cancel_texture: Texture2D ## Normal cancel texture to change on focus
+var _current_slot_normal_texture: Texture2D
 var _selected_slot_index: int ## The selected Pokemon slot index
 var _switch_out_battler: Battler ## Battler that is switching out
 var _is_instant_switch: bool ## If an instant switch has been requested
@@ -34,6 +35,13 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if visible:
 		if event.is_action_pressed("cancel") or event.is_action_pressed("ui_cancel"):
+			if $Control/SummaryScreen.visible:
+				$Control/SummaryScreen.hide()
+				_grab_slot_option_focus(_get_first_visible_slot_option())
+				return
+			elif %SlotOptions.visible:
+				_on_slot_cancel_pressed()
+				return
 			screen_closed.emit()
 
 
@@ -62,6 +70,9 @@ func _on_party_slot_pressed(index: int) -> void:
 	cancel_button.hide()
 	%SlotOptions.show()
 	_grab_slot_option_focus(_get_first_visible_slot_option())
+	var slot: TextureButton = slots_container.get_child(index) as TextureButton
+	_current_slot_normal_texture = slot.texture_normal
+	slot.texture_normal = slot.texture_focused
 
 
 ## Prepare the slots to show Pokemon information
@@ -117,3 +128,18 @@ func _on_send_out_pressed() -> void:
 
 func _on_battler_ready(battler: Battler) -> void:
 	_switch_out_battler = battler # Current battler selecting action, which could be to switch out
+
+
+func _on_summary_pressed() -> void:
+	$Control/SummaryScreen.set_pokemon_index(_selected_slot_index)
+	$Control/SummaryScreen.show()
+
+
+func set_pokemon(pokemon: Pokemon) -> void:
+	var slot: TextureButton = slots_container.get_child(_selected_slot_index) as TextureButton
+	slot.texture_normal = _current_slot_normal_texture
+	var index: int = Global.player_party.find(pokemon)
+	slot = slots_container.get_child(index) as TextureButton
+	_selected_slot_index = index
+	_current_slot_normal_texture = slot.texture_normal
+	slot.texture_normal = slot.texture_focused

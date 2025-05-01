@@ -1,0 +1,286 @@
+[gd_scene load_steps=19 format=3 uid="uid://mb67c2sn7ffy"]
+
+[ext_resource type="Texture2D" uid="uid://clgrli2eyhn11" path="res://assets/battle/front/VENUSAUR.png" id="1_aexgu"]
+[ext_resource type="Script" uid="uid://bjwlbp3cy5c5u" path="res://scenes/menus/summary_screen.gd" id="1_c64df"]
+[ext_resource type="PackedScene" uid="uid://d0o68im5b1onn" path="res://scenes/menus/summary_screen_info.tscn" id="1_q8k5a"]
+[ext_resource type="Texture2D" uid="uid://cfq6hsvtpqytv" path="res://assets/icons/cpu.png" id="2_c64df"]
+[ext_resource type="Texture2D" uid="uid://bwbuhuworae2d" path="res://assets/statuses/burn.png" id="2_d6xg3"]
+[ext_resource type="PackedScene" uid="uid://bhinb4r3li3k7" path="res://scenes/menus/summay_screen_memo.tscn" id="2_tqfj6"]
+[ext_resource type="PackedScene" uid="uid://uln42kdtnid2" path="res://scenes/menus/summary_screen_stats.tscn" id="3_77bgl"]
+[ext_resource type="Texture2D" uid="uid://dc8idimarthkg" path="res://assets/icons/memo.png" id="4_5d7dd"]
+[ext_resource type="PackedScene" uid="uid://bhh10dqwjsny2" path="res://scenes/menus/summary_screen_moves.tscn" id="4_8sogm"]
+[ext_resource type="Texture2D" uid="uid://b2da15vsfp6xl" path="res://assets/icons/stats.png" id="5_xa5t1"]
+[ext_resource type="Texture2D" uid="uid://be2qn7ujhdjqe" path="res://assets/icons/moves.png" id="6_d6xg3"]
+
+[sub_resource type="Gradient" id="Gradient_5d7dd"]
+offsets = PackedFloat32Array(0.5, 0.502982)
+colors = PackedColorArray(0.972549, 0.784314, 0.313726, 1, 0.972549, 0.972549, 0.972549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d1jm3"]
+gradient = SubResource("Gradient_5d7dd")
+height = 104
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa5t1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c64df"]
+bg_color = Color(0.439216, 0.721569, 0.439216, 1)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d7dd"]
+bg_color = Color(0.501961, 0.811765, 0.811765, 1)
+border_width_left = 1
+border_width_top = 2
+border_width_right = 1
+border_color = Color(0.137255, 0.137255, 0.137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wi5j"]
+bg_color = Color(0.403922, 0.439216, 0.847059, 1)
+border_width_left = 1
+border_width_top = 2
+border_width_right = 1
+border_color = Color(0.137255, 0.137255, 0.137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tclbh"]
+bg_color = Color(0.972549, 0.501961, 0.466667, 1)
+border_width_left = 1
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.137255, 0.137255, 0.137255, 1)
+
+[node name="SummaryScreen" type="CanvasLayer" node_paths=PackedStringArray("button_screens", "buttons", "title")]
+script = ExtResource("1_c64df")
+button_screens = {
+0: NodePath("SummaryScreenInfo"),
+1: NodePath("SummayScreenMemo"),
+2: NodePath("SummaryScreenStats"),
+3: NodePath("SummaryScreenMoves")
+}
+buttons = NodePath("Control/Tabs")
+title = NodePath("Control/Title")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[node name="TitleBG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+color = Color(0.12549, 0.407843, 0.878431, 1)
+
+[node name="InfoBG" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 57.0
+offset_right = -455.0
+offset_bottom = 161.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_d1jm3")
+
+[node name="ItemBG" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -104.0
+offset_right = -453.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_d1jm3")
+
+[node name="Name" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 57.0
+offset_right = -505.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "CRABOMINABLE"
+vertical_alignment = 1
+
+[node name="Gender" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 253.0
+offset_top = 61.0
+offset_right = -455.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "♂"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LvLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 109.0
+offset_right = -708.0
+offset_bottom = 161.0
+grow_horizontal = 2
+text = "Lv."
+vertical_alignment = 1
+
+[node name="Lv" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 70.0
+offset_top = 109.0
+offset_right = -650.0
+offset_bottom = 161.0
+grow_horizontal = 2
+text = "100"
+vertical_alignment = 1
+
+[node name="Status" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 211.0
+offset_top = 109.0
+offset_right = -457.0
+offset_bottom = 161.0
+texture = ExtResource("2_d6xg3")
+stretch_mode = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(156, 311)
+texture = ExtResource("1_aexgu")
+
+[node name="ItemLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -104.0
+offset_right = -505.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "ITEM"
+vertical_alignment = 1
+
+[node name="Item" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -52.0
+offset_right = -455.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "ADVENTURE GUIDE"
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "POKÉMON INFO"
+vertical_alignment = 1
+
+[node name="Tabs" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -454.0
+offset_bottom = 56.0
+grow_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="Info" type="Button" parent="Control/Tabs"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xa5t1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c64df")
+icon = ExtResource("2_c64df")
+icon_alignment = 1
+
+[node name="Memo" type="Button" parent="Control/Tabs"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xa5t1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5d7dd")
+icon = ExtResource("4_5d7dd")
+icon_alignment = 1
+
+[node name="Stats" type="Button" parent="Control/Tabs"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xa5t1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4wi5j")
+icon = ExtResource("5_xa5t1")
+icon_alignment = 1
+
+[node name="Moves" type="Button" parent="Control/Tabs"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xa5t1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tclbh")
+icon = ExtResource("6_d6xg3")
+icon_alignment = 1
+
+[node name="SummaryScreenInfo" parent="." instance=ExtResource("1_q8k5a")]
+offset_left = 314.0
+offset_top = 56.0
+
+[node name="SummayScreenMemo" parent="." instance=ExtResource("2_tqfj6")]
+visible = false
+offset_left = 314.0
+offset_top = 56.0
+
+[node name="SummaryScreenStats" parent="." instance=ExtResource("3_77bgl")]
+visible = false
+offset_left = 314.0
+offset_top = 56.0
+
+[node name="SummaryScreenMoves" parent="." instance=ExtResource("4_8sogm")]
+visible = false
+offset_left = 314.0
+offset_top = 56.0
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="focus_entered" from="Control/Tabs/Info" to="." method="_on_tab_button_focus_entered" binds= [0]]
+[connection signal="focus_entered" from="Control/Tabs/Memo" to="." method="_on_tab_button_focus_entered" binds= [1]]
+[connection signal="focus_entered" from="Control/Tabs/Stats" to="." method="_on_tab_button_focus_entered" binds= [2]]
+[connection signal="focus_entered" from="Control/Tabs/Moves" to="." method="_on_tab_button_focus_entered" binds= [3]]
+[connection signal="interaction_finished" from="SummaryScreenMoves" to="." method="_on_tab_interaction_finished"]

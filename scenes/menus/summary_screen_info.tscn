@@ -1,0 +1,292 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0o68im5b1onn"]
+
+[ext_resource type="Script" uid="uid://di6cq17230pr4" path="res://scenes/menus/summary_screen_info.gd" id="1_65or0"]
+[ext_resource type="Texture2D" uid="uid://gu31pcy1jx52" path="res://assets/battle/ui/exp_bar.png" id="1_rlh6o"]
+
+[sub_resource type="Gradient" id="Gradient_65or0"]
+offsets = PackedFloat32Array(0.5, 0.500994)
+colors = PackedColorArray(0.439216, 0.721569, 0.439216, 1, 0.501961, 0.847059, 0.533333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rlh6o"]
+gradient = SubResource("Gradient_65or0")
+height = 104
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+repeat = 1
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_rlh6o"]
+offsets = PackedFloat32Array(0.5, 0.503185)
+colors = PackedColorArray(0.972549, 0.972549, 0.784314, 1, 0.972549, 0.972549, 0.972549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_65or0"]
+gradient = SubResource("Gradient_rlh6o")
+height = 104
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p5dc4"]
+texture = SubResource("GradientTexture2D_65or0")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65or0"]
+bg_color = Color(0.972549, 0.972549, 0.972549, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p5dc4"]
+
+[node name="SummaryScreenInfo" type="Control" groups=["summary"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_65or0")
+metadata/title = "POKéMON INFO"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rlh6o")
+stretch_mode = 1
+
+[node name="PokedexNo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_bottom = 52.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "DEX No."
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 52.0
+offset_bottom = 104.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "NAME"
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 104.0
+offset_bottom = 156.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "TYPE"
+vertical_alignment = 1
+
+[node name="OT" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 156.0
+offset_bottom = 208.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "OT"
+vertical_alignment = 1
+
+[node name="IDNo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 208.0
+offset_bottom = 260.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "ID No."
+vertical_alignment = 1
+
+[node name="ExpPoints" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 260.0
+offset_bottom = 312.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "EXP. POINTS"
+vertical_alignment = 1
+
+[node name="NextLv" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 364.0
+offset_bottom = 416.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "TO NEXT LV."
+vertical_alignment = 1
+
+[node name="Data" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.995
+offset_left = 166.0
+offset_right = 2.16998
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_p5dc4")
+
+[node name="PokedexNo" type="Label" parent="Data"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "395"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="Data"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 52.0
+offset_bottom = 104.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "CRABOMINABLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="Data"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 104.0
+offset_bottom = 156.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "WATER / STEEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OT" type="Label" parent="Data"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 156.0
+offset_bottom = 208.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "MAYDAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IDNo" type="Label" parent="Data"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 208.0
+offset_bottom = 260.0
+grow_horizontal = 2
+size_flags_vertical = 3
+text = "156084"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpPointsData" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 166.0
+offset_top = 311.0
+offset_bottom = 364.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_65or0")
+
+[node name="Label" type="Label" parent="ExpPointsData"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "156084"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExpNext" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 166.0
+offset_top = 415.0
+offset_bottom = 468.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_65or0")
+
+[node name="Label" type="Label" parent="ExpNext"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "156084"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExpTexture" type="TextureRect" parent="." groups=["summary"]]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 166.0
+offset_top = 476.0
+offset_bottom = 492.0
+grow_horizontal = 2
+texture = ExtResource("1_rlh6o")
+
+[node name="ExpBar" type="TextureProgressBar" parent="ExpTexture"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.127
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.964
+grow_horizontal = 2
+grow_vertical = 2
+value = 46.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_p5dc4")
+tint_progress = Color(0.25098, 0.784314, 0.972549, 1)
