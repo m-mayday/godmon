@@ -114,19 +114,26 @@ func _on_cancel_focus_exited() -> void:
 
 ## Show the options for the current selected slot
 func _on_party_slot_pressed(index: int) -> void:
+	if %SlotOptions.visible:
+		return
 	_selected_slot_index = index
 	cancel_button.hide()
 	%SlotOptions.show()
 	_grab_slot_option_focus(_get_first_visible_slot_option())
-	var slot: TextureButton = slots_container.get_child(index) as TextureButton
-	_current_slot_normal_texture = slot.texture_normal
-	slot.texture_normal = slot.texture_focused
+	for slot in slots_container.get_children():
+		slot.focus_mode = Control.FOCUS_NONE
+		if slot.get_index() == index:
+			_current_slot_normal_texture = slot.texture_normal
+			slot.texture_normal = slot.texture_focused
 
 
 func _on_slot_cancel_pressed() -> void:
 	cancel_button.show()
 	%SlotOptions.hide()
-	slots_container.get_child(_selected_slot_index).grab_focus()
+	for slot in slots_container.get_children():
+		slot.focus_mode = Control.FOCUS_ALL
+		if slot.get_index() == _selected_slot_index:
+			slot.grab_focus()
 
 
 func _on_visibility_changed() -> void:
