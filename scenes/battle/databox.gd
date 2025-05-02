@@ -16,9 +16,6 @@ enum DATABOX_SIZE {NORMAL, THIN} ## Determines which size the databox is (Normal
 @export var hp_container: MarginContainer ## Optional. Main databox only
 @export var hp_label: Label ## Optional. Main databox only
 
-## Colors to use according to the battler's HP.
-## HP > 50% = Green. HP > 20% and <= 50% = Yellow. HP <= 20% = Red
-var _hp_progress_color: Array[Color] = [Color("70f8a8"), Color("f8e038"), Color("f85838")]
 
 ## Indicates if the HP bar should be animated when HP changes
 ## False is typically used when a Pokemon enters battle
@@ -119,7 +116,7 @@ func _on_switched_in(switched_out: Battler, switched_in: Battler, _index_out: in
 	_animate = false
 	if switched_out.id == _battler.id:
 		_battler = switched_in
-		_set_hp_bar_color(_battler.pokemon.current_hp)
+		hp_bar.set_hp_bar_progress(_battler.pokemon.current_hp, _battler.pokemon.stats.hp)
 	_animate = is_animating
 
 
@@ -142,7 +139,8 @@ func _update_data(new_health) -> void:
 			tween.tween_property(hp_bar, "value", new_health, 0.5)
 			tween.play()
 			await tween.finished
-			_set_hp_bar_color(new_health)
+			hp_bar.set_hp_bar_progress(new_health, _battler.pokemon.stats.hp)
+			animation_finished.emit()
 		else:
 			hp_bar.value = _battler.pokemon.current_hp
 
@@ -151,18 +149,6 @@ func _update_data(new_health) -> void:
 func _set_hp_label(value: int) -> void:
 	if hp_container != null:
 		hp_label.text ="{0} / {1}".format([value, _battler.pokemon.stats.hp])
-
-
-## Called when the HP bar tween finishes. It changes the color of the HP bar and emits animation_finished signal
-func _set_hp_bar_color(new_health: int) -> void:
-	var hp_percentage := float(new_health) / float(_battler.pokemon.stats.hp)
-	if hp_percentage > 0.5:
-		hp_bar.tint_progress = _hp_progress_color[0]
-	elif hp_percentage > 0.2 && hp_percentage <= 0.5:
-		hp_bar.tint_progress = _hp_progress_color[1]
-	else:
-		hp_bar.tint_progress = _hp_progress_color[2]
-	animation_finished.emit()
 
 
 ## Animates this databox moving up and down until its battler chooses an action in battle

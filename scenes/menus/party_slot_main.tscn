@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ungtvhyngc34"]
+[gd_scene load_steps=6 format=3 uid="uid://ungtvhyngc34"]
 
 [ext_resource type="Texture2D" uid="uid://cvwti82ifrjht" path="res://assets/ui/party_main_slot.png" id="1_xo7vr"]
 [ext_resource type="Texture2D" uid="uid://dxu7joo42hd1g" path="res://assets/ui/party_main_slot_hover.png" id="2_mhypw"]
 [ext_resource type="Script" uid="uid://b4ctsqhb14hjs" path="res://scenes/menus/party_slot.gd" id="3_mhypw"]
 [ext_resource type="Texture2D" uid="uid://8xo0hhftm0u0" path="res://assets/ui/hp_bar.png" id="4_mhypw"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_dnbnc"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_7cpkd"]
+[ext_resource type="PackedScene" uid="uid://0b30x5gkqpxg" path="res://scenes/hp_progress_bar.tscn" id="5_qncxk"]
 
 [node name="PartySlotMain" type="TextureButton" node_paths=PackedStringArray("level_label", "name_label", "hp_label", "hp_bar")]
 offset_right = 269.0
@@ -19,7 +16,7 @@ script = ExtResource("3_mhypw")
 level_label = NodePath("HBoxContainer/LvLabel")
 name_label = NodePath("Name")
 hp_label = NodePath("HP")
-hp_bar = NodePath("HPTexture/HPBar")
+hp_bar = NodePath("HPTexture/HpProgressBar")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -79,26 +76,13 @@ offset_right = 0.987976
 offset_bottom = 0.994995
 texture = ExtResource("4_mhypw")
 
-[node name="HPBar" type="TextureProgressBar" parent="HPTexture"]
+[node name="HpProgressBar" parent="HPTexture" instance=ExtResource("5_qncxk")]
 show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.227
-anchor_top = 0.143
-anchor_right = 0.985
-anchor_bottom = 0.857
-offset_left = 0.0179996
-offset_top = -0.000998378
-offset_right = -0.0100021
-offset_bottom = 0.00100136
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-nine_patch_stretch = true
-texture_under = SubResource("CanvasTexture_dnbnc")
-texture_progress = SubResource("CanvasTexture_7cpkd")
-tint_under = Color(0.313726, 0.407843, 0.345098, 1)
-tint_progress = Color(0.439216, 0.972549, 0.658824, 1)
+layout_mode = 0
+offset_left = 47.007
+offset_top = 2.43
+offset_right = 203.885
+offset_bottom = 14.57
 
 [node name="HP" type="Label" parent="."]
 layout_mode = 1

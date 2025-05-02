@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qt207sey5bpy"]
+[gd_scene load_steps=9 format=3 uid="uid://qt207sey5bpy"]
 
 [ext_resource type="Script" uid="uid://c68yjnqlo0c3w" path="res://scenes/battle/databox.gd" id="1_3wy81"]
 [ext_resource type="Texture2D" uid="uid://dc7654vtbjp5x" path="res://assets/battle/ui/databox_top.png" id="2_pwknn"]
@@ -6,12 +6,9 @@
 [ext_resource type="LabelSettings" uid="uid://l5o3s2k08eoa" path="res://scenes/themes/battle_label.tres" id="5_hlqo1"]
 [ext_resource type="Texture2D" uid="uid://gu31pcy1jx52" path="res://assets/battle/ui/exp_bar.png" id="5_i8j4c"]
 [ext_resource type="Texture2D" uid="uid://8xo0hhftm0u0" path="res://assets/ui/hp_bar.png" id="5_wr157"]
+[ext_resource type="PackedScene" uid="uid://0b30x5gkqpxg" path="res://scenes/hp_progress_bar.tscn" id="7_wr157"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_t7xrx"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_pmy0x"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_n3ti0"]
 
 [node name="Databox" type="Control" node_paths=PackedStringArray("name_label", "level_label", "bottom_texture", "status_texture", "hp_bar", "hp_container", "hp_label")]
 custom_minimum_size = Vector2(312, 111)
@@ -24,7 +21,7 @@ name_label = NodePath("MarginContainer/HBoxContainer/Name")
 level_label = NodePath("MarginContainer3/HBoxContainer2/LvLabel")
 bottom_texture = NodePath("Bottom")
 status_texture = NodePath("StatusContainer/HBoxContainer/Status")
-hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HPBar")
+hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HpProgressBar")
 hp_container = NodePath("HPContainer")
 hp_label = NodePath("HPContainer/HP")
 
@@ -183,7 +180,7 @@ size_flags_horizontal = 10
 texture = ExtResource("5_wr157")
 metadata/_edit_use_anchors_ = true
 
-[node name="HPBar" type="TextureProgressBar" parent="StatusContainer/HBoxContainer/HPTexture"]
+[node name="HpProgressBar" parent="StatusContainer/HBoxContainer/HPTexture" instance=ExtResource("7_wr157")]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = -1
@@ -191,15 +188,7 @@ anchor_left = 0.227
 anchor_top = 0.143
 anchor_right = 0.985
 anchor_bottom = 0.857
-offset_left = 0.0179996
-offset_top = -0.000998378
-offset_right = -0.0100021
-offset_bottom = 0.00100136
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-nine_patch_stretch = true
-texture_under = SubResource("CanvasTexture_pmy0x")
-texture_progress = SubResource("CanvasTexture_n3ti0")
-tint_under = Color(0.313726, 0.407843, 0.345098, 1)
-tint_progress = Color(0.439216, 0.972549, 0.658824, 1)
+offset_left = 0.0179977
+offset_top = -0.00100017
+offset_right = -0.0100098
+offset_bottom = 0.000999451

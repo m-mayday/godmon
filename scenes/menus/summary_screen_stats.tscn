@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://uln42kdtnid2"]
+[gd_scene load_steps=11 format=3 uid="uid://uln42kdtnid2"]
 
 [ext_resource type="Texture2D" uid="uid://8xo0hhftm0u0" path="res://assets/ui/hp_bar.png" id="1_gqbg1"]
 [ext_resource type="Script" uid="uid://dyxnjlwlsfeji" path="res://scenes/menus/summary_screen_stats.gd" id="1_vt5ml"]
+[ext_resource type="PackedScene" uid="uid://0b30x5gkqpxg" path="res://scenes/hp_progress_bar.tscn" id="2_fu5np"]
 
 [sub_resource type="Gradient" id="Gradient_vt5ml"]
 offsets = PackedFloat32Array(0.5, 0.50497)
@@ -29,10 +30,6 @@ metadata/_snap_enabled = true
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vt5ml"]
 texture = SubResource("GradientTexture2D_65or0")
 axis_stretch_vertical = 1
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_gqbg1"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_vt5ml"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gqbg1"]
 gradient = SubResource("Gradient_gqbg1")
@@ -186,25 +183,18 @@ size_flags_vertical = 3
 text = "264/267"
 horizontal_alignment = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Stats/HP"]
+[node name="HpProgressBar" parent="Stats/HP" instance=ExtResource("2_fu5np")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.248
-anchor_top = 1.0
+anchor_top = 0.904
 anchor_right = 0.955
-anchor_bottom = 1.0
+anchor_bottom = 0.904
 offset_left = 0.0118713
-offset_top = -15.0
+offset_top = -10.008
 offset_right = -0.0349426
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_bottom = -0.00800323
 value = 100.0
-nine_patch_stretch = true
-texture_under = SubResource("CanvasTexture_gqbg1")
-texture_progress = SubResource("CanvasTexture_vt5ml")
-tint_under = Color(0.313726, 0.407843, 0.345098, 1)
-tint_progress = Color(0.439216, 0.972549, 0.658824, 1)
 
 [node name="TextureRect" type="TextureRect" parent="Stats/HP"]
 layout_mode = 1
