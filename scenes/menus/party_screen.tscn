@@ -11,15 +11,16 @@
 [ext_resource type="StyleBox" uid="uid://dqdeaqixjmvf3" path="res://scenes/themes/selection_arrow_box.tres" id="8_a2588"]
 [ext_resource type="PackedScene" uid="uid://mb67c2sn7ffy" path="res://scenes/menus/summary_screen.tscn" id="10_mnmnj"]
 
-[node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button", "send_out_option", "summary_option", "switch_option", "item_option") groups=["summary"]]
+[node name="PartyScreen" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "slot_options", "cancel_button", "summary_screen") groups=["summary"]]
 script = ExtResource("1_wgxl4")
 slots_container = NodePath("Control/Background/Slots")
 slot_options = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer")
 cancel_button = NodePath("Control/Background/MarginContainer/HBoxContainer/Cancel")
-send_out_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut")
-summary_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Summary")
-switch_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Switch")
-item_option = NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Item")
+context_exclusive_options = Dictionary[int, Array]({
+0: [NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Switch"), NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/Item")],
+1: [NodePath("Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer/SendOut")]
+})
+summary_screen = NodePath("Control/SummaryScreen")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -300,6 +301,7 @@ theme_override_constants/shadow_outline_size = 3
 text = "  SUMMARY"
 
 [node name="Switch" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 shortcut_context = NodePath(".")
@@ -317,6 +319,7 @@ theme_override_constants/shadow_outline_size = 3
 text = "  SWITCH"
 
 [node name="Item" type="Button" parent="Control/Background/MarginContainer/HBoxContainer/SlotOptions/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 shortcut_context = NodePath(".")
