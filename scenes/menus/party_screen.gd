@@ -18,7 +18,7 @@ enum CONTEXT {
 @export var item_option: Button
 
 
-var _cancel_texture: Texture2D ## Normal cancel texture to change on focus
+var _cancel_texture: Texture2D ## Normal cancel texture to change on focus. This is because the normal texture "spills" under the focued one
 var _current_slot_normal_texture: Texture2D
 var _selected_slot_index: int ## The selected Pokemon slot index
 var _switch_out_battler: Battler ## Battler that is switching out
@@ -30,6 +30,12 @@ func _ready() -> void:
 	_set_up_slots()
 	if context == CONTEXT.BATTLE:
 		SignalBus.battler_ready.connect(_on_battler_ready)
+		
+	## Set focus neighbors for first and last options to not get focus of the party slots
+	var first_option: Button = _get_first_visible_slot_option()
+	var last_option: Button = slot_options.get_child(slot_options.get_child_count()-1) as Button
+	last_option.focus_neighbor_bottom = first_option.get_path()
+	first_option.focus_neighbor_top = last_option.get_path()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -77,7 +83,6 @@ func _on_party_slot_pressed(index: int) -> void:
 
 ## Prepare the slots to show Pokemon information
 func _set_up_slots() -> void:
-	assert(len(Global.player_party) >= 0 and len(Global.player_party) <= 6, "Parties of more than 6 pokemon not supported.")
 	var slots: Array[Node] = slots_container.get_children()
 	for slot in slots:
 		slot.context = context

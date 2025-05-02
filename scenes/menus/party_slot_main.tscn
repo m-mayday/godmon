@@ -117,4 +117,6 @@ theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
 theme_override_constants/shadow_outline_size = 3
 text = "100/100"
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

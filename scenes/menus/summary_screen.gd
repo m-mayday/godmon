@@ -6,6 +6,12 @@ extends CanvasLayer
 var _pokemon_index: int = -1 ## Pokemon index in the party
 var _previous_sub_screen_index: int = -1 ## Previous sub screen index
 
+
+func _ready() -> void:
+	if owner != null and owner is CanvasLayer:
+		layer = owner.layer+1 ## Ensure this screen appears in front of its parent
+
+
 ## Change the current pokemon being displayed
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down"):
