@@ -6,10 +6,11 @@ extends Area2D
 var _rng: RandomNumberGenerator
 var _odds: Array[float]
 var _player_in_area: bool = false
+var _wild_trainer: Trainer = preload("res://data/trainers/wild.tres")
+
 var player
 var current_shape_index: int
 var shapes_bounds: Dictionary[int, PackedVector2Array] = {}
-
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -53,5 +54,8 @@ func _should_trigger_encounter() -> void:
 			var pokemon1: Pokemon = Pokemon.new(encounter.species, randi_range(encounter.minimum_level, encounter.maximum_level))
 			var pokemon2: Pokemon = Pokemon.new(encounter.species, randi_range(encounter.minimum_level, encounter.maximum_level))
 			var pokemon3: Pokemon = Pokemon.new(encounter.species, randi_range(encounter.minimum_level, encounter.maximum_level))
+			pokemon1.trainer = _wild_trainer
+			pokemon2.trainer = _wild_trainer
+			pokemon3.trainer = _wild_trainer
 			get_tree().root.get_node("Main").load_scene("res://scenes/battle/battle_scene.tscn", false, true, ["wild", get_tree().get_first_node_in_group("player"), [pokemon1, pokemon2, pokemon3]])
 			

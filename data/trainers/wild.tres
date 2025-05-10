@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Trainer" load_steps=4 format=3 uid="uid://c16hcwmoumgr2"]
+
+[ext_resource type="PackedScene" uid="uid://bhhnug4i6frv4" path="res://data/ai/battle_ai.tscn" id="1_dhnh4"]
+[ext_resource type="Script" uid="uid://b2p22obsvy3gm" path="res://data/_base_classes/pokemon.gd" id="1_uhvkc"]
+[ext_resource type="Script" uid="uid://c5cc2a5weeo1m" path="res://data/_base_classes/trainer.gd" id="2_dhnh4"]
+
+[resource]
+script = ExtResource("2_dhnh4")
+name = "wild"
+party = Array[ExtResource("1_uhvkc")]([])
+trainer_class = ""
+ai_scene = ExtResource("1_dhnh4")
+ai_flags = Array[int]([0])
+defeat_flag = ""
+metadata/_custom_type_script = "uid://c5cc2a5weeo1m"
