@@ -16,6 +16,12 @@ static func is_cutscene_in_progress() -> bool:
 	return _is_cutscene_in_progress
 
 
+## If true, _is_cutscene_in_progress won't be set to false and input_paused won't be emitted after the cutscene ends.
+## Scripts should be responsible for setting _is_cutscene_in_progress to false when this variable is true.
+## Used if another cutscene should run during this one.
+@export var skip_automatic_pause: bool = false
+
+
 ## Play out the specific events of the cutscene.
 ## This is intended to be overridden by derived cutscene types.
 func _execute() -> void:
@@ -30,4 +36,5 @@ func run() -> void:
 	@warning_ignore("redundant_await")
 	await _execute()
 	
-	_is_cutscene_in_progress = false
+	if not skip_automatic_pause:
+		_is_cutscene_in_progress = false

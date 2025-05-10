@@ -6,7 +6,6 @@ func tick(_actor: Node, blackboard: Blackboard) -> int:
 	var usable_moves: Array[Move] = []
 	
 	for move in battler.pokemon.moves:
-		print(battler.pokemon.name, " - ", move.name)
 		if battler.can_use_move(move):
 			usable_moves.push_back(move)
 	
