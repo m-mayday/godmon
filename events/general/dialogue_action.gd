@@ -4,9 +4,14 @@ extends EventAction
 
 @export var dialogue: DialogueResource ## Dialogue to display.
 @export var balloon: PackedScene ## Balloon to display the dialogue.
+@export var extra_states: Array
 
-func execute(_node: Node) -> bool:
+func execute(node: Node) -> bool:
 	if dialogue != null:
-		DialogueManager.show_dialogue_balloon_scene(balloon, dialogue, "start")
+		var extra_state_nodes: Array[Node] = []
+		for state in extra_states:
+			if state is NodePath:
+				extra_state_nodes.push_back(node.get_node_or_null(state))
+		DialogueManager.show_dialogue_balloon_scene(balloon, dialogue, "start", extra_state_nodes)
 		await DialogueManager.dialogue_ended
 	return true
