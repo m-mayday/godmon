@@ -4,39 +4,76 @@ class_name Pokemon
 
 # TODO: Refactor some of this methods. Some stuff will remain undocumented until then
 
-@export var species: Species ## Holds info about this Pokemon species
-@export var name: StringName = "Unnamed" ## This Pokemon name
-@export var level: int ## This Pokemon level
+## Holds info about this Pokemon species
+@export var species: Species:
+	set = _init_species 
+
+## This Pokemon name
+@export var name: StringName = "":
+	set(value):
+		if value == "":
+			name = species.name
+		else:
+			name = value
+
+ ## This Pokemon level
+@export var level: int:
+	set(value):
+		level = value
+		_calculate_stats()
+
 @export var experience: int ## This Pokemon current experience
 @export var current_hp: int ## This Pokemon current HP
-@export var stats: Stats ## This Pokemon current stats
-@export var ivs: Stats ## This Pokemon IVs
-@export var evs: Stats ## This Pokemon EVs
-@export var moves: Array[Move] = [] ## This Pokemon current moveset
+@export var stats: Stats = Stats.new() ## This Pokemon current stats
+
+## This Pokemon IVs
+@export var ivs: Stats = Stats.new():
+	set(value):
+		ivs = value
+		_calculate_stats() 
+		
+## This Pokemon EVs
+@export var evs: Stats = Stats.new():
+	set(value):
+		evs = value
+		_calculate_stats() 
+
+## This Pokemon current moveset
+@export var moves: Array[Move]:
+	set(value):
+		if value.size() <= 0:
+			_set_moves_from_learnset()
+		else:
+			moves = value
+
 @export var ability: Ability ## This Pokemon ability
 @export var item: Item ## This Pokemon held item
 @export var status: Status ## This Pokemon current status
 @export var happiness: int = 0 ## This Pokemon current happiness
 @export_range(0, 4294967295) var personal_id: int ## This Pokemon personal ID
+@export var trainer: Trainer
 var id: int ## Internal id used for battles
 
 
-func _init(species_id: Constants.SPECIES = Constants.SPECIES.BULBASAUR, initial_level: int = 5):
+func _init(species_id: Constants.SPECIES = Constants.SPECIES.NONE, initial_level: int = 5):
+	if species_id == Constants.SPECIES.NONE:
+		return
 	species = Constants.get_species_by_id(species_id)
+	level = initial_level
+	_calculate_stats()
+	_set_moves_from_learnset()
+
+
+func _init_species(p_species: Species) -> void:
+	species = p_species
 	name = species.name
 	happiness = species.happiness
-	stats = Stats.new()
-	ivs = Stats.new()
-	evs = Stats.new()
 	status = Constants.get_status_by_id(Constants.STATUSES.NONE)
-	ability = Constants.get_ability_by_id(Constants.ABILITIES.STENCH)
-	item = Constants.get_item_by_id(Constants.ITEMS.QUICK_CLAW)
+	ability = Constants.get_ability_by_id(Constants.ABILITIES.NONE)
+	item = Constants.get_item_by_id(Constants.ITEMS.NONE)
 	current_hp = 1
 	personal_id = randi_range(0, pow(2, 16)) | (randi_range(0, pow(2, 16)) << 16)
-	level = initial_level
 	id = get_instance_id()
-	_set_moves_from_learnset()
-	_calculate_stats()
 
 
 ## [Private] Calculates the stats this Pokemon should have, based on level, IVs and EVs
@@ -70,7 +107,7 @@ func _set_moves_from_learnset() -> void:
 		if learnset_level <= level:
 			for move in species.learnset_by_level[learnset_level].moves:
 				if len(moves) < 4:
-					moves.append(Constants.get_move_by_id(move))
+					moves.push_back(Constants.get_move_by_id(move))
 				else:
 					max_moves = true
 					break
