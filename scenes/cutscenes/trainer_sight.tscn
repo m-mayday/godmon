@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1akm0w0lshlr"]
+
+[ext_resource type="Script" uid="uid://do21jvbfmw5y0" path="res://scenes/cutscenes/trainer_sight.gd" id="1_tlpcr"]
+
+[node name="TrainerSight" type="Area2D" node_paths=PackedStringArray("area")]
+script = ExtResource("1_tlpcr")
+area = NodePath(".")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

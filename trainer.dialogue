@@ -1,0 +1,7 @@
+~ start
+if Global.TRAINER_FLAGS["route1_boy"] > 0:
+	You beat my ass!
+else:
+	set skip_automatic_pause = true
+	Let's battle!
+=> END

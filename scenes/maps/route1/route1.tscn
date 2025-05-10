@@ -1,16 +1,23 @@
-[gd_scene load_steps=16 format=4 uid="uid://e6s1giwptv8o"]
+[gd_scene load_steps=26 format=4 uid="uid://e6s1giwptv8o"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_r7agj"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="6_c7nk4"]
 [ext_resource type="PackedScene" uid="uid://ch6u6x5ill6rs" path="res://scenes/maps/encounter_area.tscn" id="6_o7v6n"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="7_3t3aa"]
+[ext_resource type="Resource" uid="uid://ds26v3fe8jfvq" path="res://data/trainers/route1_boy.tres" id="7_m71el"]
 [ext_resource type="Script" uid="uid://cu2j1bo2txyy6" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
+[ext_resource type="PackedScene" uid="uid://b1akm0w0lshlr" path="res://scenes/cutscenes/trainer_sight.tscn" id="8_m71el"]
 [ext_resource type="Script" uid="uid://be7ltbr0qyaqn" path="res://data/_base_classes/encounter_table.gd" id="8_q4b38"]
+[ext_resource type="Resource" uid="uid://btuurmtirl5vl" path="res://trainer.dialogue" id="10_fho5e"]
+[ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="11_f5i15"]
+[ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="12_o7v6n"]
+[ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="13_mwtrc"]
+[ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="14_q4b38"]
 
 [sub_resource type="Resource" id="Resource_r73tn"]
 script = ExtResource("7_mwtrc")
-species = 0
+species = 1
 odds = 35.0
 minimum_level = 10
 maximum_level = 15
@@ -18,7 +25,7 @@ metadata/_custom_type_script = ExtResource("7_mwtrc")
 
 [sub_resource type="Resource" id="Resource_cgcdf"]
 script = ExtResource("7_mwtrc")
-species = 5
+species = 6
 odds = 65.0
 minimum_level = 10
 maximum_level = 15
@@ -45,6 +52,26 @@ size = Vector2(192, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua0mi"]
 size = Vector2(32, 14)
 
+[sub_resource type="Resource" id="Resource_mwtrc"]
+script = ExtResource("12_o7v6n")
+node_path = NodePath(".")
+function_name = "move_to_player"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_o7v6n"]
+script = ExtResource("14_q4b38")
+dialogue = ExtResource("10_fho5e")
+balloon = ExtResource("13_mwtrc")
+extra_states = [NodePath("../Dialogue")]
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8l4j"]
+size = Vector2(14, 46)
+
 [node name="Route1" type="Node2D" node_paths=PackedStringArray("moving_objects")]
 y_sort_enabled = true
 script = ExtResource("1_ua0mi")
@@ -63,6 +90,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAEAAAAAAAAAAEAAQAEAAEAAAAAAAIAAQAEAAA
 tile_set = ExtResource("2_r7agj")
 
 [node name="EncounterArea" parent="." instance=ExtResource("6_o7v6n")]
+monitoring = false
+monitorable = false
 encounter_table = SubResource("Resource_gm8nn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]
@@ -97,14 +126,34 @@ debug_color = Color(0.927299, 3.58093e-05, 0.66909, 0.42)
 
 [node name="NPC" parent="." instance=ExtResource("6_c7nk4")]
 position = Vector2(80, 432)
-movement_type = 3
+movement_type = 1
 
 [node name="Line2D" type="Line2D" parent="NPC"]
 position = Vector2(-80, -432)
 points = PackedVector2Array(80, 432, 80, 448, 80, 464)
 width = 2.0
 
-[node name="Dialogue" parent="NPC" instance=ExtResource("7_3t3aa")]
+[node name="Dialogue" parent="NPC" node_paths=PackedStringArray("extra_states") instance=ExtResource("7_3t3aa")]
 position = Vector2(8, 8)
+dialogue = ExtResource("10_fho5e")
+extra_states = [NodePath(".")]
+
+[node name="TrainerSight" parent="NPC" node_paths=PackedStringArray("collision", "entity", "map") instance=ExtResource("8_m71el")]
+position = Vector2(8, 8)
+collision_layer = 2
+collision = NodePath("CollisionShape2D")
+trainer = ExtResource("7_m71el")
+entity = NodePath("..")
+map = NodePath("../..")
+on_seen_actions = Array[ExtResource("11_f5i15")]([SubResource("Resource_mwtrc"), SubResource("Resource_o7v6n")])
+start_on_dialogue = ExtResource("10_fho5e")
+skip_automatic_pause = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/TrainerSight"]
+position = Vector2(0, 31.5)
+shape = SubResource("RectangleShape2D_w8l4j")
+debug_color = Color(0.981029, 0.00478598, 0.370571, 0.42)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered" binds= [Vector2(0, -1)]]
+[connection signal="face_direction_changed" from="NPC" to="NPC/TrainerSight" method="set_direction"]
+[connection signal="tree_entered" from="NPC/TrainerSight" to="NPC/TrainerSight" method="_on_tree_entered"]

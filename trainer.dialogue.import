@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://btuurmtirl5vl"
+path="res://.godot/imported/trainer.dialogue-5196d462b08902d89421d6066522bd5c.tres"
+
+[deps]
+
+source_file="res://trainer.dialogue"
+dest_files=["res://.godot/imported/trainer.dialogue-5196d462b08902d89421d6066522bd5c.tres"]
+
+[params]
+
+defaults=true
