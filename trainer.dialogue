@@ -1,5 +1,6 @@
 ~ start
 if Global.TRAINER_FLAGS["route1_boy"] > 0:
+	set skip_automatic_pause = false
 	You beat my ass!
 else:
 	set skip_automatic_pause = true
