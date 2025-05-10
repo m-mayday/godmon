@@ -10,6 +10,12 @@ enum MOVEMENT_STATE {
 	JUMPING,
 }
 
+enum TRAINER_AI_FLAGS {
+	RandomMove, ## Choose a random (usable) move
+	ConsiderLevel, ## Prefer a weaker target when choosing a move
+	ConsiderBattleSize, ## Prefer moves that affect multiple targets in battles that have more than one target
+}
+
 enum TYPES {
 	BUG,
 	DARK,
@@ -55,6 +61,7 @@ static var types = {
 }
 
 enum SPECIES {
+	NONE,
 	BULBASAUR,
 	IVYSAUR,
 	VENUSAUR,
@@ -368,6 +375,7 @@ enum ABILITY_FLAGS {
 }
 
 static var abilities = {
+	ABILITIES.NONE: "none",
 	ABILITIES.STENCH: "stench",
 	# Drizzle goes here
 	ABILITIES.SPEED_BOOST: "speed_boost",
@@ -456,11 +464,13 @@ static var statuses = {
 }
 
 enum ITEMS {
+	NONE,
 	QUICK_CLAW,
 	CUSTAP_BERRY,
 }
 
 static var items = {
+	ITEMS.NONE: "none",
 	ITEMS.QUICK_CLAW: "quick_claw",
 }
 
@@ -524,6 +534,7 @@ enum STATUSES {
 }
 
 enum ABILITIES { 
+	NONE,
 	ADAPTABILITY,
 	AERILATE,
 	AFTERMATH,
