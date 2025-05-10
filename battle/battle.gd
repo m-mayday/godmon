@@ -261,15 +261,11 @@ func _on_state_changed(new_state: STATE):
 ## After all actions are chosen, it calls _play_turn()
 func _command_phase():
 	# TODO: Go through all sides and check if battler is Player or AI controlled
-	# TODO: Implement AI to choose moves. This is temporary for testing
-	var choosable_moves = Constants.moves.keys()
 	for foe in sides[1].active:
 		if foe not in sides[1].battlers_actioned:
 			if foe.can_choose_action(true):
-				if foe == sides[1].active[0]:
-					queue_move(Constants.get_move_by_id(choosable_moves.pick_random()), foe, sides[0].active.pick_random())
-				else:
-					queue_move(Constants.get_move_by_id(choosable_moves.pick_random()), foe, sides[0].active.pick_random())
+				foe.pokemon.trainer.ai.blackboard.set_value("battler", foe)
+				foe.pokemon.trainer.ai.tick()
 	while true:
 		var index: int = sides[0].current_battler_index
 		if index < 0 or index >= len(sides[0].active):
@@ -384,6 +380,8 @@ func _battle_ended(emit_end_signal: bool = true) -> bool:
 			Global.player_side_battlers = []
 			Global.foe_side_battlers = []
 			SignalBus.battle_ended.emit(won)
+	if not escaped and won and not sides[1].battlers[0].pokemon.trainer.defeat_flag.is_empty():
+		Global.TRAINER_FLAGS[sides[1].battlers[0].pokemon.trainer.defeat_flag] += 1
 	return ended
 
 

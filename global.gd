@@ -46,3 +46,8 @@ func update_player_party() -> void:
 
 func update_player_battlers() -> void:
 	player_side_battlers_changed.emit()
+
+
+var TRAINER_FLAGS: Dictionary[String, int] = {
+	"route1_boy": 0,
+}
