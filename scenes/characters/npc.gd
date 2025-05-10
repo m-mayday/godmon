@@ -2,6 +2,7 @@ extends Sprite2D
 
 signal movement_started(previous_state: Constants.MOVEMENT_STATE, new_state: Constants.MOVEMENT_STATE)
 signal movement_finished(previous_state: Constants.MOVEMENT_STATE, new_state: Constants.MOVEMENT_STATE)
+signal face_direction_changed(face_direction: Vector2)
 
 enum MOVEMENT_TYPE {
 	NONE, ## Standing still, looking in a single direction.
@@ -19,9 +20,15 @@ const ANIMATION_PARAMETERS: Dictionary[String, String] = {
 
 
 @export var animation_tree: AnimationTree
-@export var face_direction: Vector2 = Vector2.DOWN ## NPC's direction.
+
+@export var face_direction: Vector2 = Vector2.DOWN: ## NPC's direction.
+	set(value):
+		face_direction = value
+		face_direction_changed.emit(face_direction)
+
 @export var movement_type: MOVEMENT_TYPE = MOVEMENT_TYPE.NONE: ## How this NPC moves.
 	set = _set_movement_type
+	
 @export var sequence: Array[MovementAction] ## Sequence of actions used if [code]movement_type = MOVEMENT_TYPE.SEQUENCE[/code].
 
 ## An array of seconds to wait before the next movement is executed. Picked at random.
@@ -127,8 +134,8 @@ func _on_interaction(paused: bool) -> void:
 			npc_direction = Vector2.LEFT
 		elif player_direction == Vector2.LEFT:
 			npc_direction = Vector2.RIGHT
-		for key in ANIMATION_PARAMETERS.keys():
-			animation_tree.set(ANIMATION_PARAMETERS[key], npc_direction)
+		_set_animation_parameters(npc_direction)
+		face_direction = npc_direction
 		_anim_state.travel("idle")
 
 
