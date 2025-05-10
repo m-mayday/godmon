@@ -273,3 +273,14 @@ func is_battler_adjacent(battler: Battler) -> bool:
 ## [Public] Gets this battler position (index) on its side/team.
 func get_team_position() -> int:
 	return side.get_battler_position(self)
+
+
+## [Public] Indicates if battler can use the specified move.
+func can_use_move(move: Move) -> bool:
+	if move not in pokemon.moves:
+		return false
+	
+	if move.current_pp <= 0:
+		return false
+	
+	return true
