@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_dk3e4"]
 [ext_resource type="Resource" uid="uid://cshrkwblaiitr" path="res://data/types/fire.tres" id="6_67e61"]
 [ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_16ane"]
+[ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_dk3e4"]
 [ext_resource type="Resource" uid="uid://cftowb5lcbqh6" path="res://data/types/flying.tres" id="7_kxs23"]
-[ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_xolsu"]
 
 [sub_resource type="Resource" id="Resource_dornh"]
 script = ExtResource("1_sau7s")
@@ -84,9 +84,9 @@ shadow_offset = Vector2(3, 18)
 
 [resource]
 script = ExtResource("1_imqwd")
-species_id = 5
+species_id = 6
 name = &"Charizard"
-types = Array[ExtResource("7_xolsu")]([ExtResource("6_67e61"), ExtResource("7_kxs23")])
+types = Array[ExtResource("7_dk3e4")]([ExtResource("6_67e61"), ExtResource("7_kxs23")])
 base_stats = SubResource("Resource_dornh")
 base_exp = 100
 evs = SubResource("Resource_cyka3")

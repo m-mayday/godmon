@@ -104,7 +104,7 @@ shadow_offset = Vector2(5, 46)
 
 [resource]
 script = ExtResource("1_a5rft")
-species_id = 0
+species_id = 1
 name = &"Bulbasaur"
 types = Array[ExtResource("7_jvu2p")]([ExtResource("6_lqbct"), ExtResource("7_sgd3q")])
 base_stats = SubResource("Resource_g4g5x")
