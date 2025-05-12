@@ -32,12 +32,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Pause interaction when cutscene is running
 func _on_input_paused(paused: bool) -> void:
-	area.monitoring = !paused
-	area.monitorable = !paused
+	area.set_deferred("monitoring", !paused)
+	area.set_deferred("monitorable", !paused)
 
 
 ## Find the entering player's interaction finder and enable input
 func _on_area_entered(_area: Area2D) -> void:
+	if _is_cutscene_in_progress:
+		return
 	_is_active = true
 	set_process_unhandled_input(true)
 
