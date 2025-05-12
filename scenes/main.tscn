@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dexs5i187o0bc"]
+[gd_scene load_steps=7 format=3 uid="uid://dexs5i187o0bc"]
 
 [ext_resource type="Script" uid="uid://y8ft1hgrhe1p" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://ci705plphtymf" path="res://scenes/reaction.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bmigxfi2xkns7" path="res://scenes/characters/player.tscn" id="3_sugp2"]
 
 [sub_resource type="Animation" id="Animation_sugp2"]
@@ -48,6 +49,7 @@ animator = NodePath("AnimationPlayer")
 transition_layer = NodePath("Transition")
 transition_color = NodePath("Transition/ColorRect")
 player = NodePath("Player")
+reaction = ExtResource("2_sugp2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

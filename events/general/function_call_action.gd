@@ -16,5 +16,9 @@ func execute(node: Node) -> bool:
 		node_func = node.get_node_or_null(node_path)
 	if node_func == null:
 		return false
+	for i in arguments.size():
+		## Convert NodePath arguments to absolute path
+		if arguments[i] is NodePath:
+			arguments[i] = node.get_node(arguments[i]).get_path()
 	await node_func.callv(function_name, arguments)
 	return true
