@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://e6s1giwptv8o"]
+[gd_scene load_steps=27 format=4 uid="uid://e6s1giwptv8o"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_r7agj"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://be7ltbr0qyaqn" path="res://data/_base_classes/encounter_table.gd" id="8_q4b38"]
 [ext_resource type="Resource" uid="uid://btuurmtirl5vl" path="res://trainer.dialogue" id="10_fho5e"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="11_f5i15"]
-[ext_resource type="PackedScene" uid="uid://ci705plphtymf" path="res://scenes/reaction.tscn" id="11_q4b38"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="12_o7v6n"]
 [ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="13_mwtrc"]
 [ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="14_q4b38"]
@@ -155,7 +154,6 @@ collision = NodePath("CollisionShape2D")
 trainer = ExtResource("7_m71el")
 entity = NodePath("..")
 map = NodePath("../..")
-reaction = ExtResource("11_q4b38")
 on_seen_actions = Array[ExtResource("11_f5i15")]([SubResource("Resource_q4b38"), SubResource("Resource_mwtrc"), SubResource("Resource_o7v6n")])
 start_on_dialogue = ExtResource("10_fho5e")
 skip_automatic_pause = true

@@ -6,7 +6,6 @@ extends Cutscene
 @export var entity: Node2D ## The entity that "owns" this trainer (usually an NPC)
 @export var map: Node2D ## Used to move the entity to the player with the right coordinates
 
-
 ## Actions to run when the trainer sees the player (i.e: exclamation mark, walk to the player)
 @export var on_seen_actions: Array[EventAction]
 
@@ -33,8 +32,6 @@ func _ready():
 		area.area_entered.connect(_on_area_entered)
 		if entity != null and entity.has_signal("face_direction_changed"):
 			entity.face_direction_changed.connect(_set_direction)
-	else:
-		collision.queue_free() ## Free the collision if trainer has been defeated
 
 
 ## Pause interaction when cutscene is running
@@ -90,12 +87,16 @@ func move_to_player() -> void:
 func _run_seen_actions() -> void:
 	for action in on_seen_actions:
 		await action.execute(self)
+		if not action.wait_after.is_empty():
+			await get_tree().create_timer(action.wait_after.pick_random()).timeout
 
 
 ## Runs actions just before starting the battle
 func _run_battle_setup_actions() -> void:
 	for action in battle_setup_actions:
 		await action.execute(self)
+		if not action.wait_after.is_empty():
+			await get_tree().create_timer(action.wait_after.pick_random()).timeout
 
 
 ## Starts the battle
@@ -115,4 +116,8 @@ func _on_dialogue_ended(resource: DialogueResource) -> void:
 ## Frees the collision so it's not possible to trigger the battle by sight
 func _on_tree_entered() -> void:
 	if Global.TRAINER_FLAGS[trainer.defeat_flag] > 0:
-		collision.queue_free()
+		if collision != null:
+			collision.queue_free()
+		if triggered_by_dialogue or triggered_by_sight:
+			if "movement_type" in entity:
+				entity.movement_type = 0 ## Stop moving after battle
