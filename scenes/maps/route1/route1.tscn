@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cu2j1bo2txyy6" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
 [ext_resource type="PackedScene" uid="uid://b1akm0w0lshlr" path="res://scenes/cutscenes/trainer_sight.tscn" id="8_m71el"]
 [ext_resource type="Script" uid="uid://be7ltbr0qyaqn" path="res://data/_base_classes/encounter_table.gd" id="8_q4b38"]
-[ext_resource type="Resource" uid="uid://btuurmtirl5vl" path="res://trainer.dialogue" id="10_fho5e"]
+[ext_resource type="Resource" uid="uid://btuurmtirl5vl" path="res://scenes/maps/route1/dialogue/route1_boy.dialogue" id="10_fho5e"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="11_f5i15"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="12_o7v6n"]
 [ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="13_mwtrc"]
@@ -54,7 +54,7 @@ size = Vector2(32, 14)
 
 [sub_resource type="Resource" id="Resource_q4b38"]
 script = ExtResource("12_o7v6n")
-node_path = NodePath("")
+node_path = NodePath("/root/Main")
 function_name = "play_reaction"
 arguments = [NodePath(".."), Vector2(0, -20)]
 is_player = false

@@ -72,8 +72,10 @@ func _process(_delta: float) -> void:
 func walk(target_position: Vector2) -> bool:
 	if not _can_move(target_position):
 		return false
-	face_direction = (position - target_position).normalized() * -1
-	_set_animation_parameters(face_direction)
+	var direction: Vector2 = (position - target_position).normalized() * -1
+	if direction != Vector2.ZERO:
+		face_direction = direction
+		_set_animation_parameters(face_direction)
 	previous_position = position
 	next_position = target_position
 	is_moving = true

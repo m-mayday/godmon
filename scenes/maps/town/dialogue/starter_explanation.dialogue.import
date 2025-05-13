@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://uwxavebevg64"
+path="res://.godot/imported/starter_explanation.dialogue-846180012f7ff7e3f73fcd8fec14e033.tres"
+
+[deps]
+
+source_file="res://scenes/maps/town/dialogue/starter_explanation.dialogue"
+dest_files=["res://.godot/imported/starter_explanation.dialogue-846180012f7ff7e3f73fcd8fec14e033.tres"]
+
+[params]
+
+defaults=true

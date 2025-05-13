@@ -1,8 +1,94 @@
-[gd_scene load_steps=4 format=4 uid="uid://dv384faid7kh"]
+[gd_scene load_steps=21 format=4 uid="uid://dv384faid7kh"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ilbmh"]
 [ext_resource type="TileSet" uid="uid://bm1m833g0ihn3" path="res://scenes/tilesets/interior_tileset.tres" id="2_ayi68"]
 [ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="2_ilbmh"]
+[ext_resource type="Script" uid="uid://d4lpe4hrgc4ys" path="res://scenes/maps/town/starter_event.gd" id="4_ayi68"]
+[ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="5_kobdt"]
+[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/NPC02.png" id="6_3su1y"]
+[ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="7_msfrt"]
+[ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="8_aw4qv"]
+[ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="9_c6f6u"]
+[ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="11_8kk1v"]
+[ext_resource type="Resource" uid="uid://uwxavebevg64" path="res://scenes/maps/town/dialogue/starter_explanation.dialogue" id="12_6n0d5"]
+[ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="13_p2ckj"]
+
+[sub_resource type="Resource" id="Resource_8prvx"]
+script = ExtResource("8_aw4qv")
+node_path = NodePath("../Professor")
+function_name = "set"
+arguments = ["position", Vector2(96, 160)]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_thl23"]
+script = ExtResource("9_c6f6u")
+type = 1
+direction = 0
+tiles = 1
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_8kk1v"]
+script = ExtResource("9_c6f6u")
+type = 0
+direction = 0
+tiles = 8
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_6n0d5"]
+script = ExtResource("9_c6f6u")
+type = 0
+direction = 0
+tiles = 8
+node_path = NodePath("")
+is_player = true
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_gralj"]
+script = ExtResource("9_c6f6u")
+type = 1
+direction = 1
+tiles = 1
+node_path = NodePath("../Professor")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_p2ckj"]
+script = ExtResource("9_c6f6u")
+type = 1
+direction = 0
+tiles = 1
+node_path = NodePath("../Rival")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
+
+[sub_resource type="Resource" id="Resource_ruuei"]
+script = ExtResource("13_p2ckj")
+dialogue = ExtResource("12_6n0d5")
+balloon = ExtResource("11_8kk1v")
+extra_states = []
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_7hsyp"]
+script = ExtResource("9_c6f6u")
+type = 0
+direction = 0
+tiles = 0
+node_path = NodePath("../Rival")
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [node name="OaksLab" type="Node2D" node_paths=PackedStringArray("player_spawn_marker")]
 script = ExtResource("1_ilbmh")
@@ -31,3 +117,14 @@ position = Vector2(96, 192)
 target_scene_path = "res://scenes/maps/town/town.tscn"
 current_scene_path = "res://scenes/maps/town/oakslab.tscn"
 is_exit_only = true
+
+[node name="Professor" parent="." instance=ExtResource("5_kobdt")]
+position = Vector2(96, 32)
+texture = ExtResource("6_3su1y")
+
+[node name="Rival" parent="." instance=ExtResource("5_kobdt")]
+position = Vector2(80, 48)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_ayi68")
+actions = Array[ExtResource("7_msfrt")]([SubResource("Resource_8prvx"), SubResource("Resource_thl23"), SubResource("Resource_8kk1v"), SubResource("Resource_6n0d5"), SubResource("Resource_gralj"), SubResource("Resource_p2ckj"), SubResource("Resource_ruuei"), SubResource("Resource_7hsyp")])

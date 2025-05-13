@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventActionSequence" load_steps=25 format=3 uid="uid://clus7ake5cf1m"]
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=26 format=3 uid="uid://clus7ake5cf1m"]
 
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_3eka1"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="2_1p2ri"]
@@ -157,6 +157,15 @@ is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
+[sub_resource type="Resource" id="Resource_3eka1"]
+script = ExtResource("5_5lg16")
+node_path = NodePath("/root/Global")
+function_name = "increase_event_flag"
+arguments = ["pallet_town_get_starter"]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
 [sub_resource type="Resource" id="Resource_vgrd7"]
 script = ExtResource("5_5lg16")
 node_path = NodePath("../OaksDoor")
@@ -168,6 +177,6 @@ metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
 [resource]
 script = ExtResource("6_2vy0v")
-event_actions = Array[ExtResource("1_3eka1")]([SubResource("Resource_nkeh7"), SubResource("Resource_66jht"), SubResource("Resource_wh2tf"), SubResource("Resource_0dksf"), SubResource("Resource_dpo68"), SubResource("Resource_ne6ej"), SubResource("Resource_rki12"), SubResource("Resource_vgrd7")])
+event_actions = Array[ExtResource("1_3eka1")]([SubResource("Resource_nkeh7"), SubResource("Resource_66jht"), SubResource("Resource_wh2tf"), SubResource("Resource_0dksf"), SubResource("Resource_dpo68"), SubResource("Resource_ne6ej"), SubResource("Resource_rki12"), SubResource("Resource_3eka1"), SubResource("Resource_vgrd7")])
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://vnb7rb7na36b"

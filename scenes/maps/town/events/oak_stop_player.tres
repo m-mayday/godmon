@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventActionSequence" load_steps=12 format=3 uid="uid://cqakm0iwlmhhm"]
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=13 format=3 uid="uid://cqakm0iwlmhhm"]
 
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_3tcbp"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="2_bdjhg"]
@@ -44,8 +44,17 @@ is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
+[sub_resource type="Resource" id="Resource_3tcbp"]
+script = ExtResource("2_bdjhg")
+node_path = NodePath("/root/Main")
+function_name = "play_reaction_player"
+arguments = [Vector2(0, -20)]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
 [resource]
 script = ExtResource("7_c3uu8")
-event_actions = Array[ExtResource("1_3tcbp")]([SubResource("Resource_wj3eu"), SubResource("Resource_vkhl3"), SubResource("Resource_vug5f"), SubResource("Resource_idgr4")])
+event_actions = Array[ExtResource("1_3tcbp")]([SubResource("Resource_wj3eu"), SubResource("Resource_vkhl3"), SubResource("Resource_vug5f"), SubResource("Resource_idgr4"), SubResource("Resource_3tcbp")])
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://vnb7rb7na36b"

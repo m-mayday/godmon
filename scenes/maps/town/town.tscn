@@ -66,7 +66,7 @@ wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2osm"]
-size = Vector2(15, 14)
+size = Vector2(14, 14)
 
 [sub_resource type="Resource" id="Resource_vug5f"]
 script = ExtResource("6_y2osm")
@@ -243,13 +243,11 @@ current_scene_path = "res://scenes/maps/town/town.tscn"
 
 [node name="EventTriggerLeft" type="Area2D" parent="."]
 position = Vector2(30, 19)
-monitoring = false
-monitorable = false
 script = ExtResource("16_tpn7j")
 actions = Array[ExtResource("5_tpn7j")]([ExtResource("17_idgr4"), SubResource("Resource_x245t"), ExtResource("19_p6h8o"), SubResource("Resource_0ygfw"), ExtResource("20_0pwko")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EventTriggerLeft"]
-position = Vector2(170.5, 5)
+position = Vector2(170, 5)
 shape = SubResource("RectangleShape2D_y2osm")
 
 [node name="EventTriggerRight" type="Area2D" parent="."]

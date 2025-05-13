@@ -48,6 +48,13 @@ func update_player_battlers() -> void:
 	player_side_battlers_changed.emit()
 
 
+func increase_event_flag(flag: String) -> void:
+	EVENT_FLAGS[flag] += 1
+
 var TRAINER_FLAGS: Dictionary[String, int] = {
 	"route1_boy": 0,
+}
+
+var EVENT_FLAGS: Dictionary[String, int] = {
+	"pallet_town_get_starter": 0,
 }

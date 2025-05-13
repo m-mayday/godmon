@@ -42,6 +42,9 @@ func execute(node: Node) -> bool:
 		return false
 	var dir: Vector2 = _directions[direction]
 	if type == TYPES.WALK:
+		if tiles == 0:
+			var executed: bool = await node_func.walk((node_func.position))
+			return executed
 		for i in range(tiles):
 			var executed: bool = await node_func.walk((node_func.position + (dir * Constants.TILE_SIZE)).snapped(Vector2.ONE * Constants.TILE_SIZE))
 			if not executed:

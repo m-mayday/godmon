@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://btuurmtirl5vl"
+path="res://.godot/imported/route1_boy.dialogue-dcb678c52da05ae49ab0e2f0ee286104.tres"
+
+[deps]
+
+source_file="res://scenes/maps/route1/dialogue/route1_boy.dialogue"
+dest_files=["res://.godot/imported/route1_boy.dialogue-dcb678c52da05ae49ab0e2f0ee286104.tres"]
+
+[params]
+
+defaults=true
