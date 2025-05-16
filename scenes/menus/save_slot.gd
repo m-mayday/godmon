@@ -2,6 +2,7 @@ extends Button
 
 @export var label_container: Control
 @export var player_name: Label
+@export var location: Label
 @export var play_time: Label
 @export var empty_label: Label
 
@@ -13,6 +14,7 @@ func with_data(save_data: SaveData) -> void:
 	else:
 		_change_labels_visiblity(true)
 		player_name.text = save_data.player_name
+		location.text = save_data.save_location
 		play_time.text = "TIME: " + Global.get_play_time_string(save_data.play_time)
 		empty_label.hide()
 

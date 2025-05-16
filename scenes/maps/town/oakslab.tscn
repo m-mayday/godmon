@@ -93,6 +93,7 @@ metadata/_custom_type_script = "uid://1txtbitbdrum"
 [node name="OaksLab" type="Node2D" node_paths=PackedStringArray("player_spawn_marker")]
 script = ExtResource("1_ilbmh")
 player_spawn_marker = NodePath("Spawn")
+save_location = "PALLET TOWN"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 position = Vector2(0, 64)

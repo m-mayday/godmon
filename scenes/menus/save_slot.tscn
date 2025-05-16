@@ -19,7 +19,7 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 
-[node name="SaveSlot" type="Button" node_paths=PackedStringArray("shortcut_context", "label_container", "player_name", "play_time", "empty_label")]
+[node name="SaveSlot" type="Button" node_paths=PackedStringArray("shortcut_context", "label_container", "player_name", "location", "play_time", "empty_label")]
 custom_minimum_size = Vector2(0, 99)
 anchors_preset = 10
 anchor_right = 1.0
@@ -35,6 +35,7 @@ shortcut = ExtResource("3_81tad")
 script = ExtResource("3_qheql")
 label_container = NodePath("MarginContainer/Control")
 player_name = NodePath("MarginContainer/Control/PlayerName")
+location = NodePath("MarginContainer/Control/Location")
 play_time = NodePath("MarginContainer/Control/PlayTime")
 empty_label = NodePath("MarginContainer/Control/Empty")
 

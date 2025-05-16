@@ -3,6 +3,7 @@ extends Resource
 ## A class of data that conforms a save file
 
 @export var current_scene_file_path: String
+@export var save_location: String
 @export var player_name: String
 @export var player_position: Vector2
 @export var player_face_direction: Vector2

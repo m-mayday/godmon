@@ -88,6 +88,7 @@ adjacent_scenes = Dictionary[String, Vector2]({
 "res://scenes/maps/town/town.tscn": Vector2(0, 640)
 })
 moving_objects = [NodePath("NPC")]
+save_location = "ROUTE 1"
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1
@@ -99,8 +100,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAEAAAAAAAAAAEAAQAEAAEAAAAAAAIAAQAEAAA
 tile_set = ExtResource("2_r7agj")
 
 [node name="EncounterArea" parent="." instance=ExtResource("6_o7v6n")]
-monitoring = false
-monitorable = false
 encounter_table = SubResource("Resource_gm8nn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterArea"]

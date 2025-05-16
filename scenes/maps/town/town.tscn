@@ -137,6 +137,7 @@ player_spawns = {
 "res://scenes/maps/town/redshouse.tscn": NodePath("RedsDoor")
 }
 moving_objects = [NodePath("Girl")]
+save_location = "PALLET TOWN"
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1

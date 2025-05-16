@@ -11,6 +11,7 @@ script = ExtResource("1_wq6m7")
 adjacent_scenes = Dictionary[String, Vector2]({
 "res://scenes/maps/town/town.tscn": Vector2(0, -320)
 })
+save_location = "ROUTE 21"
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1

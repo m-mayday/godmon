@@ -8,6 +8,7 @@ signal screen_closed
 @export var game_saved_message: DialogueResource
 @export var slots_container: VBoxContainer
 @export var balloon: CanvasLayer
+@export var location_label: Label
 @export var player_name_label: Label
 @export var play_time_label: Label
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 	var slot: Button = slots_container.get_child(0)
 	_normal_stylebox = slot.get_theme_stylebox("normal")
 	_focus_stylebox = slot.get_theme_stylebox("focus")
+	location_label.text = Global.get_current_save_location()
 	player_name_label.text = Global.player_name
 	select_slot()
 

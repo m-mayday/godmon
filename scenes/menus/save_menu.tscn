@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://buu2ngj34qmgp" path="res://scenes/menus/save_slot.tscn" id="4_p4xpx"]
 [ext_resource type="Resource" uid="uid://v4rju6507pgt" path="res://scenes/menus/dialogue/game_saved.dialogue" id="5_gf25r"]
 
-[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "balloon", "player_name_label", "play_time_label")]
+[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "balloon", "location_label", "player_name_label", "play_time_label")]
 script = ExtResource("1_m20ra")
 select_slot_message = ExtResource("2_qljj7")
 overwrite_file_message = ExtResource("2_01mf7")
@@ -17,6 +17,7 @@ saving_game_message = ExtResource("4_lwel1")
 game_saved_message = ExtResource("5_gf25r")
 slots_container = NodePath("VBoxContainer")
 balloon = NodePath("Balloon")
+location_label = NodePath("Data/MarginContainer/VBoxContainer/Location")
 player_name_label = NodePath("Data/MarginContainer/VBoxContainer/HBoxContainer/Values/PlayerName")
 play_time_label = NodePath("Data/MarginContainer/VBoxContainer/HBoxContainer/Values/PlayTime")
 

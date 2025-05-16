@@ -83,6 +83,11 @@ func update_player_battlers() -> void:
 	player_side_battlers_changed.emit()
 
 
+func get_current_save_location() -> String:
+	var main: Node2D = get_tree().root.get_node("Main")
+	return main.current_scene.save_location
+
+
 func increase_event_flag(flag: String) -> void:
 	EVENT_FLAGS[flag] += 1
 
@@ -105,6 +110,7 @@ func save_game(slot: int) -> bool:
 	save_data.player_position = main.player.position - main.current_scene.position
 	save_data.player_face_direction = main.player.face_direction
 	save_data.play_time = play_time
+	save_data.save_location = main.current_scene.save_location
 	if OK != ResourceSaver.save(save_data, "user://sav/save{0}.res".format([slot])):
 		return false
 	return true
