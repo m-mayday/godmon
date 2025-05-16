@@ -19,6 +19,7 @@ func _ready() -> void:
 	thread = Thread.new()
 	if not await Global.load_game(0):
 		await load_scene("res://scenes/maps/town/town.tscn")
+	Global.start_play_time_tracking()
 	SignalBus.zone_changed.connect(_change_scene)
 
 

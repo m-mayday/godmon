@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://buu2ngj34qmgp" path="res://scenes/menus/save_slot.tscn" id="4_p4xpx"]
 [ext_resource type="Resource" uid="uid://v4rju6507pgt" path="res://scenes/menus/dialogue/game_saved.dialogue" id="5_gf25r"]
 
-[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "balloon")]
+[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "balloon", "player_name_label", "play_time_label")]
 script = ExtResource("1_m20ra")
 select_slot_message = ExtResource("2_qljj7")
 overwrite_file_message = ExtResource("2_01mf7")
@@ -17,6 +17,8 @@ saving_game_message = ExtResource("4_lwel1")
 game_saved_message = ExtResource("5_gf25r")
 slots_container = NodePath("VBoxContainer")
 balloon = NodePath("Balloon")
+player_name_label = NodePath("Data/MarginContainer/VBoxContainer/HBoxContainer/Values/PlayerName")
+play_time_label = NodePath("Data/MarginContainer/VBoxContainer/HBoxContainer/Values/PlayTime")
 
 [node name="Balloon" parent="." instance=ExtResource("1_fl7x4")]
 context = "BATTLE"
@@ -32,19 +34,91 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Location" type="Label" parent="Data"]
+[node name="MarginContainer" type="MarginContainer" parent="Data"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.039
-anchor_right = 0.964
-offset_left = 20.052
-offset_top = 468.0
-offset_right = 19.952
-offset_bottom = 504.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Data/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="Location" type="Label" parent="Data/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "PALLET TOWN"
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Data/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Labels" type="VBoxContainer" parent="Data/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Player" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "PLAYER"
+
+[node name="Badges" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "BADGES"
+
+[node name="Pokedex" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "POKéDEX"
+
+[node name="Time" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "TIME"
+
+[node name="Values" type="VBoxContainer" parent="Data/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 16
+
+[node name="PlayerName" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "RED"
+
+[node name="Badges" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "8"
+
+[node name="Pokedex" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "151"
+
+[node name="PlayTime" type="Label" parent="Data/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = "00:00"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 1

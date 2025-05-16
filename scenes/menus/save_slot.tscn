@@ -19,7 +19,7 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 
-[node name="SaveSlot" type="Button" node_paths=PackedStringArray("shortcut_context", "label_container", "player_name", "empty_label")]
+[node name="SaveSlot" type="Button" node_paths=PackedStringArray("shortcut_context", "label_container", "player_name", "play_time", "empty_label")]
 custom_minimum_size = Vector2(0, 99)
 anchors_preset = 10
 anchor_right = 1.0
@@ -35,6 +35,7 @@ shortcut = ExtResource("3_81tad")
 script = ExtResource("3_qheql")
 label_container = NodePath("MarginContainer/Control")
 player_name = NodePath("MarginContainer/Control/PlayerName")
+play_time = NodePath("MarginContainer/Control/PlayTime")
 empty_label = NodePath("MarginContainer/Control/Empty")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -54,6 +55,18 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 mouse_filter = 2
 
+[node name="Empty" type="Label" parent="MarginContainer/Control"]
+self_modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EMPTY SLOT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayerName" type="Label" parent="MarginContainer/Control"]
 layout_mode = 1
 offset_right = 144.0
@@ -72,7 +85,7 @@ anchor_left = 1.0
 anchor_top = 0.651
 anchor_right = 1.0
 anchor_bottom = 0.651
-offset_left = -105.0
+offset_left = -126.0
 offset_top = -24.033
 offset_bottom = -0.0330009
 grow_horizontal = 0
@@ -82,7 +95,7 @@ size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
 theme_override_font_sizes/font_size = 32
-text = "TIME: 16:28"
+text = "TIME: 999:59"
 
 [node name="Location" type="Label" parent="MarginContainer/Control"]
 layout_mode = 1
@@ -123,15 +136,3 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
 theme_override_font_sizes/font_size = 32
 text = "POKÉDEX: 151"
-
-[node name="Empty" type="Label" parent="MarginContainer/Control"]
-self_modulate = Color(1, 1, 1, 0.47451)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "EMPTY SLOT"
-horizontal_alignment = 1
-vertical_alignment = 1

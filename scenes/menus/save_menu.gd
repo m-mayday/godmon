@@ -8,6 +8,8 @@ signal screen_closed
 @export var game_saved_message: DialogueResource
 @export var slots_container: VBoxContainer
 @export var balloon: CanvasLayer
+@export var player_name_label: Label
+@export var play_time_label: Label
 
 var _save_files: Array[SaveData] = []
 var _selected_slot_index: int = 0
@@ -20,12 +22,17 @@ func _ready() -> void:
 	var slot: Button = slots_container.get_child(0)
 	_normal_stylebox = slot.get_theme_stylebox("normal")
 	_focus_stylebox = slot.get_theme_stylebox("focus")
+	player_name_label.text = Global.player_name
 	select_slot()
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel") and not _overwriting_file:
 		screen_closed.emit()
+
+
+func _process(_delta: float) -> void:
+	play_time_label.text = Global.get_total_play_time_string()
 
 
 func _on_save_slot_pressed(index: int) -> void:

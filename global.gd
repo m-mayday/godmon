@@ -4,10 +4,45 @@ signal player_party_changed
 signal player_side_battlers_changed
 signal foe_side_battlers_changed
 
+const MAX_PLAY_TIME: float = (999 * 3600) + (59 * 60)
+
 var player_name: String = "Red"
 var player_party: Array[Pokemon] = []
 var player_side_battlers: Array[Battler] = []
 var foe_side_battlers: Array[Battler] = []
+var play_time: float = 0.0
+
+var _tracking_play_time: bool = false
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS ## For tracking play time
+
+
+func _process(delta: float) -> void:
+	if _tracking_play_time:
+		play_time += delta
+		if play_time > MAX_PLAY_TIME:
+			_tracking_play_time = false
+			play_time = MAX_PLAY_TIME
+			process_mode = Node.PROCESS_MODE_DISABLED
+
+
+## Start tracking play time if MAX_PLAY_TIME hasn't been reached
+func start_play_time_tracking() -> void:
+	_tracking_play_time = play_time < MAX_PLAY_TIME
+
+
+## Get current play time as string (HH:MM)
+func get_total_play_time_string() -> String:
+	return get_play_time_string(play_time)
+
+
+## Get the provided time as string (HH:MM)
+func get_play_time_string(time: float) -> String:
+	var hours = int(time / 3600)
+	var minutes = int(fmod(time, 3600) / 60)
+	return "%02d:%02d" % [hours, minutes]
 
 
 func set_player_party_value(index: int, value: Pokemon) -> void:
@@ -69,6 +104,7 @@ func save_game(slot: int) -> bool:
 	save_data.player_name = player_name
 	save_data.player_position = main.player.position - main.current_scene.position
 	save_data.player_face_direction = main.player.face_direction
+	save_data.play_time = play_time
 	if OK != ResourceSaver.save(save_data, "user://sav/save{0}.res".format([slot])):
 		return false
 	return true
@@ -86,6 +122,8 @@ func load_game(slot: int) -> bool:
 	main.player.position = save_data.player_position
 	main.player.face_direction = save_data.player_face_direction
 	main.player.turn(save_data.player_face_direction)
+	play_time = save_data.play_time
+	start_play_time_tracking()
 	return true
 
 
@@ -97,7 +135,7 @@ func get_save_files() -> Array[SaveData]:
 		if ResourceLoader.exists(path):
 			save_files.push_back(load(path))
 	return save_files
-
+	
 
 var TRAINER_FLAGS: Dictionary[String, int] = {
 	"route1_boy": 0,

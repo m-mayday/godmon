@@ -9,3 +9,4 @@ extends Resource
 @export var nodes: Dictionary[String, Dictionary]
 @export var trainer_flags: Dictionary[String, int]
 @export var event_flags: Dictionary[String, int]
+@export var play_time: float
