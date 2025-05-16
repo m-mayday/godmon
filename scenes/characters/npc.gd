@@ -50,6 +50,7 @@ var _rng = RandomNumberGenerator.new() ## Used for [code]MOVEMENT_TYPE.PATH_RAND
 var _move: Callable ## The movement function to execute according to [code]movement_type[/code].
 
 func _ready() -> void:
+	add_to_group("persist")
 	SignalBus.input_paused.connect(_on_interaction)
 	_anim_state = animation_tree.get("parameters/playback")
 	for child in get_children():
