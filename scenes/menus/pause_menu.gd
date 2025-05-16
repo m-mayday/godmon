@@ -8,12 +8,14 @@ extends CanvasLayer
 @export var screens: Dictionary[String, PackedScene] = {
 	"pokedex": null,
 	"pokemon": null,
+	"save": null,
 }
 
 ## The buttons that are part of the menu. To be set from the editor
 @export var options: Dictionary[String, Button] = {
 	"pokedex": null,
 	"pokemon": null,
+	"save": null,
 }
 
 var _current_screen: Node = null ## Current screen being shown
@@ -65,6 +67,7 @@ func _on_option_pressed(screen_name: String) -> void:
 			screen.screen_closed.connect(_on_screen_closed)
 			set_process_unhandled_input(false)
 			add_child(screen)
+			menu.hide()
 		else:
 			screen.queue_free() # Screens without the screen_closed signal are not valid
 
@@ -73,6 +76,7 @@ func _on_option_pressed(screen_name: String) -> void:
 func _on_screen_closed() -> void:
 	if _current_screen != null:
 		_current_screen.queue_free()
+		menu.show()
 		_selected_option.grab_focus()
 		set_process_unhandled_input(true)
 

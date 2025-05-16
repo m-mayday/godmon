@@ -24,6 +24,8 @@ func get_adjacent_scenes() -> Dictionary[String, Vector2]:
 
 ## Returns the player spawn position in this chunk
 func get_spawn_position() -> Vector2:
+	if current_spawn == null:
+		return Vector2.ZERO
 	return current_spawn.position
 
 

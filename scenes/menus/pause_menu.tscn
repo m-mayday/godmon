@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://nokxwtpo54sn"]
+[gd_scene load_steps=7 format=3 uid="uid://nokxwtpo54sn"]
 
 [ext_resource type="Script" uid="uid://i5qlkwl8vf2y" path="res://scenes/menus/pause_menu.gd" id="1_gsnt3"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="2_2wrho"]
+[ext_resource type="PackedScene" uid="uid://oq5k4dagjg4t" path="res://scenes/menus/save_menu.tscn" id="3_eyfc8"]
 [ext_resource type="Texture2D" uid="uid://3nfpanty48va" path="res://assets/ui/panel_beigeLight.png" id="3_gsnt3"]
 [ext_resource type="StyleBox" uid="uid://dqdeaqixjmvf3" path="res://scenes/themes/selection_arrow_box.tres" id="4_2wrho"]
 [ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/menus/interact_shortcut.tres" id="5_gh0u6"]
@@ -12,20 +13,23 @@ menu = NodePath("Control")
 options_container = NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer")
 screens = Dictionary[String, PackedScene]({
 "pokedex": null,
-"pokemon": ExtResource("2_2wrho")
+"pokemon": ExtResource("2_2wrho"),
+"save": ExtResource("3_eyfc8")
 })
 options = {
 "pokedex": null,
-"pokemon": NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon")
+"pokemon": NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon"),
+"save": NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer/Save")
 }
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchor_left = 0.759
 anchor_right = 1.0
-anchor_bottom = 0.45
+anchor_bottom = 0.491
 offset_left = 0.0879517
-offset_bottom = -0.200012
+offset_right = -6.10352e-05
+offset_bottom = 0.18399
 grow_horizontal = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control"]
@@ -128,10 +132,11 @@ text = "BAG"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Player" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="Player" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 3
+shortcut_context = NodePath(".")
 theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
 theme_override_styles/focus = ExtResource("4_2wrho")
 shortcut = ExtResource("5_gh0u6")
@@ -148,6 +153,30 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 36
 text = "PLAYER"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Save" type="Button" parent="Control/NinePatchRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("shortcut_context")]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 3
+shortcut_context = NodePath(".")
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_styles/focus = ExtResource("4_2wrho")
+shortcut = ExtResource("5_gh0u6")
+flat = true
+
+[node name="Label" type="Label" parent="Control/NinePatchRect/MarginContainer/VBoxContainer/Save"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "SAVE"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -199,4 +228,5 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [connection signal="pressed" from="Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon" to="." method="_on_option_pressed" binds= ["pokemon"]]
+[connection signal="pressed" from="Control/NinePatchRect/MarginContainer/VBoxContainer/Save" to="." method="_on_option_pressed" binds= ["save"]]
 [connection signal="pressed" from="Control/NinePatchRect/MarginContainer/VBoxContainer/Exit" to="." method="_close_menu"]

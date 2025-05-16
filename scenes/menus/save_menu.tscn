@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://oq5k4dagjg4t"]
+
+[ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="1_fl7x4"]
+[ext_resource type="Script" uid="uid://dtlldnyc0a2ri" path="res://scenes/menus/save_menu.gd" id="1_m20ra"]
+[ext_resource type="Resource" uid="uid://n8mtslwl61j1" path="res://scenes/menus/dialogue/overwrite_save.dialogue" id="2_01mf7"]
+[ext_resource type="Texture2D" uid="uid://ujghvquaawh2" path="res://assets/ui/panel_blue.png" id="2_m20ra"]
+[ext_resource type="Resource" uid="uid://cj228njn2w3w0" path="res://scenes/menus/dialogue/select_save_slot.dialogue" id="2_qljj7"]
+[ext_resource type="Resource" uid="uid://cghjfmmptghmx" path="res://scenes/menus/dialogue/saving_game.dialogue" id="4_lwel1"]
+[ext_resource type="PackedScene" uid="uid://buu2ngj34qmgp" path="res://scenes/menus/save_slot.tscn" id="4_p4xpx"]
+[ext_resource type="Resource" uid="uid://v4rju6507pgt" path="res://scenes/menus/dialogue/game_saved.dialogue" id="5_gf25r"]
+
+[node name="SaveMenu" type="CanvasLayer" node_paths=PackedStringArray("slots_container", "balloon")]
+script = ExtResource("1_m20ra")
+select_slot_message = ExtResource("2_qljj7")
+overwrite_file_message = ExtResource("2_01mf7")
+saving_game_message = ExtResource("4_lwel1")
+game_saved_message = ExtResource("5_gf25r")
+slots_container = NodePath("VBoxContainer")
+balloon = NodePath("Balloon")
+
+[node name="Balloon" parent="." instance=ExtResource("1_fl7x4")]
+context = "BATTLE"
+
+[node name="Data" type="NinePatchRect" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 337.0
+offset_bottom = 311.0
+texture = ExtResource("2_m20ra")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Location" type="Label" parent="Data"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_right = 0.964
+offset_left = 20.052
+offset_top = 468.0
+offset_right = 19.952
+offset_bottom = 504.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -380.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 310.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SaveSlot" parent="VBoxContainer" instance=ExtResource("4_p4xpx")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveSlot2" parent="VBoxContainer" instance=ExtResource("4_p4xpx")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveSlot3" parent="VBoxContainer" instance=ExtResource("4_p4xpx")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="VBoxContainer/SaveSlot" to="." method="_on_save_slot_pressed" binds= [0]]
+[connection signal="pressed" from="VBoxContainer/SaveSlot2" to="." method="_on_save_slot_pressed" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/SaveSlot3" to="." method="_on_save_slot_pressed" binds= [2]]

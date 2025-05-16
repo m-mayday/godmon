@@ -1,0 +1,7 @@
+~ start
+Is it okay to overwrite\nthis save file?
+- Yes
+	do save_game()
+- No [#cancel]
+	do select_slot()
+=> END

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://n8mtslwl61j1"
+path="res://.godot/imported/overwrite_save.dialogue-69edb3c358c8991248df4df3a3fcff8c.tres"
+
+[deps]
+
+source_file="res://scenes/menus/dialogue/overwrite_save.dialogue"
+dest_files=["res://.godot/imported/overwrite_save.dialogue-69edb3c358c8991248df4df3a3fcff8c.tres"]
+
+[params]
+
+defaults=true

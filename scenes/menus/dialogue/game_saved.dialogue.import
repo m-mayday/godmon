@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://v4rju6507pgt"
+path="res://.godot/imported/game_saved.dialogue-c1fad8e689ac1fd11d32ee05b49762ad.tres"
+
+[deps]
+
+source_file="res://scenes/menus/dialogue/game_saved.dialogue"
+dest_files=["res://.godot/imported/game_saved.dialogue-c1fad8e689ac1fd11d32ee05b49762ad.tres"]
+
+[params]
+
+defaults=true

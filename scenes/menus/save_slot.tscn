@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=3 uid="uid://buu2ngj34qmgp"]
+
+[ext_resource type="Texture2D" uid="uid://ujghvquaawh2" path="res://assets/ui/panel_blue.png" id="1_6t6cn"]
+[ext_resource type="Texture2D" uid="uid://bk1omj05cx5sx" path="res://assets/ui/panel_brown.png" id="1_jjqyw"]
+[ext_resource type="Shortcut" uid="uid://cofnn6d48msxh" path="res://scenes/menus/interact_shortcut.tres" id="3_81tad"]
+[ext_resource type="Script" uid="uid://b8wiaquwgeksl" path="res://scenes/menus/save_slot.gd" id="3_qheql"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qheql"]
+texture = ExtResource("1_jjqyw")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjqyw"]
+texture = ExtResource("1_6t6cn")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[node name="SaveSlot" type="Button" node_paths=PackedStringArray("shortcut_context", "label_container", "player_name", "empty_label")]
+custom_minimum_size = Vector2(0, 99)
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -384.0
+offset_bottom = 99.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+shortcut_context = NodePath(".")
+theme_override_styles/focus = SubResource("StyleBoxTexture_qheql")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_jjqyw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jjqyw")
+shortcut = ExtResource("3_81tad")
+script = ExtResource("3_qheql")
+label_container = NodePath("MarginContainer/Control")
+player_name = NodePath("MarginContainer/Control/PlayerName")
+empty_label = NodePath("MarginContainer/Control/Empty")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayerName" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+offset_right = 144.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 32
+text = "REDREDREDRED"
+
+[node name="PlayTime" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.651
+anchor_right = 1.0
+anchor_bottom = 0.651
+offset_left = -105.0
+offset_top = -24.033
+offset_bottom = -0.0330009
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 32
+text = "TIME: 16:28"
+
+[node name="Location" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 32
+text = "PALLET TOWN"
+
+[node name="Badges" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.651
+anchor_bottom = 0.651
+offset_top = -24.033
+offset_right = 93.0
+offset_bottom = -0.0330009
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 32
+text = "BADGES: 8"
+
+[node name="Pokedex" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 121.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_font_sizes/font_size = 32
+text = "POKÉDEX: 151"
+
+[node name="Empty" type="Label" parent="MarginContainer/Control"]
+self_modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EMPTY SLOT"
+horizontal_alignment = 1
+vertical_alignment = 1

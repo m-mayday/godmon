@@ -17,9 +17,9 @@ var thread: Thread # Thread to load adjacent scenes
 func _ready() -> void:
 	SignalBus.input_paused.emit(true)
 	thread = Thread.new()
-	await load_scene("res://scenes/maps/town/town.tscn")
+	if not await Global.load_game(0):
+		await load_scene("res://scenes/maps/town/town.tscn")
 	SignalBus.zone_changed.connect(_change_scene)
-	SignalBus.input_paused.emit(false)
 
 
 func _input(event: InputEvent) -> void:
