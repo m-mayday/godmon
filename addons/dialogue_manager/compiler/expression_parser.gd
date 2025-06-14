@@ -2,6 +2,9 @@
 class_name DMExpressionParser extends RefCounted
 
 
+var include_comments: bool = false
+
+
 # Reference to the common [RegEx] that the parser needs.
 var regex: DMCompilerRegEx = DMCompilerRegEx.new()
 
@@ -25,7 +28,7 @@ func tokenise(text: String, line_type: String, index: int) -> Array:
 			index += 1
 			text = text.substr(1)
 		else:
-			return _build_token_tree_error(DMConstants.ERR_INVALID_EXPRESSION, index)
+			return _build_token_tree_error([], DMConstants.ERR_INVALID_EXPRESSION, index)
 
 	return _build_token_tree(tokens, line_type, "")[0]
 
@@ -40,7 +43,17 @@ func extract_replacements(text: String, index: int) -> Array[Dictionary]:
 	var replacements: Array[Dictionary] = []
 	for found in founds:
 		var replacement: Dictionary = {}
-		var value_in_text: String = found.strings[1]
+		var value_in_text: String = found.strings[0].substr(0, found.strings[0].length() - 2).substr(2)
+
+		# If there are closing curlie hard-up against the end of a {{...}} block then check for further
+		# curlies just outside of the block.
+		var text_suffix: String = text.substr(found.get_end(0))
+		var expression_suffix: String = ""
+		while text_suffix.begins_with("}"):
+			expression_suffix += "}"
+			text_suffix = text_suffix.substr(1)
+		value_in_text += expression_suffix
+
 		var expression: Array = tokenise(value_in_text, DMConstants.TYPE_DIALOGUE, index + found.get_start(1))
 		if expression.size() == 0:
 			replacement = {
@@ -49,7 +62,7 @@ func extract_replacements(text: String, index: int) -> Array[Dictionary]:
 			}
 		elif expression[0].type == DMConstants.TYPE_ERROR:
 			replacement = {
-				index = expression[0].index,
+				index = expression[0].i,
 				error = expression[0].value
 			}
 		else:
@@ -66,8 +79,13 @@ func extract_replacements(text: String, index: int) -> Array[Dictionary]:
 
 
 # Create a token that represents an error.
-func _build_token_tree_error(error: int, index: int) -> Array:
-	return [{ type = DMConstants.TOKEN_ERROR, value = error, index = index }]
+func _build_token_tree_error(tree: Array, error: int, index: int) -> Array:
+	tree.insert(0, {
+		type = DMConstants.TOKEN_ERROR,
+		value = error,
+		i = index
+	})
+	return tree
 
 
 # Convert a list of tokens into an abstract syntax tree.
@@ -80,20 +98,30 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 
 		var error = _check_next_token(token, tokens, line_type, expected_close_token)
 		if error != OK:
-			return [_build_token_tree_error(error, token.index), tokens]
+			var error_token: Dictionary = tokens[1] if tokens.size() > 1 else token
+			return [_build_token_tree_error(tree, error, error_token.index), tokens]
 
 		match token.type:
+			DMConstants.TOKEN_COMMENT:
+				if include_comments:
+					tree.append({
+						type = DMConstants.TOKEN_COMMENT,
+						value = token.value,
+						i = token.index
+					})
+
 			DMConstants.TOKEN_FUNCTION:
 				var sub_tree = _build_token_tree(tokens, line_type, DMConstants.TOKEN_PARENS_CLOSE)
 
 				if sub_tree[0].size() > 0 and sub_tree[0][0].type == DMConstants.TOKEN_ERROR:
-					return [_build_token_tree_error(sub_tree[0][0].value, token.index), tokens]
+					return [_build_token_tree_error(tree, sub_tree[0][0].value, sub_tree[0][0].i), tokens]
 
 				tree.append({
 					type = DMConstants.TOKEN_FUNCTION,
 					# Consume the trailing "("
 					function = token.value.substr(0, token.value.length() - 1),
-					value = _tokens_to_list(sub_tree[0])
+					value = _tokens_to_list(sub_tree[0]),
+					i = token.index
 				})
 				tokens = sub_tree[1]
 
@@ -101,17 +129,18 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 				var sub_tree = _build_token_tree(tokens, line_type, DMConstants.TOKEN_BRACKET_CLOSE)
 
 				if sub_tree[0].size() > 0 and sub_tree[0][0].type == DMConstants.TOKEN_ERROR:
-					return [_build_token_tree_error(sub_tree[0][0].value, token.index), tokens]
+					return [_build_token_tree_error(tree, sub_tree[0][0].value, sub_tree[0][0].i), tokens]
 
 				var args = _tokens_to_list(sub_tree[0])
 				if args.size() != 1:
-					return [_build_token_tree_error(DMConstants.ERR_INVALID_INDEX, token.index), tokens]
+					return [_build_token_tree_error(tree, DMConstants.ERR_INVALID_INDEX, token.index), tokens]
 
 				tree.append({
 					type = DMConstants.TOKEN_DICTIONARY_REFERENCE,
 					# Consume the trailing "["
 					variable = token.value.substr(0, token.value.length() - 1),
-					value = args[0]
+					value = args[0],
+					i = token.index
 				})
 				tokens = sub_tree[1]
 
@@ -119,7 +148,7 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 				var sub_tree = _build_token_tree(tokens, line_type, DMConstants.TOKEN_BRACE_CLOSE)
 
 				if sub_tree[0].size() > 0 and sub_tree[0][0].type == DMConstants.TOKEN_ERROR:
-					return [_build_token_tree_error(sub_tree[0][0].value, token.index), tokens]
+					return [_build_token_tree_error(tree, sub_tree[0][0].value, sub_tree[0][0].i), tokens]
 
 				var t = sub_tree[0]
 				for i in range(0, t.size() - 2):
@@ -131,7 +160,8 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 
 				tree.append({
 					type = DMConstants.TOKEN_DICTIONARY,
-					value = _tokens_to_dictionary(sub_tree[0])
+					value = _tokens_to_dictionary(sub_tree[0]),
+					i = token.index
 				})
 
 				tokens = sub_tree[1]
@@ -140,7 +170,7 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 				var sub_tree = _build_token_tree(tokens, line_type, DMConstants.TOKEN_BRACKET_CLOSE)
 
 				if sub_tree[0].size() > 0 and sub_tree[0][0].type == DMConstants.TOKEN_ERROR:
-					return [_build_token_tree_error(sub_tree[0][0].value, token.index), tokens]
+					return [_build_token_tree_error(tree, sub_tree[0][0].value, sub_tree[0][0].i), tokens]
 
 				var type = DMConstants.TOKEN_ARRAY
 				var value = _tokens_to_list(sub_tree[0])
@@ -154,19 +184,21 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 
 				tree.append({
 					type = type,
-					value = value
+					value = value,
+					i = token.index
 				})
 				tokens = sub_tree[1]
 
 			DMConstants.TOKEN_PARENS_OPEN:
 				var sub_tree = _build_token_tree(tokens, line_type, DMConstants.TOKEN_PARENS_CLOSE)
 
-				if sub_tree[0][0].type == DMConstants.TOKEN_ERROR:
-					return [_build_token_tree_error(sub_tree[0][0].value, token.index), tokens]
+				if sub_tree[0].size() > 0 and sub_tree[0][0].type == DMConstants.TOKEN_ERROR:
+					return [_build_token_tree_error(tree, sub_tree[0][0].value, sub_tree[0][0].i), tokens]
 
 				tree.append({
 					type = DMConstants.TOKEN_GROUP,
-					value = sub_tree[0]
+					value = sub_tree[0],
+					i = token.index
 				})
 				tokens = sub_tree[1]
 
@@ -174,7 +206,12 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 			DMConstants.TOKEN_BRACE_CLOSE, \
 			DMConstants.TOKEN_BRACKET_CLOSE:
 				if token.type != expected_close_token:
-					return [_build_token_tree_error(DMConstants.ERR_UNEXPECTED_CLOSING_BRACKET, token.index), tokens]
+					return [_build_token_tree_error(tree, DMConstants.ERR_UNEXPECTED_CLOSING_BRACKET, token.index), tokens]
+
+				tree.append({
+					type = token.type,
+					i = token.index
+				})
 
 				return [tree, tokens]
 
@@ -184,14 +221,17 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 					tokens.pop_front()
 				else:
 					tree.append({
-						type = token.type
+						type = token.type,
+						i = token.index
 					})
 
 			DMConstants.TOKEN_COMMA, \
 			DMConstants.TOKEN_COLON, \
-			DMConstants.TOKEN_DOT:
+			DMConstants.TOKEN_DOT, \
+			DMConstants.TOKEN_NULL_COALESCE:
 				tree.append({
-					type = token.type
+					type = token.type,
+					i = token.index
 				})
 
 			DMConstants.TOKEN_COMPARISON, \
@@ -206,28 +246,32 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 					value = "or"
 				tree.append({
 					type = token.type,
-					value = value
+					value = value,
+					i = token.index
 				})
 
 			DMConstants.TOKEN_STRING:
 				if token.value.begins_with("&"):
 					tree.append({
 						type = token.type,
-						value = StringName(token.value.substr(2, token.value.length() - 3))
+						value = StringName(token.value.substr(2, token.value.length() - 3)),
+						i = token.index
 					})
 				else:
 					tree.append({
 						type = token.type,
-						value = token.value.substr(1, token.value.length() - 2)
+						value = token.value.substr(1, token.value.length() - 2),
+						i = token.index
 					})
 
 			DMConstants.TOKEN_CONDITION:
-				return [_build_token_tree_error(DMConstants.ERR_UNEXPECTED_CONDITION, token.index), token]
+				return [_build_token_tree_error(tree, DMConstants.ERR_UNEXPECTED_CONDITION, token.index), token]
 
 			DMConstants.TOKEN_BOOL:
 				tree.append({
 					type = token.type,
-					value = token.value.to_lower() == "true"
+					value = token.value.to_lower() == "true",
+					i = token.index
 				})
 
 			DMConstants.TOKEN_NUMBER:
@@ -237,21 +281,24 @@ func _build_token_tree(tokens: Array[Dictionary], line_type: String, expected_cl
 				if tree.size() > 0 and token.value.begins_with("-") and tree[tree.size() - 1].type == DMConstants.TOKEN_NUMBER:
 					tree.append(({
 						type = DMConstants.TOKEN_OPERATOR,
-						value = "-"
+						value = "-",
+						i = token.index
 					}))
 					tree.append({
 						type = token.type,
-						value = -1 * value
+						value = -1 * value,
+						i = token.index
 					})
 				else:
 					tree.append({
 						type = token.type,
-						value = value
+						value = value,
+						i = token.index
 					})
 
 	if expected_close_token != "":
-		var index: int = tokens[0].index if tokens.size() > 0 else 0
-		return [_build_token_tree_error(DMConstants.ERR_MISSING_CLOSING_BRACKET, index), tokens]
+		var index: int = tokens[0].i if tokens.size() > 0 else 0
+		return [_build_token_tree_error(tree, DMConstants.ERR_MISSING_CLOSING_BRACKET, index), tokens]
 
 	return [tree, tokens]
 
@@ -317,8 +364,8 @@ func _check_next_token(token: Dictionary, next_tokens: Array[Dictionary], line_t
 
 		DMConstants.TOKEN_COMPARISON, \
 		DMConstants.TOKEN_OPERATOR, \
-		DMConstants.TOKEN_COMMA, \
 		DMConstants.TOKEN_DOT, \
+		DMConstants.TOKEN_NULL_COALESCE, \
 		DMConstants.TOKEN_NOT, \
 		DMConstants.TOKEN_AND_OR, \
 		DMConstants.TOKEN_DICTIONARY_REFERENCE:
@@ -327,6 +374,20 @@ func _check_next_token(token: Dictionary, next_tokens: Array[Dictionary], line_t
 				DMConstants.TOKEN_COMMA,
 				DMConstants.TOKEN_COLON,
 				DMConstants.TOKEN_COMPARISON,
+				DMConstants.TOKEN_ASSIGNMENT,
+				DMConstants.TOKEN_OPERATOR,
+				DMConstants.TOKEN_AND_OR,
+				DMConstants.TOKEN_PARENS_CLOSE,
+				DMConstants.TOKEN_BRACE_CLOSE,
+				DMConstants.TOKEN_BRACKET_CLOSE,
+				DMConstants.TOKEN_DOT
+			]
+
+		DMConstants.TOKEN_COMMA:
+			unexpected_token_types = [
+				null,
+				DMConstants.TOKEN_COMMA,
+				DMConstants.TOKEN_COLON,
 				DMConstants.TOKEN_ASSIGNMENT,
 				DMConstants.TOKEN_OPERATOR,
 				DMConstants.TOKEN_AND_OR,
@@ -379,7 +440,8 @@ func _check_next_token(token: Dictionary, next_tokens: Array[Dictionary], line_t
 				DMConstants.TOKEN_BRACKET_OPEN
 			]
 
-	if (expected_token_types.size() > 0 and not next_token.type in expected_token_types or unexpected_token_types.size() > 0 and next_token.type in unexpected_token_types):
+	if (expected_token_types.size() > 0 and not next_token.type in expected_token_types) \
+	or (unexpected_token_types.size() > 0 and next_token.type in unexpected_token_types):
 		match next_token.type:
 			null:
 				return DMConstants.ERR_UNEXPECTED_END_OF_EXPRESSION
@@ -442,9 +504,9 @@ func _tokens_to_dictionary(tokens: Array[Dictionary]) -> Dictionary:
 	for i in range(0, tokens.size()):
 		if tokens[i].type == DMConstants.TOKEN_COLON:
 			if tokens.size() == i + 2:
-				dictionary[tokens[i-1]] = tokens[i+1]
+				dictionary[tokens[i - 1]] = tokens[i + 1]
 			else:
-				dictionary[tokens[i-1]] = { type = DMConstants.TOKEN_GROUP, value = tokens.slice(i+1) }
+				dictionary[tokens[i - 1]] = { type = DMConstants.TOKEN_GROUP, value = tokens.slice(i + 1), i = tokens[0].i }
 
 	return dictionary
 

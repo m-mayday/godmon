@@ -5,7 +5,7 @@ class_name DMCompilerRegEx extends RefCounted
 var IMPORT_REGEX: RegEx = RegEx.create_from_string("import \"(?<path>[^\"]+)\" as (?<prefix>[a-zA-Z_\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]+)")
 var USING_REGEX: RegEx = RegEx.create_from_string("^using (?<state>.*)$")
 var INDENT_REGEX: RegEx = RegEx.create_from_string("^\\t+")
-var VALID_TITLE_REGEX: RegEx = RegEx.create_from_string("^[a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]+$")
+var VALID_TITLE_REGEX: RegEx = RegEx.create_from_string("^[a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]*$")
 var BEGINS_WITH_NUMBER_REGEX: RegEx = RegEx.create_from_string("^\\d")
 var CONDITION_REGEX: RegEx = RegEx.create_from_string("(if|elif|while|else if|match|when) (?<expression>.*)\\:?")
 var WRAPPED_CONDITION_REGEX: RegEx = RegEx.create_from_string("\\[if (?<expression>.*)\\]")
@@ -38,6 +38,7 @@ var TOKEN_DEFINITIONS: Dictionary = {
 	DMConstants.TOKEN_NUMBER: RegEx.create_from_string("^\\-?\\d+(\\.\\d+)?"),
 	DMConstants.TOKEN_OPERATOR: RegEx.create_from_string("^(\\+|\\-|\\*|/|%)"),
 	DMConstants.TOKEN_COMMA: RegEx.create_from_string("^,"),
+	DMConstants.TOKEN_NULL_COALESCE: RegEx.create_from_string("^\\?\\."),
 	DMConstants.TOKEN_DOT: RegEx.create_from_string("^\\."),
 	DMConstants.TOKEN_STRING: RegEx.create_from_string("^&?(\".*?\"|\'.*?\')"),
 	DMConstants.TOKEN_NOT: RegEx.create_from_string("^(not( |$)|!)"),

@@ -77,7 +77,7 @@ func _ready() -> void:
 		elif background_container != null:
 			background_container.hide()
 	)
-	
+
 	if background_container != null:
 		item_rect_changed.connect(_on_item_rect_changed)
 
@@ -112,22 +112,27 @@ func _configure_focus() -> void:
 
 		if i == 0:
 			item.focus_neighbor_top = item.get_path()
+			item.focus_neighbor_left = item.get_path()
 			item.focus_previous = item.get_path()
 		else:
 			item.focus_neighbor_top = items[i - 1].get_path()
+			item.focus_neighbor_left = items[i - 1].get_path()
 			item.focus_previous = items[i - 1].get_path()
 
 		if i == items.size() - 1:
 			item.focus_neighbor_bottom = item.get_path()
+			item.focus_neighbor_right = item.get_path()
 			item.focus_next = item.get_path()
 		else:
 			item.focus_neighbor_bottom = items[i + 1].get_path()
+			item.focus_neighbor_right = items[i + 1].get_path()
 			item.focus_next = items[i + 1].get_path()
 
 		item.mouse_entered.connect(_on_response_mouse_entered.bind(item))
 		item.gui_input.connect(_on_response_gui_input.bind(item, item.get_meta("response")))
 
 	items[0].grab_focus()
+
 
 #endregion
 
@@ -142,7 +147,7 @@ func _on_response_mouse_entered(item: Control) -> void:
 
 func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:
 	if "Disallowed" in item.name: return
-	
+
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		get_viewport().set_input_as_handled()
 		response_selected.emit(response)
