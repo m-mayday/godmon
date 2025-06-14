@@ -131,6 +131,16 @@ func apply_dialogue_line() -> void:
 	# Wait for input
 	if dialogue_line.responses.size() > 0:
 		balloon.focus_mode = Control.FOCUS_NONE
+		match dialogue_line.halignment:
+			"left":
+				$Balloon/Responses.position.x = 0.0
+			"center":
+				$Balloon/Responses.position.x = get_viewport().get_visible_rect().size.x / 2 - $Balloon/Responses.size.x / 2
+		match dialogue_line.valignment:
+			"top":
+				%ResponsesMenu.size_flags_vertical = Control.SizeFlags.SIZE_SHRINK_BEGIN
+			"center":
+				%ResponsesMenu.size_flags_vertical = Control.SizeFlags.SIZE_SHRINK_CENTER
 		responses_menu.show()
 	elif dialogue_line.time != "":
 		var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()

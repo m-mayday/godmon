@@ -13,6 +13,10 @@ var mutations: Array[Array] = []
 var time: String = ""
 ## If "input" icon should be shown at the end.
 var icon: bool = false
+## The responses' menu horizontal alignment (left, center, right)
+var halignment: String
+## The responses' vertical alignment (top, center, bottom)
+var valignment: String
 
 func _init(line: String) -> void:
 	text = line
@@ -40,7 +44,7 @@ func _init(line: String) -> void:
 	var accumulaive_length_offset = 0
 	for position in bbcode_positions:
 		# Ignore our own markers
-		if position.code in ["wait", "speed", "/speed", "do", "do!", "set", "next", "if", "else", "/if", "icon"]:
+		if position.code in ["wait", "speed", "/speed", "do", "do!", "set", "next", "if", "else", "/if", "icon", "halignment", "valignment"]:
 			continue
 
 		bbcodes.append({
@@ -95,6 +99,10 @@ func _init(line: String) -> void:
 				time = args.get("value") if args.has("value") else "0"
 			"icon":
 				icon = true
+			"halignment":
+				halignment = args.get("value", "right")
+			"valignment":
+				valignment = args.get("value", "bottom")
 
 		# Find any BB codes that are after this index and remove the length from their start
 		var length = bbcode.bbcode.length()

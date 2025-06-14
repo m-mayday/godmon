@@ -11,6 +11,9 @@ signal response_selected(response)
 ## Optionally specify a control to duplicate for each response
 @export var response_template: Control
 
+## A container that will hold the responses
+@export var background_container: Control
+
 ## The action for accepting a response (is possibly overridden by parent dialogue balloon).
 @export var next_action: StringName = &""
 
@@ -50,6 +53,8 @@ var responses: Array = []:
 				# If the item has a response property then use that
 				if "response" in item:
 					item.response = response
+				elif item.get_child_count() > 0 and item.get_child(0) is Label:
+					item.get_child(0).text = response.text
 				# Otherwise assume we can just set the text
 				else:
 					item.text = response.text
@@ -67,7 +72,14 @@ func _ready() -> void:
 			var first_item: Control = get_menu_items()[0]
 			if first_item.is_inside_tree():
 				first_item.grab_focus()
+			if background_container != null:
+				background_container.show()
+		elif background_container != null:
+			background_container.hide()
 	)
+	
+	if background_container != null:
+		item_rect_changed.connect(_on_item_rect_changed)
 
 	if is_instance_valid(response_template):
 		response_template.hide()
@@ -117,7 +129,6 @@ func _configure_focus() -> void:
 
 	items[0].grab_focus()
 
-
 #endregion
 
 #region Signals
@@ -144,3 +155,9 @@ func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:
 				response_selected.emit(resp)
 
 #endregion
+
+## Adapt the background container size according to the responses
+func _on_item_rect_changed() -> void:
+	if background_container:
+		background_container.size = size + Constants.TILE_SIZE * Vector2.ONE
+		background_container.position = global_position - Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE / 2)

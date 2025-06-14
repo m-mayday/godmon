@@ -56,7 +56,14 @@ var mutation: Dictionary = {}
 ## The conditions to check before including this line in the flow of dialogue. If failed the line will be skipped over.
 var conditions: Dictionary = {}
 
+## If the line should have an icon to advance text at the end
 var icon: bool = false
+
+## The responses' menu horizontal alignment (left, center, right)
+var halignment: String
+
+## The responses' menu vertical alignment (top, center, bottom)
+var valignment: String
 
 func _init(data: Dictionary = {}) -> void:
 	if data.size() > 0:
@@ -79,6 +86,8 @@ func _init(data: Dictionary = {}) -> void:
 				tags = data.get("tags", [])
 				concurrent_lines = data.get("concurrent_lines", [] as Array[DialogueLine])
 				icon = data.get("icon", false)
+				halignment = data.get("halignment", "right")
+				valignment = data.get("valignment", "bottom")
 			DMConstants.TYPE_MUTATION:
 				mutation = data.mutation
 
