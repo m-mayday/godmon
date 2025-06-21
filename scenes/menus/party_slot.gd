@@ -36,8 +36,8 @@ func _on_focus_exited() -> void:
 func _on_pokemon_changed() -> void:
 	var pokemon: Pokemon
 	var index: int = get_index()
-	if context == CONTEXT.OVERWORLD and len(Global.player_party) > index:
-		pokemon = Global.player_party[index]
+	if context == CONTEXT.OVERWORLD and len(Global.game_data.player_party) > index:
+		pokemon = Global.game_data.player_party[index]
 	elif context == CONTEXT.BATTLE and len(Global.player_side_battlers) > index:
 		pokemon = Global.player_side_battlers[index].pokemon
 	if pokemon != null:

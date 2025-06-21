@@ -1,0 +1,804 @@
+[gd_scene load_steps=56 format=3 uid="uid://c7y7j2cwcyshr"]
+
+[ext_resource type="Script" uid="uid://7hldwlfai6nu" path="res://scenes/intro.gd" id="1_ioskq"]
+[ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="2_wfs7u"]
+[ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="3_es01l"]
+[ext_resource type="Resource" uid="uid://cv0r1pkmwgt46" path="res://scenes/intro.dialogue" id="4_0naf5"]
+[ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="5_bu1yb"]
+[ext_resource type="Texture2D" uid="uid://bcfgaku3g6stf" path="res://assets/battle/front/CHARIZARD.png" id="6_0naf5"]
+[ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="6_bu1yb"]
+[ext_resource type="Texture2D" uid="uid://3tyc21g5q2uc" path="res://assets/battle/ball.png" id="7_bu1yb"]
+[ext_resource type="Script" uid="uid://d1wwwa85ui1p5" path="res://events/general/parallel_actions.gd" id="7_t1qkj"]
+[ext_resource type="Texture2D" uid="uid://bgvn45exoxuly" path="res://assets/characters/Player1_F.png" id="8_n6p8m"]
+[ext_resource type="Texture2D" uid="uid://b0i3l260mwkt1" path="res://assets/characters/Player2_F.png" id="9_m3r7s"]
+[ext_resource type="Texture2D" uid="uid://bomd8siuu53rx" path="res://assets/characters/Professor_F.png" id="10_m3r7s"]
+[ext_resource type="Texture2D" uid="uid://dp3sd4coi8den" path="res://assets/characters/Rival_F.png" id="13_m3r7s"]
+
+[sub_resource type="Resource" id="Resource_t1qkj"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = [NodePath(".")]
+title = "start"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_m3r7s"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["send_out", "send_out", "call_back"]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_wfs7u"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = []
+title = "send"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_272cy"]
+script = ExtResource("7_t1qkj")
+actions = Array[ExtResource("2_wfs7u")]([SubResource("Resource_m3r7s"), SubResource("Resource_wfs7u")])
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
+
+[sub_resource type="Resource" id="Resource_u5myo"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["send_out", "call_back", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_37iue"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = []
+title = "call"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_n6p8m"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_out_professor", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_xwriy"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = [NodePath(".")]
+title = "gender"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_u05oh"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_in_player", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_epycs"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = []
+title = "name"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_hai50"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_out_player", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_17bgi"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath("LineEdit")
+function_name = "show"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_dryi7"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "_grab_line_edit_focus"
+arguments = []
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_5pmge"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath("Player")
+function_name = "set"
+arguments = ["position", Vector2(666, 264)]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_ge50m"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_in_player", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_kh17o"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = [NodePath(".")]
+title = "confirm"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_sg54v"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "set"
+arguments = ["_player_name_chosen", true]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_t5vr6"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_out_player", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_4vp3x"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_in_rival", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_urird"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = [NodePath(".")]
+title = "rival"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_yj5im"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["slide_right_rival", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_h7rjp"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = [NodePath(".")]
+title = "rival_name"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_6ac85"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = [NodePath(".")]
+title = "rival_confirm"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_38pnl"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_out_rival", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_lm4bj"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath("Player")
+function_name = "set"
+arguments = ["position", Vector2(376, 264)]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_x2gsc"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["fade_in_player", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_366e5"]
+script = ExtResource("5_bu1yb")
+dialogue = ExtResource("4_0naf5")
+balloon = ExtResource("3_es01l")
+extra_states = [NodePath(".")]
+title = "intro_end"
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://d0klwgscjl6ym"
+
+[sub_resource type="Resource" id="Resource_y6kq6"]
+script = ExtResource("6_bu1yb")
+node_path = NodePath(".")
+function_name = "play_animation"
+arguments = ["end", "", ""]
+is_player = false
+wait_after = Array[float]([])
+metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Gradient" id="Gradient_sjfbp"]
+offsets = PackedFloat32Array(0.239535, 0.416279)
+colors = PackedColorArray(0.25098, 0.533333, 0.501961, 1, 0.878431, 0.941176, 0.909804, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ioskq"]
+gradient = SubResource("Gradient_sjfbp")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_272cy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pokeball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pokeball:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pokemon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pokemon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pokemon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(316, 247)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Professor:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Player:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.982264)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rival:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(376, 264)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BG:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Player:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.18, 3.18)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Player/Mask:color")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Player:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ge50m"]
+resource_name = "end"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3.18, 3.18), Vector2(0.6, 0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player/Mask:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.188235), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_n6p8m"]
+resource_name = "fade_in_player"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5.96046e-08, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xwriy"]
+resource_name = "fade_in_professor"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Professor:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u5myo"]
+resource_name = "fade_in_rival"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rival:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m3r7s"]
+resource_name = "fade_out_player"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_37iue"]
+resource_name = "fade_out_professor"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Professor:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u05oh"]
+resource_name = "fade_out_rival"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rival:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t1qkj"]
+resource_name = "send_out"
+length = 2.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"send_out",
+"time": 0.0
+}, {
+"color": Color(0, 0, 0, 1),
+"name": &"call_back",
+"time": 1.26667
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pokeball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.33333, 1.3, 1.86666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pokeball:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099997, 0.199997, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pokemon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266664, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pokemon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.766663, 1.3, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2.5, 2.5), Vector2(2.5, 2.5), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pokemon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.266664, 0.799997, 1.26667, 1.3, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(316, 247), Vector2(302, 222), Vector2(263, 182), Vector2(334, 352), Vector2(334, 352), Vector2(342, 246)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 0.666663, 1.1, 1.3, 1.56666, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_epycs"]
+resource_name = "slide_right_rival"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rival:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(376, 264), Vector2(666, 264)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37iue"]
+_data = {
+&"RESET": SubResource("Animation_272cy"),
+&"end": SubResource("Animation_ge50m"),
+&"fade_in_player": SubResource("Animation_n6p8m"),
+&"fade_in_professor": SubResource("Animation_xwriy"),
+&"fade_in_rival": SubResource("Animation_u5myo"),
+&"fade_out_player": SubResource("Animation_m3r7s"),
+&"fade_out_professor": SubResource("Animation_37iue"),
+&"fade_out_rival": SubResource("Animation_u05oh"),
+&"send_out": SubResource("Animation_t1qkj"),
+&"slide_right_rival": SubResource("Animation_epycs")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6p8m"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0.247059, 0.529412, 0.501961, 1)
+
+[node name="Intro" type="CanvasLayer"]
+script = ExtResource("1_ioskq")
+actions = Array[ExtResource("2_wfs7u")]([SubResource("Resource_t1qkj"), SubResource("Resource_272cy"), SubResource("Resource_u5myo"), SubResource("Resource_37iue"), SubResource("Resource_n6p8m"), SubResource("Resource_xwriy"), SubResource("Resource_u05oh"), SubResource("Resource_epycs"), SubResource("Resource_hai50"), SubResource("Resource_17bgi"), SubResource("Resource_dryi7"), SubResource("Resource_5pmge"), SubResource("Resource_ge50m"), SubResource("Resource_kh17o"), SubResource("Resource_sg54v"), SubResource("Resource_t5vr6"), SubResource("Resource_4vp3x"), SubResource("Resource_urird"), SubResource("Resource_yj5im"), SubResource("Resource_h7rjp"), SubResource("Resource_6ac85"), SubResource("Resource_38pnl"), SubResource("Resource_lm4bj"), SubResource("Resource_x2gsc"), SubResource("Resource_366e5"), SubResource("Resource_y6kq6")])
+player_male_texture = ExtResource("8_n6p8m")
+player_female_texture = ExtResource("9_m3r7s")
+
+[node name="BG" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ioskq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_37iue")
+}
+
+[node name="Professor" type="Sprite2D" parent="."]
+position = Vector2(400, 264)
+scale = Vector2(3.17969, 3.17969)
+texture = ExtResource("10_m3r7s")
+
+[node name="Pokeball" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(327, 252)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_bu1yb")
+centered = false
+vframes = 3
+region_rect = Rect2(0, 0, 12, 48)
+
+[node name="Pokemon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(316, 247)
+texture = ExtResource("6_0naf5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Player" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.982264)
+clip_children = 2
+position = Vector2(376, 264)
+scale = Vector2(3.18, 3.18)
+
+[node name="Mask" type="ColorRect" parent="Player"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -48.0
+offset_right = -32.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Rival" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(376, 264)
+scale = Vector2(3.18, 3.18)
+texture = ExtResource("13_m3r7s")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+custom_minimum_size = Vector2(300, 60)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_colors/font_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_n6p8m")
+placeholder_text = "Enter name..."
+alignment = 1
+max_length = 12
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+caret_blink = true
+
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_name_submitted"]

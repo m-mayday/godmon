@@ -10,6 +10,12 @@ enum MOVEMENT_STATE {
 	JUMPING,
 }
 
+enum GENDER {
+	MALE,
+	FEMALE,
+	NONE,
+}
+
 enum TRAINER_AI_FLAGS {
 	RandomMove, ## Choose a random (usable) move
 	ConsiderLevel, ## Prefer a weaker target when choosing a move
@@ -79,7 +85,6 @@ static var species = {
 	SPECIES.BLASTOISE: "blastoise",
 }
 
-enum GENDER { MALE, FEMALE, GENDERLESS }
 enum GENDER_RATIO { ALWAYS_MALE, FEMALE_ONE_EIGHTH, FEMALE_25_PERENT, FEMALE_50_PERCENT, FEMALE_75_PERCENT, FEMALE_SEVEN_EIGHTHS, ALWAYS_FEMALE, GENDERLESS}
 
 enum BATTLE_SIZE {

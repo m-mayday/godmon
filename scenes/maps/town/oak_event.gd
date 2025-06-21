@@ -4,6 +4,10 @@ var player: Area2D
 
 @export var actions: Array[EventAction] = []
 
+func _ready() -> void:
+	if Global.EVENT_FLAGS["pallet_town_get_starter"] > 0:
+		queue_free()
+
 ## Execution of the event
 func _execute() -> void:
 	if player != null and not actions.is_empty():

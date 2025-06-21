@@ -21,3 +21,16 @@ extends Resource
 
 # Individual nodes can't be exported from resources
 var ai: BeehaveTree ## The AI node to call to make decisions
+
+## Increases this trainer's global flag by 1
+func increase_defeat_flag() -> int:
+	assert(defeat_flag != "", "Defeat flag not set for trainer")
+	var count: int = Global.TRAINER_FLAGS.get(defeat_flag, 0)
+	count += 1
+	Global.TRAINER_FLAGS[defeat_flag] = count
+	return count
+
+## Gets this trainer's flag count
+func get_defeat_count() -> int:
+	assert(defeat_flag != "", "Defeat flag not set for trainer")
+	return Global.TRAINER_FLAGS.get(defeat_flag, 0) 

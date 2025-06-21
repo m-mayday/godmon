@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @export var menu: Control
 @export var options_container: VBoxContainer
-
+@export var player_label: Label
 
 ## The scenes to be shown when a button is pressed. To be set from the editor.
 @export var screens: Dictionary[String, PackedScene] = {
@@ -29,6 +29,8 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not menu.visible:
+		if Global.game_data.player_name != "":
+			player_label.text = Global.game_data.player_name
 		var first_option: Node = _get_first_visible_option()
 		if first_option == null:
 			return # Don't open menu if there are no visible options in it

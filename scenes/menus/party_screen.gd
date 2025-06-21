@@ -64,7 +64,7 @@ func request_switch(event: RequestSwitchEvent):
 func set_pokemon(pokemon: Pokemon) -> void:
 	var slot: TextureButton = slots_container.get_child(_selected_slot_index) as TextureButton
 	slot.texture_normal = _current_slot_normal_texture
-	var index: int = Global.player_party.find(pokemon)
+	var index: int = Global.game_data.player_party.find(pokemon)
 	slot = slots_container.get_child(index) as TextureButton
 	_selected_slot_index = index
 	_current_slot_normal_texture = slot.texture_normal

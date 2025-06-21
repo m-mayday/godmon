@@ -42,7 +42,7 @@ func with_data(data: Array) -> void:
 	SignalBus.battle_event.connect(_on_battle_event)
 	SignalBus.turn_ended.connect(_target_menu.on_turn_ended)
 	party_screen.screen_closed.connect(_on_party_screen_closed)
-	_battle = Battle.new(Global.player_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
+	_battle = Battle.new(Global.game_data.player_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
 	_fight_menu.move_chosen.connect(_target_menu.on_move_chosen)
 	_target_menu.target_chosen.connect(_on_target_chosen)
 	_battle.battle_start() # Start the battle
@@ -300,7 +300,7 @@ func _pop_menu() -> void:
 func _on_battle_end(win: bool) -> void:
 	# Temporary. Heal party if battle is lost
 	if not win:
-		for pokemon in Global.player_party:
+		for pokemon in Global.game_data.player_party:
 			pokemon.current_hp = pokemon.stats.hp
 			
 	get_tree().root.get_node("Main").return_to_previous_scenes()

@@ -24,7 +24,7 @@ func _ready() -> void:
 	_normal_stylebox = slot.get_theme_stylebox("normal")
 	_focus_stylebox = slot.get_theme_stylebox("focus")
 	location_label.text = Global.get_current_save_location()
-	player_name_label.text = Global.player_name
+	player_name_label.text = Global.game_data.player_name
 	select_slot()
 
 
@@ -66,7 +66,7 @@ func save_game() -> void:
 	var slot_index: int = _selected_slot_index
 	if _selected_slot_index > len(_save_files)-1:
 		slot_index = maxi(0, len(_save_files))
-	if Global.save_game(slot_index):
+	if Global.game_data.save_game(slot_index, get_tree()):
 		_populate_save_slots()
 		balloon.start(game_saved_message, "start")
 		await balloon.dialogue_label.finished_typing

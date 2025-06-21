@@ -5,9 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="3_kmppb"]
 [ext_resource type="PackedScene" uid="uid://132oh70ugaoq" path="res://scenes/cutscenes/stairs/stairs.tscn" id="4_rwgo6"]
 
-[node name="RedsHouse" type="Node2D" node_paths=PackedStringArray("player_spawn_marker")]
+[node name="RedsHouse" type="Node2D" node_paths=PackedStringArray("player_spawn_marker", "player_spawns")]
 script = ExtResource("1_82fhn")
-player_spawn_marker = NodePath("Spawn")
+player_spawn_marker = NodePath("GameStartPosition")
+player_spawns = {
+"res://scenes/maps/town/town.tscn": NodePath("Spawn")
+}
 save_location = "PALLET TOWN"
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -24,6 +27,9 @@ tile_set = ExtResource("2_rwgo6")
 
 [node name="Spawn" type="Marker2D" parent="."]
 position = Vector2(48, 112)
+
+[node name="GameStartPosition" type="Marker2D" parent="."]
+position = Vector2(384, 80)
 
 [node name="Exit" parent="." instance=ExtResource("3_kmppb")]
 position = Vector2(48, 128)

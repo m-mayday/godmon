@@ -6,6 +6,8 @@ extends Node2D
 @export var transition_color: ColorRect
 @export var player: Node2D
 @export var reaction: PackedScene ## Reaction scene (exclamation mark)
+@export var intro_scene: PackedScene
+@export var main_menu: PackedScene
 
 var current_scene: Node # The current scene loaded
 var previous_scene: Node # The previous "current" scene when loading or changing a scene
@@ -17,9 +19,14 @@ var thread: Thread # Thread to load adjacent scenes
 func _ready() -> void:
 	SignalBus.input_paused.emit(true)
 	thread = Thread.new()
-	if not await Global.load_game(0):
-		await load_scene("res://scenes/maps/town/town.tscn")
-	Global.start_play_time_tracking()
+	if len(Global.get_save_files()) <= 0:
+		play_intro()
+	else:
+		var menu = main_menu.instantiate()
+		animator.play_backwards("fade_in")
+		add_child(menu)
+		await animator.animation_finished
+		SignalBus.input_paused.emit(true)
 	SignalBus.zone_changed.connect(_change_scene)
 
 
@@ -41,8 +48,9 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 	Cutscene._is_cutscene_in_progress = true # Loading a scene is a special case that we'd like to treat as a cutscene
 	# Fade out transition
 	transition_layer.visible = true
-	animator.play("fade_in")
-	await animator.animation_finished
+	if current_scene != null:
+		animator.play("fade_in")
+		await animator.animation_finished
 	var previous_scene_path: String = ""
 	if current_scene != null:
 		previous_scene_path = current_scene.scene_file_path
@@ -208,3 +216,16 @@ func play_reaction_player(offset: Vector2):
 	reaction_node.play()
 	await reaction_node.animation_finished
 	reaction_node.queue_free()
+
+## Play the game's intro
+func play_intro() -> void:
+	var intro = intro_scene.instantiate()
+	animator.play_backwards("fade_in")
+	add_child(intro)
+	await animator.animation_finished
+	SignalBus.input_paused.emit(true)
+	await intro.intro_finished
+	player.turn(Vector2.UP)
+	intro.queue_free()
+	Global.start_play_time_tracking()
+	load_scene("res://scenes/maps/town/redshouse.tscn")

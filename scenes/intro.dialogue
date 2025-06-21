@@ -1,0 +1,68 @@
+~ start
+Hello, there!\nGlad to meet you![icon]
+Welcome to the world of POKéMON![icon]
+My name is OAK.[icon]
+People affectionately refer to me\nas the POKéMON PROFESSOR.[icon]
+do show_pokeball()
+This world...[next=0.4]
+=> END
+~ send
+...is inhabited far and wide by\ncreatures called POKéMON.[icon]
+For some people, POKéMON are pets.\nOthers use them for battling.[icon]
+As for myself...[icon]
+I study POKéMON as a profession.[icon]
+=> END
+~ call
+But first, tell me a little about\nyourself.[icon]
+=> END
+~ gender
+Now tell me. Are you a boy?\nOr are you a girl?
+- BOY
+	do set_player_texture(Constants.GENDER.MALE)
+- GIRL
+	do set_player_texture(Constants.GENDER.FEMALE)
+=> END
+~ name
+Let's begin with your name.\nWhat is it?[icon]
+=> END
+~ confirm
+Right...\nSo your name is {{player_name}}.[halignment=left][valignment=top]
+- YES
+- NO
+	set current_action_index = 7
+=> END
+~ rival
+This is my grandson.[icon]
+He's been your rival since you both\nwere babies.[icon]
+=> END
+~ rival_name
+if rival_name != ""
+	Your rival's name, what was it now?[halignment=left][valignment=center]
+else
+	...Erm, what was his name now?[halignment=left][valignment=center]
+- NEW NAME
+	do input_rival_name()
+- GREEN
+	set rival_name = "GREEN"
+- GARY
+	set rival_name = "GARY"
+- KAZ
+	set rival_name = "KAZ"
+- TORU
+	set rival_name = "TORU"
+=> END
+~ rival_confirm
+...Er, was it {{rival_name}}?[halignment=left][valignment=top]
+- YES
+	=> rival_confirmed
+- NO
+	set current_action_index = 18
+=> END
+~ rival_confirmed
+That's right! I remember now!\nHis name is {{rival_name}}![icon]
+=> END
+~ intro_end
+{{player_name}}![icon]
+Your very own POKéMON legend is\nabout to unfold![icon]
+A world of dreams and adventures\nwith POKéMON awaits! Let's go![next=0.5]
+=> END

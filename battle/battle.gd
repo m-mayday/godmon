@@ -380,8 +380,9 @@ func _battle_ended(emit_end_signal: bool = true) -> bool:
 			Global.player_side_battlers = []
 			Global.foe_side_battlers = []
 			SignalBus.battle_ended.emit(won)
-	if not escaped and won and not sides[1].battlers[0].pokemon.trainer.defeat_flag.is_empty():
-		Global.TRAINER_FLAGS[sides[1].battlers[0].pokemon.trainer.defeat_flag] += 1
+	if sides[1].battlers[0].pokemon.trainer != null:
+		if not escaped and won and not sides[1].battlers[0].pokemon.trainer.defeat_flag.is_empty():
+			sides[1].battlers[0].pokemon.trainer.increase_defeat_flag()
 	return ended
 
 

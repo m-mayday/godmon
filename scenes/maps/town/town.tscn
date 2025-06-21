@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
 [ext_resource type="PackedScene" uid="uid://ciggbtucojvh7" path="res://scenes/cutscenes/dialogue/balloon_signs.tscn" id="11_tpn7j"]
 [ext_resource type="Resource" uid="uid://bm5rbiqaj4tbk" path="res://scenes/maps/town/dialogue/red_house.dialogue" id="12_fffuf"]
-[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/NPC02.png" id="12_idgr4"]
+[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/Professor.png" id="12_idgr4"]
 [ext_resource type="Texture2D" uid="uid://ckloy1tk22xle" path="res://assets/overworld-animations.png" id="13_7avvi"]
 [ext_resource type="Resource" uid="uid://dr2nf3uc3rl7k" path="res://scenes/maps/town/dialogue/trainer_tips.dialogue" id="13_k4x0e"]
 [ext_resource type="Resource" uid="uid://bxh7hcbi8d2he" path="res://scenes/maps/town/dialogue/npc.dialogue" id="14_7avvi"]

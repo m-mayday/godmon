@@ -24,7 +24,7 @@ var triggered_by_sight: bool = false
 
 
 func _ready():
-	if Global.TRAINER_FLAGS[trainer.defeat_flag] <= 0:
+	if trainer.get_defeat_count() <= 0:
 		set_process_unhandled_input(false)
 		SignalBus.input_paused.connect(_on_input_paused)
 		if start_on_dialogue != null:
@@ -107,7 +107,7 @@ func _start_battle() -> void:
 ## Checks if battle should be triggered by dialogue (i.e, the player talks to the trainer without being spotted)
 func _on_dialogue_ended(resource: DialogueResource) -> void:
 	if resource == start_on_dialogue and not triggered_by_sight:
-		if Global.TRAINER_FLAGS[trainer.defeat_flag] > 0:
+		if trainer.get_defeat_count() > 0:
 			return
 		triggered_by_dialogue = true
 		run()
@@ -115,7 +115,7 @@ func _on_dialogue_ended(resource: DialogueResource) -> void:
 
 ## Frees the collision so it's not possible to trigger the battle by sight
 func _on_tree_entered() -> void:
-	if Global.TRAINER_FLAGS[trainer.defeat_flag] > 0:
+	if trainer.get_defeat_count() > 0:
 		if collision != null:
 			collision.queue_free()
 		if triggered_by_dialogue or triggered_by_sight:

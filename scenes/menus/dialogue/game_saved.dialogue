@@ -1,3 +1,3 @@
 ~ start
-{{Global.player_name}} saved the game.
+{{Global.game_data.player_name}} saved the game.
 => END

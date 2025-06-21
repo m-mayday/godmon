@@ -15,9 +15,9 @@ func _ready() -> void:
 ## Change the current pokemon being displayed
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down"):
-		set_pokemon_index(wrapi(_pokemon_index + 1, 0, Global.player_party.size()))
+		set_pokemon_index(wrapi(_pokemon_index + 1, 0, Global.game_data.player_party.size()))
 	elif event.is_action_pressed("ui_up"):
-		set_pokemon_index(wrapi(_pokemon_index - 1, 0, Global.player_party.size()))
+		set_pokemon_index(wrapi(_pokemon_index - 1, 0, Global.game_data.player_party.size()))
 		
 
 ## Change title and sub screen being displayed, hiding the previous one
@@ -41,13 +41,13 @@ func _on_tab_button_focus_entered(index: int) -> void:
 func set_pokemon_index(index: int) -> void:
 	_pokemon_index = index
 	_change_data()
-	get_tree().call_group("summary", "set_pokemon", Global.player_party[_pokemon_index])
+	get_tree().call_group("summary", "set_pokemon", Global.game_data.player_party[_pokemon_index])
 
 
 ## Display current pokemon data
 func _change_data() -> void:
-	if _pokemon_index >= 0 and _pokemon_index < Global.player_party.size():
-		var pokemon: Pokemon = Global.player_party[_pokemon_index]
+	if _pokemon_index >= 0 and _pokemon_index < Global.game_data.player_party.size():
+		var pokemon: Pokemon = Global.game_data.player_party[_pokemon_index]
 		$Control/Name.text = pokemon.name
 		$Control/Lv.text = str(pokemon.level)
 		$Control/Sprite2D.texture = pokemon.species.front_sprite

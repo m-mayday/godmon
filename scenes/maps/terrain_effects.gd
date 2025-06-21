@@ -12,6 +12,11 @@ var _node_in_cell: bool = false ## If node is currently in a cell
 var _cell_coordinates: Vector2 = Vector2.ZERO ## The coordinates of the cell the node is in
 var _cell_data: TileData = null ## The custom data of the cell the node is in
 var _grass_overlay_rect: TextureRect = null ## Grass overlay to add to the node
+var _scene_loading: bool = true
+
+
+func _ready() -> void:
+	SignalBus.scene_transition_finished.connect(func(_a, _b): _scene_loading = false, CONNECT_ONE_SHOT)
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -27,6 +32,9 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 		_cell_coordinates = layer.get_coords_for_body_rid(body_rid)
 		_cell_data = layer.get_cell_tile_data(layer.get_coords_for_body_rid(body_rid))
 		_node_in_cell = true
+		if _scene_loading:
+			_enter_tree()
+			_scene_loading = false
 
 
 func _on_movement_finished(previous_state: Constants.MOVEMENT_STATE, _new_state: Constants.MOVEMENT_STATE) -> void:
@@ -98,4 +106,4 @@ func _add_grass_overlay():
 		_grass_overlay_rect = TextureRect.new()
 		_grass_overlay_rect.texture = grass_overlay_texture
 		_grass_overlay_rect.position = node.position
-		node.get_parent().add_child(_grass_overlay_rect)
+		node.get_parent().call_deferred("add_child", _grass_overlay_rect)

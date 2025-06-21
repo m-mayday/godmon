@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="2_ilbmh"]
 [ext_resource type="Script" uid="uid://d4lpe4hrgc4ys" path="res://scenes/maps/town/starter_event.gd" id="4_ayi68"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="5_kobdt"]
-[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/NPC02.png" id="6_3su1y"]
+[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/Professor.png" id="6_3su1y"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="7_msfrt"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="8_aw4qv"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="9_c6f6u"]
@@ -77,6 +77,7 @@ script = ExtResource("13_p2ckj")
 dialogue = ExtResource("12_6n0d5")
 balloon = ExtResource("11_8kk1v")
 extra_states = []
+title = "start"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 

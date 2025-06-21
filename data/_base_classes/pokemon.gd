@@ -27,16 +27,10 @@ class_name Pokemon
 @export var stats: Stats = Stats.new() ## This Pokemon current stats
 
 ## This Pokemon IVs
-@export var ivs: Stats = Stats.new():
-	set(value):
-		ivs = value
-		_calculate_stats() 
+@export var ivs: Stats = Stats.new()
 		
 ## This Pokemon EVs
-@export var evs: Stats = Stats.new():
-	set(value):
-		evs = value
-		_calculate_stats() 
+@export var evs: Stats = Stats.new()
 
 ## This Pokemon current moveset
 @export var moves: Array[Move]:

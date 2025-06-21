@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnojhfvnb87my"]
+
+[ext_resource type="Script" uid="uid://dmitccu3rnkqi" path="res://scenes/menus/main_menu.gd" id="1_6bivr"]
+[ext_resource type="Texture2D" uid="uid://3nfpanty48va" path="res://assets/ui/panel_beigeLight.png" id="1_ovrgc"]
+[ext_resource type="Texture2D" uid="uid://ujghvquaawh2" path="res://assets/ui/panel_blue.png" id="2_2o76q"]
+[ext_resource type="PackedScene" uid="uid://buu2ngj34qmgp" path="res://scenes/menus/save_slot.tscn" id="2_6bivr"]
+[ext_resource type="Texture2D" uid="uid://bk1omj05cx5sx" path="res://assets/ui/panel_brown.png" id="5_imvie"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ovrgc"]
+texture = ExtResource("1_ovrgc")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_imvie"]
+texture = ExtResource("2_2o76q")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ng0o5"]
+texture = ExtResource("5_imvie")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bivr"]
+texture = ExtResource("2_2o76q")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("save_slot_template", "options_container", "new_game_option")]
+script = ExtResource("1_6bivr")
+save_slot_template = NodePath("Control/MarginContainer/VBoxContainer/SaveTemplate")
+options_container = NodePath("Control/MarginContainer/VBoxContainer")
+new_game_option = NodePath("Control/MarginContainer/VBoxContainer/Button")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ovrgc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="SaveTemplate" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/SaveTemplate"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.376471, 0.376471, 0.376471, 1)
+text = " CONTINUE "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/SaveTemplate/Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_imvie")
+
+[node name="SaveSlot" parent="Control/MarginContainer/VBoxContainer/SaveTemplate" instance=ExtResource("2_6bivr")]
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxTexture_ng0o5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6bivr")
+text = "NEW GAME"
+alignment = 0
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Button" to="." method="_on_new_game_pressed"]

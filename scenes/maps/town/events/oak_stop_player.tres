@@ -31,6 +31,7 @@ script = ExtResource("5_4b5ak")
 dialogue = ExtResource("4_fu2s8")
 balloon = ExtResource("3_yh1b7")
 extra_states = []
+title = "start"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
