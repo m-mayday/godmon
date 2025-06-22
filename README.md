@@ -13,13 +13,17 @@ I've extended the tilemaps and made some sprites myself too, you'll know which o
 * [Dialogue Manager](https://github.com/nathanhoad/godot_dialogue_manager) for most of the dialogue in the game.
 
 ### What's done so far
-* Player movement: walking, turning, running and jumping
+* Player movement: walking, turning, running and jumping (ledges)
 * Map loading:
   * Chunk system to load and unload adjacent maps
   * Transition to other maps
   * Transition within a same map (stairs)
-* Party screen
+* Save/Load game (Up to 3 save files)
+* Menus:
+  * Party screen
+  * Pokemon summary
 * Wild encounters
+* Basic trainer battles
 * Battles are playable from start to finish but there's a lot of stuff missing. See the section below.
 
 ### What's missing
@@ -30,14 +34,13 @@ Too much to list but most notably:
   * A lot of abilities
   * Weather
   * Animations
-  * Trainer battles
+  * Improved trainer battles
   * Improved switching on Double and Triple battles
   * Shifting on Triple battles
   * EXP and Money rewards
 * Menus
   * Trainer card
   * Pokedex
-  * Pokemon summary
 * And much more...
 
 ### Notes
