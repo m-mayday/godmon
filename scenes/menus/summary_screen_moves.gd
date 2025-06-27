@@ -30,7 +30,7 @@ func _update_info() -> void:
 	for i in moves.get_child_count():
 		var button: Button = moves.get_child(i)
 		if i < len(_pokemon.moves):
-			button.get_node("Type").text = Constants.types[_pokemon.moves[i].type].to_upper()
+			button.get_node("Type").text = Constants.TYPES.keys()[_pokemon.moves[i].type]
 			button.get_node("Move").text = _pokemon.moves[i].name.to_upper()
 			button.get_node("PP").text = "PP {0}/{1}".format([_pokemon.moves[i].current_pp, _pokemon.moves[i].total_pp])
 			button.show()
