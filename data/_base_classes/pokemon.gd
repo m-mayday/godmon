@@ -54,7 +54,7 @@ func _init(species_id: Constants.SPECIES = Constants.SPECIES.NONE, initial_level
 		return
 	species = Constants.get_species_by_id(species_id)
 	level = initial_level
-	_calculate_stats()
+	experience = species.growth_rate.get_level_minimum_exp(level)
 	_set_moves_from_learnset()
 
 

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Species" load_steps=22 format=3 uid="uid://bep0hloqk8s4o"]
+[gd_resource type="Resource" script_class="Species" load_steps=23 format=3 uid="uid://bep0hloqk8s4o"]
 
 [ext_resource type="Texture2D" uid="uid://d30t01ilwifka" path="res://assets/battle/back/CHARIZARD.png" id="1_dk3e4"]
 [ext_resource type="Script" uid="uid://oyduvbth7hyh" path="res://data/_base_classes/species.gd" id="1_imqwd"]
 [ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="1_sau7s"]
 [ext_resource type="Texture2D" uid="uid://bcfgaku3g6stf" path="res://assets/battle/front/CHARIZARD.png" id="3_xolsu"]
 [ext_resource type="Script" uid="uid://b4a150pehfr1e" path="res://data/_base_classes/learnset.gd" id="4_dk3e4"]
+[ext_resource type="Resource" uid="uid://bc31l4xqoaew6" path="res://data/growth_rates/medium_slow.tres" id="4_xolsu"]
 [ext_resource type="Resource" uid="uid://cshrkwblaiitr" path="res://data/types/fire.tres" id="6_67e61"]
 [ext_resource type="Script" uid="uid://8dnhbexpyrtn" path="res://data/_base_classes/sprite_metrics.gd" id="7_16ane"]
 [ext_resource type="Script" uid="uid://cyqe3y2yhg1n7" path="res://data/_base_classes/type.gd" id="7_dk3e4"]
@@ -88,7 +89,7 @@ species_id = 6
 name = &"Charizard"
 types = Array[ExtResource("7_dk3e4")]([ExtResource("6_67e61"), ExtResource("7_kxs23")])
 base_stats = SubResource("Resource_dornh")
-base_exp = 100
+base_exp = 267
 evs = SubResource("Resource_cyka3")
 catch_rate = 255
 happiness = 70
@@ -108,6 +109,7 @@ height = 0.1
 weight = 0.1
 category = &"???"
 pokedex = "???"
+growth_rate = ExtResource("4_xolsu")
 front_sprite = ExtResource("3_xolsu")
 back_sprite = ExtResource("1_dk3e4")
 sprite_metrics = SubResource("Resource_xesgn")

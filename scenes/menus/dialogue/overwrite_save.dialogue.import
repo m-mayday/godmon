@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_14"
+importer="dialogue_manager"
+importer_version=15
 type="Resource"
 uid="uid://n8mtslwl61j1"
 path="res://.godot/imported/overwrite_save.dialogue-69edb3c358c8991248df4df3a3fcff8c.tres"

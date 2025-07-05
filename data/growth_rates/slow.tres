@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GrowthRate" load_steps=2 format=3 uid="uid://eo3frr11p2au"]
+
+[ext_resource type="Script" uid="uid://fmiudvyai22g" path="res://data/_base_classes/growth_rate.gd" id="1_7x63k"]
+
+[resource]
+script = ExtResource("1_7x63k")
+id = 2
+metadata/_custom_type_script = "uid://fmiudvyai22g"

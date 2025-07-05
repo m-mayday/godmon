@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_14"
+importer="dialogue_manager"
+importer_version=15
 type="Resource"
 uid="uid://cj228njn2w3w0"
 path="res://.godot/imported/select_save_slot.dialogue-f7b41c7d444934cc8739f2350bab54e0.tres"
