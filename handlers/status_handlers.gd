@@ -81,7 +81,7 @@ class Burn extends StatusHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
 		print("Burn reduced ", battler.pokemon.name, "'s HP. Current: ", battler.pokemon.current_hp)
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is burned!", [battler.pokemon.name]))
-		battler.damage(int(battler.pokemon.stats.hp / 16))
+		battler.damage(int(battler.pokemon.stats.hp / 16), true)
 		print("HP after burn: ", battler.pokemon.current_hp)
 
 
@@ -119,7 +119,7 @@ class Poison extends StatusHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
 		print("Poison reduced ", battler.pokemon.name, "'s HP. Current: ", battler.pokemon.current_hp)
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is poisoned!", [battler.pokemon.name]))
-		battler.damage(int(battler.pokemon.stats.hp / 8))
+		battler.damage(int(battler.pokemon.stats.hp / 8), true)
 		print("HP after poison: ", battler.pokemon.current_hp)
 
 
@@ -153,7 +153,7 @@ class BadPoison extends StatusHandler:
 		print("Bad Poison counter: ", counter)
 		print("Bad Poison reduced ", battler.pokemon.name, "'s HP. Current: ", battler.pokemon.current_hp)
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is poisoned!", [battler.pokemon.name]))
-		battler.damage(maxi(1, int(battler.pokemon.stats.hp / 16)) * counter)
+		battler.damage(maxi(1, int(battler.pokemon.stats.hp / 16)) * counter, true)
 		print("HP after poison: ", battler.pokemon.current_hp)
 		if counter < 15:
 			counter += 1

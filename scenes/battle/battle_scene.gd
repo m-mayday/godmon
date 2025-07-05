@@ -104,6 +104,8 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 			if remaining_exp.exp_gained > 0.0:
 				get_tree().call_group("battlers", "exp_gained", remaining_exp)
 				await _await_event_signals(remaining_exp)
+	elif event is BattleEndEvent:
+		_on_battle_end(event)
 		
 	if event.post_await > 0.0:
 		await get_tree().create_timer(event.post_await).timeout
@@ -322,9 +324,9 @@ func _pop_menu() -> void:
 
 
 ## Returning to previous scene when battle ends
-func _on_battle_end(win: bool) -> void:
+func _on_battle_end(event: BattleEndEvent) -> void:
 	# Temporary. Heal party if battle is lost
-	if not win:
+	if not event.won:
 		for pokemon in Global.game_data.player_party:
 			pokemon.current_hp = pokemon.stats.hp
 			

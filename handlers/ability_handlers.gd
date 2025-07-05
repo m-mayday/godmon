@@ -319,8 +319,7 @@ class RoughSkin extends AbilityHandler:
 			return
 		if not move.flags.has(Constants.MOVE_FLAGS.CONTACT):
 			return
-		user.damage(user.pokemon.stats.hp / 8)
-		return
+		user.damage(user.pokemon.stats.hp / 8, true)
 
 
 class WonderGuard extends AbilityHandler:

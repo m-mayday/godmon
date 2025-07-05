@@ -148,13 +148,15 @@ func faint() -> void:
 
 ## [Public] Substracts damage from the pokemon's current hp
 ## Adds a HealthChanged event to the battle events
-## If hp drops to zero, faint() is called
-func damage(p_damage: int) -> void:
+## If hp drops to zero and the flag is true, faint() is called
+func damage(p_damage: int, p_faint: bool = false) -> void:
 	if is_fainted():
 		return
 	var after_damage_hp: int = maxi(pokemon.current_hp - p_damage, 0)
 	battle.add_battle_event(HealthChangedEvent.new(pokemon, after_damage_hp))
 	pokemon.current_hp = after_damage_hp
+	if pokemon.current_hp <= 0 and p_faint:
+		faint()
 
 
 ## [Public] Adds hpp to the pokemon's current hp

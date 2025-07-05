@@ -351,6 +351,7 @@ func _end_turn_phase():
 		faint_queue.clear()
 	
 	if _battle_ended():
+		_change_state(STATE.PROCESSING_EVENTS)
 		return
 	
 	add_battle_event(ChangeStateEvent.new(STATE.COMMAND_PHASE))
@@ -363,8 +364,8 @@ func _end_turn_phase():
 	SignalBus.turn_ended.emit(sides[0].active, sides[1].active)
 
 
-## [Private] Checks if battle has ended (1 side has no more battlers left). Emits battle_ended signal if parameter is true.
-func _battle_ended(emit_end_signal: bool = true) -> bool:
+## [Private] Checks if battle has ended (1 side has no more battlers left). Adds BattleEnd event if parameter is true.
+func _battle_ended(add_event: bool = true) -> bool:
 	var ended: bool = false
 	var won: bool = false
 	if escaped:
@@ -381,10 +382,10 @@ func _battle_ended(emit_end_signal: bool = true) -> bool:
 	if sides[1].battlers[0].pokemon.trainer != null:
 		if not escaped and won and not sides[1].battlers[0].pokemon.trainer.defeat_flag.is_empty():
 			sides[1].battlers[0].pokemon.trainer.increase_defeat_flag()
-	if ended and emit_end_signal:
+	if ended and add_event:
 			Global.player_side_battlers = []
 			Global.foe_side_battlers = []
-			SignalBus.battle_ended.emit(won)
+			add_battle_event(BattleEndEvent.new(won, escaped))
 	return ended
 
 
