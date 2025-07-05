@@ -10,7 +10,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_t7xrx"]
 
-[node name="Databox" type="Control" node_paths=PackedStringArray("name_label", "level_label", "bottom_texture", "status_texture", "hp_bar", "hp_container", "hp_label")]
+[node name="Databox" type="Control" node_paths=PackedStringArray("name_label", "level_label", "bottom_texture", "status_texture", "hp_bar", "hp_container", "hp_label", "exp_bar")]
 custom_minimum_size = Vector2(312, 111)
 layout_mode = 3
 anchors_preset = 0
@@ -24,6 +24,7 @@ status_texture = NodePath("StatusContainer/HBoxContainer/Status")
 hp_bar = NodePath("StatusContainer/HBoxContainer/HPTexture/HpProgressBar")
 hp_container = NodePath("HPContainer")
 hp_label = NodePath("HPContainer/HP")
+exp_bar = NodePath("ExpTexture/ExpBar")
 
 [node name="Top" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(276, 45)
@@ -143,11 +144,12 @@ texture = ExtResource("5_i8j4c")
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.127
-anchor_right = 0.949
+anchor_left = 0.177
+anchor_right = 0.974
 anchor_bottom = 1.0
-offset_left = -0.0259609
-offset_right = 0.0360107
+offset_left = 0.0368423
+offset_right = 0.0840912
+offset_bottom = 0.00803375
 grow_horizontal = 2
 grow_vertical = 2
 value = 46.0
@@ -182,13 +184,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HpProgressBar" parent="StatusContainer/HBoxContainer/HPTexture" instance=ExtResource("7_wr157")]
 show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.227
-anchor_top = 0.143
-anchor_right = 0.985
-anchor_bottom = 0.857
-offset_left = 0.0179977
-offset_top = -0.00100017
-offset_right = -0.0100098
-offset_bottom = 0.000999451
+layout_mode = 2
+anchor_left = 0.239
+anchor_top = 0.286
+anchor_right = 0.972
+anchor_bottom = 0.714
+offset_left = -0.0200005
+offset_top = -0.00600052
+offset_right = 0.0399933
+offset_bottom = 0.00599861

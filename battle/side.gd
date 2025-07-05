@@ -107,3 +107,12 @@ func all_fainted() -> bool:
 		if not battler.is_fainted():
 			return false
 	return true
+
+
+## Adds the battlers to the battled_against property of each active battler on this side
+func set_battled_against(battlers_faced: Array[Battler]) -> void:
+	for battler in active:
+		for battled in battlers_faced:
+			if battled in battler.battled_against:
+				continue
+			battler.battled_against.push_back(battled)

@@ -11,6 +11,7 @@ var side: Side ## The battler's side in battle
 var id: int ## The battler's id. Equal to the pokemon's id
 var last_move_used: Constants.MOVES = Constants.MOVES.NONE ## Last move used by the battler in the current battle
 var switched_in_this_turn: bool = false ## If this battler was switched in this turn. False means it was already active or was not switched in.
+var battled_against: Array[Battler] ## Foe battlers this battled faced. For EXP/EVs gain.
 
 func _init(p_pokemon: Pokemon, p_battle: Battle) -> void:
 	pokemon = p_pokemon
@@ -115,7 +116,7 @@ func set_status(p_status: Constants.STATUSES, ignore_previous_status: bool = fal
 	battle.add_battle_event(BattleDialogueEvent.new("{0} now has status {1}!", [pokemon.name, new_status.name]))
 	var duration: int = new_status.handler.initial_duration(battle, self)
 	if duration > 0:
-		battler_flags[Constants.statuses[new_status.id]] = duration
+		battler_flags[Constants.STATUSES.keys()[new_status.id].to_lower()] = duration
 	pokemon.status = new_status
 	battle.add_battle_event(StatusSetEvent.new(pokemon, pokemon.status))
 	return true
@@ -126,7 +127,7 @@ func cure_status() -> void:
 	if has_status(Constants.STATUSES.NONE):
 		return
 	battle.add_battle_event(BattleDialogueEvent.new("{0} was cured of its status {1}!", [pokemon.name, pokemon.status.name]))
-	battler_flags.erase(Constants.statuses[pokemon.status.id])
+	battler_flags.erase(Constants.STATUSES.keys()[pokemon.status.id].to_lower())
 	pokemon.status = Constants.get_status_by_id(Constants.STATUSES.NONE)
 	battle.add_battle_event(StatusSetEvent.new(pokemon, pokemon.status))
 	
@@ -140,6 +141,7 @@ func has_status(status: Constants.STATUSES) -> bool:
 func faint() -> void:
 	battle.add_battle_event(FaintEvent.new(self))
 	battle.faint_queue.push_back(self)
+	battle._award_experience(self)
 	# TODO: faint (event)
 	# TODO: after_faint (event)
 

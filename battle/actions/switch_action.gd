@@ -30,4 +30,6 @@ func execute() -> void:
 	switch_out.reset_stat_stages()
 	switch_out.battler_flags.clear()
 	switch_in.switched_in_this_turn = true
+	battle.get_oppossite_side(switch_in.side).set_battled_against([switch_in])
+	switch_in.side.set_battled_against(battle.get_oppossite_side(switch_in.side).active)
 	return
