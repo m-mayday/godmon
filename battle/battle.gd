@@ -329,6 +329,10 @@ func _battle_events_processing_phase():
 ## [Private] Runs every residual handler on each active battler
 ## It emits turn_ended signal at the end
 func _end_turn_phase():
+	if _battle_ended():
+		_change_state(STATE.PROCESSING_EVENTS)
+		return
+
 	# Residual - May have to refactor
 	var active_battlers: Array[Battler] = []
 	for side in sides:
@@ -349,7 +353,7 @@ func _end_turn_phase():
 				add_battle_event(RequestSwitchEvent.new(self, fainted, true))
 				possible_switches -= 1
 		faint_queue.clear()
-	
+
 	if _battle_ended():
 		_change_state(STATE.PROCESSING_EVENTS)
 		return
