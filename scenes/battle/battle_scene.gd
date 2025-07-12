@@ -9,6 +9,7 @@ signal enter ## Emitted when the user presses enter
 @export var party_screen: CanvasLayer ## Party screen for switches
 @export var message_box: NinePatchRect ## The box where messages are displayed
 @export var message_balloon: CanvasLayer ## Balloon to use to show messages
+@export var level_up_popup: Control
 
 ## The different menus in battle
 @export var _fight_menu: Control
@@ -99,6 +100,12 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 		await _await_event_signals(event)
 		_display_battle_message("{0} grew to level {1}!".format([event.pokemon.name, str(event.level)]), null, true)
 		await DialogueManager.dialogue_ended
+		set_process_input(false)
+		level_up_popup.on_level_up(event)
+		level_up_popup.show()
+		await level_up_popup.stats_shown
+		level_up_popup.hide()
+		set_process_input(true)
 		if _levels_gained <= 0:
 			var remaining_exp: ExpGainEvent = ExpGainEvent.new(event.pokemon, event.pokemon.experience - event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level), 1)
 			if remaining_exp.exp_gained > 0.0:

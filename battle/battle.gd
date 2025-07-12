@@ -467,7 +467,7 @@ func _award_experience(fainted: Battler) -> void:
 		add_battle_event(ExpGainEvent.new(battled.pokemon, exp_gained, levels_gained))
 		if levels_gained > 0:
 			for i in range(levels_gained):
-				var previous_stats: Stats = battled.pokemon.stats
+				var previous_stats: Stats = battled.pokemon.stats.duplicate()
 				battled.pokemon.level += 1
 				add_battle_event(LevelUpEvent.new(battled.pokemon, battled.pokemon.level, previous_stats))
 		print("{0} gained {1} exp. points and grew {0} levels.".format([battled.pokemon.name, exp_gained, levels_gained]))

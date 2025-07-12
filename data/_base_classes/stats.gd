@@ -21,3 +21,13 @@ func _init(p_hp = 0, p_attack = 0, p_defense = 0, p_speed = 0, p_special_attack 
 	special_defense = p_special_defense
 	accuracy = 100
 	evasion = 100
+
+func get_stat_list() -> Array[String]:
+	return [
+		"hp",
+		"attack",
+		"defense",
+		"special_attack",
+		"special_defense",
+		"speed",
+	]
