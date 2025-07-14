@@ -93,7 +93,7 @@ class Bound extends FlagHandler:
 		battler.damage(int(battler.pokemon.stats.hp / 8), true)
 		print("HP after bound: ", battler.pokemon.current_hp)
 		bound[1] -= 1
-		if bound[1] <= 0:
+		if bound[1] <= 0 and not battler.is_fainted():
 			battle.add_battle_event(BattleDialogueEvent.new("{0} is no longer bound!", [battler.pokemon.name]))
 			battler.battler_flags.erase("bound")
 			return
@@ -112,6 +112,9 @@ class Flinch extends FlagHandler:
 
 class LockedMove extends FlagHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
+		if battler.is_fainted():
+			battler.battler_flags.erase("lockedmove")
+			return
 		var locked: Array = battler.battler_flags.get("lockedmove")
 		print("Locked move duration: ", locked[3])
 		locked[3] -= 1
@@ -172,10 +175,11 @@ class Seeded extends FlagHandler:
 			print("No battler to heal, so seed won't drain HP")
 			return
 		var damage: int = battler.pokemon.stats.hp / 8
-		battle.add_battle_event(BattleDialogueEvent.new("{0} lost HP due to seed!", [battler.pokemon.name]))
-		battler.damage(damage, true)
-		battle.add_battle_event(BattleDialogueEvent.new("{0} recovered HP due to seed!", [battler_to_heal.pokemon.name]))
+		battle.add_battle_event(BattleDialogueEvent.new("{0}'s health is sapped due to seed!", [battler.pokemon.name]))
+		battler.damage(damage)
 		battler_to_heal.heal(damage)
+		if battler.is_fainted():
+			battler.faint()
 
 
 class Rage extends FlagHandler:
@@ -295,7 +299,7 @@ class LockedOn extends FlagHandler:
 
 class Nightmare extends FlagHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
-		if not battler.has_status(Constants.STATUSES.SLEEP):
+		if not battler.has_status(Constants.STATUSES.SLEEP) or battler.is_fainted():
 			battler.battler_flags.erase("nightmare")
 			return
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is locked in a nightmare!", [battler.pokemon.name]))
@@ -304,12 +308,18 @@ class Nightmare extends FlagHandler:
 
 class Curse extends FlagHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
+		if battler.is_fainted():
+			battler.battler_flags.erase("curse")
+			return
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is hurt by CURSE!", [battler.pokemon.name]))
 		battler.damage(battler.pokemon.stats.hp / 4, true)
 
 
 class PerishSong extends FlagHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
+		if battler.is_fainted():
+			battler.battler_flags.erase("perish_song")
+			return
 		var song: Array = battler.battler_flags.get("perish_song", [])
 		song[1] -= 1
 		if song[1] <= 0:

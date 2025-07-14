@@ -79,6 +79,8 @@ class Burn extends StatusHandler:
 
 
 	func on_residual(battle: Battle, battler: Battler) -> void:
+		if battler.is_fainted():
+			return
 		print("Burn reduced ", battler.pokemon.name, "'s HP. Current: ", battler.pokemon.current_hp)
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is burned!", [battler.pokemon.name]))
 		battler.damage(int(battler.pokemon.stats.hp / 16), true)
@@ -117,6 +119,8 @@ class Paralysis extends StatusHandler:
 
 class Poison extends StatusHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
+		if battler.is_fainted():
+			return
 		print("Poison reduced ", battler.pokemon.name, "'s HP. Current: ", battler.pokemon.current_hp)
 		battle.add_battle_event(BattleDialogueEvent.new("{0} is poisoned!", [battler.pokemon.name]))
 		battler.damage(int(battler.pokemon.stats.hp / 8), true)
@@ -149,6 +153,9 @@ class BadPoison extends StatusHandler:
 
 
 	func on_residual(battle: Battle, battler: Battler) -> void:
+		if battler.is_fainted():
+			battler.battler_flags.erase("bad_poison")
+			return
 		var counter = battler.battler_flags.get("bad_poison")
 		print("Bad Poison counter: ", counter)
 		print("Bad Poison reduced ", battler.pokemon.name, "'s HP. Current: ", battler.pokemon.current_hp)
