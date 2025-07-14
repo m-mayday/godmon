@@ -174,7 +174,7 @@ class Stench extends AbilityHandler:
 
 class SpeedBoost extends AbilityHandler:
 	func on_residual(battle: Battle, battler: Battler) -> void:
-		if battler.switched_in_this_turn:
+		if battler.switched_in_this_turn or battler.is_fainted():
 			return
 		battle.add_battle_event(AbilityEvent.new(battle.sides[0] == battler.side, battler, ability))
 		battler.boost_stat("speed", 1)
@@ -319,8 +319,7 @@ class RoughSkin extends AbilityHandler:
 			return
 		if not move.flags.has(Constants.MOVE_FLAGS.CONTACT):
 			return
-		user.damage(user.pokemon.stats.hp / 8)
-		return
+		user.damage(user.pokemon.stats.hp / 8, true)
 
 
 class WonderGuard extends AbilityHandler:

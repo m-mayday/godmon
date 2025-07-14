@@ -16,6 +16,7 @@ extends Resource
 @export var weight: float = 0.1 ## The species weight
 @export var category: StringName = "???" ## The species category
 @export var pokedex: String = "???" ## The species pokedex entry
+@export var growth_rate: GrowthRate ## The rate at which this species grows (gain experience)
 
 @export_category("Sprite")
 @export var front_sprite: Texture ## The species front sprite

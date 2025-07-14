@@ -53,6 +53,8 @@ func _init(p_player_team: Array[Pokemon], p_opponent_team: Array[Pokemon], size:
 	sides.push_back(Side.new(opponent_team, side_size))
 	Global.assign_player_battler_array(player_team)
 	Global.assign_foe_battler_array(opponent_team)
+	for side in sides:
+		side.set_battled_against(get_oppossite_side(side).active)
 	prng = RandomNumberGenerator.new() # Initialize RNG
 	prng.randomize() # Generate seed
 
@@ -327,6 +329,10 @@ func _battle_events_processing_phase():
 ## [Private] Runs every residual handler on each active battler
 ## It emits turn_ended signal at the end
 func _end_turn_phase():
+	if _battle_ended():
+		_change_state(STATE.PROCESSING_EVENTS)
+		return
+
 	# Residual - May have to refactor
 	var active_battlers: Array[Battler] = []
 	for side in sides:
@@ -347,8 +353,9 @@ func _end_turn_phase():
 				add_battle_event(RequestSwitchEvent.new(self, fainted, true))
 				possible_switches -= 1
 		faint_queue.clear()
-	
+
 	if _battle_ended():
+		_change_state(STATE.PROCESSING_EVENTS)
 		return
 	
 	add_battle_event(ChangeStateEvent.new(STATE.COMMAND_PHASE))
@@ -361,8 +368,8 @@ func _end_turn_phase():
 	SignalBus.turn_ended.emit(sides[0].active, sides[1].active)
 
 
-## [Private] Checks if battle has ended (1 side has no more battlers left). Emits battle_ended signal if parameter is true.
-func _battle_ended(emit_end_signal: bool = true) -> bool:
+## [Private] Checks if battle has ended (1 side has no more battlers left). Adds BattleEnd event if parameter is true.
+func _battle_ended(add_event: bool = true) -> bool:
 	var ended: bool = false
 	var won: bool = false
 	if escaped:
@@ -376,13 +383,13 @@ func _battle_ended(emit_end_signal: bool = true) -> bool:
 		elif foe_side_fainted:
 			ended = true
 			won = true
-	if ended and emit_end_signal:
-			Global.player_side_battlers = []
-			Global.foe_side_battlers = []
-			SignalBus.battle_ended.emit(won)
 	if sides[1].battlers[0].pokemon.trainer != null:
 		if not escaped and won and not sides[1].battlers[0].pokemon.trainer.defeat_flag.is_empty():
 			sides[1].battlers[0].pokemon.trainer.increase_defeat_flag()
+	if ended and add_event:
+			Global.player_side_battlers = []
+			Global.foe_side_battlers = []
+			add_battle_event(BattleEndEvent.new(won, escaped))
 	return ended
 
 
@@ -445,6 +452,29 @@ func _compare_values(a, b) -> bool:
 		return [true, false].pick_random()
 	return false
 
+## Awards experience to each battler the fainted pokemon faced.
+func _award_experience(fainted: Battler) -> void:
+	if fainted.side != sides[1]:
+		return
+	for battled in fainted.battled_against:
+		if battled.is_fainted():
+			continue
+		# If max experience/level, continue
+		var base_exp: float = (float(fainted.pokemon.species.base_exp) * float(fainted.pokemon.level)) / 5.0
+		# TODO: Participated in battle or not (1 / 2)
+		var level_scale: float = (2.0 * float(fainted.pokemon.level) + 10.0) / (float(fainted.pokemon.level) + float(battled.pokemon.level) + 10.0)
+		level_scale = pow(level_scale, 2.5)
+		var exp_gained: int = int(base_exp * level_scale + 1)
+		var new_pokemon_exp: int = mini(battled.pokemon.experience + exp_gained, battled.pokemon.species.growth_rate.get_maximum_experience())
+		battled.pokemon.experience = new_pokemon_exp
+		var levels_gained: int = battled.pokemon.species.growth_rate.get_level_from_experience(new_pokemon_exp) - battled.pokemon.level
+		add_battle_event(ExpGainEvent.new(battled.pokemon, exp_gained, levels_gained))
+		if levels_gained > 0:
+			for i in range(levels_gained):
+				var previous_stats: Stats = battled.pokemon.stats.duplicate()
+				battled.pokemon.level += 1
+				add_battle_event(LevelUpEvent.new(battled.pokemon, battled.pokemon.level, previous_stats))
+		print("{0} gained {1} exp. points and grew {2} levels.".format([battled.pokemon.name, exp_gained, levels_gained]))
 
 ## [Internal] An event to change states, to be added to battle_events instead of
 ## executing immediately.

@@ -9,6 +9,7 @@ signal enter ## Emitted when the user presses enter
 @export var party_screen: CanvasLayer ## Party screen for switches
 @export var message_box: NinePatchRect ## The box where messages are displayed
 @export var message_balloon: CanvasLayer ## Balloon to use to show messages
+@export var level_up_popup: Control
 
 ## The different menus in battle
 @export var _fight_menu: Control
@@ -21,6 +22,7 @@ var _battle: Battle ## Reference to the current battle
 var _ui_stack: Array[Control] = [] ## Stack of menus (Choose action, choose move, choose target, etc.)
 var _current_battler: Battler ## Current battler choosing an action
 
+var _levels_gained: int = 0 ## Levels gained by a battler when gaining experience. Used to animate exp gain and level ups.
 
 var text_advance_arrow_path: String = "res://Assets/Battle/UI/text_advance_arrow.png" # I will leave this like so for now
 	
@@ -79,7 +81,39 @@ func _on_battle_event(event: BaseEvent, emit_handled_signal: bool = true) -> voi
 	elif event is AbilityEvent:
 		get_tree().call_group("ability", "ability_activated", event)
 		await _await_event_signals(event)
-	
+	elif event is ExpGainEvent:
+		_display_battle_message("{0} gained {1} EXP. Points!".format([event.pokemon.name, str(event.exp_gained)]), null, true)
+		await DialogueManager.dialogue_ended
+		if event.levels_gained > 0:
+			_levels_gained = event.levels_gained
+		else:
+			# Only animate the exp gain if there were no level ups.
+			get_tree().call_group("battlers", "exp_gained", event)
+			await _await_event_signals(event)
+	elif event is LevelUpEvent:
+		_levels_gained -= 1
+		# Do it this way to animate gaining the level's full exp, level up, keep gaining exp.
+		var exp_event: ExpGainEvent = ExpGainEvent.new(event.pokemon, event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level), 1)
+		get_tree().call_group("battlers", "exp_gained", exp_event)
+		await _await_event_signals(exp_event)
+		get_tree().call_group("battlers", "level_up", event)
+		await _await_event_signals(event)
+		_display_battle_message("{0} grew to level {1}!".format([event.pokemon.name, str(event.level)]), null, true)
+		await DialogueManager.dialogue_ended
+		set_process_input(false)
+		level_up_popup.on_level_up(event)
+		level_up_popup.show()
+		await level_up_popup.stats_shown
+		level_up_popup.hide()
+		set_process_input(true)
+		if _levels_gained <= 0:
+			var remaining_exp: ExpGainEvent = ExpGainEvent.new(event.pokemon, event.pokemon.experience - event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level), 1)
+			if remaining_exp.exp_gained > 0.0:
+				get_tree().call_group("battlers", "exp_gained", remaining_exp)
+				await _await_event_signals(remaining_exp)
+	elif event is BattleEndEvent:
+		_on_battle_end(event)
+		
 	if event.post_await > 0.0:
 		await get_tree().create_timer(event.post_await).timeout
 
@@ -297,9 +331,9 @@ func _pop_menu() -> void:
 
 
 ## Returning to previous scene when battle ends
-func _on_battle_end(win: bool) -> void:
+func _on_battle_end(event: BattleEndEvent) -> void:
 	# Temporary. Heal party if battle is lost
-	if not win:
+	if not event.won:
 		for pokemon in Global.game_data.player_party:
 			pokemon.current_hp = pokemon.stats.hp
 			

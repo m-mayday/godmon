@@ -44,28 +44,6 @@ enum TYPES {
 	NONE,
 }
 
-static var types = {
-	TYPES.BUG: "bug",
-	TYPES.DARK: "dark",
-	TYPES.DRAGON: "dragon",
-	TYPES.ELECTRIC: "electric",
-	TYPES.FAIRY: "fairy",
-	TYPES.FIGHTING: "fighting",
-	TYPES.FIRE: "fire",
-	TYPES.FLYING: "flying",
-	TYPES.GHOST: "ghost",
-	TYPES.GRASS: "grass",
-	TYPES.GROUND: "ground",
-	TYPES.ICE: "ice",
-	TYPES.NORMAL: "normal",
-	TYPES.POISON: "poison",
-	TYPES.PSYCHIC: "psychic",
-	TYPES.ROCK: "rock",
-	TYPES.STEEL: "steel",
-	TYPES.WATER: "water",
-	TYPES.NONE: "none",
-}
-
 enum SPECIES {
 	NONE,
 	BULBASAUR,
@@ -78,14 +56,17 @@ enum SPECIES {
 	WARTORTLE,
 	BLASTOISE,
 }
-static var species = {
-	SPECIES.BULBASAUR: "bulbasaur",
-	SPECIES.VENUSAUR: "venusaur",
-	SPECIES.CHARIZARD: "charizard",
-	SPECIES.BLASTOISE: "blastoise",
-}
 
 enum GENDER_RATIO { ALWAYS_MALE, FEMALE_ONE_EIGHTH, FEMALE_25_PERENT, FEMALE_50_PERCENT, FEMALE_75_PERCENT, FEMALE_SEVEN_EIGHTHS, ALWAYS_FEMALE, GENDERLESS}
+
+enum GROWTH_RATE {
+	FAST,
+	MEDIUM_FAST,
+	SLOW,
+	MEDIUM_SLOW,
+	ERRATIC,
+	FLUCTUATING,
+}
 
 enum BATTLE_SIZE {
 	NORMAL,
@@ -135,238 +116,6 @@ enum MOVE_FLAGS {
 	EXPLOSION,
 }
 
-static var moves = {
-	MOVES.POUND: "pound",
-	MOVES.KARATE_CHOP: "karate_chop",
-	MOVES.DOUBLE_SLAP: "double_slap",
-	MOVES.COMET_PUNCH: "comet_punch",
-	MOVES.MEGA_PUNCH: "mega_punch",
-	MOVES.PAY_DAY: "pay_day",
-	MOVES.FIRE_PUNCH: "fire_punch",
-	MOVES.ICE_PUNCH: "ice_punch",
-	MOVES.THUNDER_PUNCH: "thunder_punch",
-	MOVES.SCRATCH: "scratch",
-	MOVES.VICE_GRIP: "vice_grip",	
-	MOVES.GUILLOTINE: "guillotine",
-	MOVES.RAZOR_WIND: "razor_wind",
-	MOVES.SWORDS_DANCE: "swords_dance",
-	MOVES.CUT: "cut",
-	MOVES.GUST: "gust",
-	MOVES.WING_ATTACK: "wing_attack",
-	MOVES.WHIRLWIND: "whirlwind",
-	MOVES.FLY: "fly",
-	MOVES.BIND: "bind",
-	MOVES.SLAM: "slam",
-	MOVES.VINE_WHIP: "vine_whip",
-	MOVES.STOMP: "stomp",
-	MOVES.DOUBLE_KICK: "double_kick",
-	MOVES.MEGA_KICK: "mega_kick",
-	MOVES.JUMP_KICK: "jump_kick",
-	MOVES.ROLLING_KICK: "rolling_kick",
-	MOVES.SAND_ATTACK: "sand_attack",
-	MOVES.HEADBUTT: "headbutt",
-	MOVES.HORN_ATTACK: "horn_attack",
-	MOVES.FURY_ATTACK: "fury_attack",
-	MOVES.HORN_DRILL: "horn_drill",
-	MOVES.TACKLE: "tackle",
-	MOVES.BODY_SLAM: "body_slam",
-	MOVES.WRAP: "wrap",
-	MOVES.TAKE_DOWN: "take_down",
-	MOVES.THRASH: "thrash",
-	MOVES.DOUBLE_EDGE: "double_edge",
-	MOVES.TAIL_WHIP: "tail_whip",
-	MOVES.POISON_STING: "poison_sting",
-	MOVES.TWINEEDLE: "twineedle",
-	MOVES.PIN_MISSILE: "pin_missile",
-	MOVES.LEER: "leer",
-	MOVES.BITE: "bite",
-	MOVES.GROWL: "growl",
-	MOVES.ROAR: "roar",
-	MOVES.SING: "sing",
-	MOVES.SUPERSONIC: "supersonic",
-	MOVES.SONIC_BOOM: "sonic_boom",
-	MOVES.DISABLE: "disable",
-	MOVES.ACID: "acid",
-	MOVES.EMBER: "ember",
-	MOVES.FLAMETHROWER: "flamethrower",
-	MOVES.MIST: "mist",
-	MOVES.WATER_GUN: "water_gun",
-	MOVES.HYDRO_PUMP: "hydro_pump",
-	MOVES.SURF: "surf",
-	MOVES.ICE_BEAM: "ice_beam",
-	MOVES.BLIZZARD: "blizzard",
-	MOVES.PSYBEAM: "psybeam",
-	MOVES.BUBBLE_BEAM: "bubble_beam",
-	MOVES.AURORA_BEAM: "aurora_beam",
-	MOVES.HYPER_BEAM: "hyper_beam",
-	MOVES.PECK: "peck",
-	MOVES.DRILL_PECK: "drill_peck",
-	MOVES.SUBMISSION: "submission",
-	MOVES.LOW_KICK: "low_kick",
-	# Counter goes here.
-	MOVES.SEISMIC_TOSS: "seismic_toss",
-	MOVES.STRENGTH: "strength",
-	MOVES.ABSORB: "absorb",
-	MOVES.MEGA_DRAIN: "mega_drain",
-	MOVES.LEECH_SEED: "leech_seed",
-	MOVES.GROWTH: "growth",
-	MOVES.RAZOR_LEAF: "razor_leaf",
-	MOVES.SOLAR_BEAM: "solar_beam",
-	MOVES.POISON_POWDER: "poison_powder",
-	MOVES.STUN_SPORE: "stun_spore",
-	MOVES.SLEEP_POWDER: "sleep_powder",
-	MOVES.PETAL_DANCE: "petal_dance",
-	MOVES.STRING_SHOT: "string_shot",
-	MOVES.DRAGON_RAGE: "dragon_rage",
-	MOVES.FIRE_SPIN: "fire_spin",
-	MOVES.THUNDER_SHOCK: "thunder_shock",
-	MOVES.THUNDERBOLT: "thunderbolt",
-	MOVES.THUNDER_WAVE: "thunder_wave",
-	MOVES.THUNDER: "thunder",
-	MOVES.ROCK_THROW: "rock_throw",
-	MOVES.EARTHQUAKE: "earthquake",
-	MOVES.FISSURE: "fissure",
-	MOVES.DIG: "dig",
-	MOVES.TOXIC: "toxic",
-	MOVES.CONFUSION: "confusion",
-	MOVES.PSYCHIC: "psychic",
-	MOVES.HYPNOSIS: "hypnosis",
-	MOVES.MEDITATE: "meditate",
-	MOVES.AGILITY: "agility",
-	MOVES.QUICK_ATTACK: "quick_attack",
-	MOVES.RAGE: "rage",
-	MOVES.TELEPORT: "teleport",
-	MOVES.NIGHT_SHADE: "night_shade",
-	# Mimic goes here.
-	MOVES.SCREECH: "screech",
-	MOVES.DOUBLE_TEAM: "double_team",
-	MOVES.RECOVER: "recover",
-	MOVES.HARDEN: "harden",
-	MOVES.MINIMIZE: "minimize",
-	MOVES.SMOKESCREEN: "smokescreen",
-	MOVES.CONFUSE_RAY: "confuse_ray",
-	MOVES.WITHDRAW: "withdraw",
-	MOVES.DEFENSE_CURL: "defense_curl",
-	MOVES.BARRIER: "barrier",
-	MOVES.LIGHT_SCREEN: "light_screen",
-	MOVES.HAZE: "haze",
-	MOVES.REFLECT: "reflect",
-	MOVES.FOCUS_ENERGY: "focus_energy",
-	# Bide goes here.
-	# Metronome goes here.
-	# Mirror Move goes here.
-	MOVES.SELF_DESTRUCT: "self_destruct",
-	MOVES.EGG_BOMB: "egg_bomb",
-	MOVES.LICK: "lick",
-	MOVES.SMOG: "smog",
-	MOVES.SLUDGE: "sludge",
-	MOVES.BONE_CLUB: "bone_club",
-	MOVES.FIRE_BLAST: "fire_blast",
-	MOVES.WATERFALL: "waterfall",
-	MOVES.CLAMP: "clamp",
-	MOVES.SWIFT: "swift",
-	MOVES.SKULL_BASH: "skull_bash",
-	MOVES.SPIKE_CANNON: "spike_cannon",
-	MOVES.CONSTRICT: "constrict",
-	MOVES.AMNESIA: "amnesia",
-	MOVES.KINESIS: "kinesis",
-	MOVES.SOFT_BOILED: "soft_boiled",
-	MOVES.HIGH_JUMP_KICK: "high_jump_kick",
-	MOVES.GLARE: "glare",
-	MOVES.DREAM_EATER: "dream_eater",
-	MOVES.POISON_GAS: "poison_gas",
-	MOVES.BARRAGE: "barrage",
-	MOVES.LEECH_LIFE: "leech_life",
-	MOVES.LOVELY_KISS: "lovely_kiss",
-	MOVES.SKY_ATTACK: "sky_attack",
-	# Transform goes here.
-	MOVES.BUBBLE: "bubble",
-	MOVES.DIZZY_PUNCH: "dizzy_punch",
-	MOVES.SPORE: "spore",
-	MOVES.FLASH: "flash",
-	MOVES.PSYWAVE: "psywave",
-	MOVES.SPLASH: "splash",
-	MOVES.ACID_ARMOR: "acid_armor",
-	MOVES.CRABHAMMER: "crabhammer",
-	MOVES.EXPLOSION: "explosion",
-	MOVES.FURY_SWIPES: "fury_swipes",
-	MOVES.BONEMERANG: "bonemerang",
-	MOVES.REST: "rest",
-	MOVES.ROCK_SLIDE: "rock_slide",
-	MOVES.HYPER_FANG: "hyper_fang",
-	MOVES.SHARPEN: "sharpen",
-	# Conversion goes here.
-	MOVES.TRI_ATTACK: "tri_attack",
-	MOVES.SUPER_FANG: "super_fang",
-	MOVES.SLASH: "slash",
-	# Substitute goes here.
-	# Struggle goes here.
-	# Sketch goes here.
-	# Triple Kick goes here.
-	MOVES.THIEF: "thief",
-	# Spider Web goes here.
-	MOVES.MIND_READER: "mind_reader",
-	MOVES.NIGHTMARE: "nightmare",
-	MOVES.FLAME_WHEEL: "flame_wheel",
-	MOVES.SNORE: "snore",
-	MOVES.CURSE: "curse",
-	MOVES.FLAIL: "flail",
-	# Conversion 2 goes here.
-	MOVES.AEROBLAST: "aeroblast",
-	MOVES.COTTON_SPORE: "cotton_spore",
-	MOVES.REVERSAL: "reversal",
-	# Spite goes here.
-	MOVES.POWDER_SNOW: "powder_snow",
-	# Protect goes here.
-	MOVES.MACH_PUNCH: "mach_punch",
-	MOVES.SCARY_FACE: "scary_face",
-	MOVES.FEINT_ATTACK: "feint_attack",
-	MOVES.SWEET_KISS: "sweet_kiss",
-	MOVES.BELLY_DRUM: "belly_drum",
-	MOVES.SLUDGE_BOMB: "sludge_bomb",
-	MOVES.MUD_SLAP: "mud_slap",
-	MOVES.OCTAZOOKA: "octazooka",
-	# Spikes goes here.
-	MOVES.ZAP_CANNON: "zap_cannon",
-	# Foresight goes here.
-	# Destiny Bond goes here.
-	MOVES.PERISH_SONG: "perish_song",
-	MOVES.ICY_WIND: "icy_wind",
-	# Detect goes here.
-	MOVES.BONE_RUSH: "bone_rush",
-	MOVES.LOCK_ON: "lock_on",
-	MOVES.OUTRAGE: "outrage",
-	# Sandstorm goes here.
-	MOVES.GIGA_DRAIN: "giga_drain",
-	# Endure goes here.
-	MOVES.CHARM: "charm",
-	MOVES.ROLLOUT: "rollout",
-	MOVES.FALSE_SWIPE: "false_swipe",
-	MOVES.SWAGGER: "swagger",
-	MOVES.MILK_DRINK: "milk_drink",
-	MOVES.SPARK: "spark",
-	MOVES.FURY_CUTTER: "fury_cutter",
-	MOVES.WAVE_CRASH: "wave_crash",
-	MOVES.IRON_DEFENSE: "iron_defense",
-	MOVES.SHELL_SMASH: "shell_smash",
-	MOVES.AQUA_TAIL: "aqua_tail",
-	MOVES.RAIN_DANCE: "rain_dance",
-	MOVES.PROTECT: "protect",
-	MOVES.WATER_PULSE: "water_pulse",
-	MOVES.RAPID_SPIN: "rapid_spin",
-	MOVES.POWER_WHIP: "power_whip",
-	MOVES.WORRY_SEED: "worry_seed",
-	MOVES.SYNTHESIS: "synthesis",
-	MOVES.SWEET_SCENT: "sweet_scent",
-	MOVES.SEED_BOMB: "seed_bomb",
-	MOVES.FLARE_BLITZ: "flare_blitz",
-	MOVES.INFERNO: "inferno",
-	MOVES.FIRE_FANG: "fire_fang",
-	MOVES.DRAGON_BREATH: "dragon_breath",
-	MOVES.HEAT_WAVE: "heat_wave",
-	MOVES.DRAGON_CLAW: "dragon_claw",
-}
-
 enum ABILITY_FLAGS {
 	NEUTRALIZABLE,
 	FAIL_ROLE_PLAY,
@@ -379,104 +128,10 @@ enum ABILITY_FLAGS {
 	NO_TRANSFORM,
 }
 
-static var abilities = {
-	ABILITIES.NONE: "none",
-	ABILITIES.STENCH: "stench",
-	# Drizzle goes here
-	ABILITIES.SPEED_BOOST: "speed_boost",
-	ABILITIES.BATTLE_ARMOR: "battle_armor",
-	ABILITIES.STURDY: "sturdy",
-	ABILITIES.DAMP: "damp",
-	ABILITIES.LIMBER: "limber",
-	# Sand Veil goes here
-	ABILITIES.STATIC: "static",
-	ABILITIES.VOLT_ABSORB: "volt_absorb",
-	ABILITIES.WATER_ABSORB: "water_absorb",
-	# Oblivious goes here
-	# Cloud Nine goes here
-	ABILITIES.COMPOUND_EYES: "compound_eyes",
-	ABILITIES.INSOMNIA: "insomnia",
-	# Color Change goes here
-	ABILITIES.IMMUNITY: "immunity",
-	ABILITIES.FLASH_FIRE: "flash_fire",
-	# Shield Dust goes here
-	# Own Tempo goes here
-	# Suction Cups goes here
-	# Intimidate goes here
-	# Shadow Tag goes here
-	ABILITIES.ROUGH_SKIN: "rough_skin",
-	ABILITIES.WONDER_GUARD: "wonder_guard",
-	ABILITIES.LEVITATE: "levitate",
-	ABILITIES.EFFECT_SPORE: "effect_spore",
-	# Synchronize goes here
-	ABILITIES.CLEAR_BODY: "clear_body",
-	# Natural Cure goes here
-	ABILITIES.LIGHTNING_ROD: "lightning_rod",
-	ABILITIES.SERENE_GRACE: "serene_grace",
-	# Swift Swim goes here
-	# Chlorophyll goes here
-	# Illuminate goes here
-	# Trace goes here
-	ABILITIES.HUGE_POWER: "huge_power",
-	ABILITIES.POISON_POINT: "poison_point",
-	# Inner Focus goes here
-	ABILITIES.MAGMA_ARMOR: "magma_armor",
-	ABILITIES.WATER_VEIL: "water_veil",
-	# Magnet Pull goes here
-	ABILITIES.SOUNDPROOF: "soundproof",
-	# Rain Dish goes here
-	# Sand Stream goes here
-	# Pressure goes here
-	ABILITIES.THICK_FAT: "thick_fat",
-	# Early Bird goes here
-	ABILITIES.FLAME_BODY: "flame_body",
-	# Run Away goes here
-	ABILITIES.KEEN_EYE: "keen_eye",
-	ABILITIES.HYPER_CUTTER: "hyper_cutter",
-	# Pickup goes here
-	ABILITIES.TRUANT: "truant",
-	ABILITIES.HUSTLE: "hustle",
-	# Cute Charm goes here
-	# Plus goes here
-	# Minus goes here
-	# Forecast goes here
-	# Sticky Hold goes here
-	ABILITIES.SHED_SKIN: "shed_skin",
-	ABILITIES.GUTS: "guts",
-	ABILITIES.MARVEL_SCALE: "marvel_scale",
-	# Liquid Ooze goes here
-	ABILITIES.OVERGROW: "overgrow",
-	ABILITIES.BLAZE: "blaze",
-	ABILITIES.TORRENT: "torrent",
-	ABILITIES.SWARM: "swarm",
-	# Rock Head goes here
-	# Drought goes here
-	# Arena Trap goes here
-	ABILITIES.VITAL_SPIRIT: "vital_spirit",
-	ABILITIES.WHITE_SMOKE: "white_smoke",
-	ABILITIES.PURE_POWER: "pure_power",
-	ABILITIES.SHELL_ARMOR: "shell_armor",
-}
-
-static var statuses = {
-	STATUSES.NONE: "none",
-	STATUSES.BURN: "burn",
-	STATUSES.FREEZE: "freeze",
-	STATUSES.PARALYSIS: "paralysis",
-	STATUSES.POISON: "poison",
-	STATUSES.SLEEP: "sleep",
-	STATUSES.BAD_POISON: "bad_poison",
-}
-
 enum ITEMS {
 	NONE,
 	QUICK_CLAW,
 	CUSTAP_BERRY,
-}
-
-static var items = {
-	ITEMS.NONE: "none",
-	ITEMS.QUICK_CLAW: "quick_claw",
 }
 
 enum ACTIONS { NONE, MOVE, SWITCH, ITEM, CALL, RUN, SHIFT }
@@ -491,23 +146,29 @@ static var statuses_dir = "res://data/status/"
 static var items_dir = "res://data/items/"
 
 static func get_species_by_id(id: SPECIES):
-	return load(species_dir + species[id] + ".tres")
+	assert(SPECIES.values().has(id), "Unknown species ID")
+	return load(species_dir + SPECIES.keys()[id].to_lower() + ".tres")
 	
 static func get_type_by_id(id: TYPES):
-	return load(types_dir + types[id] + ".tres")
+	assert(TYPES.values().has(id), "Unknown type ID")
+	return load(types_dir + TYPES.keys()[id].to_lower() + ".tres")
 
 static func get_move_by_id(id: MOVES):
-	assert(moves.has(id), "Move not in dictionary")
-	return ResourceLoader.load(moves_dir + moves[id] + ".tres", "", ResourceLoader.CACHE_MODE_IGNORE)
+	assert(MOVES.values().has(id), "Unknown move ID")
+	# Ignore cache so things like PP are not shared between Pokemon
+	return ResourceLoader.load(moves_dir + MOVES.keys()[id].to_lower() + ".tres", "", ResourceLoader.CACHE_MODE_IGNORE)
 
 static func get_status_by_id(id: STATUSES):
-	return load(statuses_dir + statuses[id] + ".tres")
+	assert(STATUSES.values().has(id), "Unknown status ID")
+	return load(statuses_dir + STATUSES.keys()[id].to_lower() + ".tres")
 	
 static func get_ability_by_id(id: ABILITIES):
-	return load(abilities_dir + abilities[id] + ".tres")
+	assert(ABILITIES.values().has(id), "Unknown ability ID")
+	return load(abilities_dir + ABILITIES.keys()[id].to_lower() + ".tres")
 	
 static func get_item_by_id(id: ITEMS):
-	return load(items_dir + items[id] + ".tres")
+	assert(ITEMS.values().has(id), "Unknown item ID")
+	return load(items_dir + ITEMS.keys()[id].to_lower() + ".tres")
 
 enum FLAGS {
 	BOUND,

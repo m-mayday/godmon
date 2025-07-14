@@ -15,7 +15,7 @@ enum DATABOX_SIZE {NORMAL, THIN} ## Determines which size the databox is (Normal
 @export var hp_bar: TextureProgressBar
 @export var hp_container: MarginContainer ## Optional. Main databox only
 @export var hp_label: Label ## Optional. Main databox only
-
+@export var exp_bar: TextureProgressBar ## Optional. Main databox only
 
 ## Indicates if the HP bar should be animated when HP changes
 ## False is typically used when a Pokemon enters battle
@@ -31,7 +31,7 @@ var _is_choosing_action: bool ## Indicates if this databox's battler is the one 
 var _battler: Battler:
 	set(value):
 		_battler = value
-		_update_data(_battler.pokemon.current_hp)
+		_set_data()
 
 
 func _ready():
@@ -103,9 +103,44 @@ func health_changed(event: HealthChangedEvent) -> void:
 	if _battler == null:
 		return
 	if _battler.id == event.pokemon.id:
+		hp_bar.max_value = _battler.pokemon.stats.hp
+		if hp_container != null:
+			hp_label.text = "{0} / {1}".format([event.new_hp, _battler.pokemon.stats.hp])
 		if _animate:
 			event.await_signals.push_back(animation_finished)
-		_update_data(event.new_hp)
+			var tween: Tween = get_tree().create_tween()
+			tween.set_parallel()
+			tween.tween_method(_set_hp_label, hp_bar.value, event.new_hp, 0.5)
+			tween.tween_property(hp_bar, "value", event.new_hp, 0.5)
+			tween.play()
+			await tween.finished
+			hp_bar.set_hp_bar_progress(event.new_hp, _battler.pokemon.stats.hp)
+			animation_finished.emit()
+		else:
+			hp_bar.value = _battler.pokemon.current_hp
+
+
+## Animates the battler gaining experience (if there's an experience bar)
+func exp_gained(event: ExpGainEvent) -> void:
+	if event.pokemon.id == _battler.id and exp_bar != null:
+		event.await_signals.push_back(animation_finished)
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(exp_bar, "value", exp_bar.value + event.exp_gained, 0.5)
+		tween.play()
+		await tween.finished
+		animation_finished.emit()
+
+
+## Updates the level label and sets the new values for the experience bar.
+func level_up(event: LevelUpEvent) -> void:
+	if event.pokemon.id == _battler.id:
+		level_label.text = str(_battler.pokemon.level)
+		if hp_label != null:
+			hp_label.text = "{0} / {1}".format([_battler.pokemon.current_hp, _battler.pokemon.stats.hp])
+		if exp_bar != null:
+			exp_bar.min_value = event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level)
+			exp_bar.max_value = event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level + 1)
+			exp_bar.value = event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level)
 
 
 ## Changes to the new active battler in this position when the current one leaves battle
@@ -121,7 +156,7 @@ func _on_switched_in(switched_out: Battler, switched_in: Battler, _index_out: in
 
 
 ## Updates the data displayed to reflect any changes (i.e.: HP increase/decrease, battler change, etc.)
-func _update_data(new_health) -> void:
+func _update_data(new_health: int) -> void:
 	if _battler != null:
 		level_label.text = str(_battler.pokemon.level)
 		name_label.text = _battler.pokemon.name
@@ -144,7 +179,28 @@ func _update_data(new_health) -> void:
 		else:
 			hp_bar.value = _battler.pokemon.current_hp
 
+## Sets the initial data every time the battler changes.
+func _set_data() -> void:
+	if _battler != null:
+		level_label.text = str(_battler.pokemon.level)
+		name_label.text = _battler.pokemon.name
+		
+		if _battler.pokemon.status.id != Constants.STATUSES.NONE:
+			status_texture.texture = _battler.pokemon.status.icon
+			status_texture.visible = _battler.pokemon.status.icon != null
+			
+		if hp_container != null:
+			hp_label.text = "{0} / {1}".format([_battler.pokemon.current_hp, _battler.pokemon.stats.hp])
+		
+		hp_bar.max_value = _battler.pokemon.stats.hp
+		hp_bar.value = _battler.pokemon.current_hp
+		
+		if exp_bar != null:
+			exp_bar.min_value = _battler.pokemon.species.growth_rate.get_level_minimum_exp(_battler.pokemon.level)
+			exp_bar.max_value = _battler.pokemon.species.growth_rate.get_level_minimum_exp(_battler.pokemon.level + 1)
+			exp_bar.value = _battler.pokemon.experience
 
+			
 ## Sets the new HP. Used to tween the value increasing/decreasing
 func _set_hp_label(value: int) -> void:
 	if hp_container != null:

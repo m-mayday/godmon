@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d0d7xsr8ntfjk"]
+[gd_scene load_steps=31 format=3 uid="uid://d0d7xsr8ntfjk"]
 
 [ext_resource type="Script" uid="uid://ccnmswu7u4ea3" path="res://scenes/battle/battle_scene.gd" id="1_hrc2y"]
 [ext_resource type="PackedScene" uid="uid://111uiosseoy1" path="res://scenes/battle/databox.tscn" id="2_cbhpy"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://3tyc21g5q2uc" path="res://assets/battle/ball.png" id="9_tc5fe"]
 [ext_resource type="PackedScene" uid="uid://ddyxe1m3u6mth" path="res://scenes/cutscenes/dialogue/balloon_battle.tscn" id="12_tc5fe"]
 [ext_resource type="Texture2D" uid="uid://bgj6n38m7q5gt" path="res://assets/battle/ui/grass_intro.png" id="14_7i1my"]
+[ext_resource type="PackedScene" uid="uid://bkugrmcfuww8g" path="res://scenes/level_up.tscn" id="16_tpsmh"]
 [ext_resource type="PackedScene" uid="uid://bv5p4qx8ddr0v" path="res://scenes/battle/animator.tscn" id="18_cr648"]
 [ext_resource type="PackedScene" uid="uid://dswfxggc17xr3" path="res://scenes/menus/party_screen.tscn" id="19_tpsmh"]
 
@@ -446,7 +447,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("party_screen", "message_box", "message_balloon", "_fight_menu", "_battle_menu", "_target_menu", "animator")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("party_screen", "message_box", "message_balloon", "level_up_popup", "_fight_menu", "_battle_menu", "_target_menu", "animator")]
 script = ExtResource("1_hrc2y")
 player_single_databox = ExtResource("2_tc5fe")
 pokemon_databox = ExtResource("2_cbhpy")
@@ -454,6 +455,7 @@ pokemon_sprite = ExtResource("3_fssma")
 party_screen = NodePath("PartyScreen")
 message_box = NodePath("CanvasLayer/MessageBox")
 message_balloon = NodePath("CanvasLayer/MessageBox/BalloonBattle")
+level_up_popup = NodePath("CanvasLayer/LevelUp")
 _fight_menu = NodePath("CanvasLayer/FightMenu")
 _battle_menu = NodePath("CanvasLayer/BattleMenu")
 _target_menu = NodePath("CanvasLayer/TargetMenu")
@@ -461,9 +463,13 @@ animator = NodePath("AnimationPlayer")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.686275)
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.623
+anchor_top = 0.447
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -478.464
+offset_top = -257.472
 offset_right = 512.0
 offset_bottom = 288.0
 grow_horizontal = 2
@@ -632,6 +638,13 @@ offset_top = -288.0
 offset_right = 51655.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="LevelUp" parent="CanvasLayer" instance=ExtResource("16_tpsmh")]
+visible = false
+offset_left = 475.0
+offset_top = 257.0
+offset_right = -1.0
+offset_bottom = -2.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = 0

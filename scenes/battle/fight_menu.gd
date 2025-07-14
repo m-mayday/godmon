@@ -60,4 +60,4 @@ func _on_move_pressed(i: int) -> void:
 func _on_move_focus_entered(i: int):
 	var move: Move = _moves[i]
 	pp_amount.text = "{0}/{1}".format([move.current_pp, move.base_pp])
-	move_type.text = "TYPE/{0}".format([Constants.types[move.type].to_upper()])
+	move_type.text = "TYPE/{0}".format([Constants.TYPES.keys()[move.type]])
