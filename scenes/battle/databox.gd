@@ -135,6 +135,8 @@ func exp_gained(event: ExpGainEvent) -> void:
 func level_up(event: LevelUpEvent) -> void:
 	if event.pokemon.id == _battler.id:
 		level_label.text = str(_battler.pokemon.level)
+		if hp_label != null:
+			hp_label.text = "{0} / {1}".format([_battler.pokemon.current_hp, _battler.pokemon.stats.hp])
 		if exp_bar != null:
 			exp_bar.min_value = event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level)
 			exp_bar.max_value = event.pokemon.species.growth_rate.get_level_minimum_exp(event.pokemon.level + 1)
