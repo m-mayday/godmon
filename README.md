@@ -22,9 +22,11 @@ I've extended the tilemaps and made some sprites myself too, you'll know which o
 * Menus:
   * Party screen
   * Pokemon summary
-* Wild encounters
-* Basic trainer battles
-* Battles are playable from start to finish but there's a lot of stuff missing. See the section below.
+* Battle:
+  * Wild encounters
+  * Basic trainer battles
+  * EXP gain and level up
+  * Battles are playable from start to finish but there's a lot of stuff missing. See the section below.
 
 ### What's missing
 Too much to list but most notably:
@@ -37,7 +39,7 @@ Too much to list but most notably:
   * Improved trainer battles
   * Improved switching on Double and Triple battles
   * Shifting on Triple battles
-  * EXP and Money rewards
+  * Money rewards
 * Menus
   * Trainer card
   * Pokedex
