@@ -720,7 +720,8 @@ zoom = Vector2(3.5, 3.5)
 [node name="PauseMenu" parent="Camera2D" node_paths=PackedStringArray("options") instance=ExtResource("3_qlg0r")]
 options = {
 "pokedex": null,
-"pokemon": NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon")
+"pokemon": NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer/Pokemon"),
+"save": NodePath("Control/NinePatchRect/MarginContainer/VBoxContainer/Player")
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -764,6 +765,4 @@ offset = Vector2(0, 36)
 
 [connection signal="body_shape_entered" from="." to="TerrainEffects" method="_on_body_shape_entered"]
 [connection signal="movement_finished" from="." to="TerrainEffects" method="_on_movement_finished"]
-[connection signal="movement_finished" from="." to="Camera2D/PauseMenu" method="_on_allow_pausing" unbinds=2]
 [connection signal="movement_started" from="." to="TerrainEffects" method="_on_movement_started"]
-[connection signal="movement_started" from="." to="Camera2D/PauseMenu" method="_on_prevent_pausing" unbinds=2]

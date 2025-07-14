@@ -20,15 +20,15 @@ script = ExtResource("7_mwtrc")
 species = 1
 odds = 35.0
 minimum_level = 10
-maximum_level = 15
+maximum_level = 10
 metadata/_custom_type_script = ExtResource("7_mwtrc")
 
 [sub_resource type="Resource" id="Resource_cgcdf"]
 script = ExtResource("7_mwtrc")
 species = 6
 odds = 65.0
-minimum_level = 10
-maximum_level = 15
+minimum_level = 9
+maximum_level = 9
 metadata/_custom_type_script = ExtResource("7_mwtrc")
 
 [sub_resource type="Resource" id="Resource_gm8nn"]

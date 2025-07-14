@@ -474,7 +474,7 @@ func _award_experience(fainted: Battler) -> void:
 				var previous_stats: Stats = battled.pokemon.stats.duplicate()
 				battled.pokemon.level += 1
 				add_battle_event(LevelUpEvent.new(battled.pokemon, battled.pokemon.level, previous_stats))
-		print("{0} gained {1} exp. points and grew {0} levels.".format([battled.pokemon.name, exp_gained, levels_gained]))
+		print("{0} gained {1} exp. points and grew {2} levels.".format([battled.pokemon.name, exp_gained, levels_gained]))
 
 ## [Internal] An event to change states, to be added to battle_events instead of
 ## executing immediately.
