@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 ## Loads a new scene with the optional data provided if the scene has a "with_data" method
 ## The current scene can be freed (thus you can't return to it)
 ## The player can be removed from the SceneTree if needed (i.e. BattleScene)
-func load_scene(scene_path: String, free_current: bool = false, remove_player:bool = false, data: Array = []) -> void:
+func load_scene(scene_path: String, free_current: bool = false, remove_player:bool = false, data: Dictionary = {}) -> void:
 	if scene_path in _loaded_chunks:
 		_change_scene(scene_path)
 		return

@@ -101,7 +101,10 @@ func _run_battle_setup_actions() -> void:
 
 ## Starts the battle
 func _start_battle() -> void:
-	get_tree().root.get_node("Main").load_scene("res://scenes/battle/battle_scene.tscn", false, true, ["wild", get_tree().get_first_node_in_group("player"), trainer.party])
+	get_tree().root.get_node("Main").load_scene("res://scenes/battle/battle_scene.tscn", false, true, {
+		"type": "wild",
+		"foe_party": trainer.party,
+	})
 
 
 ## Checks if battle should be triggered by dialogue (i.e, the player talks to the trainer without being spotted)

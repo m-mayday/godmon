@@ -26,16 +26,13 @@ var _levels_gained: int = 0 ## Levels gained by a battler when gaining experienc
 
 var text_advance_arrow_path: String = "res://Assets/Battle/UI/text_advance_arrow.png" # I will leave this like so for now
 	
-func with_data(data: Array) -> void:
-	assert(len(data) == 3, "Wrong number of parameters in battle scene")
-	var battle_type: String = data[0]
-	var _first_trainer: Area2D = data[1] # For now, until Trainer class is created
-	var _second_trainer: Area2D = null # For now, until Trainer class and trainer battles are created
-	var wild_pokemon: Array[Pokemon] = []
-	if battle_type == "wild":
-		assert(data[2] is Array, "An array of Pokemon must be provided for wild battle")
-		for pokemon in data[2]:
-			wild_pokemon.append(pokemon)
+func with_data(data: Dictionary) -> void:
+	assert(len(data) == 2, "Wrong number of parameters in battle scene")
+	var battle_type: String = data["type"]
+	assert(data["foe_party"] is Array, "An array of foe Pokemon must be provided for battle")
+	var _foe_party: Array[Pokemon] = [] # For now, until Trainer class and trainer battles are created
+	_foe_party.assign(data["foe_party"])
+	assert(len(_foe_party) > 0, "One or more foe Pokemon must be provided for battle")
 
 	SignalBus.battle_started.connect(_on_battle_started)
 	SignalBus.battle_ended.connect(_on_battle_end)
@@ -44,7 +41,7 @@ func with_data(data: Array) -> void:
 	SignalBus.battle_event.connect(_on_battle_event)
 	SignalBus.turn_ended.connect(_target_menu.on_turn_ended)
 	party_screen.screen_closed.connect(_on_party_screen_closed)
-	_battle = Battle.new(Global.game_data.player_party, wild_pokemon, Constants.BATTLE_SIZE.TRIPLE)
+	_battle = Battle.new(Global.game_data.player_party, _foe_party, Constants.BATTLE_SIZE.TRIPLE)
 	_fight_menu.move_chosen.connect(_target_menu.on_move_chosen)
 	_target_menu.target_chosen.connect(_on_target_chosen)
 	_battle.battle_start() # Start the battle

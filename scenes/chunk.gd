@@ -11,9 +11,9 @@ extends Node2D
 var current_spawn: Node2D
 
 
-func with_data(data: Array) -> void:
-	if len(data) > 0 and data[0] in player_spawns.keys():
-		current_spawn = player_spawns[data[0]]
+func with_data(data: Dictionary) -> void:
+	if data.has("current_scene") and data["current_scene"] in player_spawns.keys():
+		current_spawn = player_spawns[data["current_scene"]]
 	else:
 		current_spawn = player_spawn_marker
 

@@ -66,7 +66,7 @@ func close_door() -> void:
 
 ## Loads the target scene
 func load_target_scene() -> void:
-	get_tree().root.get_node("Main").load_scene(target_scene_path, true, false, [current_scene_path])
+	get_tree().root.get_node("Main").load_scene(target_scene_path, true, false, {"current_scene": current_scene_path})
 
 
 ## Hide/Show the player if necessary
