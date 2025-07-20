@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_14"
+importer="dialogue_manager"
+importer_version=15
 type="Resource"
 uid="uid://bcej05h2cp0od"
 path="res://.godot/imported/oak_lab.dialogue-bf520504327f8c08b3791bb69bdd361e.tres"

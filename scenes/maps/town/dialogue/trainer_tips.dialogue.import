@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_14"
+importer="dialogue_manager"
+importer_version=15
 type="Resource"
 uid="uid://dr2nf3uc3rl7k"
 path="res://.godot/imported/trainer_tips.dialogue-cc3b51a79ccda6f12d06aa68f64f6866.tres"

@@ -1,60 +1,57 @@
-[gd_resource type="Resource" script_class="EventActionSequence" load_steps=17 format=3 uid="uid://dxs42bly2828o"]
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=19 format=3 uid="uid://dxs42bly2828o"]
 
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_w76w8"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="2_ird8w"]
+[ext_resource type="Resource" uid="uid://bet2rkmtfre80" path="res://scenes/maps/town/events/target_professor_town.tres" id="3_2dlod"]
 [ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="3_uqwmd"]
 [ext_resource type="Resource" uid="uid://dgjl8r518ttxa" path="res://scenes/maps/town/dialogue/oak_gass_warning.dialogue" id="4_2dlod"]
 [ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="5_so0c0"]
 [ext_resource type="Script" uid="uid://d1wwwa85ui1p5" path="res://events/general/parallel_actions.gd" id="6_0h5c4"]
 [ext_resource type="Script" uid="uid://vnb7rb7na36b" path="res://events/general/event_action_sequence.gd" id="7_6adpj"]
+[ext_resource type="Resource" uid="uid://d2m0qraryhl1j" path="res://scenes/target_player.tres" id="7_so0c0"]
 
 [sub_resource type="Resource" id="Resource_th1nf"]
 script = ExtResource("2_ird8w")
+target = ExtResource("3_2dlod")
 type = 0
 direction = 0
 tiles = 1
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_cyr0y"]
 script = ExtResource("2_ird8w")
+target = ExtResource("3_2dlod")
 type = 0
 direction = 3
 tiles = 1
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_knrhf"]
 script = ExtResource("2_ird8w")
+target = ExtResource("3_2dlod")
 type = 0
 direction = 0
 tiles = 3
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_nrmrb"]
 script = ExtResource("2_ird8w")
+target = ExtResource("3_2dlod")
 type = 0
 direction = 3
 tiles = 1
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_ywbuj"]
 script = ExtResource("2_ird8w")
+target = ExtResource("3_2dlod")
 type = 0
 direction = 0
 tiles = 2
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
@@ -69,21 +66,19 @@ metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
 [sub_resource type="Resource" id="Resource_5v01r"]
 script = ExtResource("2_ird8w")
+target = ExtResource("7_so0c0")
 type = 0
 direction = 1
 tiles = 1
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_nijvm"]
 script = ExtResource("2_ird8w")
+target = ExtResource("3_2dlod")
 type = 0
 direction = 1
 tiles = 1
-node_path = NodePath("")
-is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 

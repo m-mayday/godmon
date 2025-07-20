@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_14"
+importer="dialogue_manager"
+importer_version=15
 type="Resource"
 uid="uid://ctt4wdrhm5lss"
 path="res://.godot/imported/oak_dont_go_out.dialogue-cb8774176b7b5c90ee125fa648726822.tres"

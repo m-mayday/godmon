@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_14"
+importer="dialogue_manager"
+importer_version=15
 type="Resource"
 uid="uid://cuwp1mp0m56ba"
 path="res://.godot/imported/town_sign.dialogue-afd6656c51264b9398de8160b9fdffa0.tres"

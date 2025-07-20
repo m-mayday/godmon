@@ -1,138 +1,38 @@
-[gd_resource type="Resource" script_class="Trainer" load_steps=21 format=3 uid="uid://ds26v3fe8jfvq"]
+[gd_resource type="Resource" script_class="Trainer" load_steps=11 format=3 uid="uid://ds26v3fe8jfvq"]
 
 [ext_resource type="Script" uid="uid://b2p22obsvy3gm" path="res://data/_base_classes/pokemon.gd" id="1_lhfff"]
 [ext_resource type="PackedScene" uid="uid://bhhnug4i6frv4" path="res://data/ai/battle_ai.tscn" id="1_vdwcv"]
-[ext_resource type="Script" uid="uid://dihphk6lffjx3" path="res://data/_base_classes/stats.gd" id="2_ahai1"]
 [ext_resource type="Script" uid="uid://c5cc2a5weeo1m" path="res://data/_base_classes/trainer.gd" id="2_ek48s"]
 [ext_resource type="Resource" uid="uid://bttkokl0ncj74" path="res://data/species/blastoise.tres" id="3_ahai1"]
 [ext_resource type="Script" uid="uid://c8vovx876rcuh" path="res://data/_base_classes/move.gd" id="4_gk5jc"]
 [ext_resource type="Resource" uid="uid://bep0hloqk8s4o" path="res://data/species/charizard.tres" id="5_7k5od"]
 [ext_resource type="Resource" uid="uid://coos7hdynlxio" path="res://data/species/venusaur.tres" id="6_vdwcv"]
 
-[sub_resource type="Resource" id="Resource_7k5od"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
-
-[sub_resource type="Resource" id="Resource_vdwcv"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
-
-[sub_resource type="Resource" id="Resource_o60ik"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
-
 [sub_resource type="Resource" id="Resource_i8r68"]
 script = ExtResource("1_lhfff")
 species = ExtResource("3_ahai1")
 name = &""
 level = 10
-stats = SubResource("Resource_o60ik")
-ivs = SubResource("Resource_vdwcv")
-evs = SubResource("Resource_7k5od")
 moves = Array[ExtResource("4_gk5jc")]([])
 happiness = 0
 personal_id = 0
 metadata/_custom_type_script = "uid://b2p22obsvy3gm"
-
-[sub_resource type="Resource" id="Resource_x17m3"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
-
-[sub_resource type="Resource" id="Resource_5wvjn"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
-
-[sub_resource type="Resource" id="Resource_3vdft"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
 
 [sub_resource type="Resource" id="Resource_4n73m"]
 script = ExtResource("1_lhfff")
 species = ExtResource("5_7k5od")
 name = &""
 level = 20
-stats = SubResource("Resource_3vdft")
-ivs = SubResource("Resource_5wvjn")
-evs = SubResource("Resource_x17m3")
 moves = Array[ExtResource("4_gk5jc")]([])
 happiness = 0
 personal_id = 0
 metadata/_custom_type_script = "uid://b2p22obsvy3gm"
-
-[sub_resource type="Resource" id="Resource_l5ynu"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
-
-[sub_resource type="Resource" id="Resource_s7fwa"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
-
-[sub_resource type="Resource" id="Resource_prfh7"]
-script = ExtResource("2_ahai1")
-hp = 0
-attack = 0
-defense = 0
-speed = 0
-special_attack = 0
-special_defense = 0
-metadata/_custom_type_script = "uid://dihphk6lffjx3"
 
 [sub_resource type="Resource" id="Resource_fjcr2"]
 script = ExtResource("1_lhfff")
 species = ExtResource("6_vdwcv")
 name = &""
 level = 15
-stats = SubResource("Resource_prfh7")
-ivs = SubResource("Resource_s7fwa")
-evs = SubResource("Resource_l5ynu")
 moves = Array[ExtResource("4_gk5jc")]([])
 happiness = 0
 personal_id = 0

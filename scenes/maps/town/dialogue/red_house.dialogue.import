@@ -1,6 +1,7 @@
 [remap]
 
-importer="dialogue_manager_compiler_14"
+importer="dialogue_manager"
+importer_version=15
 type="Resource"
 uid="uid://bm5rbiqaj4tbk"
 path="res://.godot/imported/red_house.dialogue-f12f0bf5c44cc9767e8f6863f086789e.tres"

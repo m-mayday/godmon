@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EventTargetResolver" load_steps=2 format=3 uid="uid://cq2vhsa1051nb"]
+
+[ext_resource type="Script" uid="uid://b56yr2dj3cp3x" path="res://events/general/event_target_resolver.gd" id="1_pxvfh"]
+
+[resource]
+script = ExtResource("1_pxvfh")
+target_type = 0
+node_path = NodePath("../Professor")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"

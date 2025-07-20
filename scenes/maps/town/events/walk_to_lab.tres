@@ -1,39 +1,39 @@
-[gd_resource type="Resource" script_class="EventActionSequence" load_steps=26 format=3 uid="uid://clus7ake5cf1m"]
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=33 format=3 uid="uid://clus7ake5cf1m"]
 
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_3eka1"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="2_1p2ri"]
 [ext_resource type="Script" uid="uid://xn4cofvwrdou" path="res://events/general/movement_sequence_action.gd" id="3_vd0wc"]
+[ext_resource type="Resource" uid="uid://bet2rkmtfre80" path="res://scenes/maps/town/events/target_professor_town.tres" id="3_wlxnn"]
 [ext_resource type="Script" uid="uid://d1wwwa85ui1p5" path="res://events/general/parallel_actions.gd" id="4_wlxnn"]
+[ext_resource type="Resource" uid="uid://d2m0qraryhl1j" path="res://scenes/target_player.tres" id="5_2vy0v"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="5_5lg16"]
 [ext_resource type="Script" uid="uid://vnb7rb7na36b" path="res://events/general/event_action_sequence.gd" id="6_2vy0v"]
+[ext_resource type="Script" uid="uid://b56yr2dj3cp3x" path="res://events/general/event_target_resolver.gd" id="8_oorx0"]
 
 [sub_resource type="Resource" id="Resource_8qdyj"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("3_wlxnn")
 type = 0
 direction = 1
 tiles = 11
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_ibu8v"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("3_wlxnn")
 type = 0
 direction = 3
 tiles = 5
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_qswh4"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("3_wlxnn")
 type = 1
 direction = 0
 tiles = 1
-node_path = NodePath("")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
@@ -45,31 +45,28 @@ metadata/_custom_type_script = "uid://xn4cofvwrdou"
 
 [sub_resource type="Resource" id="Resource_oo36s"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("5_2vy0v")
 type = 0
 direction = 2
 tiles = 1
-node_path = NodePath("")
-is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_g65op"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("5_2vy0v")
 type = 0
 direction = 1
 tiles = 11
-node_path = NodePath("")
-is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_kehbu"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("5_2vy0v")
 type = 0
 direction = 3
 tiles = 4
-node_path = NodePath("")
-is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
@@ -85,32 +82,35 @@ actions = Array[ExtResource("1_3eka1")]([SubResource("Resource_6mpgq"), SubResou
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
 
+[sub_resource type="Resource" id="Resource_lv8ws"]
+script = ExtResource("8_oorx0")
+target_type = 0
+node_path = NodePath("../OaksDoor")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_66jht"]
 script = ExtResource("5_5lg16")
-node_path = NodePath("../OaksDoor")
+target = SubResource("Resource_lv8ws")
 function_name = "open_door"
 arguments = []
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
 [sub_resource type="Resource" id="Resource_awxmx"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("3_wlxnn")
 type = 0
 direction = 0
 tiles = 1
-node_path = NodePath("../Professor")
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_2lj6y"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("5_2vy0v")
 type = 0
 direction = 3
 tiles = 1
-node_path = NodePath("")
-is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
@@ -122,56 +122,68 @@ metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
 
 [sub_resource type="Resource" id="Resource_0dksf"]
 script = ExtResource("5_5lg16")
-node_path = NodePath("../Professor")
+target = ExtResource("3_wlxnn")
 function_name = "hide"
 arguments = []
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
 [sub_resource type="Resource" id="Resource_dpo68"]
 script = ExtResource("2_1p2ri")
+target = ExtResource("5_2vy0v")
 type = 0
 direction = 0
 tiles = 1
-node_path = NodePath("")
-is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
 [sub_resource type="Resource" id="Resource_ne6ej"]
 script = ExtResource("5_5lg16")
-node_path = NodePath("")
+target = ExtResource("5_2vy0v")
 function_name = "hide"
 arguments = []
-is_player = true
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_15d0v"]
+script = ExtResource("8_oorx0")
+target_type = 0
+node_path = NodePath("../OaksDoor")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
 [sub_resource type="Resource" id="Resource_rki12"]
 script = ExtResource("5_5lg16")
-node_path = NodePath("../OaksDoor")
+target = SubResource("Resource_15d0v")
 function_name = "close_door"
 arguments = []
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_aruvg"]
+script = ExtResource("8_oorx0")
+target_type = 0
+node_path = NodePath("/root/Global")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
 [sub_resource type="Resource" id="Resource_3eka1"]
 script = ExtResource("5_5lg16")
-node_path = NodePath("/root/Global")
+target = SubResource("Resource_aruvg")
 function_name = "increase_event_flag"
 arguments = ["pallet_town_get_starter"]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
+[sub_resource type="Resource" id="Resource_elkew"]
+script = ExtResource("8_oorx0")
+target_type = 0
+node_path = NodePath("../OaksDoor")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_vgrd7"]
 script = ExtResource("5_5lg16")
-node_path = NodePath("../OaksDoor")
+target = SubResource("Resource_elkew")
 function_name = "load_target_scene"
 arguments = []
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
