@@ -1,9 +1,9 @@
 ~ start
-Gary: Gramps!\nI'm fed up with waiting!
+{{Global.game_data.rival_name}}: Gramps!\nI'm fed up with waiting!
 [next=0.2]
-Oak: Gary?\nLet me think...
+Oak: {{Global.game_data.rival_name}}?\nLet me think...
 Oh, that's right, I told you to\ncome! Just wait!
-Here, Red.\n 
+Here, {{Global.game_data.player_name}}.\n 
 There are three POKéMON here.\n 
 Haha!\n 
 The POKéMON are held inside\nthese POKé BALLS.

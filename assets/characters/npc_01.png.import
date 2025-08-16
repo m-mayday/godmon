@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bomd8siuu53rx"
-path="res://.godot/imported/Professor_F.png-2b03f34e0e82e546bbba78e702704a2f.ctex"
+uid="uid://b1flro4n1fk0f"
+path="res://.godot/imported/npc_01.png-1c6105a54d63a2b057805f9f78134ccf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/Professor_F.png"
-dest_files=["res://.godot/imported/Professor_F.png-2b03f34e0e82e546bbba78e702704a2f.ctex"]
+source_file="res://assets/characters/npc_01.png"
+dest_files=["res://.godot/imported/npc_01.png-1c6105a54d63a2b057805f9f78134ccf.ctex"]
 
 [params]
 

@@ -13,7 +13,7 @@ var gender: Constants.GENDER = Constants.GENDER.MALE
 var player_name: String
 var rival_name: String
 var current_action_index: int = -1
-var _player_name_chosen: bool = false
+var player_name_chosen: bool = false
 
 func _ready() -> void:
 	await SignalBus.input_paused
@@ -34,7 +34,8 @@ func show_pokeball() -> void:
 	$Pokeball.show()
 
 
-func set_player_texture(gender: Constants.GENDER) -> void:
+func set_player_texture(p_gender: Constants.GENDER) -> void:
+	gender = p_gender
 	if gender == Constants.GENDER.MALE:
 		$Player.texture = player_male_texture
 	else:
@@ -43,14 +44,14 @@ func set_player_texture(gender: Constants.GENDER) -> void:
 
 func _on_name_submitted(text: String) -> void:
 	if text == "":
-		if not _player_name_chosen:
+		if not player_name_chosen:
 			if gender == Constants.GENDER.MALE:
 				player_name = default_male_names.pick_random()
 			else:
 				player_name = default_female_names.pick_random()
 		else:
 			rival_name = default_rival_name
-	elif not _player_name_chosen:
+	elif not player_name_chosen:
 		player_name = text
 	else:
 		rival_name = text

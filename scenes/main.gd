@@ -225,6 +225,8 @@ func play_intro() -> void:
 	await animator.animation_finished
 	SignalBus.input_paused.emit(true)
 	await intro.intro_finished
+	if Global.game_data.player_gender == Constants.GENDER.FEMALE:
+		player.set_texture(load("res://assets/characters/player_female.png"))
 	player.turn(Vector2.UP)
 	intro.queue_free()
 	Global.start_play_time_tracking()

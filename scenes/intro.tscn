@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c7y7j2cwcyshr"]
+[gd_scene load_steps=74 format=3 uid="uid://c7y7j2cwcyshr"]
 
 [ext_resource type="Script" uid="uid://7hldwlfai6nu" path="res://scenes/intro.gd" id="1_ioskq"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="2_wfs7u"]
@@ -9,10 +9,11 @@
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="6_bu1yb"]
 [ext_resource type="Texture2D" uid="uid://3tyc21g5q2uc" path="res://assets/battle/ball.png" id="7_bu1yb"]
 [ext_resource type="Script" uid="uid://d1wwwa85ui1p5" path="res://events/general/parallel_actions.gd" id="7_t1qkj"]
-[ext_resource type="Texture2D" uid="uid://bgvn45exoxuly" path="res://assets/characters/Player1_F.png" id="8_n6p8m"]
-[ext_resource type="Texture2D" uid="uid://b0i3l260mwkt1" path="res://assets/characters/Player2_F.png" id="9_m3r7s"]
-[ext_resource type="Texture2D" uid="uid://bomd8siuu53rx" path="res://assets/characters/Professor_F.png" id="10_m3r7s"]
-[ext_resource type="Texture2D" uid="uid://dp3sd4coi8den" path="res://assets/characters/Rival_F.png" id="13_m3r7s"]
+[ext_resource type="Script" uid="uid://b56yr2dj3cp3x" path="res://events/general/event_target_resolver.gd" id="7_xwriy"]
+[ext_resource type="Texture2D" uid="uid://c8dxw4s87swc8" path="res://assets/characters/player_male_front.png" id="8_m3r7s"]
+[ext_resource type="Texture2D" uid="uid://c4apkd62hlcn2" path="res://assets/characters/player_female_front.png" id="9_xwriy"]
+[ext_resource type="Texture2D" uid="uid://dumdkm6fifrxq" path="res://assets/characters/professor_front.png" id="10_u5myo"]
+[ext_resource type="Texture2D" uid="uid://c441hgbkmn0x4" path="res://assets/characters/rival_front.png" id="14_xwriy"]
 
 [sub_resource type="Resource" id="Resource_t1qkj"]
 script = ExtResource("5_bu1yb")
@@ -23,12 +24,17 @@ title = "start"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_37w34"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_m3r7s"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_37w34")
 function_name = "play_animation"
 arguments = ["send_out", "send_out", "call_back"]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -47,12 +53,17 @@ actions = Array[ExtResource("2_wfs7u")]([SubResource("Resource_m3r7s"), SubResou
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d1wwwa85ui1p5"
 
+[sub_resource type="Resource" id="Resource_7ukfb"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_u5myo"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_7ukfb")
 function_name = "play_animation"
 arguments = ["send_out", "call_back", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -65,12 +76,17 @@ title = "call"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_7kkmp"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_n6p8m"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_7kkmp")
 function_name = "play_animation"
 arguments = ["fade_out_professor", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -83,12 +99,17 @@ title = "gender"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_127wd"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_u05oh"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_127wd")
 function_name = "play_animation"
 arguments = ["fade_in_player", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -101,48 +122,73 @@ title = "name"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_r6v8l"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_hai50"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_r6v8l")
 function_name = "play_animation"
 arguments = ["fade_out_player", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_roafj"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath("LineEdit")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
 [sub_resource type="Resource" id="Resource_17bgi"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath("LineEdit")
+target = SubResource("Resource_roafj")
 function_name = "show"
 arguments = []
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_a8o7y"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
 [sub_resource type="Resource" id="Resource_dryi7"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_a8o7y")
 function_name = "_grab_line_edit_focus"
 arguments = []
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_jbpqs"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath("Player")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
 [sub_resource type="Resource" id="Resource_5pmge"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath("Player")
+target = SubResource("Resource_jbpqs")
 function_name = "set"
 arguments = ["position", Vector2(666, 264)]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
+[sub_resource type="Resource" id="Resource_61bv4"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_ge50m"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_61bv4")
 function_name = "play_animation"
 arguments = ["fade_in_player", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -155,30 +201,45 @@ title = "confirm"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_o5qfx"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath("Player")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_sg54v"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_o5qfx")
 function_name = "set"
 arguments = ["_player_name_chosen", true]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_o5f54"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
 [sub_resource type="Resource" id="Resource_t5vr6"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_o5f54")
 function_name = "play_animation"
 arguments = ["fade_out_player", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
+[sub_resource type="Resource" id="Resource_nhtyu"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_4vp3x"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_nhtyu")
 function_name = "play_animation"
 arguments = ["fade_in_rival", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -191,12 +252,17 @@ title = "rival"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_y7gtc"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_yj5im"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_y7gtc")
 function_name = "play_animation"
 arguments = ["slide_right_rival", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -218,30 +284,45 @@ title = "rival_confirm"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_4lusl"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_38pnl"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_4lusl")
 function_name = "play_animation"
 arguments = ["fade_out_rival", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
+
+[sub_resource type="Resource" id="Resource_aotd0"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath("Player")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
 [sub_resource type="Resource" id="Resource_lm4bj"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath("Player")
+target = SubResource("Resource_aotd0")
 function_name = "set"
 arguments = ["position", Vector2(376, 264)]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
+[sub_resource type="Resource" id="Resource_hf7a5"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_x2gsc"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_hf7a5")
 function_name = "play_animation"
 arguments = ["fade_in_player", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -254,12 +335,17 @@ title = "intro_end"
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://d0klwgscjl6ym"
 
+[sub_resource type="Resource" id="Resource_va21j"]
+script = ExtResource("7_xwriy")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_y6kq6"]
 script = ExtResource("6_bu1yb")
-node_path = NodePath(".")
+target = SubResource("Resource_va21j")
 function_name = "play_animation"
 arguments = ["end", "", ""]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -706,8 +792,8 @@ border_color = Color(0.247059, 0.529412, 0.501961, 1)
 [node name="Intro" type="CanvasLayer"]
 script = ExtResource("1_ioskq")
 actions = Array[ExtResource("2_wfs7u")]([SubResource("Resource_t1qkj"), SubResource("Resource_272cy"), SubResource("Resource_u5myo"), SubResource("Resource_37iue"), SubResource("Resource_n6p8m"), SubResource("Resource_xwriy"), SubResource("Resource_u05oh"), SubResource("Resource_epycs"), SubResource("Resource_hai50"), SubResource("Resource_17bgi"), SubResource("Resource_dryi7"), SubResource("Resource_5pmge"), SubResource("Resource_ge50m"), SubResource("Resource_kh17o"), SubResource("Resource_sg54v"), SubResource("Resource_t5vr6"), SubResource("Resource_4vp3x"), SubResource("Resource_urird"), SubResource("Resource_yj5im"), SubResource("Resource_h7rjp"), SubResource("Resource_6ac85"), SubResource("Resource_38pnl"), SubResource("Resource_lm4bj"), SubResource("Resource_x2gsc"), SubResource("Resource_366e5"), SubResource("Resource_y6kq6")])
-player_male_texture = ExtResource("8_n6p8m")
-player_female_texture = ExtResource("9_m3r7s")
+player_male_texture = ExtResource("8_m3r7s")
+player_female_texture = ExtResource("9_xwriy")
 
 [node name="BG" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -725,7 +811,7 @@ libraries = {
 [node name="Professor" type="Sprite2D" parent="."]
 position = Vector2(400, 264)
 scale = Vector2(3.17969, 3.17969)
-texture = ExtResource("10_m3r7s")
+texture = ExtResource("10_u5myo")
 
 [node name="Pokeball" type="Sprite2D" parent="."]
 visible = false
@@ -771,7 +857,7 @@ color = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(376, 264)
 scale = Vector2(3.18, 3.18)
-texture = ExtResource("13_m3r7s")
+texture = ExtResource("14_xwriy")
 
 [node name="LineEdit" type="LineEdit" parent="."]
 visible = false

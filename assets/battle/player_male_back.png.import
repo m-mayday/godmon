@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c10jx0x2qqd80"
-path="res://.godot/imported/professor.png-d56172b62ce202bc8424caf1ee1d07e0.ctex"
+uid="uid://c8hikajeo11xh"
+path="res://.godot/imported/player_male_back.png-80cb1fa5d3aba7a9c328858072fd3d68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/professor.png"
-dest_files=["res://.godot/imported/professor.png-d56172b62ce202bc8424caf1ee1d07e0.ctex"]
+source_file="res://assets/battle/player_male_back.png"
+dest_files=["res://.godot/imported/player_male_back.png-80cb1fa5d3aba7a9c328858072fd3d68.ctex"]
 
 [params]
 

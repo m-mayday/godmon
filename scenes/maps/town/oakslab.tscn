@@ -1,11 +1,12 @@
-[gd_scene load_steps=26 format=4 uid="uid://dv384faid7kh"]
+[gd_scene load_steps=27 format=4 uid="uid://dv384faid7kh"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ilbmh"]
 [ext_resource type="TileSet" uid="uid://bm1m833g0ihn3" path="res://scenes/tilesets/interior_tileset.tres" id="2_ayi68"]
 [ext_resource type="PackedScene" uid="uid://bf84jval72kf1" path="res://scenes/cutscenes/doors/door.tscn" id="2_ilbmh"]
 [ext_resource type="Script" uid="uid://d4lpe4hrgc4ys" path="res://scenes/maps/town/starter_event.gd" id="4_ayi68"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="5_kobdt"]
-[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/Professor.png" id="6_3su1y"]
+[ext_resource type="Texture2D" uid="uid://c10jx0x2qqd80" path="res://assets/characters/professor.png" id="5_ruuei"]
+[ext_resource type="Texture2D" uid="uid://b8fnguumii84y" path="res://assets/characters/rival.png" id="6_ruuei"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="7_msfrt"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="8_aw4qv"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="9_c6f6u"]
@@ -130,10 +131,11 @@ is_exit_only = true
 
 [node name="Professor" parent="." instance=ExtResource("5_kobdt")]
 position = Vector2(96, 32)
-texture = ExtResource("6_3su1y")
+texture = ExtResource("5_ruuei")
 
 [node name="Rival" parent="." instance=ExtResource("5_kobdt")]
 position = Vector2(80, 48)
+texture = ExtResource("6_ruuei")
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("4_ayi68")

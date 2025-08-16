@@ -151,6 +151,10 @@ func _set_current_battler(battler: Battler) -> void:
 
 ## Does some setup when battle is started
 func _on_battle_started(event: BattleStartEvent) -> void:
+	if Global.game_data.player_gender == Constants.GENDER.FEMALE:
+		$CanvasLayer/Trainer.animation = "female"
+	else:
+		$CanvasLayer/Trainer.animation = "default"
 	var active_user: Array[Battler] = event.get_player_side_active()
 	var active_foe: Array[Battler] = event.get_opponent_side_active()
 	_setup_side(active_foe, false) # TODO: Only do this setup if it's a wild battle

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c10jx0x2qqd80"
-path="res://.godot/imported/professor.png-d56172b62ce202bc8424caf1ee1d07e0.ctex"
+uid="uid://c441hgbkmn0x4"
+path="res://.godot/imported/rival_front.png-99a73fbea4324a6198bf408fa4b3f622.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/professor.png"
-dest_files=["res://.godot/imported/professor.png-d56172b62ce202bc8424caf1ee1d07e0.ctex"]
+source_file="res://assets/characters/rival_front.png"
+dest_files=["res://.godot/imported/rival_front.png-99a73fbea4324a6198bf408fa4b3f622.ctex"]
 
 [params]
 

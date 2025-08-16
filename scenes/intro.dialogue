@@ -28,6 +28,7 @@ Let's begin with your name.\nWhat is it?[icon]
 ~ confirm
 Right...\nSo your name is {{player_name}}.[halignment=left][valignment=top]
 - YES
+	set player_name_chosen = true
 - NO
 	set current_action_index = 7
 => END

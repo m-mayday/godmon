@@ -1,16 +1,17 @@
-[gd_scene load_steps=39 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=40 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_7avvi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_k4x0e"]
-[ext_resource type="Texture2D" uid="uid://rci0vqyh8ory" path="res://assets/characters/NPC03.png" id="4_vug5f"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="5_tpn7j"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="6_y2osm"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="10_cgcdf"]
+[ext_resource type="Texture2D" uid="uid://b1flro4n1fk0f" path="res://assets/characters/npc_01.png" id="10_vkhl3"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="10_y2osm"]
 [ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
+[ext_resource type="Texture2D" uid="uid://bvnbal1833qsq" path="res://assets/characters/npc_02.png" id="11_idgr4"]
 [ext_resource type="PackedScene" uid="uid://ciggbtucojvh7" path="res://scenes/cutscenes/dialogue/balloon_signs.tscn" id="11_tpn7j"]
 [ext_resource type="Resource" uid="uid://bm5rbiqaj4tbk" path="res://scenes/maps/town/dialogue/red_house.dialogue" id="12_fffuf"]
-[ext_resource type="Texture2D" uid="uid://crkuj1rmrk5t0" path="res://assets/characters/Professor.png" id="12_idgr4"]
+[ext_resource type="Texture2D" uid="uid://c10jx0x2qqd80" path="res://assets/characters/professor.png" id="12_idgr4"]
 [ext_resource type="Texture2D" uid="uid://ckloy1tk22xle" path="res://assets/overworld-animations.png" id="13_7avvi"]
 [ext_resource type="Resource" uid="uid://dr2nf3uc3rl7k" path="res://scenes/maps/town/dialogue/trainer_tips.dialogue" id="13_k4x0e"]
 [ext_resource type="Resource" uid="uid://bxh7hcbi8d2he" path="res://scenes/maps/town/dialogue/npc.dialogue" id="14_7avvi"]
@@ -169,6 +170,7 @@ balloon = ExtResource("11_tpn7j")
 
 [node name="Man" parent="." instance=ExtResource("10_y2osm")]
 position = Vector2(144, 256)
+texture = ExtResource("10_vkhl3")
 wait_seconds_choices = Array[float]([])
 
 [node name="NPC" parent="Man" instance=ExtResource("10_cgcdf")]
@@ -177,7 +179,7 @@ dialogue = ExtResource("14_7avvi")
 
 [node name="Girl" parent="." instance=ExtResource("10_y2osm")]
 position = Vector2(48, 160)
-texture = ExtResource("4_vug5f")
+texture = ExtResource("11_idgr4")
 movement_type = 3
 
 [node name="Line2D" type="Line2D" parent="Girl"]

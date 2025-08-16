@@ -90,6 +90,10 @@ func cutscene_move(target_position: Vector2, speed_multiplier: float = 1.0, dire
 	_anim_state.travel("idle")
 	_current_state = Constants.MOVEMENT_STATE.IDLE
 
+## Set the player's texture
+func set_texture(texture: Texture2D) -> void:
+	$Sprite2D.texture = texture
+
 
 func _move(direction: Vector2) -> void:
 	# A temporary fix. The player gets "stuck" when turning too many times too fast

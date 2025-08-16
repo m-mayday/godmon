@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=4 uid="uid://e6s1giwptv8o"]
+[gd_scene load_steps=31 format=4 uid="uid://e6s1giwptv8o"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_r7agj"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="6_c7nk4"]
 [ext_resource type="PackedScene" uid="uid://ch6u6x5ill6rs" path="res://scenes/maps/encounter_area.tscn" id="6_o7v6n"]
+[ext_resource type="Texture2D" uid="uid://b1flro4n1fk0f" path="res://assets/characters/npc_01.png" id="7_1kdbn"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="7_3t3aa"]
 [ext_resource type="Resource" uid="uid://ds26v3fe8jfvq" path="res://data/trainers/route1_boy.tres" id="7_m71el"]
 [ext_resource type="Script" uid="uid://cu2j1bo2txyy6" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="11_f5i15"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="12_o7v6n"]
 [ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="13_mwtrc"]
+[ext_resource type="Script" uid="uid://b56yr2dj3cp3x" path="res://events/general/event_target_resolver.gd" id="13_q4b38"]
 [ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="14_q4b38"]
 
 [sub_resource type="Resource" id="Resource_r73tn"]
@@ -52,21 +54,31 @@ size = Vector2(192, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua0mi"]
 size = Vector2(32, 14)
 
+[sub_resource type="Resource" id="Resource_1kdbn"]
+script = ExtResource("13_q4b38")
+target_type = 0
+node_path = NodePath("/root/Main")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_q4b38"]
 script = ExtResource("12_o7v6n")
-node_path = NodePath("/root/Main")
+target = SubResource("Resource_1kdbn")
 function_name = "play_reaction"
 arguments = [NodePath(".."), Vector2(0, -20)]
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
+[sub_resource type="Resource" id="Resource_ptm5c"]
+script = ExtResource("13_q4b38")
+target_type = 0
+node_path = NodePath(".")
+metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
+
 [sub_resource type="Resource" id="Resource_mwtrc"]
 script = ExtResource("12_o7v6n")
-node_path = NodePath(".")
+target = SubResource("Resource_ptm5c")
 function_name = "move_to_player"
 arguments = []
-is_player = false
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://c31hifnp50g3k"
 
@@ -135,6 +147,7 @@ debug_color = Color(0.927299, 3.58093e-05, 0.66909, 0.42)
 
 [node name="NPC" parent="." instance=ExtResource("6_c7nk4")]
 position = Vector2(80, 432)
+texture = ExtResource("7_1kdbn")
 movement_type = 1
 
 [node name="Line2D" type="Line2D" parent="NPC"]

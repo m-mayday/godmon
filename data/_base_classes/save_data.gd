@@ -46,9 +46,12 @@ func load_game(slot: int, tree: SceneTree) -> bool:
 	rival_name = save_data.rival_name
 	play_time = save_data.play_time
 	player_party.assign(save_data.player_party)
+	player_gender = save_data.player_gender
 	var main: Node2D = tree.root.get_node("Main")
 	main.call_deferred("load_scene", save_data.current_scene_file_path)
 	await SignalBus.scene_loaded
+	if player_gender == Constants.GENDER.FEMALE:
+		main.player.set_texture(load("res://assets/characters/player_female.png"))
 	main.player.position = save_data.player_position
 	main.player.face_direction = save_data.player_face_direction
 	main.player.turn(save_data.player_face_direction)

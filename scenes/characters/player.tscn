@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=3 uid="uid://bmigxfi2xkns7"]
 
 [ext_resource type="Script" uid="uid://bqqbd3ven62ai" path="res://scenes/characters/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://b600mjw1hubap" path="res://assets/characters/player2.png" id="2_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cqofj5kmakcwl" path="res://assets/characters/player_male.png" id="2_atpat"]
 [ext_resource type="PackedScene" uid="uid://i38ylwaqlkhp" path="res://scenes/maps/terrain_effects.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://nokxwtpo54sn" path="res://scenes/menus/pause_menu.tscn" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://b64svyma0qpxx" path="res://assets/battle/shadow.png" id="5_atpat"]
@@ -700,7 +700,7 @@ shadow = NodePath("Node/Shadow")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(0, -5.24521e-06)
-texture = ExtResource("2_dqkch")
+texture = ExtResource("2_atpat")
 centered = false
 offset = Vector2(0, -8)
 hframes = 6
@@ -766,3 +766,4 @@ offset = Vector2(0, 36)
 [connection signal="body_shape_entered" from="." to="TerrainEffects" method="_on_body_shape_entered"]
 [connection signal="movement_finished" from="." to="TerrainEffects" method="_on_movement_finished"]
 [connection signal="movement_started" from="." to="TerrainEffects" method="_on_movement_started"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
