@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventActionSequence" load_steps=17 format=3 uid="uid://cqakm0iwlmhhm"]
+[gd_resource type="Resource" script_class="EventActionSequence" load_steps=18 format=3 uid="uid://cqakm0iwlmhhm"]
 
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="1_3tcbp"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="2_bdjhg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://vnb7rb7na36b" path="res://events/general/event_action_sequence.gd" id="7_c3uu8"]
 [ext_resource type="Resource" uid="uid://d2m0qraryhl1j" path="res://scenes/target_player.tres" id="8_4b5ak"]
 [ext_resource type="Script" uid="uid://b56yr2dj3cp3x" path="res://events/general/event_target_resolver.gd" id="9_5ufyc"]
+[ext_resource type="Script" uid="uid://drru06teeaclt" path="res://events/general/reaction_action.gd" id="11_c3uu8"]
 
 [sub_resource type="Resource" id="Resource_wj3eu"]
 script = ExtResource("2_bdjhg")
@@ -45,22 +46,22 @@ tiles = 1
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://1txtbitbdrum"
 
-[sub_resource type="Resource" id="Resource_c3uu8"]
+[sub_resource type="Resource" id="Resource_6057q"]
 script = ExtResource("9_5ufyc")
-target_type = 0
-node_path = NodePath("/root/Main")
+target_type = 1
+node_path = NodePath("")
 metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
-[sub_resource type="Resource" id="Resource_3tcbp"]
-script = ExtResource("2_bdjhg")
-target = SubResource("Resource_c3uu8")
-function_name = "play_reaction_player"
-arguments = [Vector2(0, -20)]
+[sub_resource type="Resource" id="Resource_30tcf"]
+script = ExtResource("11_c3uu8")
+target = SubResource("Resource_6057q")
+animation_name = "exclamation"
+offset = Vector2(0, -20)
 wait_after = Array[float]([])
-metadata/_custom_type_script = "uid://c31hifnp50g3k"
+metadata/_custom_type_script = "uid://drru06teeaclt"
 
 [resource]
 script = ExtResource("7_c3uu8")
-event_actions = Array[ExtResource("1_3tcbp")]([SubResource("Resource_wj3eu"), SubResource("Resource_vkhl3"), SubResource("Resource_vug5f"), SubResource("Resource_idgr4"), SubResource("Resource_3tcbp")])
+event_actions = Array[ExtResource("1_3tcbp")]([SubResource("Resource_wj3eu"), SubResource("Resource_vkhl3"), SubResource("Resource_vug5f"), SubResource("Resource_idgr4"), SubResource("Resource_30tcf")])
 wait_after = Array[float]([])
 metadata/_custom_type_script = "uid://vnb7rb7na36b"

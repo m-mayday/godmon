@@ -5,7 +5,6 @@ extends Node2D
 @export var transition_layer: CanvasLayer
 @export var transition_color: ColorRect
 @export var player: Node2D
-@export var reaction: PackedScene ## Reaction scene (exclamation mark)
 @export var intro_scene: PackedScene
 @export var main_menu: PackedScene
 @export var world_manager: Node
@@ -96,29 +95,6 @@ func will_collide_with_player(coords: Vector2) -> bool:
 	if player.next_position == coords or player.previous_position == coords:
 		return true
 	return false
-	
-
-## Plays a reaction (!) on the specified node_path and at the specified offset.
-func play_reaction(node_path: NodePath, offset: Vector2):
-	var reaction_node: AnimatedSprite2D = reaction.instantiate()
-	var entity: Node = get_node(node_path)
-	entity.add_child(reaction_node)
-	reaction_node.offset = offset
-	reaction_node.show()
-	reaction_node.play()
-	await reaction_node.animation_finished
-	reaction_node.queue_free()
-
-
-## Plays a reaction (!) on the player at the specified offset.
-func play_reaction_player(offset: Vector2):
-	var reaction_node: AnimatedSprite2D = reaction.instantiate()
-	player.add_child(reaction_node)
-	reaction_node.offset = offset
-	reaction_node.show()
-	reaction_node.play()
-	await reaction_node.animation_finished
-	reaction_node.queue_free()
 
 
 ## Play the game's intro

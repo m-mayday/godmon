@@ -27,10 +27,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_apsr0")
 }],
 "loop": false,
-"name": &"default",
+"name": &"exclamation",
 "speed": 8.0
 }]
 
 [node name="Reaction" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_toshx")
+animation = &"exclamation"
 centered = false

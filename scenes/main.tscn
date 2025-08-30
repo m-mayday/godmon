@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dexs5i187o0bc"]
+[gd_scene load_steps=7 format=3 uid="uid://dexs5i187o0bc"]
 
 [ext_resource type="Script" uid="uid://y8ft1hgrhe1p" path="res://scenes/main.gd" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://ci705plphtymf" path="res://scenes/reaction.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c7y7j2cwcyshr" path="res://scenes/intro.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bmigxfi2xkns7" path="res://scenes/characters/player.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bnojhfvnb87my" path="res://scenes/menus/main_menu.tscn" id="4_tbgi4"]
@@ -13,7 +12,6 @@ y_sort_enabled = true
 script = ExtResource("1_o5qli")
 world = NodePath("WorldManager/World")
 player = NodePath("Player")
-reaction = ExtResource("2_sugp2")
 intro_scene = ExtResource("3_jyhfs")
 main_menu = ExtResource("4_tbgi4")
 world_manager = NodePath("WorldManager")
