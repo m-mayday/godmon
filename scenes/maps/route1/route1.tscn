@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://e6s1giwptv8o"]
+[gd_scene load_steps=31 format=4 uid="uid://e6s1giwptv8o"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_r7agj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://btuurmtirl5vl" path="res://scenes/maps/route1/dialogue/route1_boy.dialogue" id="10_fho5e"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="11_f5i15"]
 [ext_resource type="Script" uid="uid://c31hifnp50g3k" path="res://events/general/function_call_action.gd" id="12_o7v6n"]
+[ext_resource type="Script" uid="uid://drru06teeaclt" path="res://events/general/reaction_action.gd" id="13_cw5f1"]
 [ext_resource type="PackedScene" uid="uid://cbkgos7xpfwc1" path="res://scenes/cutscenes/dialogue/balloon.tscn" id="13_mwtrc"]
 [ext_resource type="Script" uid="uid://b56yr2dj3cp3x" path="res://events/general/event_target_resolver.gd" id="13_q4b38"]
 [ext_resource type="Script" uid="uid://d0klwgscjl6ym" path="res://events/general/dialogue_action.gd" id="14_q4b38"]
@@ -56,16 +57,16 @@ size = Vector2(32, 14)
 [sub_resource type="Resource" id="Resource_1kdbn"]
 script = ExtResource("13_q4b38")
 target_type = 0
-node_path = NodePath("/root/Main")
+node_path = NodePath("..")
 metadata/_custom_type_script = "uid://b56yr2dj3cp3x"
 
-[sub_resource type="Resource" id="Resource_q4b38"]
-script = ExtResource("12_o7v6n")
+[sub_resource type="Resource" id="Resource_cw5f1"]
+script = ExtResource("13_cw5f1")
 target = SubResource("Resource_1kdbn")
-function_name = "play_reaction"
-arguments = [NodePath(".."), Vector2(0, -20)]
+animation_name = "exclamation"
+offset = Vector2(0, -20)
 wait_after = Array[float]([])
-metadata/_custom_type_script = "uid://c31hifnp50g3k"
+metadata/_custom_type_script = "uid://drru06teeaclt"
 
 [sub_resource type="Resource" id="Resource_ptm5c"]
 script = ExtResource("13_q4b38")
@@ -165,7 +166,7 @@ collision = NodePath("CollisionShape2D")
 trainer = ExtResource("7_m71el")
 entity = NodePath("..")
 map = NodePath("../..")
-on_seen_actions = Array[ExtResource("11_f5i15")]([SubResource("Resource_q4b38"), SubResource("Resource_mwtrc"), SubResource("Resource_o7v6n")])
+on_seen_actions = Array[ExtResource("11_f5i15")]([SubResource("Resource_cw5f1"), SubResource("Resource_mwtrc"), SubResource("Resource_o7v6n")])
 start_on_dialogue = ExtResource("10_fho5e")
 skip_automatic_pause = true
 
