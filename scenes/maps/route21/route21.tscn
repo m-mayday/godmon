@@ -8,8 +8,8 @@ size = Vector2(94, 14)
 
 [node name="Route21" type="Node2D"]
 script = ExtResource("1_wq6m7")
-adjacent_scenes = Dictionary[String, Vector2]({
-"res://scenes/maps/town/town.tscn": Vector2(0, -320)
+adjacent_maps = Dictionary[String, Vector2]({
+"res://scenes/maps/town/town.tscn": Vector2(0, 320)
 })
 save_location = "ROUTE 21"
 

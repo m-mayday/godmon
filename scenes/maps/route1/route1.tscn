@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=4 uid="uid://e6s1giwptv8o"]
+[gd_scene load_steps=30 format=4 uid="uid://e6s1giwptv8o"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_ua0mi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_r7agj"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="6_c7nk4"]
 [ext_resource type="PackedScene" uid="uid://ch6u6x5ill6rs" path="res://scenes/maps/encounter_area.tscn" id="6_o7v6n"]
-[ext_resource type="Texture2D" uid="uid://b1flro4n1fk0f" path="res://assets/characters/npc_01.png" id="7_1kdbn"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="7_3t3aa"]
 [ext_resource type="Resource" uid="uid://ds26v3fe8jfvq" path="res://data/trainers/route1_boy.tres" id="7_m71el"]
 [ext_resource type="Script" uid="uid://cu2j1bo2txyy6" path="res://data/_base_classes/encounter.gd" id="7_mwtrc"]
@@ -97,7 +96,7 @@ size = Vector2(14, 31)
 [node name="Route1" type="Node2D" node_paths=PackedStringArray("moving_objects")]
 y_sort_enabled = true
 script = ExtResource("1_ua0mi")
-adjacent_scenes = Dictionary[String, Vector2]({
+adjacent_maps = Dictionary[String, Vector2]({
 "res://scenes/maps/town/town.tscn": Vector2(0, 640)
 })
 moving_objects = [NodePath("NPC")]
@@ -147,7 +146,6 @@ debug_color = Color(0.927299, 3.58093e-05, 0.66909, 0.42)
 
 [node name="NPC" parent="." instance=ExtResource("6_c7nk4")]
 position = Vector2(80, 432)
-texture = ExtResource("7_1kdbn")
 movement_type = 1
 
 [node name="Line2D" type="Line2D" parent="NPC"]

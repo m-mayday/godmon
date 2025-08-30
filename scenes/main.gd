@@ -8,26 +8,23 @@ extends Node2D
 @export var reaction: PackedScene ## Reaction scene (exclamation mark)
 @export var intro_scene: PackedScene
 @export var main_menu: PackedScene
+@export var world_manager: Node
+@export var transition_manager: TransitionManager
 
-var current_scene: Node # The current scene loaded
-var previous_scene: Node # The previous "current" scene when loading or changing a scene
-var previous_world: Node # World that's been replaced when loading a new scene
 var player_removed: bool = false # If the player has been removed from the scene tree
-var _loaded_chunks: Dictionary[String, Node] = {}  # Dictionary of currently loaded map chunks
-var thread: Thread # Thread to load adjacent scenes
 
 func _ready() -> void:
+	Global.transition_manager = transition_manager
 	SignalBus.input_paused.emit(true)
-	thread = Thread.new()
 	if len(Global.get_save_files()) <= 0:
 		play_intro()
 	else:
 		var menu = main_menu.instantiate()
-		animator.play_backwards("fade_in")
+		var transition_finished: Signal = transition_manager.fade_out()
 		add_child(menu)
-		await animator.animation_finished
+		await transition_finished
 		SignalBus.input_paused.emit(true)
-	SignalBus.zone_changed.connect(_change_scene)
+	SignalBus.zone_changed.connect(world_manager.load_map)
 
 
 func _input(event: InputEvent) -> void:
@@ -42,30 +39,17 @@ func _input(event: InputEvent) -> void:
 ## The current scene can be freed (thus you can't return to it)
 ## The player can be removed from the SceneTree if needed (i.e. BattleScene)
 func load_scene(scene_path: String, free_current: bool = false, remove_player:bool = false, data: Dictionary = {}) -> void:
-	if scene_path in _loaded_chunks:
-		_change_scene(scene_path)
+	if world_manager.is_map_in_tree(scene_path):
+		world_manager.load_map(scene_path, player, free_current, data)
 		return
+	
 	Cutscene._is_cutscene_in_progress = true # Loading a scene is a special case that we'd like to treat as a cutscene
-	# Fade out transition
-	transition_layer.visible = true
-	if current_scene != null:
-		animator.play("fade_in")
-		await animator.animation_finished
-	var previous_scene_path: String = ""
-	if current_scene != null:
-		previous_scene_path = current_scene.scene_file_path
-	if free_current and current_scene != null:
-		current_scene.queue_free()
-		_clear_chunks()
-	elif current_scene != null:
-		previous_world = world
-		remove_child(world)
-		previous_scene = current_scene
+	var previous_scene_path: String = world_manager.get_current_map_path()
+	
+	
+	if world_manager.get_current_map() != null:
+		await transition_manager.fade_in()
 
-	current_scene = load(scene_path).instantiate()
-	if current_scene.has_method("with_data"):
-		current_scene.with_data(data)
-		
 	if remove_player:
 		remove_child(player)
 		player_removed = true
@@ -74,114 +58,33 @@ func load_scene(scene_path: String, free_current: bool = false, remove_player:bo
 			add_child(player)
 			player_removed = false
 
-	if current_scene.has_method("get_adjacent_scenes"):
-		_loaded_chunks[scene_path] = current_scene
+	world_manager.call_deferred("load_map", scene_path, player, free_current, data)
 
-	if get_node_or_null("World") == null:
-		var new_world: Node2D = Node2D.new()
-		new_world.name = "World"
-		world = new_world
-		add_child(world)
-	
-	world.add_child(current_scene)
-	if not player_removed and current_scene.has_method("get_spawn_position"):
-		player.position = current_scene.get_spawn_position()
-		
-	_update_adjacent_scenes(current_scene)
-	SignalBus.scene_loaded.emit(previous_scene_path, scene_path)
-	animator.play_backwards("fade_in")
-	await animator.animation_finished
-	transition_color.color.a = 0
-	transition_layer.visible = false
+	await SignalBus.scene_loaded
+	await transition_manager.fade_out()
 	Cutscene._is_cutscene_in_progress = false
 	SignalBus.scene_transition_finished.emit(previous_scene_path, scene_path)
-
-
-## Loads adjacent scenes given the current scene and adds them to _loaded_chunks
-func _load_adjacent_scenes(new_scene: Variant) -> void:
-	if not new_scene.has_method("get_adjacent_scenes"):
-		return
-		
-	var adjacent_scenes: Dictionary[String, Vector2] = new_scene.get_adjacent_scenes()
-
-	for scene in adjacent_scenes:
-		if scene not in _loaded_chunks:
-			var chunk: Variant = load(scene).instantiate()
-			chunk.position = new_scene.position + adjacent_scenes[scene]
-			world.call_deferred("add_child", chunk)
-			_loaded_chunks[scene] = chunk
 
 
 ## If the previous scene wasn't freed, it loads it back in as it was
 ## along with any other loaded adjacent scenes
 func return_to_previous_scenes() -> void:
-	if previous_world != null:
-		transition_layer.visible = true
-		animator.play("fade_in")
-		await animator.animation_finished
-		current_scene.queue_free()
-		current_scene = previous_scene
-		remove_child(world)
-		add_child(previous_world)
-		world = previous_world
-		previous_world = null
+	if world_manager.has_previous_world():
+		await transition_manager.fade_in()
+		world_manager.restore_world()
+		
 		if player_removed:
 			add_child(player)
-		animator.play_backwards("fade_in")
-		await animator.animation_finished
+
+		await transition_manager.fade_out()
 		SignalBus.input_paused.emit(false)
-		transition_color.color.a = 0
-		transition_layer.visible = false
-
-
-## Frees loaded chunks/adjacent scenes
-func _clear_chunks() -> void:
-	for chunk in _loaded_chunks.values():
-		chunk.queue_free()
-	_loaded_chunks.clear()
-
-
-## Changes the current scene with a new adjacent one
-## and it updates the adjacent scenes
-func _change_scene(new_scene_path: String) -> void:
-	if new_scene_path == current_scene.scene_file_path or new_scene_path not in _loaded_chunks.keys():
-		return  # Already the current scene
-
-	current_scene = _loaded_chunks[new_scene_path]
-	_update_adjacent_scenes(current_scene)
-
-
-## Frees scenes that are not adjacent to the new scene
-## Calls _load_adjacent_scenes in a thread
-func _update_adjacent_scenes(new_scene: Variant) -> void:
-	if not new_scene.has_method("get_adjacent_scenes"):
-		return
-		
-	var new_adjacent_scenes: Dictionary[String, Vector2] = new_scene.get_adjacent_scenes()
-
-	# Unload scenes that are no longer adjacent
-	for path in _loaded_chunks.keys():
-		if path not in new_adjacent_scenes.keys() and path != new_scene.scene_file_path:
-			var chunk: Node = _loaded_chunks[path]
-			_loaded_chunks.erase(path)
-			chunk.queue_free()
-			
-	if thread.is_started():
-		thread.wait_to_finish()
-	thread.start(_load_adjacent_scenes.bind(new_scene)) # Load adjacent scenes in thread
-
-
-## Plays the transtion animation at the provided speed
-func play_transition(speed: float = 1.0) -> void:
-	transition_layer.visible = true
-	animator.play("fade_in", -1, speed)
-	await animator.animation_finished
-	transition_color.color.a = 0
-	transition_layer.visible = false
 
 
 ## Checks if there is or was an object at the specified coordinates
 func will_collide_with_moving_object(coords: Vector2) -> bool:
+	var current_scene: Node = world_manager.get_current_map()
+	if current_scene == null:
+		return false
 	for object in current_scene.moving_objects:
 		if current_scene.to_global(object.next_position) == coords or current_scene.to_global(object.previous_position) == coords:
 			return true
@@ -217,12 +120,13 @@ func play_reaction_player(offset: Vector2):
 	await reaction_node.animation_finished
 	reaction_node.queue_free()
 
+
 ## Play the game's intro
 func play_intro() -> void:
 	var intro = intro_scene.instantiate()
-	animator.play_backwards("fade_in")
+	var transition_finished: Signal = transition_manager.fade_out()
 	add_child(intro)
-	await animator.animation_finished
+	await transition_finished
 	SignalBus.input_paused.emit(true)
 	await intro.intro_finished
 	if Global.game_data.player_gender == Constants.GENDER.FEMALE:

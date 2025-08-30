@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://dstygts5pibt0"]
+
+[ext_resource type="Script" uid="uid://tvjfwi7f7yg2" path="res://scenes/transition_manager.gd" id="1_xqma1"]
+
+[sub_resource type="Animation" id="Animation_sugp2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jyhfs"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o6xl0"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jyhfs"]
+_data = {
+&"RESET": SubResource("Animation_sugp2"),
+&"fade_in": SubResource("Animation_jyhfs"),
+&"fade_out": SubResource("Animation_o6xl0")
+}
+
+[node name="Transition" type="CanvasLayer" node_paths=PackedStringArray("animator", "color_rect")]
+layer = 100
+script = ExtResource("1_xqma1")
+animator = NodePath("AnimationPlayer")
+color_rect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_jyhfs")
+}
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

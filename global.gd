@@ -9,6 +9,7 @@ const MAX_PLAY_TIME: float = (999 * 3600) + (59 * 60)
 var player_side_battlers: Array[Battler] = []
 var foe_side_battlers: Array[Battler] = []
 var game_data: SaveData = SaveData.new()
+var transition_manager: TransitionManager
 
 var _tracking_play_time: bool = false
 

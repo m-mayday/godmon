@@ -1,11 +1,10 @@
-[gd_scene load_steps=40 format=4 uid="uid://dexgstl8ktef5"]
+[gd_scene load_steps=39 format=4 uid="uid://dexgstl8ktef5"]
 
 [ext_resource type="Script" uid="uid://cf8g0lsrfu2fk" path="res://scenes/chunk.gd" id="1_7avvi"]
 [ext_resource type="TileSet" uid="uid://cc2gancwk4t5k" path="res://scenes/tilesets/outside_tileset.tres" id="2_k4x0e"]
 [ext_resource type="Script" uid="uid://dcvabtgv4xkw0" path="res://events/general/event_action.gd" id="5_tpn7j"]
 [ext_resource type="Script" uid="uid://1txtbitbdrum" path="res://events/general/movement_action.gd" id="6_y2osm"]
 [ext_resource type="PackedScene" uid="uid://b3ymjt62jb6v5" path="res://scenes/cutscenes/dialogue/dialogue.tscn" id="10_cgcdf"]
-[ext_resource type="Texture2D" uid="uid://b1flro4n1fk0f" path="res://assets/characters/npc_01.png" id="10_vkhl3"]
 [ext_resource type="PackedScene" uid="uid://c4ccidygyc74" path="res://scenes/characters/npc.tscn" id="10_y2osm"]
 [ext_resource type="Resource" uid="uid://cuwp1mp0m56ba" path="res://scenes/maps/town/dialogue/town_sign.dialogue" id="11_603mb"]
 [ext_resource type="Texture2D" uid="uid://bvnbal1833qsq" path="res://assets/characters/npc_02.png" id="11_idgr4"]
@@ -122,7 +121,7 @@ size = Vector2(14, 14)
 [node name="Town" type="Node2D" node_paths=PackedStringArray("player_spawn_marker", "player_spawns", "moving_objects")]
 y_sort_enabled = true
 script = ExtResource("1_7avvi")
-adjacent_scenes = Dictionary[String, Vector2]({
+adjacent_maps = Dictionary[String, Vector2]({
 "res://scenes/maps/route1/route1.tscn": Vector2(0, -640),
 "res://scenes/maps/route21/route21.tscn": Vector2(0, 320)
 })
@@ -170,7 +169,6 @@ balloon = ExtResource("11_tpn7j")
 
 [node name="Man" parent="." instance=ExtResource("10_y2osm")]
 position = Vector2(144, 256)
-texture = ExtResource("10_vkhl3")
 wait_seconds_choices = Array[float]([])
 
 [node name="NPC" parent="Man" instance=ExtResource("10_cgcdf")]

@@ -1,77 +1,32 @@
-[gd_scene load_steps=9 format=3 uid="uid://dexs5i187o0bc"]
+[gd_scene load_steps=8 format=3 uid="uid://dexs5i187o0bc"]
 
 [ext_resource type="Script" uid="uid://y8ft1hgrhe1p" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://ci705plphtymf" path="res://scenes/reaction.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c7y7j2cwcyshr" path="res://scenes/intro.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bmigxfi2xkns7" path="res://scenes/characters/player.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bnojhfvnb87my" path="res://scenes/menus/main_menu.tscn" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dstygts5pibt0" path="res://transition_manager.tscn" id="5_o6xl0"]
+[ext_resource type="Script" uid="uid://c0n3avhmjjbf6" path="res://scenes/world_manager.gd" id="6_tefeu"]
 
-[sub_resource type="Animation" id="Animation_sugp2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Transition/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jyhfs"]
-resource_name = "fade_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Transition/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jyhfs"]
-_data = {
-&"RESET": SubResource("Animation_sugp2"),
-&"fade_in": SubResource("Animation_jyhfs")
-}
-
-[node name="Main" type="Node2D" node_paths=PackedStringArray("world", "animator", "transition_layer", "transition_color", "player")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("world", "player", "world_manager", "transition_manager")]
 y_sort_enabled = true
 script = ExtResource("1_o5qli")
-world = NodePath("World")
-animator = NodePath("AnimationPlayer")
-transition_layer = NodePath("Transition")
-transition_color = NodePath("Transition/ColorRect")
+world = NodePath("WorldManager/World")
 player = NodePath("Player")
 reaction = ExtResource("2_sugp2")
 intro_scene = ExtResource("3_jyhfs")
 main_menu = ExtResource("4_tbgi4")
+world_manager = NodePath("WorldManager")
+transition_manager = NodePath("Transition")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jyhfs")
-}
-
-[node name="Transition" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="ColorRect" type="ColorRect" parent="Transition"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
+[node name="Transition" parent="." instance=ExtResource("5_o6xl0")]
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_sugp2")]
 
-[node name="World" type="Node2D" parent="."]
+[node name="WorldManager" type="Node2D" parent="." node_paths=PackedStringArray("world")]
+y_sort_enabled = true
+script = ExtResource("6_tefeu")
+world = NodePath("World")
+
+[node name="World" type="Node2D" parent="WorldManager"]
 y_sort_enabled = true

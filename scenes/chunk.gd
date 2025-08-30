@@ -1,13 +1,13 @@
 extends Node2D
 
-## A dictionary of adjacent scene file paths and their position relative to this chunk
-@export var adjacent_scenes: Dictionary[String, Vector2]
+## A dictionary of adjacent maps file paths and their position relative to this map
+@export var adjacent_maps: Dictionary[String, Vector2]
 
-## The player spawn position in this chunk
+## The player spawn position in this map
 @export var player_spawn_marker: Marker2D
 @export var player_spawns: Dictionary[String, Node2D]
-@export var moving_objects: Array[Node2D] = [] ## The moving objects (i.e. NPCs) in this chunk
-@export var save_location: String ## The location to display when saving the game. Not necessarily the same as this chunk's name
+@export var moving_objects: Array[Node2D] = [] ## The moving objects (i.e. NPCs) in this map
+@export var save_location: String ## The location to display when saving the game. Not necessarily the same as this map's name
 var current_spawn: Node2D
 
 
@@ -18,12 +18,12 @@ func with_data(data: Dictionary) -> void:
 		current_spawn = player_spawn_marker
 
 
-## Returns the dictionary of adjacent scenes
-func get_adjacent_scenes() -> Dictionary[String, Vector2]:
-	return adjacent_scenes
+## Returns the dictionary of adjacent maps
+func get_adjacent_maps() -> Dictionary[String, Vector2]:
+	return adjacent_maps
 
 
-## Returns the player spawn position in this chunk
+## Returns the player spawn position in this map
 func get_spawn_position() -> Vector2:
 	if current_spawn == null:
 		return Vector2.ZERO

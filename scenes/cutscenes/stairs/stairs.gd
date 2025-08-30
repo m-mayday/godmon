@@ -11,7 +11,8 @@ class_name Stairs
 func _execute() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	player.cutscene_move(Vector2(player.position.x + tiles*Constants.TILE_SIZE * stairs_direction * -1, player.position.y + tiles*Constants.TILE_SIZE / 2 * stairs_direction), tiles)
-	await get_tree().root.get_node("Main").play_transition(1.5)
+	await Global.transition_manager.fade_in(1.5)
+	Global.transition_manager.reset_state()
 	player.position = Vector2(target_location.x + tiles * Constants.TILE_SIZE * player_face_direction.x * -1, target_location.y + (tiles * Constants.TILE_SIZE / 2) * stairs_direction * -1)
 	await player.cutscene_move(target_location, tiles)
 	
